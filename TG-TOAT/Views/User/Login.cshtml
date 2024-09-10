@@ -1,0 +1,13 @@
+﻿@model MvcMovie.Models.User
+
+@{
+    ViewData["Title"] = "Logged In";
+}
+
+<h1>Welcome, @Model.FirstName @Model.LastName</h1>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

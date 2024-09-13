@@ -74,15 +74,33 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,Password,FirstName,LastName,BirthDate")] User user)
+        public async Task<IActionResult> Create(RegistrationViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(user);
+                // Manually map from ViewModel to User entity
+                User user = new User();
+
+                        user.Email = model.Email;
+                        user.FirstName = model.FirstName;
+                        user.LastName = model.LastName;
+                        user.Password = model.Password;
+                        user.BirthDate = model.BirthDate;
+                         if(model.UserRole == "Student")
+                         {
+                         user.UserRole = "Student";
+                         }
+                         else 
+                         {
+                         user.UserRole = "Instructor";
+                         }
+                        
+                    
+                    _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Login), new { Email=user.Email, Password=user.Password });
             }
-            return View(user);
+            return View(model);
         }
 
         // GET: User/Edit/5

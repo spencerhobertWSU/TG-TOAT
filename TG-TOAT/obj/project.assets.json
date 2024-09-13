@@ -7852,19 +7852,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\spenc\\.nuget\\packages\\": {}
+    "C:\\Users\\Garcia\\.nuget\\packages\\": {},
+    "H:\\Programs!\\VisualStudioSharedCom\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\spenc\\Box\\CS3750\\Unit 2\\Spencer_Hobert_Assignment1\\Spencer_Hobert_tutorial\\MvcMovie.csproj",
+      "projectUniqueName": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\MvcMovie.csproj",
       "projectName": "MvcMovie",
-      "projectPath": "C:\\Users\\spenc\\Box\\CS3750\\Unit 2\\Spencer_Hobert_Assignment1\\Spencer_Hobert_tutorial\\MvcMovie.csproj",
-      "packagesPath": "C:\\Users\\spenc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\spenc\\Box\\CS3750\\Unit 2\\Spencer_Hobert_Assignment1\\Spencer_Hobert_tutorial\\obj\\",
+      "projectPath": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\MvcMovie.csproj",
+      "packagesPath": "C:\\Users\\Garcia\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "H:\\Programs!\\VisualStudioSharedCom\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\spenc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Garcia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -32,4 +32,8 @@ public class User
     [DataType(DataType.Date)]
     [Required]
     public DateTime BirthDate { get; set; }
+
+    [Display(Name = "User Role")]
+    [Required]
+    public string? UserRole { get; set; }
 }

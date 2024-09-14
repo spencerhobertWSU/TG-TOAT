@@ -14,12 +14,12 @@ public class User
     [Required]
     public string? Email { get; set; }
 
-    [StringLength(30, MinimumLength = 6)]
+    [StringLength(100, MinimumLength = 6)]
     [Required]
     public string? Password { get; set; }
 
     [Display(Name = "First Name")]
-    [StringLength(100, MinimumLength = 1)]
+    [StringLength(60, MinimumLength = 1)]
     [Required]
     public string? FirstName { get; set; }
 

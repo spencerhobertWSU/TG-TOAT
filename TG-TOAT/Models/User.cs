@@ -19,7 +19,7 @@ public class User
     public string? Password { get; set; }
 
     [Display(Name = "First Name")]
-    [StringLength(60, MinimumLength = 1)]
+    [StringLength(100, MinimumLength = 1)]
     [Required]
     public string? FirstName { get; set; }
 

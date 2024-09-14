@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using MvcMovie.Data;
+using MvcMovie.Helpers;
 using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
@@ -15,10 +16,12 @@ namespace MvcMovie.Controllers
     public class UserController : Controller
     {
         private readonly MvcMovieContext _context;
+        private readonly IPasswordHasher _passwordHasher;
 
-        public UserController(MvcMovieContext context)
+        public UserController(MvcMovieContext context, IPasswordHasher passwordHasher)
         {
             _context = context;
+            _passwordHasher = passwordHasher;
         }
 
         // GET: User
@@ -29,20 +32,26 @@ namespace MvcMovie.Controllers
 
         public async Task<IActionResult> Login(string Email, string Password)
         {
-            var user = from m in _context.User
-                       where m.Email == Email && m.Password == Password
-                       select m;
-            if (user.Any())
+            // Grab the user by email
+            var user = _context.User.FirstOrDefault(m => m.Email == Email);
+
+            // If no user is found
+            if (user == null)
             {
-                if (user.Count() != 0)
-                {
-                    if (user.First().Password == Password)
-                    {
-                        return View(user.First());
-                    }
-                }
+                return RedirectToAction(nameof(Index));
             }
-            return RedirectToAction(nameof(Index));
+
+            // Check if the password matches
+            if (_passwordHasher.Verify(user.Password, Password))
+            {
+                // If the password is correct, log the user in
+                return View(user);
+            }
+            else
+            {
+                // If the password is incorrect, redirect back to login screen
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         // GET: User/Details/5
@@ -76,13 +85,20 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Email,Password,FirstName,LastName,BirthDate")] User user)
         {
-            if (ModelState.IsValid)
+            // If there's invalid arguments, don't do anything
+            if (!ModelState.IsValid)
             {
-                _context.Add(user);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Login), new { Email=user.Email, Password=user.Password });
+                return View(user);
             }
-            return View(user);
+
+            // Hash the password
+            var passwordHash = _passwordHasher.Hash(user.Password);
+            user.Password = passwordHash;
+
+            // Add the user, sync it, and redirect
+            _context.Add(user);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Login), new { Email=user.Email, Password=passwordHash });
         }
 
         // GET: User/Edit/5

@@ -7,16 +7,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
-using MvcMovie.Data;
-using MvcMovie.Models;
+using TGTOAT.Data;
+using TGTOAT.Models;
 
-namespace MvcMovie.Controllers
+namespace TGTOAT.Controllers
 {
     public class UserController : Controller
     {
-        private readonly MvcMovieContext _context;
+        private readonly UserContext _context;
 
-        public UserController(MvcMovieContext context)
+        public UserController(UserContext context)
         {
             _context = context;
         }

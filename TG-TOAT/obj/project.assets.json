@@ -7852,19 +7852,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\spenc\\.nuget\\packages\\": {}
+    "C:\\Users\\scott\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\spenc\\Box\\CS3750\\Unit 2\\Spencer_Hobert_Assignment1\\Spencer_Hobert_tutorial\\MvcMovie.csproj",
-      "projectName": "MvcMovie",
-      "projectPath": "C:\\Users\\spenc\\Box\\CS3750\\Unit 2\\Spencer_Hobert_Assignment1\\Spencer_Hobert_tutorial\\MvcMovie.csproj",
-      "packagesPath": "C:\\Users\\spenc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\spenc\\Box\\CS3750\\Unit 2\\Spencer_Hobert_Assignment1\\Spencer_Hobert_tutorial\\obj\\",
+      "projectUniqueName": "F:\\School\\2024\\Fall\\CS_3750\\project\\TG-TOAT\\TG-TOAT.csproj",
+      "projectName": "TG-TOAT",
+      "projectPath": "F:\\School\\2024\\Fall\\CS_3750\\project\\TG-TOAT\\TG-TOAT.csproj",
+      "packagesPath": "C:\\Users\\scott\\.nuget\\packages\\",
+      "outputPath": "F:\\School\\2024\\Fall\\CS_3750\\project\\TG-TOAT\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\spenc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\scott\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7930,7 +7930,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

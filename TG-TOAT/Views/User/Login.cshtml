@@ -1,10 +1,187 @@
-﻿@model MvcMovie.Models.User
+﻿@model TGTOAT.Models.User
+@*TGTOAT.Models.UserHome*@
 
 @{
     ViewData["Title"] = "Logged In";
 }
 
 <h1>Welcome, @Model.FirstName @Model.LastName</h1>
+
+<div class="row">
+    <div class="col-md-8 card-container">
+        @*
+        foreach (var item in Model){
+        <div class="card">
+        <a asp-action="Class" asp-route-id="@item.Id" class="class-link">
+        <img href="">
+        <div class="card-info">
+        <p class="class-info">
+        @Html.DisplayFor(modelItem => item.ClassInfo)
+        </p>
+        <p class="class-name">
+        @HTML.DisplayFor(modelItem => item.ClassName)
+        </p>
+        <p class="class-time">
+        @HTML.DisplayFor(modelItem => item.ClassTime)
+        </p>
+        </div>
+        </a>
+        <div class="card-icons">
+        <a asp-action="Class/Announcements" asp-route-id="@item.Id" title="Announcements">
+        <i class="fa-solid fa-bullhorn"></i>
+        </a>
+        <a asp-action="Class/Assignments" asp-route-id="@item.Id" title="Assignments">
+        <i class="fa-light fa-books"></i>
+        </a>
+        <a asp-action="Class/Discussions" asp-route-id="@item.Id" title="Discussions">
+        <i class="fa-light fa-comments"></i>
+        </a>
+        <a asp-action="Class/Grades" asp-route-id="@item.Id" title="Grades">
+        <i class="fa-solid fa-award"></i>
+        </a>
+        </div>
+        </div>
+        }
+        *@
+        <div class="card">
+            <a href="" class="class-link">
+                <img href="">
+                <div class="card-info">
+                    <p class="class-info">CS 1010 - WOC - Fall 2024 - 25085</p>
+                    <p class="class-name">Introduction to Interactive Entertainment</p>
+                    <p class="class-time">M-F, 3:30-5:30</p>
+                </div>
+            </a>
+            <div class="card-icons">
+                <a href="#" title="Announcements"><i class="fa-solid fa-bullhorn"></i></a>
+                <a href="#" title="Assignments"><i class="fa-light fa-books"></i></a>
+                <a href="#" title="Discussions"><i class="fa-light fa-comments"></i></a>
+                <a href="#" title="Grades"><i class="fa-solid fa-award"></i></a>
+            </div>
+        </div>
+
+        <div class="card">
+            <a href="" class="class-link">
+                <img href="">
+                <div class="card-info">
+                    <p class="class-info">CS 1022 - ONL - Fall 2024 - 25065</p>
+                    <p class="class-name">Software Development</p>
+                    <p class="class-time">Online</p>
+                </div>
+            </a>
+            <div class="card-icons">
+                <a href="#" title="Announcements"><i class="fa-solid fa-bullhorn"></i></a>
+                <a href="#" title="Assignments"><i class="fa-light fa-books"></i></a>
+                <a href="#" title="Discussions"><i class="fa-light fa-comments"></i></a>
+                <a href="#" title="Grades"><i class="fa-solid fa-award"></i></a>
+            </div>
+        </div>
+
+        <div class="card">
+            <a href="" class="class-link">
+                <img href="">
+                <div class="card-info">
+                    <p class="class-info">CS 1030 - WLC - Fall 2024 - 25097</p>
+                    <p class="class-name">Foundations of Computing</p>
+                    <p class="class-time">M-W-F, 3:30-5:30</p>
+                </div>
+            </a>
+            <div class="card-icons">
+                <a href="#" title="Announcements"><i class="fa-solid fa-bullhorn"></i></a>
+                <a href="#" title="Assignments"><i class="fa-light fa-books"></i></a>
+                <a href="#" title="Discussions"><i class="fa-light fa-comments"></i></a>
+                <a href="#" title="Grades"><i class="fa-solid fa-award"></i></a>
+            </div>
+        </div>
+
+        <div class="card">
+            <a href="" class="class-link">
+                <img href="">
+                <div class="card-info">
+                    <p class="class-info">CS 1400 - WLC - Fall 2024 - 22385</p>
+                    <p class="class-name">Fundamentals of Programming</p>
+                    <p class="class-time">M-W-F, 5:30-7:30</p>
+                </div>
+            </a>
+            <div class="card-icons">
+                <a href="#" title="Announcements"><i class="fa-solid fa-bullhorn"></i></a>
+                <a href="#" title="Assignments"><i class="fa-light fa-books"></i></a>
+                <a href="#" title="Discussions"><i class="fa-light fa-comments"></i></a>
+                <a href="#" title="Grades"><i class="fa-solid fa-award"></i></a>
+            </div>
+        </div>
+
+        <div class="card">
+            <a href="" class="class-link">
+                <img href="">
+                <div class="card-info">
+                    <p class="class-info">CS 2350 - ONL - Fall 2024 - 24385</p>
+                    <p class="class-name">Client Side Web Development</p>
+                    <p class="class-time">Online</p>
+                </div>
+            </a>
+            <div class="card-icons">
+                <a href="#" title="Announcements"><i class="fa-solid fa-bullhorn"></i></a>
+                <a href="#" title="Assignments"><i class="fa-light fa-books"></i></a>
+                <a href="#" title="Discussions"><i class="fa-light fa-comments"></i></a>
+                <a href="#" title="Grades"><i class="fa-solid fa-award"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="todo">
+            <h3>To Do</h3>
+        </div>
+        <div class="todo-items">
+            @*
+            foreach (var item in Model){
+            <a asp-action="Class" asp-route-id="@item.Id">
+            <p class="todo-class">
+            @Html.DisplayFor(modelItem => item.ClassName)
+            </p>
+            <p class="todo-name">
+            @Html.DisplayFor(modelItem => item.AssignName)
+            </p>
+            <p class="todo-time">
+            @Html.DisplayFor(modelItem => item.DueTime)
+            </p>
+            </a>
+            }
+            *@
+            <a href="">
+                <p class="todo-class">CS 1010</p>
+                <p class="todo-name">Quiz 3: Foundations</p>
+                <p class="todo-time">Sep 18 at 11:59pm</p>
+            </a>
+
+            <a href="">
+                <p class="todo-class">CS 1010</p>
+                <p class="todo-name">Exam 1: Foundations</p>
+                <p class="todo-time">Sep 20 at 11:59pm</p>
+            </a>
+            <a href="">
+                <p class="todo-class">CS 1010</p>
+                <p class="todo-name">Code 4: Java For loops</p>
+                <p class="todo-time">Sep 27 at 11:59pm</p>
+            </a>
+
+            <a href="">
+                <p class="todo-class">CS 1010</p>
+                <p class="todo-name">Code 5: Java Switches</p>
+                <p class="todo-time">Sep 27 at 11:59pm</p>
+            </a>
+            <a href="">
+                <p class="todo-class">CS 1010</p>
+                <p class="todo-name">Code 6: Java While loops</p>
+                <p class="todo-time">Sep 29 at 11:59pm</p>
+            </a>
+
+        </div>
+    </div>
+</div>
+
+
 
 @section Scripts {
     @{

@@ -2,11 +2,13 @@
 using Microsoft.Extensions.DependencyInjection;
 using TGTOAT.Data;
 using TGTOAT.Models;
+using TGTOAT.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<UserContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MvcMovieContext")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("UserContext")));
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

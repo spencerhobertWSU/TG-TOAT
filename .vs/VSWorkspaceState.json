@@ -1,5 +1,6 @@
 {
   "ExpandedNodes": [
+<<<<<<< HEAD
     "",
     "\\TG-TOAT",
     "\\TG-TOAT\\Migrations",
@@ -10,5 +11,10 @@
     "\\TG-TOAT\\wwwroot\\css"
   ],
   "SelectedNode": "\\TG-TOAT\\Migrations\\20240910004031_initalCreate.cs",
+=======
+    ""
+  ],
+  "SelectedNode": "\\MvcMovie.sln",
+>>>>>>> main
   "PreviewInSolutionExplorer": false
 }

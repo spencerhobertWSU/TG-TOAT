@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace MvcMovie.Migrations
+namespace TGTOAT.Migrations
 {
     /// <inheritdoc />
     public partial class RegisterModelCreate : Migration

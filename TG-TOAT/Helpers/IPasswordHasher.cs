@@ -1,4 +1,4 @@
-﻿namespace MvcMovie.Helpers;
+﻿namespace TGTOAT.Helpers;
 
 public interface IPasswordHasher
 {

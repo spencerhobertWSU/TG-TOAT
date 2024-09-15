@@ -1,8 +1,8 @@
-using assignment1.Models;
+using TGTOAT.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace assignment1.Controllers
+namespace TGTOAT.Controllers
 {
     public class HomeController : Controller
     {

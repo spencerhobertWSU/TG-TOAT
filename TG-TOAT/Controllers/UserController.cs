@@ -7,18 +7,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
-using MvcMovie.Data;
-using MvcMovie.Helpers;
-using MvcMovie.Models;
+using TGTOAT.Data;
+using TGTOAT.Models;
+using TGTOAT.Helpers;
 
-namespace MvcMovie.Controllers
+namespace TGTOAT.Controllers
 {
     public class UserController : Controller
     {
-        private readonly MvcMovieContext _context;
         private readonly IPasswordHasher _passwordHasher;
+        private readonly UserContext _context;
 
-        public UserController(MvcMovieContext context, IPasswordHasher passwordHasher)
+        public UserController(UserContext context, IPasswordHasher passwordHasher)
         {
             _context = context;
             _passwordHasher = passwordHasher;

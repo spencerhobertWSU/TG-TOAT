@@ -1,4 +1,4 @@
-namespace assignment1.Models
+namespace TGTOAT.Models
 {
     public class ErrorViewModel
     {

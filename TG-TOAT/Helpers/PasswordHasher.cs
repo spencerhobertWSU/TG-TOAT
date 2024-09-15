@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace MvcMovie.Helpers;
+namespace TGTOAT.Helpers;
 
 public class PasswordHasher : IPasswordHasher
 {

@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MvcMovie.Data;
+using TGTOAT.Data;
 
 #nullable disable
 
-namespace MvcMovie.Migrations
+namespace TGTOAT.Migrations
 {
-    [DbContext(typeof(MvcMovieContext))]
+    [DbContext(typeof(UserContext))]
     [Migration("20240913204643_AddUserRoleColumn")]
     partial class AddUserRoleColumn
     {

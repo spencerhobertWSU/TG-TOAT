@@ -83,26 +83,42 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,Password,FirstName,LastName,BirthDate")] User user)
+        public async Task<IActionResult> Create(RegistrationViewModel model)
         {
+            
             // If there's invalid arguments, don't do anything
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(user);
+                // Manually map from ViewModel to User entity
+                User user = new User();
+                user.Email = model.Email;
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Password = model.Password;
+                user.BirthDate = model.BirthDate;
+                if(model.UserRole == "Student")
+                {
+                user.UserRole = "Student";
+                }
+                else 
+                {
+                user.UserRole = "Instructor";
+                }
+                // Hash the password
+                var passwordHash = _passwordHasher.Hash(user.Password);
+                user.Password = passwordHash;
+
+                // Add the user, sync it, and redirect
+                _context.Add(user);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Login), new { Email=user.Email, Password=user.Password });
             }
-
-            // Hash the password
-            var passwordHash = _passwordHasher.Hash(user.Password);
-            user.Password = passwordHash;
-
-            // Add the user, sync it, and redirect
-            _context.Add(user);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Login), new { Email=user.Email, Password=passwordHash });
+            return View(model);
         }
+            
 
-        // GET: User/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+            // GET: User/Edit/5
+            public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {

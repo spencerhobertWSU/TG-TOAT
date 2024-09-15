@@ -1,4 +1,4 @@
-﻿@model MvcMovie.Models.User
+﻿@model MvcMovie.Models.RegistrationViewModel
 
 @{
     ViewData["Title"] = "Sign Up";
@@ -23,6 +23,11 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
@@ -36,6 +41,22 @@
                 <label asp-for="BirthDate" class="control-label"></label>
                 <input asp-for="BirthDate" class="form-control" />
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserRole" class="control-label">User Role</label>
+                <div class="row">
+                    <div class="col-md-auto">
+                <div>
+                            <input type="radio" asp-for="UserRole" value="Student" /> Student
+                </div>
+                </div>
+                    <div class="col-md-auto">
+                <div>
+                            <input type="radio" asp-for="UserRole" value="Instructer" /> Instructer
+                </div>
+                </div>
+                </div>
+                <span asp-validation-for="UserRole" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Sign Up" class="btn btn-primary" />

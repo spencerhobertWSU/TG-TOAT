@@ -1,38 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\",
+  "WorkspaceRootPath": "F:\\git merges\\TG-TOAT\\TG-TOAT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|c:\\users\\garcia\\source\\repos\\tg-toat\\tg-toat\\views\\user\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|solutionrelative:views\\user\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|c:\\users\\garcia\\source\\repos\\tg-toat\\tg-toat\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|c:\\users\\garcia\\source\\repos\\tg-toat\\tg-toat\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|c:\\users\\garcia\\source\\repos\\tg-toat\\tg-toat\\views\\user\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|solutionrelative:views\\user\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|c:\\users\\garcia\\source\\repos\\tg-toat\\tg-toat\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|c:\\users\\garcia\\source\\repos\\tg-toat\\tg-toat\\migrations\\20240913003528_addsecpasswordfield.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|solutionrelative:migrations\\20240913003528_addsecpasswordfield.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|c:\\users\\garcia\\source\\repos\\tg-toat\\tg-toat\\models\\registrationviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|solutionrelative:models\\registrationviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|c:\\users\\garcia\\source\\repos\\tg-toat\\tg-toat\\migrations\\20240913204643_adduserrolecolumn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|solutionrelative:migrations\\20240913204643_adduserrolecolumn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|f:\\git merges\\tg-toat\\tg-toat\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|MvcMovie.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -41,16 +13,20 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "DockedWidth": 336,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Bookmark",
@@ -58,100 +34,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "20240913204643_AddUserRoleColumn.cs",
-              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\Migrations\\20240913204643_AddUserRoleColumn.cs",
-              "RelativeDocumentMoniker": "Migrations\\20240913204643_AddUserRoleColumn.cs",
-              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\Migrations\\20240913204643_AddUserRoleColumn.cs",
-              "RelativeToolTip": "Migrations\\20240913204643_AddUserRoleColumn.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAmwBgAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-13T20:46:43.634Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-13T20:40:34.352Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\Views\\User\\Login.cshtml",
-              "RelativeDocumentMoniker": "Views\\User\\Login.cshtml",
-              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\Views\\User\\Login.cshtml",
-              "RelativeToolTip": "Views\\User\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-13T20:25:59.126Z",
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\git merges\\TG-TOAT\\TG-TOAT\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "F:\\git merges\\TG-TOAT\\TG-TOAT\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T05:41:48.46Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\Views\\User\\Create.cshtml",
-              "RelativeDocumentMoniker": "Views\\User\\Create.cshtml",
-              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\Views\\User\\Create.cshtml",
-              "RelativeToolTip": "Views\\User\\Create.cshtml",
-              "ViewState": "AgIAACIAAAAAAAAAAAAkwDgAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-13T01:13:00.418Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "20240913003528_AddSecPasswordField.cs",
-              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\Migrations\\20240913003528_AddSecPasswordField.cs",
-              "RelativeDocumentMoniker": "Migrations\\20240913003528_AddSecPasswordField.cs",
-              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\Migrations\\20240913003528_AddSecPasswordField.cs",
-              "RelativeToolTip": "Migrations\\20240913003528_AddSecPasswordField.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-13T01:10:29.789Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "RegistrationViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\Models\\RegistrationViewModel.cs",
-              "RelativeDocumentMoniker": "Models\\RegistrationViewModel.cs",
-              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\Models\\RegistrationViewModel.cs",
-              "RelativeToolTip": "Models\\RegistrationViewModel.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAA6wBYAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-13T01:08:41.014Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\Models\\User.cs",
-              "RelativeDocumentMoniker": "Models\\User.cs",
-              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\Models\\User.cs",
-              "RelativeToolTip": "Models\\User.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAwwCIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-13T01:08:09.138Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT\\TG-TOAT\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAowF4AAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-13T00:36:03.921Z"
             }
           ]
         }

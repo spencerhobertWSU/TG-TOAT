@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\git merges\\TG-TOAT\\TG-TOAT\\TG-TOAT.csproj": {}
+    "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\TG-TOAT.csproj": {}
   },
   "projects": {
-    "F:\\git merges\\TG-TOAT\\TG-TOAT\\TG-TOAT.csproj": {
+    "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\TG-TOAT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\git merges\\TG-TOAT\\TG-TOAT\\TG-TOAT.csproj",
+        "projectUniqueName": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\TG-TOAT.csproj",
         "projectName": "TG-TOAT",
-        "projectPath": "F:\\git merges\\TG-TOAT\\TG-TOAT\\TG-TOAT.csproj",
-        "packagesPath": "C:\\Users\\scott\\.nuget\\packages\\",
-        "outputPath": "F:\\git merges\\TG-TOAT\\TG-TOAT\\obj\\",
+        "projectPath": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\TG-TOAT.csproj",
+        "packagesPath": "C:\\Users\\Josh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\scott\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Josh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -80,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

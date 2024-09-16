@@ -17,63 +17,67 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TG-TOAT
 build_property.RootNamespace = TG-TOAT
-build_property.ProjectDir = F:\git merges\TG-TOAT\TG-TOAT\
+build_property.ProjectDir = C:\Users\Josh\Documents\WSU\2024 FALL\CS 3750\project\TG-TOAT\TG-TOAT\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = F:\git merges\TG-TOAT\TG-TOAT
+build_property.MSBuildProjectDirectory = C:\Users\Josh\Documents\WSU\2024 FALL\CS 3750\project\TG-TOAT\TG-TOAT
 build_property._RazorSourceGeneratorDebug = 
 
-[F:/git merges/TG-TOAT/TG-TOAT/Views/Home/Index.cshtml]
+[C:/Users/Josh/Documents/WSU/2024 FALL/CS 3750/project/TG-TOAT/TG-TOAT/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/git merges/TG-TOAT/TG-TOAT/Views/Home/Privacy.cshtml]
+[C:/Users/Josh/Documents/WSU/2024 FALL/CS 3750/project/TG-TOAT/TG-TOAT/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/git merges/TG-TOAT/TG-TOAT/Views/Shared/Error.cshtml]
+[C:/Users/Josh/Documents/WSU/2024 FALL/CS 3750/project/TG-TOAT/TG-TOAT/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/git merges/TG-TOAT/TG-TOAT/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Josh/Documents/WSU/2024 FALL/CS 3750/project/TG-TOAT/TG-TOAT/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/git merges/TG-TOAT/TG-TOAT/Views/User/Create.cshtml]
+[C:/Users/Josh/Documents/WSU/2024 FALL/CS 3750/project/TG-TOAT/TG-TOAT/Views/User/Calendar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxDYWxlbmRhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Josh/Documents/WSU/2024 FALL/CS 3750/project/TG-TOAT/TG-TOAT/Views/User/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/git merges/TG-TOAT/TG-TOAT/Views/User/Delete.cshtml]
+[C:/Users/Josh/Documents/WSU/2024 FALL/CS 3750/project/TG-TOAT/TG-TOAT/Views/User/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/git merges/TG-TOAT/TG-TOAT/Views/User/Details.cshtml]
+[C:/Users/Josh/Documents/WSU/2024 FALL/CS 3750/project/TG-TOAT/TG-TOAT/Views/User/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/git merges/TG-TOAT/TG-TOAT/Views/User/Edit.cshtml]
+[C:/Users/Josh/Documents/WSU/2024 FALL/CS 3750/project/TG-TOAT/TG-TOAT/Views/User/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/git merges/TG-TOAT/TG-TOAT/Views/User/Index.cshtml]
+[C:/Users/Josh/Documents/WSU/2024 FALL/CS 3750/project/TG-TOAT/TG-TOAT/Views/User/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/git merges/TG-TOAT/TG-TOAT/Views/User/Login.cshtml]
+[C:/Users/Josh/Documents/WSU/2024 FALL/CS 3750/project/TG-TOAT/TG-TOAT/Views/User/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/git merges/TG-TOAT/TG-TOAT/Views/_ViewImports.cshtml]
+[C:/Users/Josh/Documents/WSU/2024 FALL/CS 3750/project/TG-TOAT/TG-TOAT/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/git merges/TG-TOAT/TG-TOAT/Views/_ViewStart.cshtml]
+[C:/Users/Josh/Documents/WSU/2024 FALL/CS 3750/project/TG-TOAT/TG-TOAT/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/git merges/TG-TOAT/TG-TOAT/Views/Shared/_Layout.cshtml]
+[C:/Users/Josh/Documents/WSU/2024 FALL/CS 3750/project/TG-TOAT/TG-TOAT/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-17ybt41dvf

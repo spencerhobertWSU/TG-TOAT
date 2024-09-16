@@ -29,6 +29,11 @@ namespace TGTOAT.Controllers
         {
             return View();
         }
+        // Calendar action
+        public IActionResult Calendar()
+        {
+            return View(); // This will look for Views/User/Calendar.cshtml
+        }
 
         public async Task<IActionResult> Login(string Email, string Password)
         {

@@ -90,40 +90,47 @@ namespace TGTOAT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RegistrationViewModel model)
         {
-            
-            // If there's invalid arguments, don't do anything
             if (ModelState.IsValid)
             {
-                // Manually map from ViewModel to User entity
-                User user = new User();
-                user.Email = model.Email;
-                user.FirstName = model.FirstName;
-                user.LastName = model.LastName;
-                user.Password = model.Password;
-                user.BirthDate = model.BirthDate;
-                if(model.UserRole == "Student")
-                {
-                user.UserRole = "Student";
-                }
-                else 
-                {
-                user.UserRole = "Instructor";
-                }
-                // Hash the password
-                var passwordHash = _passwordHasher.Hash(user.Password);
-                user.Password = passwordHash;
+                // Calculate the user's age based on their birthdate
+                var today = DateTime.Today;
+                var age = today.Year - model.BirthDate.Year;
+                if (model.BirthDate.Date > today.AddYears(-age)) age--;
 
-                // Add the user, sync it, and redirect
+                // Check if the user is at least 16 years old
+                if (age < 16)
+                {
+                    ModelState.AddModelError("", "You must be at least 16 years old to register.");
+                    return View(model);
+                }
+
+                // Manually map from ViewModel to User entity
+                User user = new User
+                {
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Password = model.Password,
+                    BirthDate = model.BirthDate,
+                    UserRole = model.UserRole == "Student" ? "Student" : "Instructor"
+                };
+
+                // Hash the password
+                user.Password = _passwordHasher.Hash(user.Password);
+
+                // Add the user and save changes
                 _context.Add(user);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Login), new { Email=user.Email, Password=user.Password });
+
+                return RedirectToAction(nameof(Login), new { Email = user.Email, Password = user.Password });
             }
+
             return View(model);
         }
-            
 
-            // GET: User/Edit/5
-            public async Task<IActionResult> Edit(int? id)
+
+        // GET: User/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {

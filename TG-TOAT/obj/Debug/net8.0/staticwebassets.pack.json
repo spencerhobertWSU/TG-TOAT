@@ -1,1839 +1,1839 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TG-TOAT.bundle.scp.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TG-TOAT.bundle.scp.css",
       "PackagePath": "staticwebassets\\TG-TOAT.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\css\\site.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\favicon.ico",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\css\\all.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\css\\all.css",
       "PackagePath": "staticwebassets\\fontawesome\\css\\all.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\css\\all.min.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\css\\all.min.css",
       "PackagePath": "staticwebassets\\fontawesome\\css\\all.min.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\fa-brands-400.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\fa-brands-400.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-brands-400.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\fa-brands-400.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\fa-brands-400.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-brands-400.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\fa-regular-400.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\fa-regular-400.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-regular-400.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\fa-regular-400.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\fa-regular-400.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-regular-400.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\fa-solid-900.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\fa-solid-900.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-solid-900.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\fa-solid-900.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\fa-solid-900.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-solid-900.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\fa-v4compatibility.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\fa-v4compatibility.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-v4compatibility.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\fa-v4compatibility.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\fa-v4compatibility.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\fa-v4compatibility.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\free-fa-brands-400.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\free-fa-brands-400.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\free-fa-brands-400.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\free-fa-brands-400.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\free-fa-brands-400.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\free-fa-brands-400.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\free-fa-regular-400.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\free-fa-regular-400.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\free-fa-regular-400.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\free-fa-regular-400.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\free-fa-regular-400.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\free-fa-regular-400.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\free-fa-solid-900.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\free-fa-solid-900.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\free-fa-solid-900.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\free-fa-solid-900.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\free-fa-solid-900.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\free-fa-solid-900.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\free-fa-v4compatibility.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\free-fa-v4compatibility.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\free-fa-v4compatibility.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\free-fa-v4compatibility.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\free-fa-v4compatibility.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\free-fa-v4compatibility.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-292b12.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-292b12.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-292b12.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-292b12.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-292b12.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-292b12.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.0.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.0.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.0.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.0.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.0.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.0.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.0.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.0.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.0.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.1.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.1.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.1.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.1.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.1.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.1.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.1.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.1.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.1.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.1.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.1.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.1.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.1.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.1.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.1.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.10.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.10.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.10.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.10.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.10.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.10.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.10.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.10.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.10.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.10.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.10.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.10.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.10.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.10.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.10.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.11.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.11.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.11.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.11.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.11.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.11.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.11.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.11.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.11.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.11.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.11.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.11.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.11.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.11.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.11.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.12.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.12.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.12.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.12.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.12.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.12.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.12.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.12.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.12.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.12.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.12.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.12.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.12.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.12.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.12.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.2.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.2.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.2.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.2.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.2.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.2.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.2.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.2.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.2.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.2.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.2.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.2.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.2.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.2.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.2.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.3.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.3.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.3.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.3.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.3.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.3.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.3.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.3.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.3.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.3.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.3.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.3.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.3.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.3.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.3.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.5.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.5.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.5.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.5.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.5.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.5.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.5.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.5.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.5.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.5.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.5.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.5.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.5.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.5.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.5.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.9.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.9.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.9.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.9.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.9.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.9.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.9.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.9.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.9.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.9.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.9.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.9.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.9.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.9.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.0.9.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.1.0.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.1.0.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.1.0.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.1.0.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.1.0.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.1.0.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.1.0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.1.0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.1.0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.1.0.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.1.0.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.1.0.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.1.0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.1.0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.1.0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.10.0.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.10.0.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.10.0.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.10.0.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.10.0.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.10.0.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.10.0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.10.0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.10.0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.10.0.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.10.0.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.10.0.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.10.0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.10.0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.10.0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.0.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.0.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.0.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.0.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.0.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.0.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.0.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.0.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.0.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.2.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.2.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.2.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.2.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.2.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.2.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.2.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.2.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.2.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.2.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.2.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.2.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.2.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.2.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.11.2.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.0.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.0.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.0.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.0.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.0.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.0.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.0.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.0.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.0.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.1.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.1.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.1.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.1.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.1.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.1.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.1.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.1.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.1.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.1.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.1.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.1.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.1.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.1.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.12.1.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.13.1.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.13.1.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.13.1.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.13.1.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.13.1.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.13.1.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.13.1.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.13.1.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.13.1.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.13.1.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.13.1.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.13.1.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.13.1.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.13.1.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.13.1.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.14.0.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.14.0.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.14.0.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.14.0.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.14.0.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.14.0.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.14.0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.14.0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.14.0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.14.0.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.14.0.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.14.0.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.14.0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.14.0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.14.0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.0.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.0.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.0.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.0.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.0.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.0.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.0.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.0.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.0.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.1.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.1.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.1.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.1.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.1.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.1.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.1.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.1.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.1.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.1.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.1.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.1.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.1.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.1.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.1.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.4.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.4.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.4.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.4.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.4.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.4.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.4.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.4.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.4.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.4.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.4.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.4.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.4.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.4.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.15.4.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.2.0.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.2.0.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.2.0.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.2.0.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.2.0.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.2.0.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.2.0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.2.0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.2.0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.2.0.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.2.0.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.2.0.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.2.0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.2.0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.2.0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.3.0.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.3.0.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.3.0.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.3.0.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.3.0.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.3.0.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.3.0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.3.0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.3.0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.3.0.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.3.0.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.3.0.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.3.0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.3.0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.3.0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.0.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.0.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.0.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.0.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.0.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.0.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.0.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.0.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.0.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.2.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.2.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.2.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.2.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.2.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.2.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.2.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.2.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.2.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.2.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.2.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.2.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.2.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.2.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.4.2.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.6.0.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.6.0.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.6.0.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.6.0.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.6.0.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.6.0.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.6.0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.6.0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.6.0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.6.0.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.6.0.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.6.0.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.6.0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.6.0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.6.0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.7.0.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.7.0.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.7.0.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.7.0.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.7.0.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.7.0.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.7.0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.7.0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.7.0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.7.0.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.7.0.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.7.0.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.7.0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.7.0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.7.0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.0.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.0.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.0.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.0.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.0.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.0.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.0.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.0.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.0.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.1.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.1.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.1.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.1.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.1.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.1.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.1.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.1.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.1.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.1.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.1.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.1.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.1.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.1.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.1.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.2.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.2.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.2.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.2.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.2.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.2.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.2.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.2.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.2.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.2.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.2.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.2.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.2.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.2.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.8.2.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.9.0.eot",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.9.0.eot",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.9.0.eot"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.9.0.svg",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.9.0.svg",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.9.0.svg"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.9.0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.9.0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.9.0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.9.0.woff",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.9.0.woff",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.9.0.woff"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.9.0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-5.9.0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-5.9.0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-50c900.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-50c900.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-50c900.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-50c900.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-50c900.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-50c900.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-90d968.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-90d968.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-90d968.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-90d968.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-90d968.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-90d968.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-9b80fe.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-9b80fe.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-9b80fe.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-9b80fe.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-9b80fe.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-9b80fe.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-bc0b04.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-bc0b04.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-bc0b04.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-bc0b04.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-bc0b04.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-bc0b04.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-f6b769.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-f6b769.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-f6b769.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-f6b769.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-brands-400-f6b769.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-brands-400-f6b769.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-03c840.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-03c840.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-03c840.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-03c840.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-03c840.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-03c840.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-043e6a.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-043e6a.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-043e6a.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-043e6a.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-043e6a.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-043e6a.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-1e5361.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-1e5361.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-1e5361.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-1e5361.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-1e5361.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-1e5361.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-292b12.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-292b12.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-292b12.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-292b12.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-292b12.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-292b12.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-3523ab.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-3523ab.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-3523ab.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-3523ab.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-3523ab.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-3523ab.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-50c900.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-50c900.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-50c900.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-50c900.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-50c900.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-50c900.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-51b08f.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-51b08f.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-51b08f.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-51b08f.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-51b08f.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-51b08f.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-6d2a10.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-6d2a10.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-6d2a10.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-6d2a10.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-6d2a10.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-6d2a10.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-90d968.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-90d968.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-90d968.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-90d968.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-90d968.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-90d968.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-9b80fe.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-9b80fe.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-9b80fe.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-9b80fe.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-9b80fe.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-9b80fe.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-b4a9ce.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-b4a9ce.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-b4a9ce.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-b4a9ce.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-b4a9ce.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-b4a9ce.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-bc0b04.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-bc0b04.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-bc0b04.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-bc0b04.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-bc0b04.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-bc0b04.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-ca12ba.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-ca12ba.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-ca12ba.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-ca12ba.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-ca12ba.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-ca12ba.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-d5bbe9.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-d5bbe9.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-d5bbe9.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-d5bbe9.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-d5bbe9.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-d5bbe9.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-d85a6c.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-d85a6c.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-d85a6c.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-d85a6c.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-d85a6c.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-d85a6c.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-e41116.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-e41116.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-e41116.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-e41116.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-e41116.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-e41116.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-e9d1d9.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-e9d1d9.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-e9d1d9.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-e9d1d9.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-e9d1d9.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-e9d1d9.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-ec38a0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-ec38a0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-ec38a0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-ec38a0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-duotone-900-ec38a0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-duotone-900-ec38a0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-03c840.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-03c840.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-03c840.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-03c840.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-03c840.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-03c840.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-043e6a.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-043e6a.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-043e6a.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-043e6a.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-043e6a.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-043e6a.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-1e5361.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-1e5361.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-1e5361.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-1e5361.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-1e5361.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-1e5361.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-292b12.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-292b12.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-292b12.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-292b12.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-292b12.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-292b12.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-3523ab.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-3523ab.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-3523ab.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-3523ab.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-3523ab.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-3523ab.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-50c900.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-50c900.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-50c900.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-50c900.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-50c900.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-50c900.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-51b08f.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-51b08f.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-51b08f.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-51b08f.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-51b08f.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-51b08f.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-6d2a10.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-6d2a10.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-6d2a10.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-6d2a10.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-6d2a10.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-6d2a10.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-90d968.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-90d968.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-90d968.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-90d968.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-90d968.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-90d968.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-9b80fe.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-9b80fe.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-9b80fe.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-9b80fe.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-9b80fe.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-9b80fe.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-b4a9ce.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-b4a9ce.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-b4a9ce.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-b4a9ce.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-b4a9ce.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-b4a9ce.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-bc0b04.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-bc0b04.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-bc0b04.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-bc0b04.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-bc0b04.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-bc0b04.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-ca12ba.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-ca12ba.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-ca12ba.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-ca12ba.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-ca12ba.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-ca12ba.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-d5bbe9.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-d5bbe9.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-d5bbe9.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-d5bbe9.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-d5bbe9.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-d5bbe9.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-d85a6c.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-d85a6c.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-d85a6c.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-d85a6c.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-d85a6c.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-d85a6c.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-e41116.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-e41116.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-e41116.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-e41116.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-e41116.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-e41116.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-e9d1d9.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-e9d1d9.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-e9d1d9.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-e9d1d9.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-e9d1d9.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-e9d1d9.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-ec38a0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-ec38a0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-ec38a0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-ec38a0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-light-300-ec38a0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-light-300-ec38a0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-03c840.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-03c840.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-03c840.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-03c840.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-03c840.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-03c840.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-043e6a.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-043e6a.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-043e6a.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-043e6a.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-043e6a.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-043e6a.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-1e5361.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-1e5361.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-1e5361.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-1e5361.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-1e5361.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-1e5361.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-292b12.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-292b12.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-292b12.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-292b12.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-292b12.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-292b12.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-3523ab.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-3523ab.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-3523ab.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-3523ab.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-3523ab.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-3523ab.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-50c900.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-50c900.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-50c900.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-50c900.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-50c900.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-50c900.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-51b08f.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-51b08f.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-51b08f.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-51b08f.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-51b08f.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-51b08f.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-6d2a10.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-6d2a10.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-6d2a10.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-6d2a10.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-6d2a10.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-6d2a10.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-90d968.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-90d968.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-90d968.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-90d968.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-90d968.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-90d968.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-9b80fe.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-9b80fe.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-9b80fe.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-9b80fe.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-9b80fe.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-9b80fe.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-b4a9ce.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-b4a9ce.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-b4a9ce.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-b4a9ce.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-b4a9ce.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-b4a9ce.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-bc0b04.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-bc0b04.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-bc0b04.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-bc0b04.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-bc0b04.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-bc0b04.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-ca12ba.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-ca12ba.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-ca12ba.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-ca12ba.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-ca12ba.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-ca12ba.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-d5bbe9.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-d5bbe9.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-d5bbe9.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-d5bbe9.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-d5bbe9.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-d5bbe9.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-d85a6c.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-d85a6c.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-d85a6c.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-d85a6c.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-d85a6c.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-d85a6c.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-e41116.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-e41116.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-e41116.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-e41116.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-e41116.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-e41116.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-e9d1d9.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-e9d1d9.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-e9d1d9.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-e9d1d9.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-e9d1d9.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-e9d1d9.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-ec38a0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-ec38a0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-ec38a0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-ec38a0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-regular-400-ec38a0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-regular-400-ec38a0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-03c840.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-03c840.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-03c840.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-03c840.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-03c840.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-03c840.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-043e6a.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-043e6a.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-043e6a.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-043e6a.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-043e6a.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-043e6a.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-1e5361.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-1e5361.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-1e5361.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-1e5361.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-1e5361.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-1e5361.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-292b12.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-292b12.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-292b12.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-292b12.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-292b12.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-292b12.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-3523ab.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-3523ab.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-3523ab.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-3523ab.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-3523ab.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-3523ab.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-50c900.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-50c900.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-50c900.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-50c900.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-50c900.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-50c900.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-51b08f.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-51b08f.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-51b08f.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-51b08f.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-51b08f.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-51b08f.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-6d2a10.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-6d2a10.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-6d2a10.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-6d2a10.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-6d2a10.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-6d2a10.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-90d968.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-90d968.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-90d968.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-90d968.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-90d968.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-90d968.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-9b80fe.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-9b80fe.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-9b80fe.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-9b80fe.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-9b80fe.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-9b80fe.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-b4a9ce.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-b4a9ce.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-b4a9ce.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-b4a9ce.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-b4a9ce.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-b4a9ce.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-bc0b04.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-bc0b04.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-bc0b04.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-bc0b04.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-bc0b04.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-bc0b04.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-ca12ba.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-ca12ba.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-ca12ba.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-ca12ba.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-ca12ba.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-ca12ba.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-d5bbe9.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-d5bbe9.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-d5bbe9.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-d5bbe9.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-d5bbe9.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-d5bbe9.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-d85a6c.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-d85a6c.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-d85a6c.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-d85a6c.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-d85a6c.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-d85a6c.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-e41116.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-e41116.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-e41116.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-e41116.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-e41116.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-e41116.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-e9d1d9.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-e9d1d9.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-e9d1d9.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-e9d1d9.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-e9d1d9.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-e9d1d9.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-ec38a0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-ec38a0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-ec38a0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-ec38a0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-ec38a0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-sharp-solid-900-ec38a0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-03c840.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-03c840.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-03c840.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-03c840.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-03c840.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-03c840.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-043e6a.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-043e6a.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-043e6a.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-043e6a.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-043e6a.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-043e6a.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-1e5361.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-1e5361.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-1e5361.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-1e5361.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-1e5361.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-1e5361.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-292b12.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-292b12.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-292b12.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-292b12.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-292b12.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-292b12.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-3523ab.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-3523ab.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-3523ab.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-3523ab.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-3523ab.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-3523ab.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-50c900.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-50c900.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-50c900.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-50c900.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-50c900.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-50c900.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-51b08f.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-51b08f.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-51b08f.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-51b08f.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-51b08f.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-51b08f.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-6d2a10.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-6d2a10.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-6d2a10.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-6d2a10.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-6d2a10.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-6d2a10.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-90d968.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-90d968.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-90d968.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-90d968.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-90d968.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-90d968.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-9b80fe.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-9b80fe.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-9b80fe.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-9b80fe.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-9b80fe.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-9b80fe.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-b4a9ce.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-b4a9ce.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-b4a9ce.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-b4a9ce.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-b4a9ce.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-b4a9ce.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-bc0b04.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-bc0b04.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-bc0b04.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-bc0b04.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-bc0b04.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-bc0b04.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-ca12ba.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-ca12ba.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-ca12ba.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-ca12ba.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-ca12ba.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-ca12ba.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-d5bbe9.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-d5bbe9.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-d5bbe9.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-d5bbe9.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-d5bbe9.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-d5bbe9.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-d85a6c.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-d85a6c.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-d85a6c.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-d85a6c.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-d85a6c.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-d85a6c.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-e41116.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-e41116.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-e41116.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-e41116.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-e41116.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-e41116.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-e9d1d9.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-e9d1d9.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-e9d1d9.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-e9d1d9.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-e9d1d9.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-e9d1d9.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-ec38a0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-ec38a0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-ec38a0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-ec38a0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-solid-900-ec38a0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-solid-900-ec38a0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-03c840.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-03c840.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-03c840.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-03c840.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-03c840.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-03c840.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-043e6a.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-043e6a.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-043e6a.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-043e6a.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-043e6a.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-043e6a.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-1e5361.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-1e5361.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-1e5361.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-1e5361.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-1e5361.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-1e5361.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-292b12.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-292b12.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-292b12.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-292b12.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-292b12.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-292b12.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-3523ab.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-3523ab.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-3523ab.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-3523ab.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-3523ab.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-3523ab.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-50c900.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-50c900.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-50c900.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-50c900.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-50c900.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-50c900.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-51b08f.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-51b08f.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-51b08f.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-51b08f.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-51b08f.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-51b08f.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-6d2a10.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-6d2a10.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-6d2a10.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-6d2a10.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-6d2a10.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-6d2a10.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-90d968.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-90d968.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-90d968.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-90d968.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-90d968.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-90d968.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-9b80fe.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-9b80fe.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-9b80fe.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-9b80fe.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-9b80fe.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-9b80fe.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-b4a9ce.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-b4a9ce.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-b4a9ce.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-b4a9ce.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-b4a9ce.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-b4a9ce.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-bc0b04.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-bc0b04.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-bc0b04.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-bc0b04.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-bc0b04.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-bc0b04.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-ca12ba.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-ca12ba.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-ca12ba.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-ca12ba.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-ca12ba.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-ca12ba.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-d5bbe9.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-d5bbe9.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-d5bbe9.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-d5bbe9.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-d5bbe9.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-d5bbe9.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-d85a6c.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-d85a6c.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-d85a6c.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-d85a6c.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-d85a6c.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-d85a6c.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-e41116.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-e41116.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-e41116.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-e41116.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-e41116.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-e41116.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-e9d1d9.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-e9d1d9.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-e9d1d9.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-e9d1d9.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-e9d1d9.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-e9d1d9.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-ec38a0.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-ec38a0.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-ec38a0.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-ec38a0.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-thin-100-ec38a0.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-thin-100-ec38a0.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-v4compatibility.ttf",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-v4compatibility.ttf",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-v4compatibility.ttf"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-v4compatibility.woff2",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\fontawesome\\webfonts\\pro-fa-v4compatibility.woff2",
       "PackagePath": "staticwebassets\\fontawesome\\webfonts\\pro-fa-v4compatibility.woff2"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\js\\site.js",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {

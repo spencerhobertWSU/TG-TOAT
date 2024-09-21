@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TG-TOAT")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f091adf94a0e0864000a1f2091ea06fc72c4f470")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+83c39fe0beb20e6b7ac76353101f0fa216875964")]
 [assembly: System.Reflection.AssemblyProductAttribute("TG-TOAT")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TG-TOAT")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -70,5 +70,14 @@ namespace TGTOAT.Controllers
             var courses = _context.Courses.Include(c => c.Department).ToList();
             return View(courses); // This will look for Views/Course/Courses.cshtml
         }
+        public IActionResult ViewCourse(int id)
+        {
+            var course = _context.Courses.Include(c => c.Department).FirstOrDefault(c => c.CourseId == id);
+            if (course == null)
+            {
+                return NotFound(); // Handle case where course is not found
+            }
+            return View(course);
+        }
     }
 }

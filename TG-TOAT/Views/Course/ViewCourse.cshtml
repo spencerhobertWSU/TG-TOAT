@@ -1,0 +1,27 @@
+﻿
+@model TGTOAT.Data.Courses
+
+@{
+    ViewData["Title"] = "Course Details";
+}
+
+<h1>Course Details</h1>
+
+<div class="card" style="width: 20rem; height :auto">
+    <div class="card-body">
+        <h5 class="card-title">@Model.CourseName</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Course Number: @Model.CourseNumber</h6>
+        
+        <p class="card-text"><strong>Department:</strong> @Model.Department.DepartmentName</p>
+        <p class="card-text"><strong>Credits:</strong> @Model.NumberOfCredits</p>
+        <p class="card-text"><strong>Capacity:</strong> @Model.Capacity</p>
+        <p class="card-text"><strong>Location:</strong> @Model.Location</p>
+        <p class="card-text"><strong>Room Number:</strong> @Model.RoomNumber</p>
+        <p class="card-text"><strong>Days of the Week:</strong> @Model.DaysOfTheWeek</p>
+        <p class="card-text"><strong>Time:</strong> @Model.StartTime?.ToString("hh\\:mm") - @Model.EndTime?.ToString("hh\\:mm")</p>
+        <p class="card-text"><strong>Description:</strong> @Model.CourseDescription</p>
+        
+        <a href="@Url.Action("Courses", "Course")" class="btn btn-secondary">Back to Course List</a>
+    </div>
+</div>
+

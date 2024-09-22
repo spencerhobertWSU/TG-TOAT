@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Garcia\\Source\\Repos\\TG-TOAT4\\TG-TOAT\\TG-TOAT.csproj": {}
+    "F:\\School\\2024\\Fall\\CS_3750\\TG-TOAT\\TG-TOAT\\TG-TOAT.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Garcia\\Source\\Repos\\TG-TOAT4\\TG-TOAT\\TG-TOAT.csproj": {
+    "F:\\School\\2024\\Fall\\CS_3750\\TG-TOAT\\TG-TOAT\\TG-TOAT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Garcia\\Source\\Repos\\TG-TOAT4\\TG-TOAT\\TG-TOAT.csproj",
+        "projectUniqueName": "F:\\School\\2024\\Fall\\CS_3750\\TG-TOAT\\TG-TOAT\\TG-TOAT.csproj",
         "projectName": "TG-TOAT",
-        "projectPath": "C:\\Users\\Garcia\\Source\\Repos\\TG-TOAT4\\TG-TOAT\\TG-TOAT.csproj",
-        "packagesPath": "C:\\Users\\Garcia\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Garcia\\Source\\Repos\\TG-TOAT4\\TG-TOAT\\obj\\",
+        "projectPath": "F:\\School\\2024\\Fall\\CS_3750\\TG-TOAT\\TG-TOAT\\TG-TOAT.csproj",
+        "packagesPath": "C:\\Users\\scott\\.nuget\\packages\\",
+        "outputPath": "F:\\School\\2024\\Fall\\CS_3750\\TG-TOAT\\TG-TOAT\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "H:\\Programs!\\VisualStudioSharedCom\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Garcia\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\scott\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -50,6 +46,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.8, )"
@@ -84,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

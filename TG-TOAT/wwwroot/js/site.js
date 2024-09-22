@@ -4,14 +4,63 @@
 // Write your JavaScript code.
 
 notif = 0;
+colorMode = 0;
+
+//console.log("Theme: " + localStorage.getItem('theme'))
+
+window.addEventListener('load', function () {
+    if (localStorage.getItem('theme') == "Dark") {
+        changeColorMode();
+    }
+})
+
 
 function openNotif() {
-    if(notif == 0) {
+    //Open Notifictions
+    if (notif == 0) {
+        document.getElementById("account").style.display = "none";
         document.getElementById("notifications").style.display = "block";
         notif = 1;
     }
+    //Close Notifications
     else {
         document.getElementById("notifications").style.display = "none";
         notif = 0;
     } 
+}
+
+function openAccount() {
+    //Open Account
+    if (notif == 0) {
+        document.getElementById("account").style.display = "block";
+        document.getElementById("notifications").style.display = "none";
+        notif = 1;
+    }
+    //Close Account
+    else {
+        
+        notif = 0;
+    }
+}
+
+function changeColorMode() {
+    //Dark Mode
+    if (colorMode == 0) {
+        document.getElementById("lightMode").style.display = "none";
+
+        document.getElementById("darkMode").style.display = "block";
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+        localStorage.setItem('theme', "Dark")
+        
+        colorMode = 1;
+    }
+    //Light Mode
+    else {
+        document.getElementById("lightMode").style.display = "block";
+        document.documentElement.removeAttribute('data-bs-theme');
+        localStorage.setItem('theme', "Light")
+
+        document.getElementById("darkMode").style.display = "none";
+        colorMode = 0;
+    }
 }

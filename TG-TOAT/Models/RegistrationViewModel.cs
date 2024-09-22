@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace TGTOAT.Models
 {
     public class RegistrationViewModel
     {
-        [Required(ErrorMessage = "frist name is required.")]
+        [Required(ErrorMessage = "First name is required.")]
         [MaxLength(50, ErrorMessage = "Max 50 characters allowed.")]
         public string FirstName { get; set; }
 
@@ -17,7 +18,7 @@ namespace TGTOAT.Models
         [EmailAddress(ErrorMessage = "Please Enter Valid Email.")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "password is required.")]
+        [Required(ErrorMessage = "Password is required.")]
         [MaxLength(100, ErrorMessage = "Max 20 characters allowed.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }

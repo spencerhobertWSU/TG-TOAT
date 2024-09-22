@@ -28,27 +28,32 @@ namespace TGTOAT.Controllers
             _auth = auth;
         }
 
+        //Logout User and Go to Login page
         public ActionResult Logout()
         {
             _auth.Logout();
             return RedirectToAction("Login");
         }
 
-        // GET: User
+        // Home page for User
         public async Task<IActionResult> Index()
         {
-            var user = _auth.CheckUser();
+            var user = _auth.CheckUser();//Grab User Info
+
+            //Don't let user go to index if they aren't logged in
             if (user == null)
             {
                 return View("Login");
             }
+
+            //Go to index
             return View(user);
         }
 
         // Calendar action
         public IActionResult Calendar()
         {
-            var user = _auth.CheckUser();
+            var user = _auth.CheckUser();//Grab User Info
             return View(user); // This will look for Views/User/Calendar.cshtml
         }
 

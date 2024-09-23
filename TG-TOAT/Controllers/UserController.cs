@@ -161,6 +161,21 @@ namespace TGTOAT.Controllers
                 _context.Add(user);
                 await _context.SaveChangesAsync();
 
+                Address address = new Address
+                {
+                    UserId = user.Id,
+                    AddressLineOne = "Address Line One",
+                    AddressLineTwo = "Address Line Two",
+                    ZipCode = "Zip Code"
+                };
+
+                // Add the Address and save changes
+                _context.Address.Add(address);
+
+
+                await _context.SaveChangesAsync();
+
+
                 return RedirectToAction(nameof(Login), new { Email = user.Email, Password = user.Password });
             }
 
@@ -256,5 +271,95 @@ namespace TGTOAT.Controllers
         {
             return _context.User.Any(e => e.Id == id);
         }
+
+
+
+
+
+
+
+
+
+        // GET: UserAccount
+        public async Task<IActionResult> Account(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _context.User
+                .Include(u => u.Address) // Include the Address navigation property
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+
+
+
+        // POST: User/UpdateUser
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateUser(UserUpdateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Find the existing user
+                    var existingUser = await _context.User.Include(u => u.Address).FirstOrDefaultAsync(u => u.Id == model.Id);
+                    if (existingUser == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Update only the fields you want to change
+                    existingUser.FirstName = model.FirstName;
+                    existingUser.LastName = model.LastName;
+
+                    // Update Address if it exists
+                    if (model.Address != null)
+                    {
+                        // If the user's Address is null, create a new one
+                        if (existingUser.Address == null)
+                        {
+                            existingUser.Address = new Address
+                            {
+                                UserId = existingUser.Id
+                            };
+                        }
+
+                        existingUser.Address.AddressLineOne = model.Address.AddressLineOne;
+                        existingUser.Address.AddressLineTwo = model.Address.AddressLineTwo;
+                        existingUser.Address.ZipCode = model.Address.ZipCode;
+
+                        _context.Update(existingUser.Address);
+                    }
+
+                    // Save changes
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Account), new { id = existingUser.Id });
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UserExists(model.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+
+            return RedirectToAction(nameof(Account), new { id = model.Id });
+        }
+
     }
 }

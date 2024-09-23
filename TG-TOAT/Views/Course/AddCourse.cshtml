@@ -1,0 +1,110 @@
+﻿@model TGTOAT.Models.AddCourseViewModel
+
+@{
+    ViewData["Title"] = "Add Course";
+}
+
+
+<h1>Add Courses</h1>
+
+<form asp-action="AddCourse" method="post">
+    <div class="form-group">
+        <label asp-for="SelectedDepartmentId"></label>
+        <select asp-for="SelectedDepartmentId"
+                asp-items="@(new SelectList(Model.Departments, "DepartmentId", "DepartmentName", Model.SelectedDepartmentId))"
+                class="form-control">
+            <option value="">Select a department</option>
+        </select>
+        <span asp-validation-for="SelectedDepartmentId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CourseNumber"></label>
+        <input asp-for="CourseNumber" class="form-control" />
+        <span asp-validation-for="CourseNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CourseName"></label>
+        <input asp-for="CourseName" class="form-control" />
+        <span asp-validation-for="CourseName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CourseDescription"></label>
+        <textarea asp-for="CourseDescription" class="form-control"></textarea>
+        <span asp-validation-for="CourseDescription" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NumberOfCredits"></label>
+        <input asp-for="NumberOfCredits" class="form-control" />
+        <span asp-validation-for="NumberOfCredits" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Capacity"></label>
+        <input asp-for="Capacity" class="form-control" />
+        <span asp-validation-for="Capacity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Location"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RoomNumber"></label>
+        <input asp-for="RoomNumber" class="form-control" />
+        <span asp-validation-for="RoomNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DaysOfTheWeek"></label>
+        <input asp-for="DaysOfTheWeek" class="form-control" />
+        <span asp-validation-for="DaysOfTheWeek" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StartTime"></label>
+        <input asp-for="StartTime" type="time" class="form-control" />
+        <span asp-validation-for="StartTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EndTime"></label>
+        <input asp-for="EndTime" type="time" class="form-control" />
+        <span asp-validation-for="EndTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Semester"></label>
+        <select asp-for="Semester" asp-items="Model.SemesterList" class="form-control" ></select>
+        <span asp-validation-for="Semester" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Year"></label>
+        <input asp-for="Year" class="form-control" />
+        <span asp-validation-for="Year" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SelectedInstructorId"></label>
+        <select asp-for="SelectedInstructorId"
+                asp-items="@(new SelectList(Model.Instructors, "Id", "FullName", Model.SelectedInstructorId))"
+                class="form-control">
+            <option value="">Select an instructor</option>
+        </select>
+        <span asp-validation-for="SelectedInstructorId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form> 
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

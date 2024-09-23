@@ -5,6 +5,7 @@
 
 notif = 0;
 colorMode = 0;
+account = 0;
 
 //console.log("Theme: " + localStorage.getItem('theme'))
 
@@ -31,15 +32,15 @@ function openNotif() {
 
 function openAccount() {
     //Open Account
-    if (notif == 0) {
+    if (account == 0) {
         document.getElementById("account").style.display = "block";
         document.getElementById("notifications").style.display = "none";
-        notif = 1;
+        account = 1;
     }
     //Close Account
     else {
-        
-        notif = 0;
+        document.getElementById("account").style.display = "none";
+        account = 0;
     }
 }
 

@@ -8134,11 +8134,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\School\\2024\\Fall\\CS_3750\\TG-TOAT\\TG-TOAT\\TG-TOAT.csproj",
+      "projectUniqueName": "F:\\git merges\\TG-TOAT\\TG-TOAT\\TG-TOAT.csproj",
       "projectName": "TG-TOAT",
-      "projectPath": "F:\\School\\2024\\Fall\\CS_3750\\TG-TOAT\\TG-TOAT\\TG-TOAT.csproj",
+      "projectPath": "F:\\git merges\\TG-TOAT\\TG-TOAT\\TG-TOAT.csproj",
       "packagesPath": "C:\\Users\\scott\\.nuget\\packages\\",
-      "outputPath": "F:\\School\\2024\\Fall\\CS_3750\\TG-TOAT\\TG-TOAT\\obj\\",
+      "outputPath": "F:\\git merges\\TG-TOAT\\TG-TOAT\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\scott\\AppData\\Roaming\\NuGet\\NuGet.Config",

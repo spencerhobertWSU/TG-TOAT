@@ -3,12 +3,12 @@
 public interface IAuthentication
 {
     //Set user with login info
-    public void SetUser(TGTOAT.Models.User user);
+    public void SetUser(TGTOAT.Models.UserLoginViewModel user);
 
     //Logout User
     public void Logout();
 
     //Grab user information
-    public TGTOAT.Models.User CheckUser();
+    public TGTOAT.Models.UserLoginViewModel CheckUser();
 
 }

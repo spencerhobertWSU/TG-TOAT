@@ -43,7 +43,7 @@ namespace TGTOAT.Controllers
             //Don't let user go to index if they aren't logged in
             if (user == null)
             {
-                return View("Login");
+                return RedirectToAction("Login");
             }
 
             //Go to index
@@ -71,8 +71,22 @@ namespace TGTOAT.Controllers
             // Check if the password matches
             if (_passwordHasher.Verify(user.Password, model.Password))
             {
+                // Find all classes that the user is enrolled in
+                var courses = (from connection in _context.UserCourseConnection
+                                    join course in _context.Courses on connection.CourseId equals course.CourseId
+                                    where connection.UserId == user.Id
+                                    select course).ToList();
+
+                var viewModel = new UserLoginViewModel
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    UserRole = user.UserRole,
+                    Courses = courses
+                };
+
                 // If the password is correct, log the user in
-                _auth.SetUser(user);
+                _auth.SetUser(viewModel);
                 return Redirect("User/Index");
             }
             else

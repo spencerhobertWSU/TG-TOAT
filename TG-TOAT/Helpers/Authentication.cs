@@ -5,10 +5,10 @@ namespace TGTOAT.Helpers;
 
 public class Authentication : IAuthentication
 {
-    private static TGTOAT.Models.User currUser;
+    private static TGTOAT.Models.UserLoginViewModel currUser;
 
     //Set Current Users Basic Information
-    public void SetUser(TGTOAT.Models.User user)
+    public void SetUser(TGTOAT.Models.UserLoginViewModel user)
     {
         currUser = user;
     }
@@ -20,7 +20,7 @@ public class Authentication : IAuthentication
     }
 
     ///Grab basic User information
-    public TGTOAT.Models.User CheckUser()
+    public TGTOAT.Models.UserLoginViewModel CheckUser()
     {
         return currUser;
     }

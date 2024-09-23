@@ -15,5 +15,23 @@ namespace TGTOAT.Data
         }
         // User entity
         public DbSet<TGTOAT.Models.User> User { get; set; } = default!;
+
+        public DbSet<Departments> Departments { get; set; } = default!;
+        public DbSet<Courses> Courses { get; set; } = default!;
+        public DbSet<UserCourseConnection> UserCourseConnection { get; set; } = default!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Seed dummy data
+            modelBuilder.Entity<Departments>().HasData(
+                new Departments { DepartmentId = 1, DepartmentName = "Computer Science" },
+                new Departments { DepartmentId = 2, DepartmentName = "Mathematics" },
+                new Departments { DepartmentId = 3, DepartmentName = "Physics" },
+                new Departments { DepartmentId = 4, DepartmentName = "Biology" },
+                new Departments { DepartmentId = 5, DepartmentName = "Chemistry" }
+            );
+        }
     }
+
+
 }

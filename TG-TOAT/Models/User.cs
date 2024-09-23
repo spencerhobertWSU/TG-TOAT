@@ -28,6 +28,8 @@ public class User
     [Required]
     public string? LastName { get; set; }
 
+    public string? FullName => $"{FirstName} {LastName}";
+
     [Display(Name = "Birth Date")]
     [DataType(DataType.Date)]
     [Required]

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing.Printing;
 
 namespace TGTOAT.Controllers
 {
@@ -23,10 +24,19 @@ namespace TGTOAT.Controllers
         public IActionResult AddCourse()
         {
             var departments = _context.Departments.ToList();
+            var semesters = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Spring", Text = "Spring" },
+                new SelectListItem { Value = "Summer", Text = "Summer" },
+                new SelectListItem { Value = "Fall", Text = "Fall" }
+            };
+            var instructors = _context.User.Where(u => u.UserRole == "Instructor").ToList();
 
             var viewModel = new AddCourseViewModel
             {
-                Departments = departments
+                Departments = departments,
+                SemesterList = semesters,
+                Instructors = instructors
             };
 
             return View(viewModel);
@@ -50,17 +60,35 @@ namespace TGTOAT.Controllers
                     StartTime = model.StartTime,
                     EndTime = model.EndTime,
                     NumberOfCredits = model.NumberOfCredits,
-                    CourseDescription = model.CourseDescription
+                    CourseDescription = model.CourseDescription,
+                    Semester = model.Semester,
+                    Year = model.Year
                 };
 
                 _context.Courses.Add(course);
                 await _context.SaveChangesAsync();
 
+                var userCourseConnection = new UserCourseConnection
+                {
+                    UserId = model.SelectedInstructorId,
+                    CourseId = course.CourseId
+                };
+
+                _context.UserCourseConnection.Add(userCourseConnection);
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction("Courses");
             }
 
-            // Re-populate departments if the model is invalid
+            // Re-populate if the model is invalid
             model.Departments = _context.Departments.ToList();
+            model.SemesterList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Spring", Text = "Spring" },
+                new SelectListItem { Value = "Summer", Text = "Summer" },
+                new SelectListItem { Value = "Fall", Text = "Fall" }
+            };
+            model.Instructors = _context.User.Where(u => u.UserRole == "Instructor").ToList();
             return View(model);
         }
 

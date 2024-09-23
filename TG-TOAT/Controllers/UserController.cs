@@ -49,8 +49,22 @@ namespace TGTOAT.Controllers
             // Check if the password matches
             if (_passwordHasher.Verify(user.Password, Password))
             {
+                // Find all classes that the user is enrolled in
+                var courses = (from connection in _context.UserCourseConnection
+                                    join course in _context.Courses on connection.CourseId equals course.CourseId
+                                    where connection.UserId == user.Id
+                                    select course).ToList();
+
+                var viewModel = new UserLoginViewModel
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    UserRole = user.UserRole,
+                    Courses = courses
+                };
+
                 // If the password is correct, log the user in
-                return View(user);
+                return View(viewModel);
             }
             else
             {

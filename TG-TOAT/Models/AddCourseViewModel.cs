@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic; // For IEnumerable
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using TGTOAT.Data;
 
 namespace TGTOAT.Models
@@ -55,10 +57,33 @@ namespace TGTOAT.Models
 
         // Start Time
         [Required(ErrorMessage = "Start time is required.")]
+        [DataType(DataType.Time)]
         public DateTime? StartTime { get; set; }
 
         // End Time
         [Required(ErrorMessage = "End time is required.")]
+        [DataType(DataType.Time)]
         public DateTime? EndTime { get; set; }
+
+        // Semester
+        [Required(ErrorMessage = "Semester is required.")]
+        [MaxLength(10, ErrorMessage = "Max 10 characters allowed.")]
+        public string? Semester { get; set; }
+
+        // Semester List
+        public List<SelectListItem>? SemesterList { get; set; }
+
+        // Year
+        [Required(ErrorMessage = "Year is required.")]
+        [Range(2024, 3000, ErrorMessage = "Must be a positive number and max 4 digits allowed.")]
+        public int Year { get; set; }
+
+        // Instructor
+        [Required(ErrorMessage = "Instructor is required.")]
+        [Display(Name = "Instructor")]
+        public int SelectedInstructorId { get; set; }
+
+        public List<User> Instructors { get; set; } = new List<User>();
+
     }
 }

@@ -1,5 +1,4 @@
-﻿@model TGTOAT.Models.User
-@*TGTOAT.Models.UserHome*@
+﻿@model TGTOAT.Models.UserLoginViewModel
 
 @{
     ViewData["Title"] = "Logged In";
@@ -16,96 +15,34 @@
         <div class="row">
             <!-- Cards column -->
             <div class="col-md-8 card-container">
-                <!-- Card 1 -->
-                <div class="card">
-                    <a href="" class="class-link">
-                        <img href="">
-                        <div class="card-info">
-                            <p class="class-info">CS 1010 - WOC - Fall 2024 - 25085</p>
-                            <p class="class-name">Introduction to Interactive Entertainment</p>
-                            <p class="class-time">M-F, 3:30-5:30</p>
+                <!-- Print every class, if there is any -->
+                @if (Model.Courses.Count != 0){
+                    @foreach (var course in Model.Courses)
+                    {
+                        <div class="card">
+                            <a href="" class="class-link">
+                                <img href="">
+                                <div class="card-info">
+                                    <p class="class-info">@course.Department @course.CourseNumber - @course.Semester @course.Year</p>
+                                    <p class="class-name">@course.CourseName</p>
+                                    <p class="class-time">@course.DaysOfTheWeek, @course.StartTime-@course.EndTime</p>
+                                </div>
+                            </a>
+                            <div class="card-icons">
+                                <a href="#" title="Announcements"><i class="fa-solid fa-bullhorn"></i></a>
+                                <a href="#" title="Assignments"><i class="fa-light fa-books"></i></a>
+                                <a href="#" title="Discussions"><i class="fa-light fa-comments"></i></a>
+                                <a href="#" title="Grades"><i class="fa-solid fa-award"></i></a>
+                            </div>
                         </div>
-                    </a>
-                    <div class="card-icons">
-                        <a href="#" title="Announcements"><i class="fa-solid fa-bullhorn"></i></a>
-                        <a href="#" title="Assignments"><i class="fa-light fa-books"></i></a>
-                        <a href="#" title="Discussions"><i class="fa-light fa-comments"></i></a>
-                        <a href="#" title="Grades"><i class="fa-solid fa-award"></i></a>
+                    }
+                }
+                else
+                {
+                    <div>
+                        <p>You currently have no classes!</p>
                     </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="card">
-                    <a href="" class="class-link">
-                        <img href="">
-                        <div class="card-info">
-                            <p class="class-info">CS 1022 - ONL - Fall 2024 - 25065</p>
-                            <p class="class-name">Software Development</p>
-                            <p class="class-time">Online</p>
-                        </div>
-                    </a>
-                    <div class="card-icons">
-                        <a href="#" title="Announcements"><i class="fa-solid fa-bullhorn"></i></a>
-                        <a href="#" title="Assignments"><i class="fa-light fa-books"></i></a>
-                        <a href="#" title="Discussions"><i class="fa-light fa-comments"></i></a>
-                        <a href="#" title="Grades"><i class="fa-solid fa-award"></i></a>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="card">
-                    <a href="" class="class-link">
-                        <img href="">
-                        <div class="card-info">
-                            <p class="class-info">CS 1030 - WLC - Fall 2024 - 25097</p>
-                            <p class="class-name">Foundations of Computing</p>
-                            <p class="class-time">M-W-F, 3:30-5:30</p>
-                        </div>
-                    </a>
-                    <div class="card-icons">
-                        <a href="#" title="Announcements"><i class="fa-solid fa-bullhorn"></i></a>
-                        <a href="#" title="Assignments"><i class="fa-light fa-books"></i></a>
-                        <a href="#" title="Discussions"><i class="fa-light fa-comments"></i></a>
-                        <a href="#" title="Grades"><i class="fa-solid fa-award"></i></a>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="card">
-                    <a href="" class="class-link">
-                        <img href="">
-                        <div class="card-info">
-                            <p class="class-info">CS 1400 - WLC - Fall 2024 - 22385</p>
-                            <p class="class-name">Fundamentals of Programming</p>
-                            <p class="class-time">M-W-F, 5:30-7:30</p>
-                        </div>
-                    </a>
-                    <div class="card-icons">
-                        <a href="#" title="Announcements"><i class="fa-solid fa-bullhorn"></i></a>
-                        <a href="#" title="Assignments"><i class="fa-light fa-books"></i></a>
-                        <a href="#" title="Discussions"><i class="fa-light fa-comments"></i></a>
-                        <a href="#" title="Grades"><i class="fa-solid fa-award"></i></a>
-                    </div>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="card">
-                    <a href="" class="class-link">
-                        <img href="">
-                        <div class="card-info">
-                            <p class="class-info">CS 2350 - ONL - Fall 2024 - 24385</p>
-                            <p class="class-name">Client Side Web Development</p>
-                            <p class="class-time">Online</p>
-                        </div>
-                    </a>
-                    <div class="card-icons">
-                        <a href="#" title="Announcements"><i class="fa-solid fa-bullhorn"></i></a>
-                        <a href="#" title="Assignments"><i class="fa-light fa-books"></i></a>
-                        <a href="#" title="Discussions"><i class="fa-light fa-comments"></i></a>
-                        <a href="#" title="Grades"><i class="fa-solid fa-award"></i></a>
-                    </div>
-                </div>
-            </div>
+                }
 
             <!-- To-do list column -->
             <div class="col-md-4">

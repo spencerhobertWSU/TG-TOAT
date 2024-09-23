@@ -78,5 +78,33 @@
         <span asp-validation-for="EndTime" class="text-danger"></span>
     </div>
 
+    <div class="form-group">
+        <label asp-for="Semester"></label>
+        <select asp-for="Semester" asp-items="Model.SemesterList" class="form-control" ></select>
+        <span asp-validation-for="Semester" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Year"></label>
+        <input asp-for="Year" class="form-control" />
+        <span asp-validation-for="Year" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SelectedInstructorId"></label>
+        <select asp-for="SelectedInstructorId"
+                asp-items="@(new SelectList(Model.Instructors, "Id", "FullName", Model.SelectedInstructorId))"
+                class="form-control">
+            <option value="">Select an instructor</option>
+        </select>
+        <span asp-validation-for="SelectedInstructorId" class="text-danger"></span>
+    </div>
+
     <button type="submit" class="btn btn-primary">Create</button>
 </form> 
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

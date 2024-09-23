@@ -1,17 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication;
 using TGTOAT.Data;
 using TGTOAT.Models;
 using TGTOAT.Helpers;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<UserContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("UserContext")));
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+builder.Services.AddScoped<IAuthentication, Authentication>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 
@@ -32,6 +36,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=User}/{action=Index}/{id?}");
+    pattern: "{controller=User}/{action=Login}/{id?}");
 
 app.Run();

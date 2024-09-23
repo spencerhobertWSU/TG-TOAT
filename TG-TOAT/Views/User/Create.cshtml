@@ -23,42 +23,38 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <label asp-for="ConfirmPassword" class="control-label">Confirm Password</label>
                 <input asp-for="ConfirmPassword" class="form-control" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
+                <label asp-for="FirstName" class="control-label">First Name</label>
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
+                <label asp-for="LastName" class="control-label">Last Name</label>
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BirthDate" class="control-label"></label>
+                <label asp-for="BirthDate" class="control-label">Birth Date</label>
                 <input asp-for="BirthDate" class="form-control" />
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="UserRole" class="control-label">User Role</label>
-                <div class="row">
-                    <div class="col-md-auto">
                 <div>
-                            <input type="radio" asp-for="UserRole" value="Student" /> Student
+                    <input type="radio" asp-for="UserRole" value="Student" class="form-radio" /> Student
                 </div>
-                </div>
-                    <div class="col-md-auto">
                 <div>
-                            <input type="radio" asp-for="UserRole" value="Instructer" /> Instructer
+                    <input type="radio" asp-for="UserRole" value="Instructor" class="form-radio" /> Instructor
                 </div>
-                </div>
-                </div>
+
                 <span asp-validation-for="UserRole" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <br />
                 <input type="submit" value="Sign Up" class="btn btn-primary" />
             </div>
         </form>
@@ -66,7 +62,8 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to Login</a>
+    <br />
+    <a asp-area="" asp-controller="User" asp-action="Login">Back to Login</a>
 </div>
 
 @section Scripts {

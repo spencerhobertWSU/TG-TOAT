@@ -70,17 +70,9 @@ namespace TGTOAT.Migrations
                     b.Property<int>("RoomNumber")
                         .HasColumnType("int");
 
-                    b.Property<string>("Semester")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
                     b.Property<DateTime?>("StartTime")
                         .IsRequired()
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("Year")
-                        .HasColumnType("int");
 
                     b.HasKey("CourseId");
 
@@ -132,29 +124,6 @@ namespace TGTOAT.Migrations
                             DepartmentId = 5,
                             DepartmentName = "Chemistry"
                         });
-                });
-
-            modelBuilder.Entity("TGTOAT.Data.UserCourseConnection", b =>
-                {
-                    b.Property<int>("UserCourseConnectionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserCourseConnectionId"));
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserCourseConnectionId");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserCourseConnection");
                 });
 
             modelBuilder.Entity("TGTOAT.Models.User", b =>

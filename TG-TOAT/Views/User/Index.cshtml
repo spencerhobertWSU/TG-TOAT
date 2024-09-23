@@ -1,33 +1,102 @@
-﻿@model TGTOAT.Models.User
+﻿@model TGTOAT.Models.UserLoginViewModel
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Home";
+
+    if(Model.UserRole == "Student")
+    {
+        Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    }
+    else if (Model.UserRole == "Instructor")
+    {
+        Layout = "~/Views/Shared/_InstructorLayout.cshtml";
+    }
+    else
+    {
+        <p>Model</p>
+    }
 }
 
-<h1>Login to access the website</h1>
+<h1>Welcome, @Model.FirstName @Model.LastName, @Model.UserRole</h1>
 
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Login">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary login-btn" />
-            </div>
-        </form>
-    </div>
-</div>
 
-<a asp-action="Create">New User Sign Up</a>
+
+    <!-- Cards and To-do list container -->
+    <div class="col-md-12">
+        <div class="row">
+            <!-- Cards column -->
+            <div class="col-md-10 card-container">
+                <!-- Print every class, if there is any -->
+                @if (Model.Courses.Count != 0)
+                {
+                    @foreach (var course in Model.Courses)
+                    {
+                        <div class="card">
+                            <a href="" class="class-link">
+                                <img href="">
+                                <div class="card-info">
+                                    <p class="class-info">@course.Department @course.CourseNumber - @course.Semester @course.Year</p>
+                                    <p class="class-name">@course.CourseName</p>
+                                    <p class="class-time">@course.DaysOfTheWeek, @course.StartTime-@course.EndTime</p>
+                                </div>
+                            </a>
+                            <div class="card-icons">
+                                <a href="#" title="Announcements"><i class="fa-solid fa-bullhorn"></i></a>
+                                <a href="#" title="Assignments"><i class="fa-light fa-books"></i></a>
+                                <a href="#" title="Discussions"><i class="fa-light fa-comments"></i></a>
+                                <a href="#" title="Grades"><i class="fa-solid fa-award"></i></a>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div>
+                        <p>You currently have no classes!</p>
+                    </div>
+                }
+
+                <!-- To-do list column -->
+                <div class="col-md-2">
+                    <div class="todo">
+                        <h3>To Do</h3>
+                    </div>
+                    <div class="todo-items">
+                        <a href="">
+                            <p class="todo-class">CS 1010</p>
+                            <p class="todo-name">Quiz 3: Foundations</p>
+                            <p class="todo-time">Sep 18 at 11:59pm</p>
+                        </a>
+
+                        <a href="">
+                            <p class="todo-class">CS 1010</p>
+                            <p class="todo-name">Exam 1: Foundations</p>
+                            <p class="todo-time">Sep 20 at 11:59pm</p>
+                        </a>
+
+                        <a href="">
+                            <p class="todo-class">CS 1010</p>
+                            <p class="todo-name">Code 4: Java For loops</p>
+                            <p class="todo-time">Sep 27 at 11:59pm</p>
+                        </a>
+
+                        <a href="">
+                            <p class="todo-class">CS 1010</p>
+                            <p class="todo-name">Code 5: Java Switches</p>
+                            <p class="todo-time">Sep 27 at 11:59pm</p>
+                        </a>
+
+                        <a href="">
+                            <p class="todo-class">CS 1010</p>
+                            <p class="todo-name">Code 6: Java While loops</p>
+                            <p class="todo-time">Sep 29 at 11:59pm</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @section Scripts {
     @{

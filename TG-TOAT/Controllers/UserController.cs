@@ -10,6 +10,8 @@ using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pag
 using TGTOAT.Data;
 using TGTOAT.Models;
 using TGTOAT.Helpers;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TGTOAT.Controllers
 {
@@ -17,37 +19,57 @@ namespace TGTOAT.Controllers
     {
         private readonly IPasswordHasher _passwordHasher;
         private readonly UserContext _context;
+        private readonly IAuthentication _auth;
 
-        public UserController(UserContext context, IPasswordHasher passwordHasher)
+        public UserController(UserContext context, IPasswordHasher passwordHasher, IAuthentication auth)
         {
             _context = context;
             _passwordHasher = passwordHasher;
+            _auth = auth;
         }
 
-        // GET: User
+        //Logout User and Go to Login page
+        public ActionResult Logout()
+        {
+            _auth.Logout();
+            return RedirectToAction("Login");
+        }
+
+        // Home page for User
         public async Task<IActionResult> Index()
         {
-            return View();
+            var user = _auth.CheckUser();//Grab User Info
+
+            //Don't let user go to index if they aren't logged in
+            if (user == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            //Go to index
+            return View(user);
         }
+
         // Calendar action
         public IActionResult Calendar()
         {
-            return View(); // This will look for Views/User/Calendar.cshtml
+            var user = _auth.CheckUser();//Grab User Info
+            return View(user); // This will look for Views/User/Calendar.cshtml
         }
 
-        public async Task<IActionResult> Login(string Email, string Password)
+        public ActionResult Login(LoginViewModel model)
         {
             // Grab the user by email
-            var user = _context.User.FirstOrDefault(m => m.Email == Email);
+            var user = _context.User.FirstOrDefault(m => m.Email == model.Email);
 
             // If no user is found
             if (user == null)
             {
-                return RedirectToAction(nameof(Index));
+                return View();
             }
 
             // Check if the password matches
-            if (_passwordHasher.Verify(user.Password, Password))
+            if (_passwordHasher.Verify(user.Password, model.Password))
             {
                 // Find all classes that the user is enrolled in
                 var courses = (from connection in _context.UserCourseConnection
@@ -64,14 +86,17 @@ namespace TGTOAT.Controllers
                 };
 
                 // If the password is correct, log the user in
-                return View(viewModel);
+                _auth.SetUser(viewModel);
+                return Redirect("User/Index");
             }
             else
             {
                 // If the password is incorrect, redirect back to login screen
-                return RedirectToAction(nameof(Index));
+                return View();
             }
         }
+
+
 
         // GET: User/Details/5
         public async Task<IActionResult> Details(int? id)

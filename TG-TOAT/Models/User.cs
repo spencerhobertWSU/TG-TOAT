@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
+using TGTOAT.Data;
 
 namespace TGTOAT.Models;
 
@@ -38,4 +39,7 @@ public class User
     [Display(Name = "User Role")]
     [Required]
     public string? UserRole { get; set; }
+
+    //Lazy Loading Nav Link
+    public Address Address { get; set; }
 }

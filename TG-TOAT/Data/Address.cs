@@ -13,14 +13,14 @@ namespace TGTOAT.Data
         public int UserId { get; set; }
 
         [StringLength(255, MinimumLength = 2)]
-        public string AddressLineOne { get; set; }
+        public string? AddressLineOne { get; set; }
 
         [StringLength(255, MinimumLength = 2)]
-        public string AddressLineTwo { get; set; }
+        public string? AddressLineTwo { get; set; }
 
         [StringLength(30, MinimumLength = 2)]
-        public string ZipCode { get; set; }
+        public string? ZipCode { get; set; }
 
-        public User User { get; set; } // Navigation property back to User
+        public User? User { get; set; } // Navigation property back to User
     }
 }

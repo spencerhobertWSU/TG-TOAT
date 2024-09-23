@@ -280,6 +280,15 @@ namespace TGTOAT.Controllers
 
 
 
+
+
+
+
+
+
+
+
+
         // GET: UserAccount
         public async Task<IActionResult> Account(int? id)
         {
@@ -299,6 +308,9 @@ namespace TGTOAT.Controllers
 
             return View(user);
         }
+
+
+
 
 
 
@@ -360,6 +372,8 @@ namespace TGTOAT.Controllers
 
             return RedirectToAction(nameof(Account), new { id = model.Id });
         }
+
+
 
     }
 }

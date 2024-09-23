@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\tg-toat\\views\\shared\\_studentlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\shared\\_studentlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\tg-toat\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\tg-toat\\models\\userupdateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:models\\userupdateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\tg-toat\\data\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:data\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\tg-toat\\views\\user\\account.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\user\\account.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\tg-toat\\data\\usercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\tg-toat\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\tg-toat\\views\\user\\account.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\user\\account.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 336,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,7 +58,59 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_StudentLayout.cshtml",
+              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Views\\Shared\\_StudentLayout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_StudentLayout.cshtml",
+              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Views\\Shared\\_StudentLayout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_StudentLayout.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAiwDAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-23T23:32:46.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Address.cs",
+              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Data\\Address.cs",
+              "RelativeDocumentMoniker": "Data\\Address.cs",
+              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Data\\Address.cs",
+              "RelativeToolTip": "Data\\Address.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAswAwAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T23:25:13.015Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserUpdateViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Models\\UserUpdateViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\UserUpdateViewModel.cs",
+              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Models\\UserUpdateViewModel.cs",
+              "RelativeToolTip": "Models\\UserUpdateViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T23:16:15.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Account.cshtml",
+              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Views\\User\\Account.cshtml",
+              "RelativeDocumentMoniker": "Views\\User\\Account.cshtml",
+              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Views\\User\\Account.cshtml",
+              "RelativeToolTip": "Views\\User\\Account.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-23T23:15:14.521Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Models\\User.cs",
               "RelativeDocumentMoniker": "Models\\User.cs",
@@ -63,13 +123,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "UserContext.cs",
               "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Data\\UserContext.cs",
               "RelativeDocumentMoniker": "Data\\UserContext.cs",
               "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Data\\UserContext.cs",
               "RelativeToolTip": "Data\\UserContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-23T22:29:01.297Z",
               "EditorCaption": ""
@@ -77,40 +137,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Address.cs",
-              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Data\\Address.cs",
-              "RelativeDocumentMoniker": "Data\\Address.cs",
-              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Data\\Address.cs",
-              "RelativeToolTip": "Data\\Address.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T22:28:27.161Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
               "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Controllers\\UserController.cs",
               "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AgIAABcBAAAAAAAAAAAowDcBAAATAAAAAAAAAA==",
+              "ViewState": "AgIAACABAAAAAAAAAAAAADkBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-23T22:24:28.093Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Account.cshtml",
-              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Views\\User\\Account.cshtml",
-              "RelativeDocumentMoniker": "Views\\User\\Account.cshtml",
-              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\TG-TOAT\\Views\\User\\Account.cshtml",
-              "RelativeToolTip": "Views\\User\\Account.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-23T22:23:52.88Z",
               "EditorCaption": ""
             }
           ]

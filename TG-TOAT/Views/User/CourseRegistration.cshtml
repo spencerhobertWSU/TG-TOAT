@@ -1,0 +1,76 @@
+﻿@model TGTOAT.Models.CourseRegisterViewModel
+
+@{
+    ViewData["Title"] = "Course Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Course Registration</h1>
+
+<form method="get" asp-action="CourseRegistration" novalidate>
+    <div class="form-group">
+        <label for="departmentSelect">Select Department:</label>
+        <select class="form-control" id="departmentSelect" name="DepartmentId" required>
+            <option value="">-- Select a Department --</option>
+            @foreach (var department in Model.Departments)
+            {
+                <option value="@department.DepartmentId">@department.DepartmentName</option>
+            }
+        </select>
+    </div>
+
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search for courses..." id="courseSearch" name="searchTerm" aria-label="Search for courses" />
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </div>
+</form>
+
+<div id="courseGrid" class="course-grid">
+    @if (Model.Courses != null && Model.Courses.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Course Number</th>
+                    <th>Course Name</th>
+                    <th>Credit Hours</th>
+                    <th>Instructor</th>
+                    <th>Meeting Days</th>
+                    <th>Meeting Time</th>
+                    <th>Location</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var course in Model.Courses)
+                {
+                    <tr>
+                        <td>@course.CourseNumber</td>
+                        <td>@course.CourseName</td>
+                        <td>@course.NumberOfCredits</td>
+                        <td>@course. ?? "N/A"</td>
+                        <td>@course.DaysOfTheWeek</td>
+                        <td>@course.StartTime</td>
+                        <td>@course.EndTime</td>
+                        <td>@course.Location</td>
+                        <td>
+                            <a href="@Url.Action("Register", "Courses", new { id = course.CourseId })" class="btn btn-success">Register</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No courses available for the selected department.</p>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Optional: Add JavaScript here for dynamic filtering or AJAX calls if needed
+    </script>
+}

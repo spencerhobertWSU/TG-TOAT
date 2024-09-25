@@ -56,6 +56,27 @@ namespace TGTOAT.Controllers
             var user = _auth.CheckUser();//Grab User Info
             return View(user); // This will look for Views/User/Calendar.cshtml
         }
+        // Course Registration action
+        public IActionResult CourseRegistration()
+        {
+            var userCourseConnections = _context.UserCourseConnection.ToList();
+
+            var userIds = userCourseConnections.Select(uc => uc.UserId).ToList();
+
+            var instructorCourses = _context.UserCourseConnection.Where(uc => userIds.Contains(uc.UserId)).Select(uc => uc.CourseId).Distinct().ToList();
+
+            var courses = _context.Courses
+       .Where(c => instructorCourses.Contains(c.CourseId))
+       .ToList();
+
+            var viewModel = new CourseRegisterViewModel
+            {
+                Departments = _context.Departments.ToList(), // Make sure this is not null
+                Courses = courses
+
+            };
+            return View(viewModel);
+        }
 
         public ActionResult Login(LoginViewModel model)
         {
@@ -374,6 +395,7 @@ namespace TGTOAT.Controllers
         }
 
 
+      
 
     }
 }

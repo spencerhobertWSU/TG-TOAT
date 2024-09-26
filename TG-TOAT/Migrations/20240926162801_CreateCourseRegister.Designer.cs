@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TGTOAT.Data;
 
@@ -11,9 +12,11 @@ using TGTOAT.Data;
 namespace TGTOAT.Migrations
 {
     [DbContext(typeof(UserContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20240926162801_CreateCourseRegister")]
+    partial class CreateCourseRegister
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -156,29 +159,6 @@ namespace TGTOAT.Migrations
                         });
                 });
 
-            modelBuilder.Entity("TGTOAT.Data.StudentCourseConnection", b =>
-                {
-                    b.Property<int>("StudentCourseId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentCourseId"));
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentID")
-                        .HasColumnType("int");
-
-                    b.HasKey("StudentCourseId");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("StudentID");
-
-                    b.ToTable("StudentCourseConnection");
-                });
-
             modelBuilder.Entity("TGTOAT.Data.UserCourseConnection", b =>
                 {
                     b.Property<int>("UserCourseConnectionId")
@@ -267,25 +247,6 @@ namespace TGTOAT.Migrations
                         .IsRequired();
 
                     b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("TGTOAT.Data.StudentCourseConnection", b =>
-                {
-                    b.HasOne("TGTOAT.Data.Courses", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TGTOAT.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("StudentID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TGTOAT.Data.UserCourseConnection", b =>

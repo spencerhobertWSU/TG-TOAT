@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
+using TGTOAT.Models;
 
 namespace TGTOAT.Data
 {
@@ -79,6 +80,10 @@ namespace TGTOAT.Data
         [Required(ErrorMessage = "Year is required.")]
         [Range(2024, 3000, ErrorMessage = "Must be a positive number and max 4 digits allowed.")]
         public int Year { get; set; }
+
+        public List<UserCourseConnection> userCourseConnections { get; set; } = new List<UserCourseConnection>();
+
+        public List<User> Instructors { get; set; } = new List<User>();
 
     }
 

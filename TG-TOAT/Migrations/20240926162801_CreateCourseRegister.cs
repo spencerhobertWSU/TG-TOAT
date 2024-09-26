@@ -5,7 +5,7 @@
 namespace TGTOAT.Migrations
 {
     /// <inheritdoc />
-    public partial class CourseRegisterViewModelCreate : Migration
+    public partial class CreateCourseRegister : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

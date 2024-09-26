@@ -12,8 +12,8 @@ using TGTOAT.Data;
 namespace TGTOAT.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20240925041212_CourseRegisterViewModelCreate")]
-    partial class CourseRegisterViewModelCreate
+    [Migration("20240926192528_SudentCourseConnection")]
+    partial class SudentCourseConnection
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -159,6 +159,29 @@ namespace TGTOAT.Migrations
                         });
                 });
 
+            modelBuilder.Entity("TGTOAT.Data.StudentCourseConnection", b =>
+                {
+                    b.Property<int>("StudentCourseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentCourseId"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentID")
+                        .HasColumnType("int");
+
+                    b.HasKey("StudentCourseId");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("StudentID");
+
+                    b.ToTable("StudentCourseConnection");
+                });
+
             modelBuilder.Entity("TGTOAT.Data.UserCourseConnection", b =>
                 {
                     b.Property<int>("UserCourseConnectionId")
@@ -193,6 +216,9 @@ namespace TGTOAT.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("CoursesCourseId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -219,6 +245,8 @@ namespace TGTOAT.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CoursesCourseId");
+
                     b.ToTable("User");
                 });
 
@@ -244,10 +272,29 @@ namespace TGTOAT.Migrations
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("TGTOAT.Data.UserCourseConnection", b =>
+            modelBuilder.Entity("TGTOAT.Data.StudentCourseConnection", b =>
                 {
                     b.HasOne("TGTOAT.Data.Courses", "Course")
                         .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TGTOAT.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TGTOAT.Data.UserCourseConnection", b =>
+                {
+                    b.HasOne("TGTOAT.Data.Courses", "Course")
+                        .WithMany("userCourseConnections")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -261,6 +308,20 @@ namespace TGTOAT.Migrations
                     b.Navigation("Course");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TGTOAT.Models.User", b =>
+                {
+                    b.HasOne("TGTOAT.Data.Courses", null)
+                        .WithMany("Instructors")
+                        .HasForeignKey("CoursesCourseId");
+                });
+
+            modelBuilder.Entity("TGTOAT.Data.Courses", b =>
+                {
+                    b.Navigation("Instructors");
+
+                    b.Navigation("userCourseConnections");
                 });
 
             modelBuilder.Entity("TGTOAT.Models.User", b =>

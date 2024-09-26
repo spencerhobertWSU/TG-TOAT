@@ -12,6 +12,7 @@ using TGTOAT.Models;
 using TGTOAT.Helpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace TGTOAT.Controllers
 {
@@ -36,7 +37,7 @@ namespace TGTOAT.Controllers
         }
 
         // Home page for User
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(UserLoginViewModel Model)
         {
             var user = _auth.CheckUser();//Grab User Info
 
@@ -46,8 +47,28 @@ namespace TGTOAT.Controllers
                 return RedirectToAction("Login");
             }
 
+            //This is used to populate the students main menu with course cards
+            int userId = int.TryParse(user.Id, out int tempId) ? tempId : 0;
+
+            var courses = (from connection in _context.StudentCourseConnection
+                           join course in _context.Courses on connection.CourseId equals course.CourseId
+                           where connection.StudentID == userId
+                               select course).ToList();
+
+            var viewModel = new UserLoginViewModel
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserRole = user.UserRole,
+                Courses = courses,
+                Id = user.Id.ToString(),
+            };
+
             //Go to index
-            return View(user);
+            return View(viewModel);
+
+
+
         }
 
         // Calendar action
@@ -55,6 +76,159 @@ namespace TGTOAT.Controllers
         {
             var user = _auth.CheckUser();//Grab User Info
             return View(user); // This will look for Views/User/Calendar.cshtml
+        }
+       
+        //Course Registration action
+        public async Task<IActionResult> CourseRegistration()
+        {
+            // Get all user-course connections
+            var userCourseConnections = await _context.UserCourseConnection.ToListAsync();
+
+            //Get unique course IDs from the user-course connections
+            var instructorCourseIds = userCourseConnections
+                .Select(uc => uc.CourseId)
+                .Distinct()
+                .ToList();
+
+            // Get unique user IDs from the user-course connections for the selected courses
+            var userIds = userCourseConnections
+                .Where(uc => instructorCourseIds.Contains(uc.CourseId))
+                .Select(uc => uc.UserId)
+                .Distinct()
+                .ToList();
+
+            //  Retrieve the instructors associated with those User IDs
+            var instructors = await _context.User
+                .Where(u => u.UserRole == "Instructor" && userIds.Contains(u.Id))
+                .ToListAsync();
+
+            // Get Courses that has a instructorCourseId
+            var courses = await _context.Courses
+               .Where(c => instructorCourseIds.Contains(c.CourseId))
+               .Include(c => c.Instructors) // Assuming there's a navigation property for instructors
+               .ToListAsync();
+
+            //// Create the view model to pass to the view
+            var viewModel = new CourseRegisterViewModel
+            {
+                Departments = await _context.Departments.ToListAsync(),
+                Courses = courses,
+                Instructors = instructors,
+
+                UserCourseConnections = userCourseConnections
+            };
+            ViewBag.ErrorMessage = TempData["ErrorMessage"] as string;
+            ViewBag.SuccessMessage = TempData["SuccessMessage"] as string;
+            return View(viewModel); // Pass the populated view model to the view
+        }
+
+        public async Task<IActionResult> FilterCourses(int? departmentId, string searchTerm)
+        {
+            // Fetch all departments for the dropdown
+            var departments = await _context.Departments.ToListAsync();
+
+            // Fetch all user-course connections
+            var userCourseConnections = await _context.UserCourseConnection.ToListAsync();
+
+            // Get unique course IDs from user-course connections
+            var instructorCourseIds = userCourseConnections
+                .Select(uc => uc.CourseId)
+                .Distinct()
+                .ToList();
+
+            // Get courses that match the instructor course IDs
+            var courses = await _context.Courses
+                .Where(c => instructorCourseIds.Contains(c.CourseId))
+                .Include(c => c.Instructors)
+                .ToListAsync();
+
+            // Filter based on selected department
+            if (departmentId.HasValue)
+            {
+                courses = courses.Where(c => c.DepartmentId == departmentId.Value).ToList();
+            }
+
+            // Filter based on search term
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                courses = courses
+                    .Where(c => c.CourseName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+
+            // Create the view model to pass to the view
+            var viewModel = new CourseRegisterViewModel
+            {
+                DepartmentId = departmentId.Value,
+                Departments = departments,
+                Courses = courses,
+                Instructors = await _context.User.Where(u => u.UserRole == "Instructor").ToListAsync(),
+                UserCourseConnections = userCourseConnections
+            };
+
+            return View("CourseRegistration", viewModel); // Return the view with the filtered courses
+        }
+
+        [HttpPost]
+        public IActionResult Register(int CourseId)
+        {
+            var userIdString = _auth.GetCurrentUserId();
+            if (string.IsNullOrEmpty(userIdString))
+            {
+                return Unauthorized();
+            }
+            if (!int.TryParse(userIdString, out int userId))
+            {
+                TempData["ErrorMessage"] = "Invalid user ID format.";
+                return RedirectToAction("CourseRegistration");
+            
+            } 
+            // Check if the user is already registered
+            if (_context.StudentCourseConnection.Any(uc => uc.StudentID == userId && uc.CourseId == CourseId))
+            {
+                TempData["ErrorMessage"] = "User is already registered for this course.";
+                return RedirectToAction("CourseRegistration");
+            }
+            var connection = new StudentCourseConnection
+            {
+                StudentID = userId,
+                CourseId = CourseId
+            };
+
+            _context.StudentCourseConnection.Add(connection);
+            _context.SaveChanges();
+            TempData["SuccessMessage"] = "Successfully registered for the course!";
+            return RedirectToAction("CourseRegistration"); // Redirect back to the course registration page
+        }
+
+        [HttpPost]
+        public IActionResult Drop(int CourseId)
+        {
+            var userIdString = _auth.GetCurrentUserId();
+            if (string.IsNullOrEmpty(userIdString))
+            {
+                return Unauthorized();
+            }
+
+            if (!int.TryParse(userIdString, out int userId))
+            {
+                TempData["ErrorMessage"] = "Invalid user ID format.";
+                return RedirectToAction("CourseRegistration");
+            }
+
+            var connection = _context.StudentCourseConnection
+                .FirstOrDefault(uc => uc.StudentID == userId && uc.CourseId == CourseId);
+
+            if (connection != null)
+            {
+                _context.StudentCourseConnection.Remove(connection);
+                _context.SaveChanges();
+                TempData["SuccessMessage"] = "Successfully Dropped for the course!";
+                return RedirectToAction("CourseRegistration"); // Redirect back to the course registration page
+            }
+
+            TempData["ErrorMessage"] = "Registration not found.";
+            return RedirectToAction("CourseRegistration");
         }
 
         public ActionResult Login(LoginViewModel model)
@@ -72,9 +246,9 @@ namespace TGTOAT.Controllers
             if (_passwordHasher.Verify(user.Password, model.Password))
             {
                 // Find all classes that the user is enrolled in
-                var courses = (from connection in _context.UserCourseConnection
+                var courses = (from connection in _context.StudentCourseConnection
                                     join course in _context.Courses on connection.CourseId equals course.CourseId
-                                    where connection.UserId == user.Id
+                                    where connection.StudentID == user.Id
                                     select course).ToList();
 
                 var viewModel = new UserLoginViewModel
@@ -82,7 +256,8 @@ namespace TGTOAT.Controllers
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     UserRole = user.UserRole,
-                    Courses = courses
+                    Courses = courses,
+                    Id = user.Id.ToString(),
                 };
 
                 // If the password is correct, log the user in
@@ -273,22 +448,6 @@ namespace TGTOAT.Controllers
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // GET: UserAccount
         public async Task<IActionResult> Account(int? id)
         {
@@ -374,6 +533,7 @@ namespace TGTOAT.Controllers
         }
 
 
+      
 
     }
 }

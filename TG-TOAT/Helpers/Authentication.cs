@@ -13,6 +13,11 @@ public class Authentication : IAuthentication
         currUser = user;
     }
 
+    public string GetCurrentUserId()
+    {
+        return currUser?.Id; // Assuming the UserLoginViewModel has an Id property
+    }
+
     //Logout User
     public void Logout()
     {

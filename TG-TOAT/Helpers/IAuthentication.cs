@@ -10,5 +10,5 @@ public interface IAuthentication
 
     //Grab user information
     public TGTOAT.Models.UserLoginViewModel CheckUser();
-
+    string? GetCurrentUserId();
 }

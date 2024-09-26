@@ -10,7 +10,7 @@ namespace TGTOAT.Models
     public class UserLoginViewModel
     {
         /* User */
-
+        public string Id { get; set; } // Add this property
         // First Name
         [Display(Name = "First Name")]
         [StringLength(60, MinimumLength = 1)]

@@ -1,4 +1,19 @@
-﻿@model IEnumerable<TGTOAT.Data.Courses>
+﻿@* @model IEnumerable<TGTOAT.Data.Courses> *@
+@model TGTOAT.ViewModels.CourseListViewModel
+
+
+@{
+    ViewData["Title"] = "Courses";
+
+    if (Model.UserLoginViewModel.UserRole == "Student")
+    {
+        Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    }
+    else if (Model.UserLoginViewModel.UserRole == "Instructor")
+    {
+        Layout = "~/Views/Shared/_InstructorLayout.cshtml";
+    }
+}
 
 @{
     ViewData["Title"] = "Courses";
@@ -22,7 +37,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var course in Model)
+        @foreach (var course in Model.Courses)
         {
             <tr>
                 <td>@course.CourseNumber</td>

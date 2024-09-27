@@ -120,22 +120,15 @@ namespace TGTOAT.Controllers
             return View(course);
         }
 
-        // get courses for calendar view
         [HttpGet]
         public JsonResult GetCoursesForCalendar()
         {
-            string currentInstructorId = _authentication.GetCurrentUserId();
+            var currentUser = _authentication.CheckUser();  // Get the current user's details
 
-            if (string.IsNullOrEmpty(currentInstructorId))
+            if (currentUser == null || string.IsNullOrEmpty(currentUser.Id))
             {
-                return Json(new { error = "No instructor logged in." });
+                return Json(new { error = "No user logged in." });
             }
-
-            var courses = _context.InstructorCourseConnection
-                .Include(icc => icc.Course)
-                .Where(icc => icc.InstructorID == int.Parse(currentInstructorId))
-                .Select(icc => icc.Course)
-                .ToList();
 
             var courseEvents = new List<object>();
             var dayMap = new Dictionary<char, int> {
@@ -146,45 +139,64 @@ namespace TGTOAT.Controllers
                 { 'F', 5 }
             };
 
-            foreach (var course in courses)
+            if (currentUser.UserRole == "Instructor")
             {
-                if (course.StartTime.HasValue && course.EndTime.HasValue)
-                {
-                    var startTime = course.StartTime.Value;
-                    var endTime = course.EndTime.Value;
+                // Fetch courses for the instructor
+                var instructorCourses = _context.InstructorCourseConnection
+                    .Include(icc => icc.Course)
+                    .Where(icc => icc.InstructorID == int.Parse(currentUser.Id))
+                    .Select(icc => icc.Course)
+                    .ToList();
 
-                    // Convert DaysOfTheWeek to uppercase to match dayMap keys
-                    foreach (char day in course.DaysOfTheWeek.ToUpper())
-                    {
-                        if (dayMap.ContainsKey(day))
-                        {
-                            int dayCode = dayMap[day];
-                            courseEvents.Add(new
-                            {
-                                title = course.CourseName,
-                                start = new DateTime(2024, 9, 1, startTime.Hour, startTime.Minute, startTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
-                                end = new DateTime(2024, 9, 1, endTime.Hour, endTime.Minute, endTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
-                                daysOfWeek = new[] { dayCode },
-                                startRecur = "2024-09-01",
-                                endRecur = "2024-12-15"
-                            });
-                        }
-                    }
+                foreach (var course in instructorCourses)
+                {
+                    AddCourseToEventList(course, dayMap, courseEvents);
+                }
+            }
+            else if (currentUser.UserRole == "Student")
+            {
+                // Fetch courses for the student
+                var studentCourses = _context.StudentCourseConnection
+                    .Include(scc => scc.Course)
+                    .Where(scc => scc.StudentID == int.Parse(currentUser.Id))
+                    .Select(scc => scc.Course)
+                    .ToList();
+
+                foreach (var course in studentCourses)
+                {
+                    AddCourseToEventList(course, dayMap, courseEvents);
                 }
             }
 
-            // Test event 
-            courseEvents.Add(new
-            {
-                title = "Test Course",
-                start = "2024-09-01T09:00:00",
-                end = "2024-09-01T10:00:00",
-                daysOfWeek = new[] { 1, 3, 5 },  // Monday, Wednesday, Friday
-                startRecur = "2024-09-01",
-                endRecur = "2024-12-15"
-            });
-
             return Json(courseEvents);
+        }
+
+        // Helper method to add course events to the list
+        private void AddCourseToEventList(Courses course, Dictionary<char, int> dayMap, List<object> courseEvents)
+        {
+            if (course.StartTime.HasValue && course.EndTime.HasValue)
+            {
+                var startTime = course.StartTime.Value;
+                var endTime = course.EndTime.Value;
+
+                // Convert DaysOfTheWeek to uppercase to match dayMap keys
+                foreach (char day in course.DaysOfTheWeek.ToUpper())
+                {
+                    if (dayMap.ContainsKey(day))
+                    {
+                        int dayCode = dayMap[day];
+                        courseEvents.Add(new
+                        {
+                            title = course.CourseName,
+                            start = new DateTime(2024, 9, 1, startTime.Hour, startTime.Minute, startTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
+                            end = new DateTime(2024, 9, 1, endTime.Hour, endTime.Minute, endTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
+                            daysOfWeek = new[] { dayCode },
+                            startRecur = "2024-09-01",
+                            endRecur = "2024-12-15"
+                        });
+                    }
+                }
+            }
         }
 
     }

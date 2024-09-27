@@ -20,8 +20,8 @@ namespace TGTOAT.Data
         public DbSet<Departments> Departments { get; set; } = default!;
         public DbSet<Courses> Courses { get; set; } = default!;
         public DbSet<Address> Address { get; set; } = default!;
-        public DbSet<UserCourseConnection> UserCourseConnection { get; set; } = default!;
 
+        public DbSet<InstructorCourseConnection> InstructorCourseConnection { get; set; } = default!;
         public DbSet<StudentCourseConnection> StudentCourseConnection { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

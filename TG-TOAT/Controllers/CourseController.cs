@@ -68,13 +68,13 @@ namespace TGTOAT.Controllers
                 _context.Courses.Add(course);
                 await _context.SaveChangesAsync();
 
-                var userCourseConnection = new UserCourseConnection
+                var instructorCourseConnection = new InstructorCourseConnection
                 {
-                    UserId = model.SelectedInstructorId,
+                    InstructorID = model.SelectedInstructorId,
                     CourseId = course.CourseId
                 };
 
-                _context.UserCourseConnection.Add(userCourseConnection);
+                _context.InstructorCourseConnection.Add(instructorCourseConnection);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Courses");

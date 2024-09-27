@@ -75,9 +75,9 @@
                             var courseId = course.CourseId;
 
                             // Filter instructors based on UserCourseConnections
-                            var courseInstructors = Model.UserCourseConnections
+                            var courseInstructors = Model.InstructorCourseConnections
                             .Where(uc => uc.CourseId == courseId)
-                            .Select(uc => Model.Instructors.FirstOrDefault(i => i.Id == uc.UserId))
+                            .Select(uc => Model.Instructors.FirstOrDefault(i => i.Id == uc.InstructorID))
                             .Where(i => i != null) // Ensure that we only include valid instructors
                             .ToList();
 
@@ -86,7 +86,7 @@
                             <ul>
                                     @foreach (var instructor in courseInstructors)
                                     {
-                                   @instructor.FirstName @instructor.LastName
+                                        @instructor.FirstName @instructor.LastName
                                     }
                             </ul>
                             }

@@ -81,7 +81,7 @@ namespace TGTOAT.Data
         [Range(2024, 3000, ErrorMessage = "Must be a positive number and max 4 digits allowed.")]
         public int Year { get; set; }
 
-        public List<UserCourseConnection> userCourseConnections { get; set; } = new List<UserCourseConnection>();
+        public List<InstructorCourseConnection> instructorCourseConnections { get; set; } = new List<InstructorCourseConnection>();
 
         public List<User> Instructors { get; set; } = new List<User>();
 

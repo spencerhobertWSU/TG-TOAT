@@ -50,10 +50,22 @@ namespace TGTOAT.Controllers
             //This is used to populate the students main menu with course cards
             int userId = int.TryParse(user.Id, out int tempId) ? tempId : 0;
 
-            var courses = (from connection in _context.StudentCourseConnection
-                           join course in _context.Courses on connection.CourseId equals course.CourseId
-                           where connection.StudentID == userId
+            var courses = new List<Courses>();
+            if (user.UserRole == "Student")
+            {
+                courses = (from connection in _context.StudentCourseConnection
+                               join course in _context.Courses on connection.CourseId equals course.CourseId
+                               where connection.StudentID == userId
                                select course).ToList();
+            }
+            else if (user.UserRole == "Instructor")
+            {
+                courses = (from connection in _context.InstructorCourseConnection
+                           join course in _context.Courses on connection.CourseId equals course.CourseId
+                           where connection.InstructorID == userId
+                           select course).ToList();
+            }
+            
 
             var viewModel = new UserLoginViewModel
             {
@@ -82,18 +94,18 @@ namespace TGTOAT.Controllers
         public async Task<IActionResult> CourseRegistration()
         {
             // Get all user-course connections
-            var userCourseConnections = await _context.UserCourseConnection.ToListAsync();
+            var instructorCourseConnections = await _context.InstructorCourseConnection.ToListAsync();
 
             //Get unique course IDs from the user-course connections
-            var instructorCourseIds = userCourseConnections
+            var instructorCourseIds = instructorCourseConnections
                 .Select(uc => uc.CourseId)
                 .Distinct()
                 .ToList();
 
             // Get unique user IDs from the user-course connections for the selected courses
-            var userIds = userCourseConnections
+            var userIds = instructorCourseConnections
                 .Where(uc => instructorCourseIds.Contains(uc.CourseId))
-                .Select(uc => uc.UserId)
+                .Select(uc => uc.InstructorID)
                 .Distinct()
                 .ToList();
 
@@ -115,7 +127,7 @@ namespace TGTOAT.Controllers
                 Courses = courses,
                 Instructors = instructors,
 
-                UserCourseConnections = userCourseConnections
+                InstructorCourseConnections = instructorCourseConnections
             };
             ViewBag.ErrorMessage = TempData["ErrorMessage"] as string;
             ViewBag.SuccessMessage = TempData["SuccessMessage"] as string;
@@ -128,10 +140,10 @@ namespace TGTOAT.Controllers
             var departments = await _context.Departments.ToListAsync();
 
             // Fetch all user-course connections
-            var userCourseConnections = await _context.UserCourseConnection.ToListAsync();
+            var instructorCourseConnections = await _context.InstructorCourseConnection.ToListAsync();
 
             // Get unique course IDs from user-course connections
-            var instructorCourseIds = userCourseConnections
+            var instructorCourseIds = instructorCourseConnections
                 .Select(uc => uc.CourseId)
                 .Distinct()
                 .ToList();
@@ -163,7 +175,7 @@ namespace TGTOAT.Controllers
                 Departments = departments,
                 Courses = courses,
                 Instructors = await _context.User.Where(u => u.UserRole == "Instructor").ToListAsync(),
-                UserCourseConnections = userCourseConnections
+                InstructorCourseConnections = instructorCourseConnections
             };
 
             return View("CourseRegistration", viewModel); // Return the view with the filtered courses

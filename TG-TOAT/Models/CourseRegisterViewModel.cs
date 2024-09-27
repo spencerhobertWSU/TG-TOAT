@@ -23,6 +23,6 @@ namespace TGTOAT.Models
         public List<Departments> Departments { get; set; } = new List<Departments>();
         public List<Courses> Courses { get; set; } = new List<Courses>();
         public List<User> Instructors { get; set; } = new List<User>();
-        public List<UserCourseConnection> UserCourseConnections { get; set; } = new List<UserCourseConnection>();
+        public List<InstructorCourseConnection> InstructorCourseConnections { get; set; } = new List<InstructorCourseConnection>();
     }
 }

@@ -7,14 +7,14 @@ using TGTOAT.Models;
 
 namespace TGTOAT.Data
 {
-    public class UserCourseConnection
+    public class InstructorCourseConnection
     {
         [Key]
-        public int UserCourseConnectionId { get; set; }
+        public int InstructorCourseConnectionId { get; set; }
 
         [Required(ErrorMessage = "User ID is required.")]
-        public int UserId { get; set; }
-        public User? User { get; set; }
+        public int InstructorID { get; set; }
+        public User? Instructor { get; set; }
 
         [Required(ErrorMessage = "Course ID is required.")]
         public int CourseId { get; set; }

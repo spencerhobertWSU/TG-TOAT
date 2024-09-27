@@ -54,9 +54,9 @@ namespace TGTOAT.Controllers
             if (user.UserRole == "Student")
             {
                 courses = (from connection in _context.StudentCourseConnection
-                               join course in _context.Courses on connection.CourseId equals course.CourseId
-                               where connection.StudentID == userId
-                               select course).ToList();
+                           join course in _context.Courses on connection.CourseId equals course.CourseId
+                           where connection.StudentID == userId
+                           select course).ToList();
             }
             else if (user.UserRole == "Instructor")
             {
@@ -65,7 +65,7 @@ namespace TGTOAT.Controllers
                            where connection.InstructorID == userId
                            select course).ToList();
             }
-            
+
 
             var viewModel = new UserLoginViewModel
             {
@@ -89,7 +89,7 @@ namespace TGTOAT.Controllers
             var user = _auth.CheckUser();//Grab User Info
             return View(user); // This will look for Views/User/Calendar.cshtml
         }
-       
+
         //Course Registration action
         public async Task<IActionResult> CourseRegistration()
         {
@@ -193,8 +193,8 @@ namespace TGTOAT.Controllers
             {
                 TempData["ErrorMessage"] = "Invalid user ID format.";
                 return RedirectToAction("CourseRegistration");
-            
-            } 
+
+            }
             // Check if the user is already registered
             if (_context.StudentCourseConnection.Any(uc => uc.StudentID == userId && uc.CourseId == CourseId))
             {
@@ -259,9 +259,9 @@ namespace TGTOAT.Controllers
             {
                 // Find all classes that the user is enrolled in
                 var courses = (from connection in _context.StudentCourseConnection
-                                    join course in _context.Courses on connection.CourseId equals course.CourseId
-                                    where connection.StudentID == user.Id
-                                    select course).ToList();
+                               join course in _context.Courses on connection.CourseId equals course.CourseId
+                               where connection.StudentID == user.Id
+                               select course).ToList();
 
                 var viewModel = new UserLoginViewModel
                 {
@@ -338,7 +338,8 @@ namespace TGTOAT.Controllers
                     LastName = model.LastName,
                     Password = model.Password,
                     BirthDate = model.BirthDate,
-                    UserRole = model.UserRole == "Student" ? "Student" : "Instructor"
+                    UserRole = model.UserRole == "Student" ? "Student" : "Instructor",
+                    ProfileImageBase64 = "+IMQ3yEZtXwBVkKazXUlLCAZV4UKaXKsOMIc4olDFdJo/FbADOKRCZ6th3yFeOj4PqRBBA4hnvrwEFKvL11APHW9GjLxOOT2PqROCOYQT81XQ8RnDyG12pJ47H9INkNqhEB8JoT8BNEuPSTVExuQAAAAAElFTkSuQmCC"
                 };
 
                 // Hash the password
@@ -391,7 +392,7 @@ namespace TGTOAT.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Password,FirstName,LastName,BirthDate")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Password,FirstName,LastName,BirthDate,UserRole,ProfileImageBase64")] User user)
         {
             if (id != user.Id)
             {
@@ -461,28 +462,27 @@ namespace TGTOAT.Controllers
 
 
         // GET: UserAccount
-        public async Task<IActionResult> Account(int? id)
+        public async Task<IActionResult> Account()
         {
-            if (id == null)
+            //Grab user log in info
+            var userLoginInfo = _auth.CheckUser();
+            if (userLoginInfo == null)
             {
-                return NotFound();
+                return RedirectToAction("Login");
             }
 
+            //Grab full user info
             var user = await _context.User
-                .Include(u => u.Address) // Include the Address navigation property
-                .FirstOrDefaultAsync(m => m.Id == id);
-
+                .Include(u => u.Address)
+                .FirstOrDefaultAsync(m => m.Id == int.Parse(userLoginInfo.Id));
             if (user == null)
             {
                 return NotFound();
             }
 
+            //return Account view
             return View(user);
         }
-
-
-
-
 
 
         // POST: User/UpdateUser
@@ -545,7 +545,95 @@ namespace TGTOAT.Controllers
         }
 
 
-      
+
+
+
+
+
+
+
+
+
+
+
+        public IActionResult GetProfileImage()
+        {
+            var userLoginInfo = _auth.CheckUser();
+            var fullUser = _context.User.Find(int.Parse(userLoginInfo.Id));
+
+            var imageBytes = Convert.FromBase64String("");
+
+
+            if (fullUser == null || string.IsNullOrEmpty(fullUser.ProfileImageBase64))
+            {
+                imageBytes = Convert.FromBase64String("+IMQ3yEZtXwBVkKazXUlLCAZV4UKaXKsOMIc4olDFdJo/FbADOKRCZ6th3yFeOj4PqRBBA4hnvrwEFKvL11APHW9GjLxOOT2PqROCOYQT81XQ8RnDyG12pJ47H9INkNqhEB8JoT8BNEuPSTVExuQAAAAAElFTkSuQmCC");
+            }
+            else
+            {
+
+                imageBytes = Convert.FromBase64String(fullUser.ProfileImageBase64);
+
+            }
+
+            return File(imageBytes, "image/png");
+        }
+
+        // GET: /User/UploadImage
+        [HttpGet]
+        public async Task<IActionResult> ChangeProfilePicture()
+        {
+            //Grab user log in info
+            var userLoginInfo = _auth.CheckUser();
+            if (userLoginInfo == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            //Grab full user info
+            var user = await _context.User
+                .Include(u => u.Address)
+                .FirstOrDefaultAsync(m => m.Id == int.Parse(userLoginInfo.Id));
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(user);
+        }
+
+
+
+
+        // POST: /User/UploadImage
+        [HttpPost]
+        public async Task<IActionResult> ChangeProfilePicture(IFormFile profileImage)
+        {
+            var userLoginInfo = _auth.CheckUser();
+            var fullUser = await _context.User.FindAsync(int.Parse(userLoginInfo.Id));
+
+            if (profileImage != null && fullUser != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await profileImage.CopyToAsync(memoryStream);
+
+                    byte[] imageBytes = memoryStream.ToArray();
+
+                    string base64String = Convert.ToBase64String(imageBytes);
+
+                    fullUser.ProfileImageBase64 = base64String;
+
+                    _context.Update(fullUser);
+                    await _context.SaveChangesAsync();
+                }
+
+            }
+
+            return View(fullUser);
+        }
+
+
 
     }
 }

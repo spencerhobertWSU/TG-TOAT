@@ -40,6 +40,10 @@ public class User
     [Required]
     public string? UserRole { get; set; }
 
+    [Display(Name = "ProfileImageBase64")]
+    [Required]
+    public string? ProfileImageBase64 { get; set; }
+
     //Lazy Loading Nav Link
     public Address Address { get; set; }
 }

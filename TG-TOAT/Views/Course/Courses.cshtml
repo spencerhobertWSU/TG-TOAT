@@ -47,8 +47,15 @@
                 <td>@course.Location</td>
                 <td>@course.RoomNumber</td>
                 <td>@course.DaysOfTheWeek</td>
-                <td>@course.StartTime</td>
-                <td>@course.EndTime</td>
+                @* <td>@course.StartTime</td>
+                <td>@course.EndTime</td> *@
+                <td>@course.StartTime?.ToString("hh:mm tt")</td>  <!-- Displaying time only -->
+                <td>@course.EndTime?.ToString("hh:mm tt")</td>    <!-- Displaying time only -->
+                <td>
+                    <!-- Action buttons (Edit and Delete) -->
+                    <a href="#" class="btn btn-primary">Edit</a>  <!-- Edit button -->
+                    <a href="#" class="btn btn-danger">Delete</a> <!-- Delete button -->
+                </td>
             </tr>
         }
     </tbody>

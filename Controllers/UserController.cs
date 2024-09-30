@@ -623,8 +623,85 @@ namespace TGTOAT.Controllers
             return RedirectToAction("Account");
         }
 
+        public IActionResult GetProfileImage()
+        {
+            var userLoginInfo = _auth.GetUser();
+            var fullUser = _context.User.Find(userLoginInfo.Id);
 
-        public void CreateCookie(String Email, String Series, String Token)
+            var imageBytes = Convert.FromBase64String("");
+
+
+            if (fullUser == null || string.IsNullOrEmpty(fullUser.ProfileImageBase64))
+            {
+                imageBytes = Convert.FromBase64String("+IMQ3yEZtXwBVkKazXUlLCAZV4UKaXKsOMIc4olDFdJo/FbADOKRCZ6th3yFeOj4PqRBBA4hnvrwEFKvL11APHW9GjLxOOT2PqROCOYQT81XQ8RnDyG12pJ47H9INkNqhEB8JoT8BNEuPSTVExuQAAAAAElFTkSuQmCC");
+            }
+            else
+            {
+
+                imageBytes = Convert.FromBase64String(fullUser.ProfileImageBase64);
+
+            }
+
+            return File(imageBytes, "image/png");
+        }
+
+        // GET: /User/UploadImage
+        [HttpGet]
+        public async Task<IActionResult> ChangeProfilePicture()
+        {
+            //Grab user log in info
+            var userLoginInfo = _auth.GetUser();
+            if (userLoginInfo == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            //Grab full user info
+            var user = await _context.User
+                .Include(u => u.Address)
+                .FirstOrDefaultAsync(m => m.Id == userLoginInfo.Id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(user);
+        }
+
+
+
+
+        // POST: /User/UploadImage
+        [HttpPost]
+        public async Task<IActionResult> ChangeProfilePicture(IFormFile profileImage)
+        {
+            var userLoginInfo = _auth.GetUser();
+            var fullUser = await _context.User.FindAsync(userLoginInfo.Id);
+
+            if (profileImage != null && fullUser != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await profileImage.CopyToAsync(memoryStream);
+
+                    byte[] imageBytes = memoryStream.ToArray();
+
+                    string base64String = Convert.ToBase64String(imageBytes);
+
+                    fullUser.ProfileImageBase64 = base64String;
+
+                    _context.Update(fullUser);
+                    await _context.SaveChangesAsync();
+                }
+
+            }
+
+            return View(fullUser);
+        }
+
+
+public void CreateCookie(String Email, String Series, String Token)
         {
             CookieOptions options = new CookieOptions
             {

@@ -45,14 +45,28 @@
 
                         <!--Account-->
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" onclick="window.location.href='/User/Account?id=11'">Account</a>
+                            <a class="nav-link" href="javascript:void(0)" onclick="openAccount()">
+                                <img src="@Url.Action("GetProfileImage")" alt="User Account" style="width: 30px; height: 30px; border-radius: 50%;" />
+                                Account
+                            </a>
                         </li>
-                        <div id="account">
+                        <div id="account" style="display: none;">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="User" asp-action="Account" asp-m>Edit Account</a>
+                            <a class="nav-link" asp-area="" asp-controller="User" asp-action="Account">Edit Account</a>
                             <a class="nav-link" asp-area="" asp-controller="User" asp-action="Logout">Logout</a>
+
+
+
+
+                            <a class="nav-link" asp-area="" asp-controller="User" asp-action="ChangeProfilePicture">Profile Picture</a>
+
+
+
+
                         </li>
-                        </div>
+                </div>
+
+
 
                         <!--Notifictions-->
                         <li class="nav-item">

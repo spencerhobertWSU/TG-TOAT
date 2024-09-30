@@ -10,6 +10,8 @@ namespace TGTOAT.Data
     public class InstructorCourseConnection
     {
         [Key]
+        public int InstructorCourseConnectionId { get; set; }
+
         [Required(ErrorMessage = "User ID is required.")]
         public int InstructorID { get; set; }
         public User? Instructor { get; set; }

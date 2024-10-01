@@ -269,5 +269,27 @@ namespace TGTOAT.Controllers
             }
         }
 
+        public IActionResult GetProfileImage()
+        {
+            var userLoginInfo = _auth.GetUser();
+            var fullUser = _context.User.Find(userLoginInfo.Id);
+
+            var imageBytes = Convert.FromBase64String("");
+
+
+            if (fullUser == null || string.IsNullOrEmpty(fullUser.ProfileImageBase64))
+            {
+                imageBytes = Convert.FromBase64String("+IMQ3yEZtXwBVkKazXUlLCAZV4UKaXKsOMIc4olDFdJo/FbADOKRCZ6th3yFeOj4PqRBBA4hnvrwEFKvL11APHW9GjLxOOT2PqROCOYQT81XQ8RnDyG12pJ47H9INkNqhEB8JoT8BNEuPSTVExuQAAAAAElFTkSuQmCC");
+            }
+            else
+            {
+
+                imageBytes = Convert.FromBase64String(fullUser.ProfileImageBase64);
+
+            }
+
+            return File(imageBytes, "image/png");
+        }
+
     }
 }

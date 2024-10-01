@@ -1,0 +1,250 @@
+$color-mode-type: data;
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+
+/*Our CSS Elements*/
+#DaysOfTheWeek{
+    display: none;
+}
+/*Nav*/
+nav li a:hover {
+    color: darkred;
+}
+
+.colorMode {
+    text-decoration: none;
+}
+
+#lightMode {
+    display: block;
+    font-size: 20px;
+    color: var(--bs-body-color);
+    margin: auto;
+}
+
+#darkMode {
+    display: none;
+    font-size: 20px;
+    color: var(--bs-body-color);
+}
+
+.login-btn {
+    margin-top: 10px;
+}
+
+.notif {
+    font-size: 20px;
+    color: var(--bs-body-color);
+}
+
+    .notif:hover {
+        color: red;
+    }
+
+    .notif.fa-solid {
+        display: none;
+    }
+
+#notifications {
+    display: none;
+    background: #00000033;
+    position: absolute;
+    margin-top: 15px;
+    top: 45px;
+    right: 10px;
+    width: 250px;
+    height: 400px;
+    z-index: 100;
+}
+
+#account {
+    display: none;
+    background: #000000aa;
+    position: absolute;
+    margin-top: 15px;
+    top: 45px;
+    right: 10px;
+    width: 250px;
+
+    z-index: 100;
+}
+
+.course-nav {
+    position: sticky;
+    margin margin-left: 20px;
+    width: 13vw;
+}
+
+    .course-nav a {
+        left: 15px;
+        padding-left: 10px;
+        margin-bottom: 20px;
+    }
+
+.course-curr {
+    border-left: solid var(--bs-body-color);
+    font-weight: bold;
+    background-color: var(--bs-secondary-bg)
+}
+
+.course-row {
+    width: 80vw;
+    display: grid;
+    grid-template-columns: 20vw 70vw;
+    margin-left: 5vw;
+}
+
+.h1-course {
+    text-align: center;
+}
+
+/*Cards*/
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.card {
+    margin-top: 15px;
+    width: 30%;
+    height: 25vh;
+    display: flex;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+
+.class-link {
+    text-decoration: none;
+    width: 100%;
+    height: 55%;
+    margin-bottom: 75px;
+}
+
+    .class-link img {
+        width: 100%;
+        height: 100%
+    }
+
+.card-info {
+    width: 100%;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+    .card-info p {
+        margin-bottom: 5px;
+        color: var(--bs-body-color);
+    }
+
+.class-link:hover .card-info p {
+    color: red;
+}
+
+.class-info {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.class-name {
+    font-size: 13px;
+    flex-wrap: wrap;
+}
+
+.class-time {
+    font-size: 12px;
+}
+
+.card-icons {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    justify-content: space-evenly;
+    bottom: 5px;
+}
+
+    .card-icons i {
+        color: var(--bs-body-color);
+    }
+
+        .card-icons i:hover {
+            color: red;
+        }
+
+/*To Do List*/
+.todo {
+    border-bottom: solid var(--bs-border-color);
+}
+
+    .todo h3 {
+        font-weight: bold
+    }
+
+.todo-items {
+    display: inline;
+}
+
+    .todo-items a {
+        text-decoration: none;
+        color: var(--bs-body-color);
+    }
+
+.todo-class {
+    margin-bottom: 2px;
+}
+
+.todo-name {
+    margin-bottom: 2px;
+}
+
+.todo-time {
+    margin-bottom: 15px;
+}
+
+.todo-items a:hover {
+    color: red;
+}
+
+.DaysLabel{
+    display: inline;
+    text-align: center;
+}
+
+
+/*Screen Sizes*/
+@media only screen and (max-width: 1200px) {
+    .card {
+        height: 30vh;
+        width: 33%
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .card {
+        height: 33vh;
+    }
+}
+

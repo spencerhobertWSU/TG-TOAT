@@ -37,7 +37,18 @@
         </a>
     </div>
 <div class="row">
-    <div>Test</div>
+    @{
+
+            if (Model.UserRole == "Student")
+            {
+            }
+            else if (Model.UserRole == "Instructor")
+            {
+                <a asp-area="" asp-controller="Course" asp-route-id="@Model.CourseId" asp-action="AddAssignment">Add Assignment</a>
+
+            }
+
+        }
 </div>    
 
 </div>

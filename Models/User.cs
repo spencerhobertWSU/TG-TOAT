@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
@@ -46,4 +47,11 @@ public class User
 
     //Lazy Loading Nav Link
     public Address Address { get; set; }
+
+    // Money information
+    [Display(Name = "Amount Due")]
+    [DataType(DataType.Currency)]
+    [Column(TypeName = "decimal(18, 2)")]
+    [DefaultValue(0)]
+    public decimal AmountDue { get; set; }
 }

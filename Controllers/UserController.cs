@@ -735,5 +735,26 @@ public void CreateCookie(String Email, String Series, String Token)
             Response.Cookies.Append("Token", "", options);
         }
 
+        // GET: /User/Payment
+        [HttpGet]
+        public IActionResult Payment()
+        {
+            var user = _context.User.FirstOrDefault(u => u.Id == _auth.GetUser().Id);
+            var courses = (from connection in _context.StudentCourseConnection
+                           join course in _context.Courses on connection.CourseId equals course.CourseId
+                           where connection.StudentID == user.Id
+                           select course).ToList();
+
+            var viewModel = new MoneyViewModel
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Courses = courses,
+                AmountDue = user.AmountDue
+            };
+
+            return View(viewModel);
+        }
+
     }
 }

@@ -1,0 +1,38 @@
+﻿@model TGTOAT.Models.MoneyViewModel
+
+@{
+    ViewData["Title"] = "Account";
+
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<h1>Payment</h1>
+
+<div>
+    <h4>MoneyViewModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AmountDue)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AmountDue)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.MoneyId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

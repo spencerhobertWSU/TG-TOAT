@@ -12,6 +12,7 @@ namespace TGTOAT.Models
         [Key]
         public int MoneyId { get; set; }
 
+
         /* User */
 
         [Required]
@@ -22,10 +23,12 @@ namespace TGTOAT.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+
         /* Courses */
 
         [Required]
         public List<Courses> Courses { get; set; } = new List<Courses>();
+
 
         /* Money */
 

@@ -211,6 +211,11 @@ namespace TGTOAT.Controllers
                 CourseId = CourseId
             };
 
+            // Add dues to the users account
+            var user = _context.User.FirstOrDefault(u => u.Id == userId);
+            user.AmountDue += 100 * _context.Courses.FirstOrDefault(u => u.CourseId == CourseId).NumberOfCredits;
+
+            _context.User.Update(user);
             _context.StudentCourseConnection.Add(connection);
             _context.SaveChanges();
             TempData["SuccessMessage"] = "Successfully registered for the course!";
@@ -238,6 +243,12 @@ namespace TGTOAT.Controllers
 
             if (connection != null)
             {
+                // Remove dues from the users account (connection always had null User and Courses, so I did it this way)
+                var user = _context.User.FirstOrDefault(u => u.Id == userId);
+                var course = _context.Courses.FirstOrDefault(c => c.CourseId == CourseId);
+                user.AmountDue -= 100 * course.NumberOfCredits;
+
+                _context.User.Update(user);
                 _context.StudentCourseConnection.Remove(connection);
                 _context.SaveChanges();
                 TempData["SuccessMessage"] = "Successfully Dropped for the course!";
@@ -739,12 +750,14 @@ public void CreateCookie(String Email, String Series, String Token)
         [HttpGet]
         public IActionResult Payment()
         {
-            var user = _context.User.FirstOrDefault(u => u.Id == _auth.GetUser().Id);
+            // Get user and course information
+            var user = _context.User.FirstOrDefault(u => u.Id == _auth.GetCurrentUserId());
             var courses = (from connection in _context.StudentCourseConnection
                            join course in _context.Courses on connection.CourseId equals course.CourseId
                            where connection.StudentID == user.Id
                            select course).ToList();
 
+            // Create the view model
             var viewModel = new MoneyViewModel
             {
                 FirstName = user.FirstName,

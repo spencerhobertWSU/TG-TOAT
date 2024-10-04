@@ -6,33 +6,41 @@
     Layout = "~/Views/Shared/_StudentLayout.cshtml";
 }
 
-<h1>Payment</h1>
+<h1>@(Model.FirstName + " " + Model.LastName + "'s Account")</h1>
 
 <div>
     <h4>MoneyViewModel</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
+        <!-- Display every course and how much it costs -->
+        @foreach (var course in Model.Courses)
+        {
+            <dt class="col-sm-2">
+                @(course.CourseName + ":")
+            </dt>
+            <dd class="col-sm-10">
+                @string.Format("{0:C}", course.NumberOfCredits * 100)
+            </dd>
+        }
+        
+        <!-- Adding a line break -->
+        <dt class="col-sm-2">
+            <br />
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
+        <dd class="col-sm-10">
+            <br />
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
+
+        <!-- Display the total amount due -->
+        <dt class="col-sm-2">
+            <span style="font-size: larger;">
+                Total:
+            </span>
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AmountDue)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AmountDue)
+        <dd class="col-sm-10">
+            <span style="font-size: larger;">
+                @string.Format("{0:C}", Model.AmountDue)
+            </span>
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.MoneyId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>

@@ -1,14 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "F:\\git merges\\TG-TOAT\\",
+  "WorkspaceRootPath": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|f:\\git merges\\tg-toat\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spenc\\desktop\\coding\\cs 3750\\tg-toat\\views\\user\\payment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\user\\payment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|f:\\git merges\\tg-toat\\views\\shared\\_studentcourse.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\shared\\_studentcourse.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spenc\\desktop\\coding\\cs 3750\\tg-toat\\models\\moneyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:models\\moneyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spenc\\desktop\\coding\\cs 3750\\tg-toat\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,33 +22,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 336,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 8,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CourseController.cs",
-              "DocumentMoniker": "F:\\git merges\\TG-TOAT\\Controllers\\CourseController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CourseController.cs",
-              "ToolTip": "F:\\git merges\\TG-TOAT\\Controllers\\CourseController.cs",
-              "RelativeToolTip": "Controllers\\CourseController.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAowCMBAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-01T00:38:04.441Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "_StudentCourse.cshtml",
-              "DocumentMoniker": "F:\\git merges\\TG-TOAT\\Views\\Shared\\_StudentCourse.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_StudentCourse.cshtml",
-              "ToolTip": "F:\\git merges\\TG-TOAT\\Views\\Shared\\_StudentCourse.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_StudentCourse.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADAAAACWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-01T00:34:06.035Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
@@ -60,7 +42,58 @@
             },
             {
               "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Payment.cshtml",
+              "DocumentMoniker": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Views\\User\\Payment.cshtml",
+              "RelativeDocumentMoniker": "Views\\User\\Payment.cshtml",
+              "ToolTip": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Views\\User\\Payment.cshtml",
+              "RelativeToolTip": "Views\\User\\Payment.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAUwCIAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-03T22:30:16.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MoneyViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Models\\MoneyViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\MoneyViewModel.cs",
+              "ToolTip": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Models\\MoneyViewModel.cs",
+              "RelativeToolTip": "Models\\MoneyViewModel.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T22:28:48.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AgIAAOgCAAAAAAAAAAAAAOwCAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T21:13:34.139Z",
+              "EditorCaption": ""
             }
           ]
         }

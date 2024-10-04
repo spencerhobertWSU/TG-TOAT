@@ -196,6 +196,53 @@ namespace TGTOAT.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
+        public IActionResult AddAssignment()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddAssignment(int id, AddAssignmentViewModel model)
+        {
+
+          
+            var userIdInt = _auth.GetCurrentUserId();
+
+
+            var userCourses = await _context.InstructorCourseConnection
+           .Where(uc => uc.InstructorID == userIdInt)
+           .Select(uc => uc.Course)
+           .ToListAsync();
+
+            var InstructorCourseID = await _context.InstructorCourseConnection
+          .Where(uc => uc.InstructorID == userIdInt && uc.CourseId == id)
+          .Select(uc => uc.InstructorCourseConnectionId)
+          .FirstOrDefaultAsync();
+
+            if (ModelState.IsValid)
+            {
+                var assignment = new Assignment
+                {
+                    AssignmentName = model.AssignmentName,
+                    AssignmentDescription = model.AssignmentDescription,
+                    AssignmentPoints = model.AssignmentPoints,
+                    DueDateAndTime = model.DueDateAndTime,
+                    AssignmentType = model.AssignmentType,
+                    InstructorCourseId = InstructorCourseID, // Set the foreign key
+                };
+
+                
+                
+                    _context.Assignments.Add(assignment);
+                    await _context.SaveChangesAsync();
+                return RedirectToAction("Assignments", new { id });
+
+            }
+
+            return View(model);
+        }
         public IActionResult ViewCourse(int id)
         {
             var course = _context.Courses.Include(c => c.Department).FirstOrDefault(c => c.CourseId == id);

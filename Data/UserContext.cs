@@ -21,6 +21,7 @@ namespace TGTOAT.Data
         public DbSet<Courses> Courses { get; set; } = default!;
         public DbSet<Address> Address { get; set; } = default!;
 
+        public DbSet<Assignment> Assignments { get; set; } = default!;
         public DbSet<InstructorCourseConnection> InstructorCourseConnection { get; set; } = default!;
         public DbSet<StudentCourseConnection> StudentCourseConnection { get; set; } = default!;
 

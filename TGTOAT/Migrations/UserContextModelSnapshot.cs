@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TGTOAT.Data;
 
@@ -12,11 +11,9 @@ using TGTOAT.Data;
 namespace TGTOAT.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20240929194847_Locations")]
-    partial class Locations
+    partial class UserContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,6 +42,45 @@ namespace TGTOAT.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Address");
+                });
+
+            modelBuilder.Entity("TGTOAT.Data.Assignment", b =>
+                {
+                    b.Property<int>("AssignmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AssignmentId"));
+
+                    b.Property<string>("AssignmentDescription")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("AssignmentName")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<int>("AssignmentPoints")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AssignmentType")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<DateTime>("DueDateAndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("InstructorCourseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AssignmentId");
+
+                    b.HasIndex("InstructorCourseId");
+
+                    b.ToTable("Assignments");
                 });
 
             modelBuilder.Entity("TGTOAT.Data.Courses", b =>
@@ -90,14 +126,15 @@ namespace TGTOAT.Migrations
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("EndTime")
+                    b.Property<TimeOnly?>("EndTime")
                         .IsRequired()
-                        .HasColumnType("datetime2");
+                        .HasColumnType("time");
 
                     b.Property<int>("NumberOfCredits")
                         .HasColumnType("int");
 
-                    b.Property<int>("RoomNumber")
+                    b.Property<int?>("RoomNumber")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Semester")
@@ -105,9 +142,9 @@ namespace TGTOAT.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<DateTime?>("StartTime")
+                    b.Property<TimeOnly?>("StartTime")
                         .IsRequired()
-                        .HasColumnType("datetime2");
+                        .HasColumnType("time");
 
                     b.Property<int>("Year")
                         .HasColumnType("int");
@@ -244,6 +281,10 @@ namespace TGTOAT.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("ProfileImageBase64")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserRole")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -257,13 +298,22 @@ namespace TGTOAT.Migrations
 
             modelBuilder.Entity("TGTOAT.Data.Address", b =>
                 {
-                    b.HasOne("TGTOAT.Models.User", "User")
+                    b.HasOne("TGTOAT.Models.User", null)
                         .WithOne("Address")
                         .HasForeignKey("TGTOAT.Data.Address", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
 
-                    b.Navigation("User");
+            modelBuilder.Entity("TGTOAT.Data.Assignment", b =>
+                {
+                    b.HasOne("TGTOAT.Data.InstructorCourseConnection", "InstructorCourse")
+                        .WithMany()
+                        .HasForeignKey("InstructorCourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("InstructorCourse");
                 });
 
             modelBuilder.Entity("TGTOAT.Data.Courses", b =>

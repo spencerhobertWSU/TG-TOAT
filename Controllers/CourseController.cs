@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using TGTOAT.Data;
 using TGTOAT.Helpers;
 using TGTOAT.Models;
@@ -163,20 +164,36 @@ namespace TGTOAT.Controllers
             };
             model.Instructors = _context.User.Where(u => u.UserRole == "Instructor").ToList();
             return View(model);
-        }       
+        }
 
+        // Course list page in instructor view
         public IActionResult Courses()
-        {            
-            var courses = _context.Courses.Include(c => c.Department).ToList();            
-            var currentUser = _auth.GetUser();
+        {
+            var currentInstructorId = _auth.GetUser().Id;  
+
+            if (currentInstructorId == 0)
+            {
+                return RedirectToAction("Index", "Home");  
+            }
+
+            // Fetch the courses that are linked to the current instructor
+            var courses = _context.InstructorCourseConnection
+                .Include(icc => icc.Course)                  
+                .ThenInclude(c => c.Department)          
+                .Where(icc => icc.InstructorID == currentInstructorId)  
+                .Select(icc => icc.Course)                   
+                .ToList();
+
+            var currentUser = _auth.GetUser();  
 
             // Create the ViewModel that combines courses and user info
             var viewModel = new CourseListViewModel
             {
                 Courses = courses,
                 UserLoginViewModel = currentUser
-            };           
-            return View(viewModel);  
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult ViewCourse(int id)
@@ -201,13 +218,16 @@ namespace TGTOAT.Controllers
             }
 
             var courseEvents = new List<object>();
-            var dayMap = new Dictionary<char, int> {
-                { 'M', 1 },
-                { 'T', 2 },
-                { 'W', 3 },
-                { 'R', 4 },  // Thursday
-                { 'F', 5 }
+            var dayMap = new Dictionary<string, int> {
+                { "Su", 0 },
+                { "Mo", 1 },  
+                { "Tu", 2 },  
+                { "We", 3 },  
+                { "Th", 4 },  
+                { "Fr", 5 },  
+                { "Sa", 6 }  
             };
+
 
             if (currentUser.UserRole == "Instructor")
             {
@@ -242,19 +262,24 @@ namespace TGTOAT.Controllers
         }
 
         // Helper method to add course events to the list
-        private void AddCourseToEventList(Courses course, Dictionary<char, int> dayMap, List<object> courseEvents)
+        private void AddCourseToEventList(Courses course, Dictionary<string, int> dayMap, List<object> courseEvents)
         {
             if (course.StartTime.HasValue && course.EndTime.HasValue)
             {
                 var startTime = course.StartTime.Value;
                 var endTime = course.EndTime.Value;
 
-                // Convert DaysOfTheWeek to uppercase to match dayMap keys
-                foreach (char day in course.DaysOfTheWeek.ToUpper())
+                // Split the DaysOfTheWeek string by commas
+                var days = course.DaysOfTheWeek.Split(',');
+
+                // Loop through the split days and create events
+                foreach (string day in days)
                 {
-                    if (dayMap.ContainsKey(day))
+                    string trimmedDay = day.Trim();  // Trim any extra spaces
+
+                    if (dayMap.ContainsKey(trimmedDay))
                     {
-                        int dayCode = dayMap[day];
+                        int dayCode = dayMap[trimmedDay];
                         courseEvents.Add(new
                         {
                             title = course.CourseName,
@@ -265,9 +290,14 @@ namespace TGTOAT.Controllers
                             endRecur = "2024-12-15"
                         });
                     }
+                    else
+                    {
+                        Console.WriteLine($"Day {trimmedDay} not found in dayMap");  // Log any days not found in dayMap
+                    }
                 }
             }
         }
+
 
         public IActionResult GetProfileImage()
         {
@@ -290,6 +320,151 @@ namespace TGTOAT.Controllers
 
             return File(imageBytes, "image/png");
         }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new AddCourseViewModel
+            {
+                CourseId = course.CourseId,
+                CourseNumber = course.CourseNumber,
+                CourseName = course.CourseName,
+                SelectedDepartmentId = course.DepartmentId,
+                Departments = _context.Departments.ToList(),
+                CourseDescription = course.CourseDescription,
+                DaysOfTheWeek = course.DaysOfTheWeek,
+                StartTime = course.StartTime,
+                EndTime = course.EndTime,
+                RoomNumber = course.RoomNumber,
+                Building = course.Building,
+                Capacity = course.Capacity,
+                Campus = course.Campus,
+                Semester = course.Semester,
+                Year = course.Year,
+                SelectedInstructorId = _context.InstructorCourseConnection.FirstOrDefault(icc => icc.CourseId == id)?.InstructorID ?? 0,
+                Instructors = _context.User.Where(u => u.UserRole == "Instructor").ToList()
+            };
+
+            return View(viewModel);
+        }
+
+        //[HttpPost]
+        //public IActionResult Edit(AddCourseViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var course = _context.Courses.FirstOrDefault(c => c.CourseId == model.CourseId);
+        //        if (course != null)
+        //        {
+        //            course.CourseNumber = model.CourseNumber;
+        //            course.CourseName = model.CourseName;
+        //            course.DepartmentId = model.SelectedDepartmentId;
+        //            course.Capacity = model.Capacity;
+        //            course.Campus = model.Campus;
+        //            course.Building = model.Building; // Renamed Location to Building
+        //            course.RoomNumber = model.RoomNumber;
+        //            course.DaysOfTheWeek = model.DaysOfTheWeek;
+        //            course.StartTime = model.StartTime;
+        //            course.EndTime = model.EndTime;
+        //            course.NumberOfCredits = model.NumberOfCredits;
+        //            course.CourseDescription = model.CourseDescription;
+        //            course.Semester = model.Semester;
+        //            course.Year = model.Year;
+
+        //            var instructorConnection = _context.InstructorCourseConnection.FirstOrDefault(icc => icc.CourseId == course.CourseId);
+        //            if (instructorConnection != null)
+        //            {
+        //                instructorConnection.InstructorID = model.SelectedInstructorId;
+        //            }
+
+        //            _context.SaveChanges();
+
+        //            return RedirectToAction("Courses");
+        //        }
+        //    }
+
+        //    model.Departments = _context.Departments.ToList();
+        //    model.Instructors = _context.User.Where(u => u.UserRole == "Instructor").ToList();
+        //    return View(model);
+        //}
+
+        [HttpPost]
+        public IActionResult Edit(AddCourseViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Find the course to update
+                var course = _context.Courses.FirstOrDefault(c => c.CourseId == model.CourseId);
+                if (course != null)
+                {
+                    // Update the course properties
+                    course.CourseNumber = model.CourseNumber;
+                    course.CourseName = model.CourseName;
+                    course.DepartmentId = model.SelectedDepartmentId;
+                    course.Capacity = model.Capacity;
+                    course.Campus = model.Campus;
+                    course.Building = model.Building;
+                    course.RoomNumber = model.RoomNumber;
+                    course.DaysOfTheWeek = model.DaysOfTheWeek;
+                    course.StartTime = model.StartTime;
+                    course.EndTime = model.EndTime;
+                    course.NumberOfCredits = model.NumberOfCredits;
+                    course.CourseDescription = model.CourseDescription;
+                    course.Semester = model.Semester;
+                    course.Year = model.Year;
+
+                    // Update instructor-course connection (if applicable)
+                    var instructorConnection = _context.InstructorCourseConnection.FirstOrDefault(icc => icc.CourseId == course.CourseId);
+                    if (instructorConnection != null)
+                    {
+                        instructorConnection.InstructorID = model.SelectedInstructorId;
+                    }
+
+                    // Save changes to the database
+                    _context.SaveChanges();
+
+                    // Redirect to the Courses page after saving
+                    return RedirectToAction("Courses");
+                }
+            }
+
+            // If model is invalid, repopulate necessary lists and return to the view
+            model.Departments = _context.Departments.ToList();
+            model.Instructors = _context.User.Where(u => u.UserRole == "Instructor").ToList();
+            return View(model);  // Return to the Edit page with the current model if validation fails
+        }
+
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            // Remove instructor-course connection
+            var instructorConnection = _context.InstructorCourseConnection.FirstOrDefault(icc => icc.CourseId == id);
+            if (instructorConnection != null)
+            {
+                _context.InstructorCourseConnection.Remove(instructorConnection);
+            }
+
+            // Remove the course
+            _context.Courses.Remove(course);
+            _context.SaveChanges();
+
+            return RedirectToAction("Courses");
+        }
+
 
     }
 }

@@ -1,0 +1,201 @@
+﻿@model TGTOAT.Models.AddCourseViewModel
+
+@{
+    ViewData["Title"] = "Edit Course";
+    Layout = "~/Views/Shared/_InstructorLayout.cshtml";
+}
+
+<h1 class="text-center">Edit a Course</h1>
+<form asp-action="Edit" method="post">
+
+    <div class="container-fluid">
+        <!--Department & Course Number-->
+        <div class="row justify-content-center">
+
+            <div class="form-group col-md-3">
+                <label asp-for="SelectedDepartmentId"></label>
+                <select asp-for="SelectedDepartmentId"
+                        asp-items="@(new SelectList(Model.Departments, "DepartmentId", "DepartmentName", Model.SelectedDepartmentId))"
+                        class="form-control">
+                    <option value="">Select a department</option>
+                </select>
+                <span asp-validation-for="SelectedDepartmentId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="CourseNumber">Course Number</label>
+                <input asp-for="CourseNumber" class="form-control" />
+                <span asp-validation-for="CourseNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="NumberOfCredits">Number of Credits</label>
+                <input asp-for="NumberOfCredits" class="form-control" type="number" min="0" />
+                <span asp-validation-for="NumberOfCredits" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="form-group col-md-6">
+                <label asp-for="CourseName">Course Name</label>
+                <input asp-for="CourseName" class="form-control" />
+                <span asp-validation-for="CourseName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="form-group col-md-6">
+                <label asp-for="CourseDescription">Course Description</label>
+                <textarea asp-for="CourseDescription" class="form-control"></textarea>
+                <span asp-validation-for="CourseDescription" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <!-- Days of the Week -->
+        <div class="form-group row justify-content-center">
+            <label asp-for="DaysOfTheWeek" class="DaysLabel"></label>
+            <div class="btn-group-toggle row justify-content-center" data-toggle="buttons">
+                <!--Days Btns-->
+                <div class="col-md-5">
+                    @* Monday *@
+                    <input type="checkbox" class="btn-check" id="monBtn" value="Mo" @(Model.DaysOfTheWeek.Contains("Mo") ? "checked" : "") autocomplete="off">
+                    <label class="btn btn-outline-primary" for="monBtn">Monday</label>
+
+                    @* Tuesday *@
+                    <input type="checkbox" class="btn-check" id="tueBtn" value="Tu" @(Model.DaysOfTheWeek.Contains("Tu") ? "checked" : "") autocomplete="off">
+                    <label class="btn btn-outline-primary" for="tueBtn">Tuesday</label>
+
+                    @* Wednesday *@
+                    <input type="checkbox" class="btn-check" id="wedBtn" value="We" @(Model.DaysOfTheWeek.Contains("We") ? "checked" : "") autocomplete="off">
+                    <label class="btn btn-outline-primary" for="wedBtn">Wednesday</label>
+
+                    @* Thursday *@
+                    <input type="checkbox" class="btn-check" id="thuBtn" value="Th" @(Model.DaysOfTheWeek.Contains("Th") ? "checked" : "") autocomplete="off">
+                    <label class="btn btn-outline-primary" for="thuBtn">Thursday</label>
+
+                    @* Friday *@
+                    <input type="checkbox" class="btn-check" id="friBtn" value="Fr" @(Model.DaysOfTheWeek.Contains("Fr") ? "checked" : "") autocomplete="off">
+                    <label class="btn btn-outline-primary" for="friBtn">Friday</label>
+
+                    @* Saturday *@
+                    <input type="checkbox" class="btn-check" id="satBtn" value="Sa" @(Model.DaysOfTheWeek.Contains("Sa") ? "checked" : "") autocomplete="off">
+                    <label class="btn btn-outline-primary" for="satBtn">Saturday</label>
+
+                    @* Sunday *@
+                    <input type="checkbox" class="btn-check" id="sunBtn" value="Su" @(Model.DaysOfTheWeek.Contains("Su") ? "checked" : "") autocomplete="off">
+                    <label class="btn btn-outline-primary" for="sunBtn">Sunday</label>
+                </div>
+            </div>
+            <span asp-validation-for="DaysOfTheWeek" class="text-danger"></span>
+        </div>
+
+
+
+        <!--Location Information-->
+        <div class="row justify-content-center">
+
+            <!-- Campus Information -->
+            <div class="row justify-content-center">
+                @* <div class="form-group col-md-3">
+                    <label asp-for="Campus">Campus</label>
+                    <select class="form-select" id="campusSelect" name="Campus" onchange="changeCampus()">
+                        <option value="">Select a Campus</option>
+                        @foreach (var item in Model.CampusList)
+                        {
+                            <option value="@item.Value" @(item.Value == Model.Campus ? "selected='selected'" : "")>@item.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Campus" class="text-danger"></span>
+                </div> *@
+
+                <div class="form-group col-md-3">
+                    <label asp-for="Campus"></label>
+                    <select asp-for="Campus" asp-items="Model.CampusList" class="form-select" id="campusSelect" onchange="changeCampus()">
+                        <option value="">Select a Campus</option>
+                    </select>
+                    <span asp-validation-for="Campus" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label asp-for="Building">Building</label>
+                    <select class="form-select" id="buildSelect" name="Building">
+                        <option value="">Select a Building</option>
+                        <option value="@Model.Building" selected="selected">@Model.Building</option>
+                    </select>
+                    <span asp-validation-for="Building" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="RoomNumber">Room Number</label>
+                <input asp-for="RoomNumber" class="form-control" id="roomNum" />
+                <span asp-validation-for="RoomNumber" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="form-group col-md-6">
+                <label asp-for="Capacity"></label>
+                <input asp-for="Capacity" class="form-control" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+        </div>
+
+
+
+        <!--Class time-->
+        <div class="row justify-content-center">
+            <div class="form-group col-md-3">
+                <label asp-for="StartTime">Start Time</label>
+                <input asp-for="StartTime" type="time" class="form-control" />
+                <span asp-validation-for="StartTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="EndTime">End Time</label>
+                <input asp-for="EndTime" type="time" class="form-control" />
+                <span asp-validation-for="EndTime" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!--Semester, Year-->
+        <div class="row justify-content-center">
+            <div class="form-group col-md-3">
+                <label asp-for="Semester"></label>
+                <select asp-for="Semester" asp-items="Model.SemesterList" class="form-select"></select>
+                <span asp-validation-for="Semester" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="Year"></label>
+                <input asp-for="Year" class="form-control" type="number" min="@Model.CurrYear" value="@Model.CurrYear" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="form-group col-md-6">
+                <label asp-for="SelectedInstructorId"></label>
+                <select asp-for="SelectedInstructorId"
+                        asp-items="@(new SelectList(Model.Instructors, "Id", "FullName", Model.SelectedInstructorId))"
+                        class="form-select">
+                    <option value="">Select an instructor</option>
+                </select>
+                <span asp-validation-for="SelectedInstructorId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <br />
+        <div class="col text-center">
+            <button type="submit" class="btn btn-primary text-center" onclick="UpdateDays()">Save</button>
+        </div>        
+    </div>
+</form>
+
+<script src="~/js/courses.js" asp-append-version="true"></script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

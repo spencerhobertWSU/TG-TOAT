@@ -57,12 +57,15 @@
         </dd>
     </dl>
 
-    <!-- Stripe Buy Button -->
-    <button
-        type="button"
-        class="btn btn-primary"
-        onclick="location.href='@Url.Action("Checkout", "Payment", new { amountDue = Model.AmountDue })'"
-    >Pay Now</button>
+    <!-- Ask how much they want to pay for it -->
+    <div class="form-group">
+        <form asp-controller="User" asp-action="Checkout" method="get">
+            <label for="amount">How much would you like to pay?</label>
+            <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter amount">
+            <button type="submit" class="btn btn-primary">Pay Now</button>
+        </form>
+    </div>
+    
 
 </div>
 

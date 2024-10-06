@@ -13,14 +13,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spenc\\desktop\\coding\\cs 3750\\tg-toat\\models\\paymentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:models\\paymentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spenc\\desktop\\coding\\cs 3750\\tg-toat\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spenc\\desktop\\coding\\cs 3750\\tg-toat\\views\\user\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\user\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,21 +22,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 336,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 10,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PaymentViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Models\\PaymentViewModel.cs",
-              "RelativeDocumentMoniker": "Models\\PaymentViewModel.cs",
-              "ToolTip": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Models\\PaymentViewModel.cs",
-              "RelativeToolTip": "Models\\PaymentViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-05T03:47:30.082Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -79,36 +58,30 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PaymentViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Models\\PaymentViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\PaymentViewModel.cs",
+              "ToolTip": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Models\\PaymentViewModel.cs",
+              "RelativeToolTip": "Models\\PaymentViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-05T03:47:30.082Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Payment.cshtml",
               "DocumentMoniker": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Views\\User\\Payment.cshtml",
               "RelativeDocumentMoniker": "Views\\User\\Payment.cshtml",
               "ToolTip": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Views\\User\\Payment.cshtml",
               "RelativeToolTip": "Views\\User\\Payment.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAAEEAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-10-03T22:30:16.428Z",
               "EditorCaption": ""
             },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Views\\User\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\User\\Index.cshtml",
-              "ToolTip": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Views\\User\\Index.cshtml",
-              "RelativeToolTip": "Views\\User\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-04T21:38:28.312Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 336,
-          "SelectedChildIndex": 0,
-          "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -117,22 +90,9 @@
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
               "ToolTip": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Controllers\\UserController.cs",
               "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AgIAAOQCAAAAAAAAAAAAAPECAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAABADAAAAAAAAAAAUwBUDAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-04T21:42:37.516Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PaymentController.cs",
-              "DocumentMoniker": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Controllers\\PaymentController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PaymentController.cs",
-              "ToolTip": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\Controllers\\PaymentController.cs",
-              "RelativeToolTip": "Controllers\\PaymentController.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T21:46:54.76Z",
               "EditorCaption": ""
             }
           ]

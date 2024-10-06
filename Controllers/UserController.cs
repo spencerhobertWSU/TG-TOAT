@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using NuGet.Common;
+using Stripe.Checkout;
+using Stripe.V2;
 
 namespace TGTOAT.Controllers
 {
@@ -780,6 +782,67 @@ namespace TGTOAT.Controllers
             };
 
             return View(viewModel);
+        }
+
+        // Checkout page
+        public ActionResult Checkout(decimal amount)
+        {
+            // Check if the amount is valid
+            var amountDue = _context.User.FirstOrDefault(u => u.Id == _auth.GetCurrentUserId()).AmountDue;
+            if (amount <= 0 || amount > amountDue)
+            {
+                return RedirectToAction("PaymentFailure", "User");
+            }
+
+            var options = new SessionCreateOptions
+            {
+                PaymentMethodTypes = new List<string> { "card" },
+                LineItems = new List<SessionLineItemOptions>
+            {
+                new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
+                        Currency = "usd",
+                        UnitAmount = (long)(amount * 100), // For some reason Stripe requires the amount in cents
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        {
+                            Name = "Course Payment",
+                        },
+                    },
+                    Quantity = 1,
+                },
+            },
+                Mode = "payment",
+                SuccessUrl = Url.Action("PaymentSuccess", "User", new { amountPaid = amount }, Request.Scheme),
+                CancelUrl = Url.Action("PaymentFailure", "User", null, Request.Scheme),
+            };
+
+            var service = new SessionService();
+            Session session = service.Create(options);
+
+            return Redirect(session.Url);
+        }
+
+        // If the payment succeeded
+        public ActionResult PaymentSuccess()
+        {
+            // Grab the amount paid
+            var amountPaid = decimal.Parse(Request.Query["amountPaid"]);
+
+            // Update the user's balance
+            var user = _context.User.FirstOrDefault(u => u.Id == _auth.GetCurrentUserId());
+            user.AmountDue -= amountPaid;
+            _context.User.Update(user);
+            _context.SaveChanges();
+
+            return RedirectToAction("Payment", "User", new { didSucceed = true });
+        }
+
+        // If the payment failed
+        public ActionResult PaymentFailure()
+        {
+            return RedirectToAction("Payment", "User", new { didSucceed = false });
         }
 
     }

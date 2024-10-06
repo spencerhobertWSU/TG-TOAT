@@ -712,7 +712,7 @@ namespace TGTOAT.Controllers
         }
 
 
-public void CreateCookie(String Email, String Series, String Token)
+        public void CreateCookie(String Email, String Series, String Token)
         {
             CookieOptions options = new CookieOptions
             {
@@ -748,8 +748,14 @@ public void CreateCookie(String Email, String Series, String Token)
 
         // GET: /User/Payment
         [HttpGet]
-        public IActionResult Payment()
+        public IActionResult Payment(bool? didSucceed)
         {
+            // Check if the payment was successful (or if it went through at all)
+            if (didSucceed.HasValue)
+            {
+                ViewBag.SuccessMessage = didSucceed.Value ? "Payment successful!" : "Payment failed.";
+            }
+
             // Get user and course information
             var user = _context.User.FirstOrDefault(u => u.Id == _auth.GetCurrentUserId());
             var courses = (from connection in _context.StudentCourseConnection
@@ -758,7 +764,7 @@ public void CreateCookie(String Email, String Series, String Token)
                            select course).ToList();
 
             // Create the view model
-            var viewModel = new MoneyViewModel
+            var viewModel = new PaymentViewModel
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,

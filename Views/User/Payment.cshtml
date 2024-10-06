@@ -1,16 +1,29 @@
-﻿@model TGTOAT.Models.MoneyViewModel
+﻿@model TGTOAT.Models.PaymentViewModel
 
 @{
-    ViewData["Title"] = "Account";
+    ViewData["Title"] = "Login";
 
     Layout = "~/Views/Shared/_StudentLayout.cshtml";
 }
 
-<h1>@(Model.FirstName + " " + Model.LastName + "'s Account")</h1>
-
 <div>
-    <h4>MoneyViewModel</h4>
+    <h1>@($"{Model.FirstName} {Model.LastName}'s Account")</h1>
     <hr />
+    @if (ViewBag.SuccessMessage != null)
+    {
+        @if (ViewBag.SuccessMessage == "Payment successful!")
+        {
+            <div class="alert alert-success" role="alert">
+                @ViewBag.SuccessMessage
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.SuccessMessage
+            </div>
+        }
+    }
     <dl class="row">
         <!-- Display every course and how much it costs -->
         @foreach (var course in Model.Courses)
@@ -43,4 +56,16 @@
             </span>
         </dd>
     </dl>
+
+    <!-- Stripe Buy Button -->
+    <button
+        type="button"
+        class="btn btn-primary"
+        onclick="location.href='@Url.Action("Checkout", "Payment", new { amountDue = Model.AmountDue })'"
+    >Pay Now</button>
+
 </div>
+
+<script async
+  src="https://js.stripe.com/v3/buy-button.js">
+</script>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using TGTOAT.Data;
 using TGTOAT.Helpers;
 using TGTOAT.Models;
@@ -163,20 +164,36 @@ namespace TGTOAT.Controllers
             };
             model.Instructors = _context.User.Where(u => u.UserRole == "Instructor").ToList();
             return View(model);
-        }       
+        }
 
+        // Course list page in instructor view
         public IActionResult Courses()
-        {            
-            var courses = _context.Courses.Include(c => c.Department).ToList();            
-            var currentUser = _auth.GetUser();
+        {
+            var currentInstructorId = _auth.GetUser().Id;  
+
+            if (currentInstructorId == 0)
+            {
+                return RedirectToAction("Index", "Home");  
+            }
+
+            // Fetch the courses that are linked to the current instructor
+            var courses = _context.InstructorCourseConnection
+                .Include(icc => icc.Course)                  
+                .ThenInclude(c => c.Department)          
+                .Where(icc => icc.InstructorID == currentInstructorId)  
+                .Select(icc => icc.Course)                   
+                .ToList();
+
+            var currentUser = _auth.GetUser();  
 
             // Create the ViewModel that combines courses and user info
             var viewModel = new CourseListViewModel
             {
                 Courses = courses,
                 UserLoginViewModel = currentUser
-            };           
-            return View(viewModel);  
+            };
+
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -248,14 +265,18 @@ namespace TGTOAT.Controllers
             }
 
             var courseEvents = new List<object>();
-            var dayMap = new Dictionary<char, int> {
-                { 'M', 1 },
-                { 'T', 2 },
-                { 'W', 3 },
-                { 'R', 4 },  // Thursday
-                { 'F', 5 }
+            var dayMap = new Dictionary<string, int> 
+            {
+                { "Su", 0 },
+                { "Mo", 1 },
+                { "Tu", 2 },
+                { "We", 3 },
+                { "Th", 4 },
+                { "Fr", 5 },
+                { "Sa", 6 }
             };
 
+            // instructor role
             if (currentUser.UserRole == "Instructor")
             {
                 // Fetch courses for the instructor
@@ -270,6 +291,7 @@ namespace TGTOAT.Controllers
                     AddCourseToEventList(course, dayMap, courseEvents);
                 }
             }
+            // student role
             else if (currentUser.UserRole == "Student")
             {
                 // Fetch courses for the student
@@ -281,40 +303,88 @@ namespace TGTOAT.Controllers
 
                 foreach (var course in studentCourses)
                 {
+                    // Add course events
                     AddCourseToEventList(course, dayMap, courseEvents);
+
+                    // Add assignment events
+                    var assignments = _context.Assignments
+                        .Where(a => a.InstructorCourse.CourseId == course.CourseId)
+                        .ToList();
+
+                    foreach (var assignment in assignments)
+                    {
+                        courseEvents.Add(new
+                        {
+                            title = assignment.AssignmentName,
+                            start = assignment.DueDateAndTime.ToString("yyyy-MM-ddTHH:mm:ss"),
+                            url = $"/Assignments/View/{assignment.AssignmentId}"  // Link to assignment page
+                        });
+                    }
                 }
             }
 
+            // Return all course and assignment events
             return Json(courseEvents);
         }
 
         // Helper method to add course events to the list
-        private void AddCourseToEventList(Courses course, Dictionary<char, int> dayMap, List<object> courseEvents)
+        private void AddCourseToEventList(Courses course, Dictionary<string, int> dayMap, List<object> courseEvents)
         {
             if (course.StartTime.HasValue && course.EndTime.HasValue)
             {
                 var startTime = course.StartTime.Value;
                 var endTime = course.EndTime.Value;
 
-                // Convert DaysOfTheWeek to uppercase to match dayMap keys
-                foreach (char day in course.DaysOfTheWeek.ToUpper())
+                // Split the DaysOfTheWeek string by commas
+                var days = course.DaysOfTheWeek.Split(',');
+
+                // Set the default start and end dates for the semester
+                string startRecur = string.Empty;
+                string endRecur = string.Empty;
+
+                // Determine the semester and set the correct recurrence dates
+                if (course.Semester == "Fall")
                 {
-                    if (dayMap.ContainsKey(day))
+                    startRecur = "2024-08-26";
+                    endRecur = "2024-12-13";
+                }
+                else if (course.Semester == "Spring")
+                {
+                    startRecur = "2025-01-26";
+                    endRecur = "2025-04-25";
+                }
+                else if (course.Semester == "Summer")
+                {
+                    startRecur = "2025-05-05";
+                    endRecur = "2025-08-15";
+                }
+
+                // Loop through the split days and create events
+                foreach (string day in days)
+                {
+                    string trimmedDay = day.Trim();  // Trim any extra spaces
+
+                    if (dayMap.ContainsKey(trimmedDay))
                     {
-                        int dayCode = dayMap[day];
+                        int dayCode = dayMap[trimmedDay];
                         courseEvents.Add(new
                         {
                             title = course.CourseName,
                             start = new DateTime(2024, 9, 1, startTime.Hour, startTime.Minute, startTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
                             end = new DateTime(2024, 9, 1, endTime.Hour, endTime.Minute, endTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
                             daysOfWeek = new[] { dayCode },
-                            startRecur = "2024-09-01",
-                            endRecur = "2024-12-15"
+                            startRecur = startRecur,  // Use the start date for the semester
+                            endRecur = endRecur       // Use the end date for the semester
                         });
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Day {trimmedDay} not found in dayMap");  // Log any days not found in dayMap
                     }
                 }
             }
-        }
+        }        
+
 
         public IActionResult GetProfileImage()
         {
@@ -337,6 +407,34 @@ namespace TGTOAT.Controllers
 
             return File(imageBytes, "image/png");
         }
+
+        
+
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            // Remove instructor-course connection
+            var instructorConnection = _context.InstructorCourseConnection.FirstOrDefault(icc => icc.CourseId == id);
+            if (instructorConnection != null)
+            {
+                _context.InstructorCourseConnection.Remove(instructorConnection);
+            }
+
+            // Remove the course
+            _context.Courses.Remove(course);
+            _context.SaveChanges();
+
+            return RedirectToAction("Courses");
+        }
+
 
     }
 }

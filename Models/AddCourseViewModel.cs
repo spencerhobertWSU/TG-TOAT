@@ -9,6 +9,7 @@ namespace TGTOAT.Models
 {
     public class AddCourseViewModel
     {
+        public int? CourseId { get; set; }  // For editing course
         public string? UserRole { get; set; }
 
         [Required(ErrorMessage = "Department is required.")]

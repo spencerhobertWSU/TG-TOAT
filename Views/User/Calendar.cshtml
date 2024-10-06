@@ -6,16 +6,8 @@
 }
 
 @{
-    ViewData["Title"] = "Calendar";
-
-    if (Model.UserRole == "Student")
-    {
-        Layout = "~/Views/Shared/_StudentLayout.cshtml";
-    }
-    else if (Model.UserRole == "Instructor")
-    {
-        Layout = "~/Views/Shared/_InstructorLayout.cshtml";
-    }
+    ViewData["Title"] = "Calendar";    
+    Layout = "~/Views/Shared/_InstructorLayout.cshtml";    
 }
 
 <!-- Calendar Container -->

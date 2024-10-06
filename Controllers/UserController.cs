@@ -86,13 +86,20 @@ namespace TGTOAT.Controllers
 
         }
 
-        // Calendar action
+        // instructor Calendar action
         public IActionResult Calendar()
         {
             var user = _auth.GetUser();//Grab User Info
             return View(user); // This will look for Views/User/Calendar.cshtml
         }
-       
+        
+        //student calendar action
+        public IActionResult StudentCalendar()
+        {
+            return View();
+        }
+
+
         //Course Registration action
         public async Task<IActionResult> CourseRegistration()
         {

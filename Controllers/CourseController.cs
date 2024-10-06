@@ -265,17 +265,18 @@ namespace TGTOAT.Controllers
             }
 
             var courseEvents = new List<object>();
-            var dayMap = new Dictionary<string, int> {
+            var dayMap = new Dictionary<string, int> 
+            {
                 { "Su", 0 },
-                { "Mo", 1 },  
-                { "Tu", 2 },  
-                { "We", 3 },  
-                { "Th", 4 },  
-                { "Fr", 5 },  
-                { "Sa", 6 }  
+                { "Mo", 1 },
+                { "Tu", 2 },
+                { "We", 3 },
+                { "Th", 4 },
+                { "Fr", 5 },
+                { "Sa", 6 }
             };
 
-
+            // instructor role
             if (currentUser.UserRole == "Instructor")
             {
                 // Fetch courses for the instructor
@@ -290,6 +291,7 @@ namespace TGTOAT.Controllers
                     AddCourseToEventList(course, dayMap, courseEvents);
                 }
             }
+            // student role
             else if (currentUser.UserRole == "Student")
             {
                 // Fetch courses for the student
@@ -301,10 +303,27 @@ namespace TGTOAT.Controllers
 
                 foreach (var course in studentCourses)
                 {
+                    // Add course events
                     AddCourseToEventList(course, dayMap, courseEvents);
+
+                    // Add assignment events
+                    var assignments = _context.Assignments
+                        .Where(a => a.InstructorCourse.CourseId == course.CourseId)
+                        .ToList();
+
+                    foreach (var assignment in assignments)
+                    {
+                        courseEvents.Add(new
+                        {
+                            title = assignment.AssignmentName,
+                            start = assignment.DueDateAndTime.ToString("yyyy-MM-ddTHH:mm:ss"),
+                            url = $"/Assignments/View/{assignment.AssignmentId}"  // Link to assignment page
+                        });
+                    }
                 }
             }
 
+            // Return all course and assignment events
             return Json(courseEvents);
         }
 
@@ -318,6 +337,27 @@ namespace TGTOAT.Controllers
 
                 // Split the DaysOfTheWeek string by commas
                 var days = course.DaysOfTheWeek.Split(',');
+
+                // Set the default start and end dates for the semester
+                string startRecur = string.Empty;
+                string endRecur = string.Empty;
+
+                // Determine the semester and set the correct recurrence dates
+                if (course.Semester == "Fall")
+                {
+                    startRecur = "2024-08-26";
+                    endRecur = "2024-12-13";
+                }
+                else if (course.Semester == "Spring")
+                {
+                    startRecur = "2025-01-26";
+                    endRecur = "2025-04-25";
+                }
+                else if (course.Semester == "Summer")
+                {
+                    startRecur = "2025-05-05";
+                    endRecur = "2025-08-15";
+                }
 
                 // Loop through the split days and create events
                 foreach (string day in days)
@@ -333,8 +373,8 @@ namespace TGTOAT.Controllers
                             start = new DateTime(2024, 9, 1, startTime.Hour, startTime.Minute, startTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
                             end = new DateTime(2024, 9, 1, endTime.Hour, endTime.Minute, endTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
                             daysOfWeek = new[] { dayCode },
-                            startRecur = "2024-09-01",
-                            endRecur = "2024-12-15"
+                            startRecur = startRecur,  // Use the start date for the semester
+                            endRecur = endRecur       // Use the end date for the semester
                         });
                     }
                     else
@@ -343,7 +383,7 @@ namespace TGTOAT.Controllers
                     }
                 }
             }
-        }
+        }        
 
 
         public IActionResult GetProfileImage()

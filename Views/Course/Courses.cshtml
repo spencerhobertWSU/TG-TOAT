@@ -33,12 +33,22 @@
         @foreach (var course in Model.Courses)
         {
             <tr>
+                <td>@course.Department.DepartmentName</td>
                 <td>@course.CourseNumber</td>
                 <td>@course.CourseName</td>
-                <td>@course.Department.DepartmentName</td>
                 <td>@course.NumberOfCredits</td>
                 <td>@course.Campus</td>
-                <td>@course.RoomNumber</td>
+                @{
+                        if(course.RoomNumber == 0)
+                        {
+                        <td>Onl</td>
+                        }
+                        else
+                        {
+                        <td>@course.RoomNumber</td>
+                        }
+                }
+                
                 <td>@course.DaysOfTheWeek</td>
                 @* <td>@course.StartTime</td>
                 <td>@course.EndTime</td> *@

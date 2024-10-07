@@ -7,18 +7,19 @@
 }
 
 
-<h1 class="text-center">Add a Course</h1>
+
 <form asp-action="Create" method="post">
 
     <div class="container-fluid">
+        <h1 class="text-center">Add a Course</h1>
         <!--Department & Course Number-->
-        <div class="row justify-content-center">
+        <div class="row justify-content-center ">
 
             <div class="form-group col-md-3">
                 <label asp-for="SelectedDepartmentId"></label>
                 <select asp-for="SelectedDepartmentId"
                         asp-items="@(new SelectList(Model.Departments, "DepartmentId", "DepartmentName", Model.SelectedDepartmentId))"
-                        class="form-control">
+                        class="form-select">
                     <option value="">Select a department</option>
                 </select>
                 <span asp-validation-for="SelectedDepartmentId" class="text-danger"></span>
@@ -31,8 +32,8 @@
             </div>
 
             <div class="form-group col-md-3">
-                <label asp-for="NumberOfCredits">Number of Credits</label>
-                <input asp-for="NumberOfCredits" class="form-control" type="number" min="0" />
+                <label asp-for="NumberOfCredits">Credit Hours</label>
+                <input asp-for="NumberOfCredits" class="form-control" type="number" min="1" value="1"/>
                 <span asp-validation-for="NumberOfCredits" class="text-danger"></span>
             </div>
         </div>
@@ -109,7 +110,7 @@
             <div class="form-group col-md-3">
                 <label asp-for="Building"></label>
                 <select asp-for="Building" class="form-select" id="buildSelect" disabled="true">
-                    <option value="">Select a Campus First</option>
+                    <option value="">Select a Building First</option>
                 </select>
                 <span asp-validation-for="Building" class="text-danger"></span>
             </div>
@@ -174,7 +175,7 @@
 
             <br/>
             <div class="col text-center">
-                <button type="submit" class="btn btn-primary text-center" onclick="UpdateDays()">Create</button>
+                <button type="submit" class="btn btn-primary text-center" onclick="UpdateInfo()">Create</button>
             </div>
         </div>
 </form>

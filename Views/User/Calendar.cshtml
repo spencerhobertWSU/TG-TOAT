@@ -6,8 +6,16 @@
 }
 
 @{
-    ViewData["Title"] = "Calendar";    
-    Layout = "~/Views/Shared/_InstructorLayout.cshtml";    
+    ViewData["Title"] = "Calendar";
+
+    if (Model.UserRole == "Student")
+    {
+        Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    }
+    else if (Model.UserRole == "Instructor")
+    {
+        Layout = "~/Views/Shared/_InstructorLayout.cshtml";
+    }
 }
 
 <!-- Calendar Container -->
@@ -20,6 +28,23 @@
         // Initialize FullCalendar
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',  // Month view by default
+            headerToolbar: {
+                left: 'prev,next today',   // Previous/Next buttons
+                center: 'title',           // Calendar title
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'  // Month, Week, Day views
+            },
+            views: {
+                dayGridMonth: {  // Month view
+                    buttonText: 'Month'
+                },
+                timeGridWeek: {  // Week view
+                    buttonText: 'Week'
+                },
+                timeGridDay: {   // Day view
+                    buttonText: 'Day'
+                }
+            },
+
             events: function(fetchInfo, successCallback, failureCallback) {
                 // AJAX call to get course events
                 $.ajax({
@@ -38,6 +63,13 @@
                 hour: '2-digit',
                 minute: '2-digit',
                 meridiem: true
+            },
+            eventClick: function (info) {
+                // Navigate to assignment or course when clicked
+                if (info.event.url) {
+                    window.open(info.event.url, "_self");  // Open assignment or course link in the same window
+                    info.jsEvent.preventDefault();  // Prevent default behavior
+                }
             }
         });
 

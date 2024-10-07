@@ -450,5 +450,96 @@ namespace TGTOAT.Controllers
         }
 
 
+
+
+
+
+
+
+
+        public ActionResult SubmitAssignment(int assignmentId)
+        {
+            if (_auth.GetUser() == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            var assignment = _context.Assignments.FirstOrDefault(a => a.AssignmentId == assignmentId);
+
+            if (assignment == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new SubmitAssignmentViewModel
+            {
+                AssignmentId = assignment.AssignmentId,
+                AssignmentName = assignment.AssignmentName,
+                Description = assignment.AssignmentDescription,
+                Points = assignment.AssignmentPoints,
+                SubmissionType = assignment.AssignmentType
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> SubmitAssignment(SubmitAssignmentViewModel model, IFormFile FileSubmission, string TextSubmission)
+        {
+            if (_auth.GetUser() == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            // Fetch the assignment from the database
+            var assignment = _context.Assignments.FirstOrDefault(a => a.AssignmentId == model.AssignmentId);
+
+            if (assignment == null)
+            {
+                return NotFound();
+            }
+
+            // Handle Text Submission
+            if (assignment.AssignmentType == "text" && !string.IsNullOrEmpty(TextSubmission))
+            {
+                // Update the submission column with the text submission
+                assignment.Submission = TextSubmission;
+            }
+            // Handle File Submission
+            else if (assignment.AssignmentType == "file" && FileSubmission != null && FileSubmission.Length > 0)
+            {
+                // Check the file type
+                var fileExtension = Path.GetExtension(FileSubmission.FileName).ToLower();
+                if (fileExtension != ".pdf" && fileExtension != ".doc" && fileExtension != ".docx")
+                {
+                    ModelState.AddModelError("", "Invalid file type. Only PDF and Word documents are allowed.");
+                    return View(model);
+                }
+
+                // Convert the file to a Base64 string
+                using (var memoryStream = new MemoryStream())
+                {
+                    await FileSubmission.CopyToAsync(memoryStream);
+                    var fileBytes = memoryStream.ToArray();
+                    var base64String = Convert.ToBase64String(fileBytes);
+
+                    // Update the submission column with the base64-encoded file submission
+                    assignment.Submission = base64String;
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "No valid submission found.");
+                return View(model);
+            }
+
+            // Save changes to the database
+            _context.Assignments.Update(assignment);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index", "User");
+        }
+
+
     }
 }

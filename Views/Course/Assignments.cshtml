@@ -49,9 +49,14 @@
                             @assignment.AssignmentName @assignment.DueDateAndTime.ToString("MM/dd/yyyy hh:mm tt")
                         </div>
 
-                        <!-- Button -->
+                        <!-- Submit -->
                         <div class="col-md-6 text-right">
-                            <button class="btn btn-primary">Submit</button>
+                            <div class="col-md-6 text-right">
+                                <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="SubmitAssignment" asp-route-assignmentId="@assignment.AssignmentId">
+                                    Submit
+                                </a>
+                            </div>
+
                         </div>
                     </div>
                 }

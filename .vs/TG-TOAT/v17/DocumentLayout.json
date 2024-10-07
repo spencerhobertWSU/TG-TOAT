@@ -3,36 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\views\\course\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\course\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\views\\user\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\user\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\data\\assignment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:data\\assignment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\views\\course\\courses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\course\\courses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\views\\course\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\course\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\views\\course\\addassignment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\course\\addassignment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\data\\courses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:data\\courses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\models\\coursehome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:models\\coursehome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\views\\course\\assignments.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\course\\assignments.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,106 +42,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "CourseController.cs",
               "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Controllers\\CourseController.cs",
               "RelativeDocumentMoniker": "Controllers\\CourseController.cs",
               "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Controllers\\CourseController.cs",
               "RelativeToolTip": "Controllers\\CourseController.cs",
-              "ViewState": "AgIAANQAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAHoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-06T20:46:18.934Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Courses.cshtml",
-              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Views\\Course\\Courses.cshtml",
-              "RelativeDocumentMoniker": "Views\\Course\\Courses.cshtml",
-              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Views\\Course\\Courses.cshtml",
-              "RelativeToolTip": "Views\\Course\\Courses.cshtml",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-06T20:03:53.006Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Assignment.cs",
-              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Data\\Assignment.cs",
-              "RelativeDocumentMoniker": "Data\\Assignment.cs",
-              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Data\\Assignment.cs",
-              "RelativeToolTip": "Data\\Assignment.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAiwCgAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T19:28:47.663Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CourseHome.cs",
-              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Models\\CourseHome.cs",
-              "RelativeDocumentMoniker": "Models\\CourseHome.cs",
-              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Models\\CourseHome.cs",
-              "RelativeToolTip": "Models\\CourseHome.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T18:26:18.988Z",
+              "Title": "Assignments.cshtml",
+              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Views\\Course\\Assignments.cshtml",
+              "RelativeDocumentMoniker": "Views\\Course\\Assignments.cshtml",
+              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Views\\Course\\Assignments.cshtml",
+              "RelativeToolTip": "Views\\Course\\Assignments.cshtml",
+              "ViewState": "AgIAADMAAAAAAAAAAADwv0wAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-07T01:37:21.961Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Views\\User\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\User\\Index.cshtml",
-              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Views\\User\\Index.cshtml",
-              "RelativeToolTip": "Views\\User\\Index.cshtml",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAUwBcAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-06T17:23:54.017Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Views\\Course\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Course\\Index.cshtml",
               "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Views\\Course\\Index.cshtml",
               "RelativeToolTip": "Views\\Course\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAADwvxkAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-10-06T17:32:34.175Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Courses.cs",
-              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Data\\Courses.cs",
-              "RelativeDocumentMoniker": "Data\\Courses.cs",
-              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Data\\Courses.cs",
-              "RelativeToolTip": "Data\\Courses.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAowF4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T19:25:32.019Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AddAssignment.cshtml",
-              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Views\\Course\\AddAssignment.cshtml",
-              "RelativeDocumentMoniker": "Views\\Course\\AddAssignment.cshtml",
-              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Views\\Course\\AddAssignment.cshtml",
-              "RelativeToolTip": "Views\\Course\\AddAssignment.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-06T19:51:29.109Z",
               "EditorCaption": ""
             }
           ]

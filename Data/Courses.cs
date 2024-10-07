@@ -90,6 +90,8 @@ namespace TGTOAT.Data
 
         public List<User> Instructors { get; set; } = new List<User>();
 
+        public List<Assignment> Assignments { get; set; }
+
     }
 
 }

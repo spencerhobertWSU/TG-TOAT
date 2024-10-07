@@ -40,6 +40,11 @@ namespace TGTOAT.Data
         [Required(ErrorMessage = "Assignment type is required.")]
         public string AssignmentType { get; set; }
 
+        [Required]
+        public int CourseId { get; set; }
+
+        public Courses Course { get; set; }
+
 
     }
 }

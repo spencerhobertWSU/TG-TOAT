@@ -1,0 +1,74 @@
+﻿@model TGTOAT.Models.PaymentViewModel
+
+@{
+    ViewData["Title"] = "Login";
+
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<div>
+    <h1>@($"{Model.FirstName} {Model.LastName}'s Account")</h1>
+    <hr />
+    @if (ViewBag.SuccessMessage != null)
+    {
+        @if (ViewBag.SuccessMessage == "Payment successful!")
+        {
+            <div class="alert alert-success" role="alert">
+                @ViewBag.SuccessMessage
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.SuccessMessage
+            </div>
+        }
+    }
+    <dl class="row">
+        <!-- Display every course and how much it costs -->
+        @foreach (var course in Model.Courses)
+        {
+            <dt class="col-sm-2">
+                @(course.CourseName + ":")
+            </dt>
+            <dd class="col-sm-10">
+                @string.Format("{0:C}", course.NumberOfCredits * 100)
+            </dd>
+        }
+        
+        <!-- Adding a line break -->
+        <dt class="col-sm-2">
+            <br />
+        </dt>
+        <dd class="col-sm-10">
+            <br />
+        </dd>
+
+        <!-- Display the total amount due -->
+        <dt class="col-sm-2">
+            <span style="font-size: larger;">
+                Total:
+            </span>
+        </dt>
+        <dd class="col-sm-10">
+            <span style="font-size: larger;">
+                @string.Format("{0:C}", Model.AmountDue)
+            </span>
+        </dd>
+    </dl>
+
+    <!-- Ask how much they want to pay for it -->
+    <div class="form-group">
+        <form asp-controller="User" asp-action="Checkout" method="get">
+            <label for="amount">How much would you like to pay?</label>
+            <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter amount">
+            <button type="submit" class="btn btn-primary">Pay Now</button>
+        </form>
+    </div>
+    
+
+</div>
+
+<script async
+  src="https://js.stripe.com/v3/buy-button.js">
+</script>

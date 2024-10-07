@@ -8,5 +8,6 @@ namespace TGTOAT.Models
         public string UserRole { get; set; }
         public string Department { get; set; }
         public string CourseNum { get; set; }
+        public List<Assignment> Assignments { get; set; }
     }
 }

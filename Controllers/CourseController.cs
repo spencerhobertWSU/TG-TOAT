@@ -64,33 +64,45 @@ namespace TGTOAT.Controllers
                 return RedirectToAction("Login", "User");
             }
 
-            var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
+            var course = _context.Courses
+                .Include(c => c.Assignments)
+                .FirstOrDefault(c => c.CourseId == id);
+
             var dept = _context.Departments.FirstOrDefault(d => d.DepartmentId == course.DepartmentId);
+
             if (course == null)
             {
                 return Redirect("User/Index");
             }
             else
             {
+
                 var viewModel = new CourseHome
                 {
                     CourseId = course.CourseId,
                     UserRole = _auth.GetRole(),
                     Department = dept.DepartmentName,
                     CourseNum = course.CourseNumber,
+                    Assignments = course.Assignments.ToList()
                 };
                 return View(viewModel);
             }
 
         }
 
+
+
         public ActionResult Assignments(int? id)
         {
             if (_auth.GetUser == null)
             {
                 return Redirect("User/Login");
+
             }
-            var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
+            var course = _context.Courses
+                .Include(c => c.Assignments)
+                .FirstOrDefault(c => c.CourseId == id);
+
             var dept = _context.Departments.FirstOrDefault(d => d.DepartmentId == course.DepartmentId);
             if (course == null)
             {
@@ -104,6 +116,7 @@ namespace TGTOAT.Controllers
                     UserRole = _auth.GetRole(),
                     Department = dept.DepartmentName,
                     CourseNum = course.CourseNumber,
+                    Assignments = course.Assignments.ToList()
                 };
                 return View(viewModel);
             }
@@ -230,7 +243,8 @@ namespace TGTOAT.Controllers
                     AssignmentPoints = model.AssignmentPoints,
                     DueDateAndTime = model.DueDateAndTime,
                     AssignmentType = model.AssignmentType,
-                    InstructorCourseId = InstructorCourseID, // Set the foreign key
+                    InstructorCourseId = InstructorCourseID,
+                    CourseId = id
                 };
 
                 

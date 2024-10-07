@@ -330,8 +330,8 @@ namespace TGTOAT.Controllers
                         courseEvents.Add(new
                         {
                             title = assignment.AssignmentName,
-                            start = assignment.DueDateAndTime.ToString("yyyy-MM-ddTHH:mm:ss"),
-                            url = $"/Assignments/View/{assignment.AssignmentId}"  // Link to assignment page
+                            start = assignment.DueDateAndTime.ToString("yyyy-MM-ddTHH:mm:ss"),                            
+                            url = $"/Course/Assignments/{course.CourseId}"  // Link to course's assignment page
                         });
                     }
                 }

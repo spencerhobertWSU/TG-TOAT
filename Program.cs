@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using TGTOAT.Data;
 using TGTOAT.Models;
 using TGTOAT.Helpers;
+using Stripe;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,8 @@ builder.Services.AddScoped<IAuthentication, Authentication>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Initialize Stripe
+StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
 
 var app = builder.Build();
 

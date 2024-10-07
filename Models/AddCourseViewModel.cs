@@ -44,7 +44,7 @@ namespace TGTOAT.Models
         public int Capacity { get; set; }
 
         // Campus
-        [Required(ErrorMessage = "Location is required.")]
+        [Required(ErrorMessage = "Campus is required.")]
         [MaxLength(5)]
         public string? Campus { get; set; }
 
@@ -52,13 +52,13 @@ namespace TGTOAT.Models
         public List<SelectListItem>? CampusList { get; set; }
 
         // Building
-        [Required(ErrorMessage = "Location is required.")]
+        [Required(ErrorMessage = "Building is required.")]
         [MaxLength(50, ErrorMessage = "Max 50 characters allowed.")]
         public string? Building { get; set; }
 
         // Room Number
         [Required(ErrorMessage = "Room number is required.")]
-        [Range(1, 999, ErrorMessage = "Must be a positive number and max 3 digits allowed.")]
+        [Range(0, 999, ErrorMessage = "Must be a positive number and max 3 digits allowed.") ]
         public int? RoomNumber { get; set; }
 
         // Meeting Days

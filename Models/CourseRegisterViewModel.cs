@@ -6,6 +6,7 @@ namespace TGTOAT.Models
 {
     public class CourseRegisterViewModel
     {
+        public int Id { get; set; }
         public int CourseId { get; set; } // Unique identifier for the course
         public string CourseNumber { get; set; } // Course number
         public int DepartmentId { get; set; } // Department ID
@@ -24,5 +25,6 @@ namespace TGTOAT.Models
         public List<Courses> Courses { get; set; } = new List<Courses>();
         public List<User> Instructors { get; set; } = new List<User>();
         public List<InstructorCourseConnection> InstructorCourseConnections { get; set; } = new List<InstructorCourseConnection>();
+        public List<StudentCourseConnection> StudentCourseConnection { get; set; } = new List<StudentCourseConnection>();
     }
 }

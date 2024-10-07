@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using NuGet.Common;
+using Stripe.Checkout;
+using Stripe.V2;
 
 namespace TGTOAT.Controllers
 {
@@ -307,6 +309,11 @@ namespace TGTOAT.Controllers
                 CourseId = CourseId
             };
 
+            // Add dues to the users account
+            var user = _context.User.FirstOrDefault(u => u.Id == userId);
+            user.AmountDue += 100 * _context.Courses.FirstOrDefault(u => u.CourseId == CourseId).NumberOfCredits;
+
+            _context.User.Update(user);
             _context.StudentCourseConnection.Add(connection);
             _context.SaveChanges();
             TempData["SuccessMessage"] = "Successfully registered for the course!";
@@ -334,6 +341,12 @@ namespace TGTOAT.Controllers
 
             if (connection != null)
             {
+                // Remove dues from the users account (connection always had null User and Courses, so I did it this way)
+                var user = _context.User.FirstOrDefault(u => u.Id == userId);
+                var course = _context.Courses.FirstOrDefault(c => c.CourseId == CourseId);
+                user.AmountDue -= 100 * course.NumberOfCredits;
+
+                _context.User.Update(user);
                 _context.StudentCourseConnection.Remove(connection);
                 _context.SaveChanges();
                 TempData["SuccessMessage"] = "Successfully Dropped for the course!";
@@ -706,7 +719,7 @@ namespace TGTOAT.Controllers
         }
 
 
-public void CreateCookie(String Email, String Series, String Token)
+        public void CreateCookie(String Email, String Series, String Token)
         {
             CookieOptions options = new CookieOptions
             {
@@ -738,6 +751,96 @@ public void CreateCookie(String Email, String Series, String Token)
             Response.Cookies.Append("Email", "", options);
             Response.Cookies.Append("Series", "", options);
             Response.Cookies.Append("Token", "", options);
+        }
+
+        // GET: /User/Payment
+        [HttpGet]
+        public IActionResult Payment(bool? didSucceed)
+        {
+            // Check if the payment was successful (or if it went through at all)
+            if (didSucceed.HasValue)
+            {
+                ViewBag.SuccessMessage = didSucceed.Value ? "Payment successful!" : "Payment failed.";
+            }
+
+            // Get user and course information
+            var user = _context.User.FirstOrDefault(u => u.Id == _auth.GetCurrentUserId());
+            var courses = (from connection in _context.StudentCourseConnection
+                           join course in _context.Courses on connection.CourseId equals course.CourseId
+                           where connection.StudentID == user.Id
+                           select course).ToList();
+
+            // Create the view model
+            var viewModel = new PaymentViewModel
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Courses = courses,
+                AmountDue = user.AmountDue
+            };
+
+            return View(viewModel);
+        }
+
+        // Checkout page
+        public ActionResult Checkout(decimal amount)
+        {
+            // Check if the amount is valid
+            var amountDue = _context.User.FirstOrDefault(u => u.Id == _auth.GetCurrentUserId()).AmountDue;
+            if (amount <= 0 || amount > amountDue)
+            {
+                return RedirectToAction("PaymentFailure", "User");
+            }
+
+            var options = new SessionCreateOptions
+            {
+                PaymentMethodTypes = new List<string> { "card" },
+                LineItems = new List<SessionLineItemOptions>
+            {
+                new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
+                        Currency = "usd",
+                        UnitAmount = (long)(amount * 100), // For some reason Stripe requires the amount in cents
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        {
+                            Name = "Course Payment",
+                        },
+                    },
+                    Quantity = 1,
+                },
+            },
+                Mode = "payment",
+                SuccessUrl = Url.Action("PaymentSuccess", "User", new { amountPaid = amount }, Request.Scheme),
+                CancelUrl = Url.Action("PaymentFailure", "User", null, Request.Scheme),
+            };
+
+            var service = new SessionService();
+            Session session = service.Create(options);
+
+            return Redirect(session.Url);
+        }
+
+        // If the payment succeeded
+        public ActionResult PaymentSuccess()
+        {
+            // Grab the amount paid
+            var amountPaid = decimal.Parse(Request.Query["amountPaid"]);
+
+            // Update the user's balance
+            var user = _context.User.FirstOrDefault(u => u.Id == _auth.GetCurrentUserId());
+            user.AmountDue -= amountPaid;
+            _context.User.Update(user);
+            _context.SaveChanges();
+
+            return RedirectToAction("Payment", "User", new { didSucceed = true });
+        }
+
+        // If the payment failed
+        public ActionResult PaymentFailure()
+        {
+            return RedirectToAction("Payment", "User", new { didSucceed = false });
         }
 
     }

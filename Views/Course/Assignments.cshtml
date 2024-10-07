@@ -37,10 +37,24 @@
         </a>
     </div>
 <div class="row">
-    @{
+        @{
 
             if (Model.UserRole == "Student")
             {
+                @foreach (var assignment in Model.Assignments)
+                {
+                    <div class="row" style="align-items: center;">
+                        <!-- Assignment details -->
+                        <div class="col-md-6 text-left">
+                            @assignment.AssignmentName @assignment.DueDateAndTime.ToString("MM/dd/yyyy hh:mm tt")
+                        </div>
+
+                        <!-- Button -->
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                }
             }
             else if (Model.UserRole == "Instructor")
             {

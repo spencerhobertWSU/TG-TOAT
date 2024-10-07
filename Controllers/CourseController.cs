@@ -169,18 +169,18 @@ namespace TGTOAT.Controllers
         // Course list page in instructor view
         public IActionResult Courses()
         {
-            var currentInstructorId = _auth.GetUser().Id;  
+            var currInstruct = _auth.GetUser();  
 
-            if (currentInstructorId == 0)
+            if (currInstruct == null)
             {
-                return RedirectToAction("Index", "Home");  
+                return RedirectToAction("Login", "User");  
             }
 
             // Fetch the courses that are linked to the current instructor
             var courses = _context.InstructorCourseConnection
                 .Include(icc => icc.Course)                  
                 .ThenInclude(c => c.Department)          
-                .Where(icc => icc.InstructorID == currentInstructorId)  
+                .Where(icc => icc.InstructorID == currInstruct.Id)  
                 .Select(icc => icc.Course)                   
                 .ToList();
 

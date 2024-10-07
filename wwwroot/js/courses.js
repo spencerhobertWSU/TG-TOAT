@@ -1,14 +1,19 @@
 ﻿const days = []
+onlbtnChecked = 0
 
 function dayBtn(day) {
     var campus = document.getElementById("campusSelect");
     var buildings = document.getElementById("buildSelect");
     var room = document.getElementById("roomNum");
+    var startTime = document.getElementById("StartTime");
+    var endTime = document.getElementById("EndTime");
 
 
     campus.disabled = false;
-    buildings.disabled = false;
+    //
     room.disabled = false;
+    startTime.disabled = false;
+    endTime.disabled = false;
 
     if (document.getElementById("onlBtn").checked) {
         document.getElementById("onlBtn").click();
@@ -21,17 +26,44 @@ function onlineBtn() {
     var campus = document.getElementById("campusSelect");
     var buildings = document.getElementById("buildSelect");
     var room = document.getElementById("roomNum");
+    var startTime = document.getElementById("StartTime");
+    var endTime = document.getElementById("EndTime");
+    var onlBtn = document.getElementById("onlBtn")
 
-    campus.disabled = true;
-    buildings.disabled = true;
-    room.disabled = true;
+    if (onlBtn.checked) {
 
-    for (i = 0; i < dayBtns.length; i++) {
-        if (document.getElementById(dayBtns[i]).checked) {
-            document.getElementById(dayBtns[i]).click();
-            document.getElementById("onlBtn").click()
+        campus.disabled = true;
+        buildings.disabled = true;
+        room.disabled = true;
+        startTime.disabled = true;
+        endTime.disabled = true;
+
+        console.log(campus.value)
+
+        room.value = "0";
+        startTime.value = '00:00'
+        endTime.value = '00:00'
+
+        
+
+        //campus.value = "";
+
+        for (i = 0; i < dayBtns.length; i++) {
+            if (document.getElementById(dayBtns[i]).checked) {
+                document.getElementById(dayBtns[i]).click();
+                document.getElementById("onlBtn").click()
+            }
         }
+        onlbtnChecked = 1;
     }
+    else {
+        onlbtnChecked = 0;
+        campus.disabled = false;
+        room.disabled = false;
+        startTime.disabled = false;
+        endTime.disabled = false;
+    }
+
 }
 
 const ogdenValues = ["", "BC", "EH", "ET", "HC", "IE", "KA", "LP", "LL", "LH", "MH", "ED", "NB", "HB", "SU", "LI", "SC", "SW", "TY", "WB"]
@@ -48,7 +80,6 @@ function changeCampus() {
     campus = (document.getElementById("campusSelect").value)
 
     var buildings = document.getElementById("buildSelect");
-    console.log();
 
     if (campus == "Ogden") {
         buildings.disabled = false;
@@ -75,18 +106,50 @@ function changeCampus() {
         buildings.innerHTML = '';
         var option = document.createElement("option");
         option.value = ""
-        option.text = "Select a Campus First"
+        option.text = "Select a Building First"
         buildings.appendChild(option);
     }
 }
 
-function UpdateDays() {
+function UpdateInfo() {
+    var campus = document.getElementById("campusSelect");
+    var buildings = document.getElementById("buildSelect");
+    var room = document.getElementById("roomNum");
+    var startTime = document.getElementById("StartTime");
+    var endTime = document.getElementById("EndTime");
+    var onlBtn = document.getElementById("onlBtn")
+
     const dayBtns = ["monBtn", "tueBtn", "wedBtn", "thuBtn", "friBtn", "satBtn", "sunBtn"]
 
     days.length = 0;
 
-    if (document.getElementById("onlBtn").checked) {
+    if (onlBtn.checked) {
         days.push(document.getElementById("onlBtn").value);
+
+        campus.disabled = false;
+        buildings.disabled = false;
+        room.disabled = false;
+        startTime.disabled = false;
+        endTime.disabled = false;
+
+        var option = document.createElement("option");
+        option.value = "Onl";
+        option.text = "Onl";
+
+        campus.appendChild(option);
+
+        var option = document.createElement("option");
+        option.value = "Onl";
+        option.text = "Onl";
+
+        buildings.appendChild(option);
+
+        campus.value = "Onl";
+        buildings.value = "Onl";
+
+        room.value = "0";
+        startTime.value = '00:00'
+        endTime.value = '00:00'
     }
     else {
         for (i = 0; i < dayBtns.length; i++) {

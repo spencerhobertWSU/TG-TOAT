@@ -770,13 +770,21 @@ namespace TGTOAT.Controllers
                            where connection.StudentID == user.Id
                            select course).ToList();
 
+            decimal totalPaid = 0;
+            foreach (var course in courses)
+            {
+                totalPaid += course.NumberOfCredits * 100;
+            }
+            totalPaid = (user.AmountDue - totalPaid) * -1; // For some reason if I don't multiply it by 1 it shows up with () around the number
+
             // Create the view model
             var viewModel = new PaymentViewModel
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Courses = courses,
-                AmountDue = user.AmountDue
+                AmountDue = user.AmountDue,
+                AmountPaid = totalPaid
             };
 
             return View(viewModel);

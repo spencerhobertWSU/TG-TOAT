@@ -26,6 +26,12 @@ namespace TGTOAT.Models
         [Required]
         public List<Courses> Courses { get; set; } = new List<Courses>();
 
+        // The amount the user has paid for the courses
+        [Required]
+        [Display(Name = "Amount Paid")]
+        [DataType(DataType.Currency)]
+        public decimal AmountPaid { get; set; }
+
         // The amount due for the courses
         [Required]
         [Display(Name = "Amount Due")]

@@ -36,7 +36,7 @@ $grays: (
 // fusv-enable
 
 // scss-docs-start color-variables
-$blue:    #0d6efd !default;
+$blue:  #663333 !default;
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
 $pink:    #d63384 !default;
@@ -46,6 +46,8 @@ $yellow:  #ffc107 !default;
 $green:   #198754 !default;
 $teal:    #20c997 !default;
 $cyan:    #0dcaf0 !default;
+$garnet:  #663333 !default;
+
 // scss-docs-end color-variables
 
 // scss-docs-start colors-map
@@ -63,7 +65,8 @@ $colors: (
   "black":      $black,
   "white":      $white,
   "gray":       $gray-600,
-  "gray-dark":  $gray-800
+  "gray-dark":  $gray-800,
+  "garnet":     $garnet
 ) !default;
 // scss-docs-end colors-map
 
@@ -175,6 +178,16 @@ $cyan-600: shade-color($cyan, 20%) !default;
 $cyan-700: shade-color($cyan, 40%) !default;
 $cyan-800: shade-color($cyan, 60%) !default;
 $cyan-900: shade-color($cyan, 80%) !default;
+
+$garnet-100: tint-color($garnet, 80%) !default;
+$garnet-200: tint-color($garnet, 60%) !default;
+$garnet-300: tint-color($garnet, 40%) !default;
+$garnet-400: tint-color($garnet, 20%) !default;
+$garnet-500: $garnet !default;
+$garnet-600: shade-color($garnet, 20%) !default;
+$garnet-700: shade-color($garnet, 40%) !default;
+$garnet-800: shade-color($garnet, 60%) !default;
+$garnet-900: shade-color($garnet, 80%) !default;
 
 $blues: (
   "blue-100": $blue-100,
@@ -294,6 +307,18 @@ $cyans: (
   "cyan-700": $cyan-700,
   "cyan-800": $cyan-800,
   "cyan-900": $cyan-900
+) !default;
+
+$garnets: ( 
+    "garnet-100": $garnet-100, 
+    "garnet-200": $garnet-200, 
+    "garnet-300": $garnet-300, 
+    "garnet-400": $garnet-400, 
+    "garnet-500": $garnet-500, 
+    "garnet-600": $garnet-600, 
+    "garnet-700": $garnet-700, 
+    "garnet-800": $garnet-800, 
+    "garnet-900": $garnet-900 
 ) !default;
 // fusv-enable
 

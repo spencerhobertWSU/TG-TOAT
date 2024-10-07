@@ -87,8 +87,10 @@ namespace TGTOAT.Data
         public int Year { get; set; }
 
         public List<InstructorCourseConnection> instructorCourseConnections { get; set; } = new List<InstructorCourseConnection>();
-
+        public List<StudentCourseConnection> StudentCourseConnection { get; set; } = new List<StudentCourseConnection>();
         public List<User> Instructors { get; set; } = new List<User>();
+
+        public List<Assignment> Assignments { get; set; }
 
     }
 

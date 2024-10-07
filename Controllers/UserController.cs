@@ -41,6 +41,97 @@ namespace TGTOAT.Controllers
             return RedirectToAction("Login");
         }
 
+        //Login Page
+        public ActionResult Login(LoginViewModel model)
+        {
+            string? Email = Request.Cookies["Email"];
+            string? Series = Request.Cookies["Series"];
+            string? Token = Request.Cookies["Token"];
+
+            var user = _context.User.FirstOrDefault(m => m.Email == model.Email);
+
+            // If no user is found
+            if (user == null)
+            {
+                return View(model);
+            }
+
+            if (Email != null && Series != null && Token != null)
+            {
+                user = _context.User.FirstOrDefault(u => u.Email == Email);
+                if (Series == "13" && Token == "token13")
+                {
+                    // Find all classes that the user is enrolled in
+                    var courses = (from connection in _context.StudentCourseConnection
+                                   join course in _context.Courses on connection.CourseId equals course.CourseId
+                                   where connection.StudentID == user.Id
+                                   select course).ToList();
+
+                    var viewModel = new UserIndexViewModel
+                    {
+                        Id = user.Id,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        UserRole = user.UserRole,
+                        Courses = courses,
+
+                    };
+
+                    _auth.SetRole(user.UserRole);
+                    _auth.SetUser(viewModel);
+                    return Redirect("User/Index");
+                }
+                else
+                {
+                    return View(model);
+                }
+            }
+
+            // Check if the password matches
+            if (_passwordHasher.Verify(user.Password, model.Password))
+            {
+                // Find all classes that the user is enrolled in
+                var courses = (from connection in _context.StudentCourseConnection
+                               join course in _context.Courses on connection.CourseId equals course.CourseId
+                               where connection.StudentID == user.Id
+                               select course).ToList();
+
+                var viewModel = new UserIndexViewModel
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    UserRole = user.UserRole,
+                    Courses = courses,
+                    Id = user.Id,
+                };
+
+                // If the password is correct, log the user in
+                _auth.SetRole(user.UserRole);
+                _auth.SetUser(viewModel);
+
+                if (model.RememberMe == true)
+                {
+                    string seriesIden = _auth.createToken(16);
+
+                    string token = _auth.createToken(32);
+
+                    seriesIden = "13";
+                    token = "token13";
+
+                    //_context.Cookies.Add(seriesIden, token);
+
+                    CreateCookie(user.Email, seriesIden, token);
+                }
+
+                return Redirect("User/Index");
+            }
+            else
+            {
+                // If the password is incorrect, redirect back to login screen
+                return View(model);
+            }
+        }
+
         // Home page for User
         public async Task<IActionResult> Index(UserIndexViewModel Model)
         {
@@ -84,8 +175,6 @@ namespace TGTOAT.Controllers
             //Go to index
             return View(viewModel);
 
-
-
         }
 
         // instructor Calendar action
@@ -101,7 +190,7 @@ namespace TGTOAT.Controllers
             return View();
         }
 
-
+        #region Course Registration
         //Course Registration action
         public async Task<IActionResult> CourseRegistration()
         {
@@ -267,99 +356,8 @@ namespace TGTOAT.Controllers
             TempData["ErrorMessage"] = "Registration not found.";
             return RedirectToAction("CourseRegistration");
         }
-
-        //Login Page
-        public ActionResult Login(LoginViewModel model)
-        {
-            string? Email = Request.Cookies["Email"];
-            string? Series = Request.Cookies["Series"];
-            string? Token = Request.Cookies["Token"];
-
-            var user = _context.User.FirstOrDefault(m => m.Email == model.Email);
-
-            // If no user is found
-            if (user == null)
-            {
-                return View(model);
-            }
-
-            if (Email != null && Series != null && Token !=null)
-            {
-                user = _context.User.FirstOrDefault(u => u.Email == Email);
-                if(Series == "13" && Token == "token13")
-                {
-                    // Find all classes that the user is enrolled in
-                    var courses = (from connection in _context.StudentCourseConnection
-                                   join course in _context.Courses on connection.CourseId equals course.CourseId
-                                   where connection.StudentID == user.Id
-                                   select course).ToList();
-
-                    var viewModel = new UserIndexViewModel
-                    {
-                        Id = user.Id,
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        UserRole = user.UserRole,
-                        Courses = courses,
-                        
-                    };
-
-                    _auth.SetRole(user.UserRole);
-                    _auth.SetUser(viewModel);
-                    return Redirect("User/Index");
-                }
-                else
-                {
-                    return View();
-                }
-            }
-
-            // Check if the password matches
-            if (_passwordHasher.Verify(user.Password, model.Password))
-            {
-                // Find all classes that the user is enrolled in
-                var courses = (from connection in _context.StudentCourseConnection
-                                    join course in _context.Courses on connection.CourseId equals course.CourseId
-                                    where connection.StudentID == user.Id
-                                    select course).ToList();
-
-                var viewModel = new UserIndexViewModel
-                {
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    UserRole = user.UserRole,
-                    Courses = courses,
-                    Id = user.Id,
-                };
-
-                // If the password is correct, log the user in
-                _auth.SetRole(user.UserRole);
-                _auth.SetUser(viewModel);
-
-                if(model.RememberMe == true)
-                {
-                    string seriesIden = _auth.createToken(16);
-
-                    string token = _auth.createToken(32);
-
-                    seriesIden = "13";
-                    token = "token13";
-                   
-                    //_context.Cookies.Add(seriesIden, token);
-
-                    CreateCookie(user.Email, seriesIden, token);
-                }
-
-                return Redirect("User/Index");
-            }
-            else
-            {
-                // If the password is incorrect, redirect back to login screen
-                return View();
-            }
-        }
-
-
+        #endregion
+        
 
         // GET: User/Details/5
         public async Task<IActionResult> Details(int? id)

@@ -1,0 +1,28 @@
+﻿@model TGTOAT.Models.SubmitAssignmentViewModel
+
+<h1>Submit Assignment: @Model.AssignmentName</h1>
+
+<p>@Model.Description</p>
+<p><strong>Points:</strong> @Model.Points</p>
+
+<form asp-action="SubmitAssignment" asp-controller="Course" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="AssignmentId" />
+
+    @if (Model.SubmissionType == "text")
+    {
+        <div class="form-group">
+            <label for="TextSubmission">Your Submission</label>
+            <textarea id="TextSubmission" name="TextSubmission" class="form-control" rows="10"></textarea>
+        </div>
+    }
+    else if (Model.SubmissionType == "file")
+    {
+        <div class="form-group">
+            <label for="FileSubmission">Upload File (PDF or Word only)</label>
+            <input type="file" id="FileSubmission" name="FileSubmission" class="form-control-file" accept=".pdf,.doc,.docx" />
+            <small class="form-text text-muted">Please upload only PDF or Word documents.</small>
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

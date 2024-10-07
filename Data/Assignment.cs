@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using TGTOAT.Models;
 
 namespace TGTOAT.Data
@@ -39,6 +40,9 @@ namespace TGTOAT.Data
         [StringLength(60, MinimumLength = 1, ErrorMessage = "Assignment type must be between 1 and 60 characters.")]
         [Required(ErrorMessage = "Assignment type is required.")]
         public string AssignmentType { get; set; }
+
+        [AllowNull]
+        public string? Submission { get; set; }
 
         [Required]
         public int CourseId { get; set; }

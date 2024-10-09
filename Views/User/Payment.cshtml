@@ -16,6 +16,11 @@
             {
                 <div class="alert alert-success" role="alert">
                     @ViewBag.SuccessMessage
+                    <br />
+                    @if(ViewBag.receiptUrl != null)
+                    {
+                        <a href="@ViewBag.receiptUrl" target="_blank">View receipt</a>
+                    }
                 </div>
             }
             else

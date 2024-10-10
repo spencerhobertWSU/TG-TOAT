@@ -221,14 +221,18 @@ namespace TGTOAT.Controllers
                .Include(c => c.Instructors) // Assuming there's a navigation property for instructors
                .ToListAsync();
 
+            var userIdInt = _auth.GetCurrentUserId();
             //// Create the view model to pass to the view
             var viewModel = new CourseRegisterViewModel
             {
                 Departments = await _context.Departments.ToListAsync(),
                 Courses = courses,
                 Instructors = instructors,
-
+                CurrentStudent = userIdInt,
+                StudentCourseConnection = await _context.StudentCourseConnection.ToListAsync(),
                 InstructorCourseConnections = instructorCourseConnections
+
+
             };
             ViewBag.ErrorMessage = TempData["ErrorMessage"] as string;
             ViewBag.SuccessMessage = TempData["SuccessMessage"] as string;
@@ -268,15 +272,17 @@ namespace TGTOAT.Controllers
                     .Where(c => c.CourseName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
                     .ToList();
             }
-
+            var userIdInt = _auth.GetCurrentUserId();
             // Create the view model to pass to the view
             var viewModel = new CourseRegisterViewModel
             {
-                DepartmentId = departmentId.Value,
+                DepartmentId = departmentId ?? 0,
                 Departments = departments,
                 Courses = courses,
+                CurrentStudent = userIdInt,
                 Instructors = await _context.User.Where(u => u.UserRole == "Instructor").ToListAsync(),
-                InstructorCourseConnections = instructorCourseConnections
+                InstructorCourseConnections = instructorCourseConnections,
+                StudentCourseConnection = await _context.StudentCourseConnection.ToListAsync(),
             };
 
             return View("CourseRegistration", viewModel); // Return the view with the filtered courses

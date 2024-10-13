@@ -17,6 +17,7 @@ using System.Security.Cryptography;
 using NuGet.Common;
 using Stripe.Checkout;
 using Stripe.V2;
+using Stripe;
 
 namespace TGTOAT.Controllers
 {
@@ -422,7 +423,7 @@ namespace TGTOAT.Controllers
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 
-                Address address = new Address
+                Data.Address address = new Data.Address
                 {
                     UserId = user.Id,
                     AddressLineOne = null,
@@ -586,7 +587,7 @@ namespace TGTOAT.Controllers
                         // If the user's Address is null, create a new one
                         if (existingUser.Address == null)
                         {
-                            existingUser.Address = new Address
+                            existingUser.Address = new Data.Address
                             {
                                 UserId = existingUser.Id
                             };
@@ -755,8 +756,14 @@ namespace TGTOAT.Controllers
 
         // GET: /User/Payment
         [HttpGet]
-        public IActionResult Payment(bool? didSucceed)
+        public IActionResult Payment(bool? didSucceed, string? receiptUrl)
         {
+            // Check if a receiptUrl was passed in
+            if (receiptUrl != null)
+            {
+                ViewBag.ReceiptUrl = receiptUrl;
+            }
+
             // Check if the payment was successful (or if it went through at all)
             if (didSucceed.HasValue)
             {
@@ -804,35 +811,56 @@ namespace TGTOAT.Controllers
             {
                 PaymentMethodTypes = new List<string> { "card" },
                 LineItems = new List<SessionLineItemOptions>
-            {
-                new SessionLineItemOptions
                 {
-                    PriceData = new SessionLineItemPriceDataOptions
+                    new SessionLineItemOptions
                     {
-                        Currency = "usd",
-                        UnitAmount = (long)(amount * 100), // For some reason Stripe requires the amount in cents
-                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        PriceData = new SessionLineItemPriceDataOptions
                         {
-                            Name = "Course Payment",
+                            Currency = "usd",
+                            UnitAmount = (long)(amount * 100), // For some reason Stripe requires the amount in cents
+                            ProductData = new SessionLineItemPriceDataProductDataOptions
+                            {
+                                Name = "Course Payment",
+                            },
                         },
+                        Quantity = 1,
                     },
-                    Quantity = 1,
                 },
-            },
                 Mode = "payment",
-                SuccessUrl = Url.Action("PaymentSuccess", "User", new { amountPaid = amount }, Request.Scheme),
-                CancelUrl = Url.Action("PaymentFailure", "User", null, Request.Scheme),
+                SuccessUrl = $"{Request.Scheme}://{Request.Host}/User/PaymentSuccess?sessionId={{CHECKOUT_SESSION_ID}}&amountPaid={amount}",
+                CancelUrl = $"{Request.Scheme}://{Request.Host}/User/PaymentFailure",
             };
 
             var service = new SessionService();
             Session session = service.Create(options);
 
+
             return Redirect(session.Url);
         }
 
         // If the payment succeeded
-        public ActionResult PaymentSuccess()
+        public ActionResult PaymentSuccess(string sessionId)
         {
+            // Grab the session details
+            var service = new SessionService();
+            var session = service.Get(sessionId);
+
+            // Get the PaymentIntent ID
+            var paymentIntentId = session.PaymentIntentId;
+
+            // Get the charge associated with the PaymentIntent
+            var chargeService = new ChargeService();
+            var chargeListOptions = new ChargeListOptions
+            {
+                PaymentIntent = paymentIntentId,
+                Limit = 1
+            };
+
+            var charges = chargeService.List(chargeListOptions);
+
+            // Get the receipt URL
+            var receiptUrl = charges.Data.First().ReceiptUrl;
+
             // Grab the amount paid
             var amountPaid = decimal.Parse(Request.Query["amountPaid"]);
 
@@ -842,7 +870,10 @@ namespace TGTOAT.Controllers
             _context.User.Update(user);
             _context.SaveChanges();
 
-            return RedirectToAction("Payment", "User", new { didSucceed = true });
+            // Pass the receipt URL to the view (using ViewBag)
+            ViewBag.ReceiptUrl = receiptUrl;
+
+            return RedirectToAction("Payment", "User", new { didSucceed = true, receiptUrl = receiptUrl });
         }
 
         // If the payment failed

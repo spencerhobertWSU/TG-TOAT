@@ -422,7 +422,145 @@ namespace TGTOAT.Controllers
             return File(imageBytes, "image/png");
         }
 
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
+            if (course == null)
+            {
+                return NotFound();
+            }
 
+            var viewModel = new AddCourseViewModel
+            {
+                CourseId = course.CourseId,
+                CourseNumber = course.CourseNumber,
+                CourseName = course.CourseName,
+                NumberOfCredits = course.NumberOfCredits,
+                SelectedDepartmentId = course.DepartmentId,
+                Departments = _context.Departments?.ToList() ?? new List<Departments>(),
+                CampusList = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "Ogden", Text = "Ogden Campus" },
+                    new SelectListItem { Value = "Davis", Text = "Davis Campus" }
+                },
+                Building = course.Building,  // This ensures the selected building is set
+                Buildings = GetBuildingListByCampus(course.Campus),  // Prepopulate buildings based on current campus
+                CourseDescription = course.CourseDescription,
+                DaysOfTheWeek = course.DaysOfTheWeek,
+                StartTime = course.StartTime,
+                EndTime = course.EndTime,
+                RoomNumber = course.RoomNumber,
+                Capacity = course.Capacity,
+                Campus = course.Campus,
+                Semester = course.Semester,
+                SemesterList = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "Spring", Text = "Spring" },
+                    new SelectListItem { Value = "Summer", Text = "Summer" },
+                    new SelectListItem { Value = "Fall", Text = "Fall" }
+                },
+                Year = course.Year,
+                SelectedInstructorId = _context.InstructorCourseConnection.FirstOrDefault(icc => icc.CourseId == id)?.InstructorID ?? 0,
+                Instructors = _context.User?.Where(u => u.UserRole == "Instructor").ToList() ?? new List<User>()
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(AddCourseViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var course = _context.Courses.FirstOrDefault(c => c.CourseId == model.CourseId);
+                if (course != null)
+                {
+                    course.CourseNumber = model.CourseNumber;
+                    course.CourseName = model.CourseName;
+                    course.DepartmentId = model.SelectedDepartmentId;
+                    course.Capacity = model.Capacity;
+                    course.Campus = model.Campus;
+                    course.Building = model.Building;
+                    course.RoomNumber = model.RoomNumber;
+                    course.DaysOfTheWeek = model.DaysOfTheWeek;
+                    course.StartTime = model.StartTime;
+                    course.EndTime = model.EndTime;
+                    course.NumberOfCredits = model.NumberOfCredits;
+                    course.CourseDescription = model.CourseDescription;
+                    course.Semester = model.Semester;
+                    course.Year = model.Year;
+
+                    var instructorConnection = _context.InstructorCourseConnection.FirstOrDefault(icc => icc.CourseId == course.CourseId);
+                    if (instructorConnection != null)
+                    {
+                        instructorConnection.InstructorID = model.SelectedInstructorId;
+                    }
+
+                    _context.SaveChanges();
+
+                    // Redirect to the Courses page after saving
+                    return RedirectToAction("Courses");
+                }
+            }
+
+            // If model is invalid, repopulate necessary lists
+            model.Departments = _context.Departments.ToList();
+            model.Instructors = _context.User.Where(u => u.UserRole == "Instructor").ToList();
+            return View(model);
+        }
+
+        [HttpGet]
+        private List<SelectListItem> GetBuildingListByCampus(string campus)
+        {
+            var buildings = new List<SelectListItem>();
+
+            if (campus == "Ogden")
+            {
+                buildings = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "Browning Center", Text = "Browning Center" },
+                    new SelectListItem { Value = "Elizabeth Hall", Text = "Elizabeth Hall" },
+                    new SelectListItem { Value = "Engineering Technology", Text = "Engineering Technology" },
+                    new SelectListItem { Value = "Hurst Center For Lifelong Learning", Text = "Hurst Center For Lifelong Learning" },
+                    new SelectListItem { Value = "Interprofessional Education Building", Text = "Interprofessional Education Building" },
+                    new SelectListItem { Value = "Kimball Visual Arts Center", Text = "Kimball Visual Arts Center" },
+                    new SelectListItem { Value = "Lampros Hall", Text = "Lampros Hall" },
+                    new SelectListItem { Value = "Lind Lecture Hall", Text = "Lind Lecture Hall" },
+                    new SelectListItem { Value = "Lindquist Hall", Text = "Lindquist Hall" },
+                    new SelectListItem { Value = "Marriott Health Services", Text = "Marriott Health Services" },
+                    new SelectListItem { Value = "McKay Education", Text = "McKay Education" },
+                    new SelectListItem { Value = "Noorda Engineering, Applied Science & Technology", Text = "Noorda Engineering, Applied Science & Technology" },
+                    new SelectListItem { Value = "Noorda High Bay", Text = "Noorda High Bay" },
+                    new SelectListItem { Value = "Shepherd Union", Text = "Shepherd Union" },
+                    new SelectListItem { Value = "Steward Library", Text = "Steward Library" },
+                    new SelectListItem { Value = "Student Services Center", Text = "Student Services Center" },
+                    new SelectListItem { Value = "Swenson Building", Text = "Swenson Building" },
+                    new SelectListItem { Value = "Tracey Hall Science Center", Text = "Tracey Hall Science Center" },
+                    new SelectListItem { Value = "Wattis Building", Text = "Wattis Building" }
+                };
+            }
+            else if (campus == "Davis")
+            {
+                buildings = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "Building D2", Text = "Building D2" },
+                    new SelectListItem { Value = "Building D13", Text = "Building D13" },
+                    new SelectListItem { Value = "Stewart Center", Text = "Stewart Center" },
+                    new SelectListItem { Value = "Center for Continuing Education", Text = "Center for Continuing Education" },
+                    new SelectListItem { Value = "Computer & Automotive Engineering", Text = "Computer & Automotive Engineering" }
+                };
+            }
+
+            return buildings;
+        }
+
+        [HttpGet]
+        public JsonResult GetBuildingsByCampus(string campus)
+        {
+            var buildings = GetBuildingListByCampus(campus);  // Reuse the helper method
+            return Json(buildings);  // Return the list as JSON for AJAX
+        }
 
 
         [HttpGet]

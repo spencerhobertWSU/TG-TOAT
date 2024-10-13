@@ -55,8 +55,8 @@
                 <td>@course.StartTime?.ToString("hh:mm tt")</td>  <!-- Displaying time only -->
                 <td>@course.EndTime?.ToString("hh:mm tt")</td>    <!-- Displaying time only -->
 
-                <td>                    
-                    <a href="#" class="btn btn-primary">Edit</a>  <!-- Edit button -->
+                <td>
+                    <a href="@Url.Action("Edit", "Course", new { id = course.CourseId })" class="btn btn-primary">Edit</a>  <!-- Edit button -->
                     <a href="@Url.Action("Delete", "Course", new { id = course.CourseId })" class="btn btn-danger"
                        onclick="return confirm('Are you sure you want to delete this course?');">Delete</a>                 <!-- Delete button-->
 

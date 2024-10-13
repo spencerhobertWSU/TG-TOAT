@@ -24,26 +24,31 @@
 
 <form method="get" asp-action="FilterCourses">
     <div class="row mb-3">
-      <div class="col">
-          <div class="form-group">
-            <label for="departmentSelect">Select Department:</label>
-            <select asp-for="DepartmentId" class="form-control" id="departmentSelect" asp-items="@(new SelectList(Model.Departments, "DepartmentId", "DepartmentName"))" required>
-            <option value="">Select a department</option>
-          </select>
-         </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="departmentSelect">Select Department:</label>
+                <select asp-for="DepartmentId" class="form-control" id="departmentId" name="DepartmentId">
+                    <!-- Fixed name to match model -->
+                    <option value="">All Departments</option> <!-- This allows departmentId to be null -->
+                    @foreach (var department in Model.Departments)
+                    {
+                        <option value="@department.DepartmentId">@department.DepartmentName</option>
+                    }
+                </select>
+            </div>
         </div>
         <div class="col">
-         <div class="form-group">
-           <label for="searchTerm">Search For Courses:</label>
-            <div class="input-group">
-               <input type="text" class="form-control" id="searchTerm" placeholder="Search for courses..." name="searchTerm" />
-                <div class="input-group-append">
-                     <button class="btn btn-primary" type="submit">Search</button>
+            <div class="form-group">
+                <label for="searchTerm">Search For Courses:</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="searchTerm" placeholder="Search for courses..." value="@Context.Request.Query["searchTerm"]" name="searchTerm" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
                 </div>
-             </div>
-          </div>
-      </div>
-  </div>
+            </div>
+        </div>
+    </div>
 </form>
 
 
@@ -107,19 +112,31 @@
                 </td>
                 <td>@course.RoomNumber</td>
                 <td>
+                    @{
+                        // Assuming you have the current student ID accessible in your view.
+                        var currentStudentId = Model.CurrentStudent; // Adjust as necessary _auth.GetCurrentUserId();
+                        var isRegistered = Model.StudentCourseConnection
+                        .Any(conn => conn.StudentID == currentStudentId && conn.CourseId == course.CourseId);
+                    }
 
                     <div class="row">
                         <div class="col-auto">
-                    <form method="post" asp-action="Register">
-                        <input type="hidden" name="CourseId" value="@course.CourseId" />
-                        <button type="submit" class="btn btn-primary">Register</button>
-                    </form>
-                        </div>
-                            <div class="col-auto">
-                    <form method="post" asp-action="Drop">
-                        <input type="hidden" name="CourseId" value="@course.CourseId" />
-                        <button type="submit" class="btn btn-danger">Drop</button>
-                    </form>
+                            @if (!isRegistered) // Show the Register button if not registered
+                            {
+                                <form id="registerForm" method="post" asp-action="Register">
+                                    <input type="hidden" name="CourseId" value="@course.CourseId" />
+                                    <button type="submit" class="btn btn-primary" id="registerBtn">Register</button>
+                                </form>
+                            }
+                            else // Show the Drop button if registered
+                            {
+                                <div id="dropContainer">
+                                    <form id="dropForm" method="post" asp-action="Drop">
+                                        <input type="hidden" name="CourseId" value="@course.CourseId" />
+                                        <button type="submit" class="btn btn-danger" id="dropBtn">Drop</button>
+                                    </form>
+                                </div>
+                            }
                         </div>
                     </div>
                 </td>
@@ -128,3 +145,5 @@
         }
     </tbody>
 </table>
+
+<script src="~/js/account.js" asp-append-version="true"></script>

@@ -41,8 +41,10 @@ namespace TGTOAT.Data
         [Required(ErrorMessage = "Assignment type is required.")]
         public string AssignmentType { get; set; }
 
-        [AllowNull]
-        public string? Submission { get; set; }
+
+        //Delete this attribute. This has to go with the StudentAssignment table
+        //[AllowNull]
+        //public string? Submission { get; set; }
 
         [Required]
         public int CourseId { get; set; }

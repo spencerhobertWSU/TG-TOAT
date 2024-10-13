@@ -25,6 +25,8 @@ namespace TGTOAT.Data
         public DbSet<InstructorCourseConnection> InstructorCourseConnection { get; set; } = default!;
         public DbSet<StudentCourseConnection> StudentCourseConnection { get; set; } = default!;
 
+        public DbSet<StudentAssignments> StudentAssignment { get; set; } = default!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Seed dummy data

@@ -160,3 +160,24 @@ function UpdateInfo() {
     }
     document.getElementById("DaysOfTheWeek").value = days;
 }
+
+function toggleButtons(event) {
+
+    event.preventDefault(); // Prevent form submission for the button click
+
+    const registerBtn = document.getElementById('registerBtn');
+    const dropContainer = document.getElementById('dropContainer');
+
+    if (registerBtn) {
+        // If the Register button exists, the user is not registered
+        dropContainer.style.display = 'block'; // Show the Drop button
+        registerBtn.style.display = 'none'; // Hide the Register button
+        dropContainer.querySelector('button').form.submit(); // Submit the drop form
+    } else {
+        // If the Register button does not exist, the user is registered
+        registerBtn.style.display = 'block'; // Show the Register button
+        dropContainer.style.display = 'none'; // Hide the Drop button
+        registerBtn.form.submit(); // Submit the register form
+
+    }
+}

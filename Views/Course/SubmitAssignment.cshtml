@@ -2,8 +2,22 @@
 
 <h1>Submit Assignment: @Model.AssignmentName</h1>
 
+@{
+    ViewData["Title"] = "Submit Assignment";
+
+            
+            Layout = "~/Views/Shared/_StudentCourse.cshtml";
+        
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
+}
+}
+
 <p>@Model.Description</p>
-<p><strong>Points:</strong> @Model.Points</p>
+<p ><strong>Points:</strong> @Model.Points</p>
 
 <form asp-action="SubmitAssignment" asp-controller="Course" method="post" enctype="multipart/form-data">
     <input type="hidden" asp-for="AssignmentId" />
@@ -23,6 +37,7 @@
             <small class="form-text text-muted">Please upload only PDF or Word documents.</small>
         </div>
     }
-
+    // submitted assignment
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+

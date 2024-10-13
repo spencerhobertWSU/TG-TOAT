@@ -331,7 +331,7 @@ namespace TGTOAT.Controllers
                         {
                             title = assignment.AssignmentName,
                             start = assignment.DueDateAndTime.ToString("yyyy-MM-ddTHH:mm:ss"),
-                            url = $"/Course/Assignments/{course.CourseId}"  // Link to course's assignment page
+                            url = $"/Course/SubmitPage?assignmentId={assignment.AssignmentId}"
                         });
                     }
                 }

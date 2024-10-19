@@ -7,12 +7,17 @@ namespace TGTOAT.Data
     public class StudentAssignments
 {
         [Key]
+        [Required]
         public int AssignmentGradeId { get; set; }
-        public int AssignmentId { get; set; }
-        public Assignment? Assignments { get; set; }
-        public int StudentId { get; set; }
-        public StudentCourseConnection? studentCourseConnection { get; set; }
 
+        [Required]
+        public int AssignmentId { get; set; }
+        [Required]
+        public int StudentId { get; set; }
+
+
+        [Required]
+        public int MaxGrade { get; set; }
         public int? Grade {  get; set; }
 
 
@@ -27,7 +32,8 @@ namespace TGTOAT.Data
 
 
 
-
+        public Assignment? Assignments { get; set; }
+        public StudentCourseConnection? studentCourseConnection { get; set; }
 
     }
 }

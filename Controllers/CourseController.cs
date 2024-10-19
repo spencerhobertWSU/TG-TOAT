@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.ComponentModel;
 using TGTOAT.Data;
 using TGTOAT.Helpers;
 using TGTOAT.Models;
@@ -92,6 +94,9 @@ namespace TGTOAT.Controllers
 
 
 
+
+
+
         public ActionResult Assignments(int? id)
         {
             if (_auth.GetUser == null)
@@ -122,6 +127,11 @@ namespace TGTOAT.Controllers
             }
 
         }
+
+
+
+
+
 
         // Handle the form submission for adding a course
         [HttpPost]
@@ -531,7 +541,7 @@ namespace TGTOAT.Controllers
         }
     
 
-    [HttpPost]
+        [HttpPost]
         public async Task<ActionResult> SubmitAssignment(SubmitAssignmentViewModel model, int assignmentId, IFormFile FileSubmission, string TextSubmission)
         {
             var assignment = _context.Assignments.FirstOrDefault(a => a.AssignmentId == assignmentId);
@@ -643,11 +653,74 @@ namespace TGTOAT.Controllers
             return RedirectToAction("SubmitPage", new { assignmentId = assignmentId });
         }
 
+
+        public ActionResult AssignmentSubmissions(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return NotFound();
+            }
+
+            var studentAssignments = _context.StudentAssignment
+                                 .Where(sa => sa.AssignmentId == id)
+                                 .ToList();
+            AssignmentSubmissionsViewModel model = new AssignmentSubmissionsViewModel
+            {
+                StudentAssignments = studentAssignments,
+                AssignmentId = id.Value              
+            };
+
+            return View(model);
+
             
+        }
 
 
-              
+
+
+
+
+
+        /*public ActionResult Assignments(int? id)
+        {
+            if (_auth.GetUser == null)
+            {
+                return Redirect("User/Login");
+
+            }
+            var course = _context.Courses
+                .Include(c => c.Assignments)
+                .FirstOrDefault(c => c.CourseId == id);
+
+            var dept = _context.Departments.FirstOrDefault(d => d.DepartmentId == course.DepartmentId);
+            if (course == null)
+            {
+                return Redirect("User/Index");
+            }
+            else
+            {
+                var viewModel = new CourseHome
+                {
+                    CourseId = course.CourseId,
+                    UserRole = _auth.GetRole(),
+                    Department = dept.DepartmentName,
+                    CourseNum = course.CourseNumber,
+                    Assignments = course.Assignments.ToList()
+                };
+                return View(viewModel);
+            }
+
+        }*/
+
+
+
+
     }
+
+
+
+
+
 
 }
 #endregion

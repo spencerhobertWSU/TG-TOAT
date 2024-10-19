@@ -19,10 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\fontawesome\webfonts\fa-brands-400.woff2" />
     <None Include="wwwroot\fontawesome\webfonts\fa-regular-400.woff2" />
     <None Include="wwwroot\fontawesome\webfonts\fa-solid-900.woff2" />
@@ -34,6 +30,11 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Course\" />
+    <Folder Include="Models\User\" />
   </ItemGroup>
 
 </Project>

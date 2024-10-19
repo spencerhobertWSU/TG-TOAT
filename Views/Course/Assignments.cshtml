@@ -37,9 +37,7 @@
         </a>
     </div>
 <div class="row">
-        @{
-
-            if (Model.UserRole == "Student")
+        @{if (Model.UserRole == "Student")
             {
                 @foreach (var assignment in Model.Assignments)
                 {
@@ -64,6 +62,23 @@
             else if (Model.UserRole == "Instructor")
             {
                 <a asp-area="" asp-controller="Course" asp-route-id="@Model.CourseId" asp-action="AddAssignment">Add Assignment</a>
+
+                @foreach (var assignment in Model.Assignments)
+                {
+                    <div class="row" style="align-items: center;">
+                        <div class="col-md-6 text-left">
+                            <a asp-area="" asp-controller="Course" asp-route-id="@assignment.AssignmentId" asp-action="AssignmentSubmissions" class="btn btn-link">
+                                @assignment.AssignmentName @assignment.DueDateAndTime.ToString("MM/dd/yyyy hh:mm tt")
+                            </a>
+
+                        </div>
+                    </div>
+
+                }
+
+
+                
+
 
             }
 

@@ -10,7 +10,10 @@ using Stripe;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<UserContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("UserContext")));
+{
+    var connectionString = builder.Configuration.GetConnectionString("UserContext");
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+});
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IAuthentication, Authentication>();
 

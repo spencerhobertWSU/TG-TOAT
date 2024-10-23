@@ -36,6 +36,12 @@ namespace TGTOAT.Data
                 new Departments { DepartmentId = 4, DepartmentName = "Biology" },
                 new Departments { DepartmentId = 5, DepartmentName = "Chemistry" }
             );
+
+            modelBuilder.Entity<Assignment>()
+                .HasOne(a => a.InstructorCourse)
+                .WithMany()
+                .HasForeignKey(a => a.InstructorCourseId)
+                .OnDelete(DeleteBehavior.Restrict); // Change this to Restrict
         }
     }
 

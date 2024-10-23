@@ -12,8 +12,8 @@ using TGTOAT.Data;
 namespace TGTOAT.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20241021204126_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241023045616_AzureSqlServerMigration")]
+    partial class AzureSqlServerMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,9 +21,9 @@ namespace TGTOAT.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.10")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("TGTOAT.Data.Address", b =>
                 {
@@ -32,15 +32,15 @@ namespace TGTOAT.Migrations
 
                     b.Property<string>("AddressLineOne")
                         .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("AddressLineTwo")
                         .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("ZipCode")
                         .HasMaxLength(30)
-                        .HasColumnType("varchar(30)");
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("UserId");
 
@@ -53,17 +53,17 @@ namespace TGTOAT.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("AssignmentId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AssignmentId"));
 
                     b.Property<string>("AssignmentDescription")
                         .IsRequired()
                         .HasMaxLength(60)
-                        .HasColumnType("varchar(60)");
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("AssignmentName")
                         .IsRequired()
                         .HasMaxLength(60)
-                        .HasColumnType("varchar(60)");
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<int>("AssignmentPoints")
                         .HasColumnType("int");
@@ -71,13 +71,13 @@ namespace TGTOAT.Migrations
                     b.Property<string>("AssignmentType")
                         .IsRequired()
                         .HasMaxLength(60)
-                        .HasColumnType("varchar(60)");
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DueDateAndTime")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("InstructorCourseId")
                         .HasColumnType("int");
@@ -97,17 +97,17 @@ namespace TGTOAT.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("CourseId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CourseId"));
 
                     b.Property<string>("Building")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Campus")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Capacity")
                         .HasColumnType("int");
@@ -115,28 +115,28 @@ namespace TGTOAT.Migrations
                     b.Property<string>("CourseDescription")
                         .IsRequired()
                         .HasMaxLength(400)
-                        .HasColumnType("varchar(400)");
+                        .HasColumnType("nvarchar(400)");
 
                     b.Property<string>("CourseName")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("varchar(30)");
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("CourseNumber")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("varchar(10)");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("DaysOfTheWeek")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<TimeOnly?>("EndTime")
                         .IsRequired()
-                        .HasColumnType("time(6)");
+                        .HasColumnType("time");
 
                     b.Property<int>("NumberOfCredits")
                         .HasColumnType("int");
@@ -148,11 +148,11 @@ namespace TGTOAT.Migrations
                     b.Property<string>("Semester")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("varchar(10)");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<TimeOnly?>("StartTime")
                         .IsRequired()
-                        .HasColumnType("time(6)");
+                        .HasColumnType("time");
 
                     b.Property<int>("Year")
                         .HasColumnType("int");
@@ -170,12 +170,12 @@ namespace TGTOAT.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("DepartmentId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DepartmentId"));
 
                     b.Property<string>("DepartmentName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("DepartmentId");
 
@@ -215,7 +215,7 @@ namespace TGTOAT.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("InstructorCourseConnectionId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InstructorCourseConnectionId"));
 
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
@@ -238,13 +238,13 @@ namespace TGTOAT.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("AssignmentGradeId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AssignmentGradeId"));
 
                     b.Property<int>("AssignmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("FileSubmission")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Grade")
                         .HasColumnType("int");
@@ -253,10 +253,10 @@ namespace TGTOAT.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("SubmissionDate")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("TextSubmission")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("studentCourseConnectionStudentCourseId")
                         .HasColumnType("int");
@@ -276,7 +276,7 @@ namespace TGTOAT.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("StudentCourseId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentCourseId"));
 
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
@@ -299,13 +299,13 @@ namespace TGTOAT.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("AmountDue")
                         .HasColumnType("decimal(18, 2)");
 
                     b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("CoursesCourseId")
                         .HasColumnType("int");
@@ -313,30 +313,30 @@ namespace TGTOAT.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("varchar(30)");
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(60)
-                        .HasColumnType("varchar(60)");
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(60)
-                        .HasColumnType("varchar(60)");
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ProfileImageBase64")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserRole")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -365,7 +365,7 @@ namespace TGTOAT.Migrations
                     b.HasOne("TGTOAT.Data.InstructorCourseConnection", "InstructorCourse")
                         .WithMany()
                         .HasForeignKey("InstructorCourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Course");

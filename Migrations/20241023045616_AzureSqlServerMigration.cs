@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -9,55 +8,43 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TGTOAT.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class AzureSqlServerMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterDatabase()
-                .Annotation("MySql:CharSet", "utf8mb4");
-
             migrationBuilder.CreateTable(
                 name: "Departments",
                 columns: table => new
                 {
                     DepartmentId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    DepartmentName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DepartmentName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Departments", x => x.DepartmentId);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "Courses",
                 columns: table => new
                 {
                     CourseId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     DepartmentId = table.Column<int>(type: "int", nullable: false),
-                    CourseNumber = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CourseName = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CourseDescription = table.Column<string>(type: "varchar(400)", maxLength: 400, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CourseNumber = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    CourseName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    CourseDescription = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
                     NumberOfCredits = table.Column<int>(type: "int", nullable: false),
                     Capacity = table.Column<int>(type: "int", nullable: false),
-                    Campus = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Building = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Campus = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Building = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     RoomNumber = table.Column<int>(type: "int", nullable: false),
-                    DaysOfTheWeek = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    StartTime = table.Column<TimeOnly>(type: "time(6)", nullable: false),
-                    EndTime = table.Column<TimeOnly>(type: "time(6)", nullable: false),
-                    Semester = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DaysOfTheWeek = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartTime = table.Column<TimeOnly>(type: "time", nullable: false),
+                    EndTime = table.Column<TimeOnly>(type: "time", nullable: false),
+                    Semester = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -69,28 +56,21 @@ namespace TGTOAT.Migrations
                         principalTable: "Departments",
                         principalColumn: "DepartmentId",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Email = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Password = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    FirstName = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    LastName = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    BirthDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UserRole = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ProfileImageBase64 = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserRole = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProfileImageBase64 = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AmountDue = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CoursesCourseId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -102,20 +82,16 @@ namespace TGTOAT.Migrations
                         column: x => x.CoursesCourseId,
                         principalTable: "Courses",
                         principalColumn: "CourseId");
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "Address",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    AddressLineOne = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    AddressLineTwo = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ZipCode = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    AddressLineOne = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    AddressLineTwo = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    ZipCode = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -126,15 +102,14 @@ namespace TGTOAT.Migrations
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "InstructorCourseConnection",
                 columns: table => new
                 {
                     InstructorCourseConnectionId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     InstructorID = table.Column<int>(type: "int", nullable: false),
                     CourseId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -153,15 +128,14 @@ namespace TGTOAT.Migrations
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "StudentCourseConnection",
                 columns: table => new
                 {
                     StudentCourseId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     StudentID = table.Column<int>(type: "int", nullable: false),
                     CourseId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -180,24 +154,20 @@ namespace TGTOAT.Migrations
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "Assignments",
                 columns: table => new
                 {
                     AssignmentId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     InstructorCourseId = table.Column<int>(type: "int", nullable: false),
-                    AssignmentDescription = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    AssignmentName = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    DueDateAndTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    AssignmentDescription = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    AssignmentName = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    DueDateAndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AssignmentPoints = table.Column<int>(type: "int", nullable: false),
-                    AssignmentType = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AssignmentType = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     CourseId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -214,25 +184,22 @@ namespace TGTOAT.Migrations
                         column: x => x.InstructorCourseId,
                         principalTable: "InstructorCourseConnection",
                         principalColumn: "InstructorCourseConnectionId",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateTable(
                 name: "StudentAssignment",
                 columns: table => new
                 {
                     AssignmentGradeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     AssignmentId = table.Column<int>(type: "int", nullable: false),
                     StudentId = table.Column<int>(type: "int", nullable: false),
                     studentCourseConnectionStudentCourseId = table.Column<int>(type: "int", nullable: true),
                     Grade = table.Column<int>(type: "int", nullable: true),
-                    SubmissionDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    TextSubmission = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    FileSubmission = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    SubmissionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TextSubmission = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileSubmission = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -244,12 +211,11 @@ namespace TGTOAT.Migrations
                         principalColumn: "AssignmentId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StudentAssignment_StudentCourseConnection_studentCourseConne~",
+                        name: "FK_StudentAssignment_StudentCourseConnection_studentCourseConnectionStudentCourseId",
                         column: x => x.studentCourseConnectionStudentCourseId,
                         principalTable: "StudentCourseConnection",
                         principalColumn: "StudentCourseId");
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.InsertData(
                 table: "Departments",

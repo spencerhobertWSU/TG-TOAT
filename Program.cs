@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication;
 using TGTOAT.Data;
@@ -9,11 +10,10 @@ using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Update this line to use the UserContext connection string
 builder.Services.AddDbContext<UserContext>(options =>
-{
-    var connectionString = builder.Configuration.GetConnectionString("UserContext");
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-});
+    options.UseSqlServer(builder.Configuration.GetConnectionString("UserContext") ?? throw new InvalidOperationException("Connection string 'UserContext' not found.")));
+
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IAuthentication, Authentication>();
 

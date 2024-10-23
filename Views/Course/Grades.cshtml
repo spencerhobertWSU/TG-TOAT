@@ -1,20 +1,16 @@
-﻿@model TGTOAT.Models.CourseHome
+﻿@model TGTOAT.Models.CourseGradeViewModel
 
 @{
     ViewData["Title"] = "Home";
 
-        if (Model.UserRole == "Student")
-            {
-            Layout = "~/Views/Shared/_StudentCourse.cshtml";
-        }
-        else if (Model.UserRole == "Instructor")
-            {
-            Layout = "~/Views/Shared/_InstructorCourse.cshtml";
-        }
-            else
-        {
+    if (Model.UserRole == "Student")
+    {
+        Layout = "~/Views/Shared/_StudentCourse.cshtml";
     }
-    
+    else if (Model.UserRole == "Instructor")
+    {
+        Layout = "~/Views/Shared/_InstructorCourse.cshtml";
+    }    
 }
 
 
@@ -37,7 +33,7 @@
         </a>
     </div>
 <div class="row">
-    <div>Test</div>
+    <div>@Model.Grade</div>
 </div>    
 
 </div>

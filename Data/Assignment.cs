@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
+using System.ComponentModel.DataAnnotations.Schema;
 using TGTOAT.Models;
 
 namespace TGTOAT.Data
@@ -14,6 +14,8 @@ namespace TGTOAT.Data
 
         [Required(ErrorMessage = "Instructor Course ID is required.")]
         public int InstructorCourseId { get; set; }
+
+        [ForeignKey("InstructorCourseId")]
         public InstructorCourseConnection InstructorCourse { get; set; }
 
 

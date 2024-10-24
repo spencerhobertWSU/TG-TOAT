@@ -23,7 +23,6 @@
 @* <form asp-action="SubmitPage" asp-controller="Course" method="post" enctype="multipart/form-data"> *@
     <input type="hidden" name="AssignmentId" value="@Model.AssignmentId" />
 
-     <button type="submit" class="btn btn-primary">Re-submit Assignment</button> 
        <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="ReSubmitPage" asp-route-assignmentId="@Model.AssignmentId">
             Re-Submit
              </a>

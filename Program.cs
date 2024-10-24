@@ -7,13 +7,11 @@ using TGTOAT.Helpers;
 using Stripe;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<UserContext>(options =>
-{
-    var connectionString = builder.Configuration.GetConnectionString("UserContext");
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-});
+options.UseSqlServer(builder.Configuration.GetConnectionString("UserContext")));
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IAuthentication, Authentication>();
 

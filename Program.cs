@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Update this line to use the UserContext connection string
 builder.Services.AddDbContext<UserContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("UserContext") ?? throw new InvalidOperationException("Connection string 'UserContext' not found.")));
+  options.UseSqlServer(builder.Configuration.GetConnectionString("UserContext")));
 
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IAuthentication, Authentication>();

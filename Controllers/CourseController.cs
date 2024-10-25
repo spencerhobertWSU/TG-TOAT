@@ -92,6 +92,10 @@ namespace TGTOAT.Controllers
 
 
 
+
+
+
+
         public ActionResult Assignments(int? id)
         {
             if (_auth.GetUser == null)
@@ -122,6 +126,11 @@ namespace TGTOAT.Controllers
             }
 
         }
+
+
+
+
+
 
         // Handle the form submission for adding a course
         [HttpPost]
@@ -452,6 +461,128 @@ namespace TGTOAT.Controllers
 
         // Smegma
 
+        public ActionResult ViewSubmissions(int assignmentId)
+        {
+            var submissions = _context.StudentAssignment
+                .Include(sa => sa.Assignments)
+                .Where(sa => sa.AssignmentId == assignmentId)
+                .ToList();
+
+            var viewModel = submissions.Select(sa => new StudentSubmissionViewModel
+            {
+                StudentFullName = _context.User
+                    .Where(u => u.Id == sa.StudentId)
+                    .Select(u => u.FullName)
+                    .FirstOrDefault() ?? "Unknown",
+
+                SubmissionDate = sa.SubmissionDate,
+                MaxPoints = sa.Assignments?.AssignmentPoints ?? 0,
+                GivenPoints = sa.Grade.HasValue ? sa.Grade.Value.ToString() : "UG",
+                AssignmentId = sa.AssignmentId, 
+                StudentId = sa.StudentId          
+            }).ToList();
+
+            return View(viewModel);
+        }
+
+
+
+
+        public ActionResult ViewSubmission(int assignmentId, int studentId)
+        {
+            var assignment = _context.Assignments
+                .FirstOrDefault(a => a.AssignmentId == assignmentId);
+
+            var submission = _context.StudentAssignment
+                .Include(sa => sa.studentCourseConnection)
+                .FirstOrDefault(sa => sa.AssignmentId == assignmentId && sa.StudentId == studentId);
+
+            if (assignment == null || submission == null)
+            {
+                return NotFound();
+            }
+
+            var user = _context.User
+                .FirstOrDefault(u => u.Id == submission.StudentId);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new List<SubmissionDetailViewModel>
+    {
+        new SubmissionDetailViewModel
+        {
+            StudentFullName = user.FullName,
+            DueDate = assignment.DueDateAndTime,
+            SubmissionDate = submission.SubmissionDate,
+            MaxPoints = assignment.AssignmentPoints,
+            GivenPoints = submission.Grade.HasValue ? submission.Grade.Value.ToString() : "UG",
+            TextSubmission = submission.TextSubmission,
+            FileSubmission = submission.FileSubmission,
+            HasFile = !string.IsNullOrEmpty(submission.FileSubmission),
+            AssignmentId = assignment.AssignmentId, // Include the assignment ID
+            StudentId = submission.StudentId // Include the student ID
+        }
+    };
+
+            return View(viewModel);
+        }
+
+
+
+
+
+        [HttpPost]
+        public ActionResult UpdateSubmission(int assignmentId, int studentId, string givenPoints)
+        {
+            
+            var submission = _context.StudentAssignment
+                .FirstOrDefault(sa => sa.AssignmentId == assignmentId && sa.StudentId == studentId);
+
+            if (submission != null)
+            {
+                if (int.TryParse(givenPoints, out int grade))
+                {
+                    submission.Grade = grade; 
+                    _context.SaveChanges();    
+                    return RedirectToAction("ViewSubmissions", new { assignmentId });
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid grade input. Please enter a number.");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Submission not found.");
+            }
+
+            
+            var submissions = _context.StudentAssignment
+                .Include(sa => sa.Assignments)
+                .Where(sa => sa.AssignmentId == assignmentId)
+                .ToList();
+
+            var viewModel = submissions.Select(sa => new StudentSubmissionViewModel
+            {
+                StudentFullName = _context.User
+                    .Where(u => u.Id == sa.StudentId)
+                    .Select(u => u.FullName)
+                    .FirstOrDefault() ?? "Unknown",
+
+                SubmissionDate = sa.SubmissionDate,
+                MaxPoints = sa.Assignments?.AssignmentPoints ?? 0,
+                GivenPoints = sa.Grade.HasValue ? sa.Grade.Value.ToString() : "UG",
+                AssignmentId = sa.AssignmentId,
+                StudentId = sa.StudentId
+            }).ToList();
+
+            return View("ViewSubmissions", viewModel);
+        }
+
+
 
 
         #region SubmitAssignments
@@ -651,3 +782,9 @@ namespace TGTOAT.Controllers
 
 }
 #endregion
+
+
+
+
+
+

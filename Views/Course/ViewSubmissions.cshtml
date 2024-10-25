@@ -1,0 +1,36 @@
+﻿@model List<TGTOAT.Models.StudentSubmissionViewModel>
+
+<h1>Submissions</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Submission Date</th>
+            <th>Max Points</th>
+            <th>Given Points</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var submission in Model)
+        {
+            <tr>
+                <td>@submission.StudentFullName</td>
+                <td>@submission.SubmissionDate.ToString("MM/dd/yyyy hh:mm tt")</td>
+                <td>@submission.MaxPoints</td>
+                <td>@submission.GivenPoints</td>
+                <td>
+                    <a class="btn btn-warning"
+                       asp-area=""
+                       asp-controller="Course"
+                       asp-action="ViewSubmission"
+                       asp-route-assignmentId="@submission.AssignmentId"
+                       asp-route-studentId="@submission.StudentId">
+                        Grade
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

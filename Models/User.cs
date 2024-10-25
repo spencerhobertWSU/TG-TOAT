@@ -43,7 +43,7 @@ public class User
 
     [Display(Name = "ProfileImageBase64")]
     [Required]
-    public string? ProfileImageBase64 { get; set; }
+    public string? ProfileImageBase64 { get; set; } = string.Empty;
 
     //Lazy Loading Nav Link
     public Address Address { get; set; }

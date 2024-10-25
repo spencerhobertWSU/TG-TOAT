@@ -1,30 +1,49 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\",
+
+  "WorkspaceRootPath": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\views\\course\\viewsubmission.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\course\\viewsubmission.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FCF4FEA7-F279-424F-945C-32CD132F3C44}|..\\TGTOATTest\\TGTOATTest.csproj|c:\\users\\garcia\\source\\repos\\tgtoattest\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\models\\submissiondetailviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:models\\submissiondetailviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\garcia\\source\\repos\\tg-toat2\\views\\course\\submitpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\course\\submitpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\views\\course\\assignments.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{FCF4FEA7-F279-424F-945C-32CD132F3C44}|..\\TGTOATTest\\TGTOATTest.csproj|c:\\users\\garcia\\source\\repos\\tgtoattest\\tgtoattest.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\garcia\\source\\repos\\tg-toat2\\views\\course\\submitassignment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\course\\submitassignment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\garcia\\source\\repos\\tg-toat2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\garcia\\source\\repos\\tg-toat2\\views\\course\\addassignment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\course\\addassignment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\garcia\\source\\repos\\tg-toat2\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\garcia\\source\\repos\\tg-toat2\\views\\course\\assignments.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\course\\assignments.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\views\\course\\viewsubmissions.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\course\\viewsubmissions.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\garcia\\source\\repos\\tg-toat2\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\garcia\\source\\repos\\tg-toat2\\views\\course\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\course\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\logan\\documents\\github\\tg-toat\\models\\studentsubmissionviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:models\\studentsubmissionviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\garcia\\source\\repos\\tg-toat2\\views\\user\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\user\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +53,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,80 +74,149 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Assignments.cshtml",
-              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Views\\Course\\Assignments.cshtml",
-              "RelativeDocumentMoniker": "Views\\Course\\Assignments.cshtml",
-              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Views\\Course\\Assignments.cshtml",
-              "RelativeToolTip": "Views\\Course\\Assignments.cshtml",
-              "ViewState": "AgIAACQAAAAAAAAAAAAQwD0AAAAAAAAAAAAAAA==",
+
+              "DocumentIndex": 1,
+              "Title": "SubmitPage.cshtml",
+              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\Views\\Course\\SubmitPage.cshtml",
+              "RelativeDocumentMoniker": "Views\\Course\\SubmitPage.cshtml",
+              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\Views\\Course\\SubmitPage.cshtml",
+              "RelativeToolTip": "Views\\Course\\SubmitPage.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABcAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-21T23:24:47.566Z",
+              "WhenOpened": "2024-10-24T01:40:01.737Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ViewSubmissions.cshtml",
-              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Views\\Course\\ViewSubmissions.cshtml",
-              "RelativeDocumentMoniker": "Views\\Course\\ViewSubmissions.cshtml",
-              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Views\\Course\\ViewSubmissions.cshtml",
-              "RelativeToolTip": "Views\\Course\\ViewSubmissions.cshtml",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Title": "SubmitAssignment.cshtml",
+              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\Views\\Course\\SubmitAssignment.cshtml",
+              "RelativeDocumentMoniker": "Views\\Course\\SubmitAssignment.cshtml",
+              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\Views\\Course\\SubmitAssignment.cshtml",
+              "RelativeToolTip": "Views\\Course\\SubmitAssignment.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACcAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-21T23:00:25.881Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ViewSubmission.cshtml",
-              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Views\\Course\\ViewSubmission.cshtml",
-              "RelativeDocumentMoniker": "Views\\Course\\ViewSubmission.cshtml",
-              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Views\\Course\\ViewSubmission.cshtml",
-              "RelativeToolTip": "Views\\Course\\ViewSubmission.cshtml",
-              "ViewState": "AgIAACMAAAAAAAAAAAAAwDwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-21T22:43:12.524Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CourseController.cs",
-              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Controllers\\CourseController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CourseController.cs",
-              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Controllers\\CourseController.cs",
-              "RelativeToolTip": "Controllers\\CourseController.cs",
-              "ViewState": "AgIAAMwBAAAAAAAAAAAqwBMCAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-21T22:05:01.601Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SubmissionDetailViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Models\\SubmissionDetailViewModel.cs",
-              "RelativeDocumentMoniker": "Models\\SubmissionDetailViewModel.cs",
-              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Models\\SubmissionDetailViewModel.cs",
-              "RelativeToolTip": "Models\\SubmissionDetailViewModel.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-21T22:36:14.201Z",
+              "WhenOpened": "2024-10-24T01:39:04.198Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "StudentSubmissionViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Models\\StudentSubmissionViewModel.cs",
-              "RelativeDocumentMoniker": "Models\\StudentSubmissionViewModel.cs",
-              "ToolTip": "C:\\Users\\logan\\Documents\\GitHub\\TG-TOAT\\Models\\StudentSubmissionViewModel.cs",
-              "RelativeToolTip": "Models\\StudentSubmissionViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAtAAAAAAAAAA==",
+              "Title": "AddAssignment.cshtml",
+              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\Views\\Course\\AddAssignment.cshtml",
+              "RelativeDocumentMoniker": "Views\\Course\\AddAssignment.cshtml",
+              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\Views\\Course\\AddAssignment.cshtml",
+              "RelativeToolTip": "Views\\Course\\AddAssignment.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-24T00:57:06.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Assignments.cshtml",
+              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\Views\\Course\\Assignments.cshtml",
+              "RelativeDocumentMoniker": "Views\\Course\\Assignments.cshtml",
+              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\Views\\Course\\Assignments.cshtml",
+              "RelativeToolTip": "Views\\Course\\Assignments.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAC4AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-23T04:29:15.284Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+
+              "DocumentIndex": 0,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TGTOATTest\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "..\\TGTOATTest\\UnitTest1.cs",
+              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TGTOATTest\\UnitTest1.cs",
+              "RelativeToolTip": "..\\TGTOATTest\\UnitTest1.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAowFsAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-21T22:15:12.234Z",
+              "WhenOpened": "2024-10-23T00:44:01.345Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+
+              "DocumentIndex": 9,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\Views\\Course\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Course\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\Views\\Course\\Index.cshtml",
+              "RelativeToolTip": "Views\\Course\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-23T04:28:14.372Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\Views\\User\\Login.cshtml",
+              "RelativeDocumentMoniker": "Views\\User\\Login.cshtml",
+              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\Views\\User\\Login.cshtml",
+              "RelativeToolTip": "Views\\User\\Login.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB0AAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-23T04:20:17.638Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-23T02:28:28.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+
+              "DocumentIndex": 2,
+              "Title": "TGTOATTest.csproj",
+              "DocumentMoniker": "C:\\Users\\Garcia\\Source\\Repos\\TGTOATTest\\TGTOATTest.csproj",
+              "RelativeDocumentMoniker": "..\\TGTOATTest\\TGTOATTest.csproj",
+              "ToolTip": "C:\\Users\\Garcia\\Source\\Repos\\TGTOATTest\\TGTOATTest.csproj",
+              "RelativeToolTip": "..\\TGTOATTest\\TGTOATTest.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-10-23T01:08:51.845Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-23T01:08:28.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Garcia\\source\\repos\\TG-TOAT2\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEIAAABbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-23T04:18:04.008Z",
               "EditorCaption": ""
             }
           ]

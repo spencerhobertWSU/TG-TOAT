@@ -12,15 +12,15 @@ using TGTOAT.Data;
 namespace TGTOAT.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20241006193808_AssignmentCourseConnections")]
-    partial class AssignmentCourseConnections
+    [Migration("20241023045616_AzureSqlServerMigration")]
+    partial class AzureSqlServerMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -232,6 +232,44 @@ namespace TGTOAT.Migrations
                     b.ToTable("InstructorCourseConnection");
                 });
 
+            modelBuilder.Entity("TGTOAT.Data.StudentAssignments", b =>
+                {
+                    b.Property<int>("AssignmentGradeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AssignmentGradeId"));
+
+                    b.Property<int>("AssignmentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileSubmission")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Grade")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SubmissionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TextSubmission")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("studentCourseConnectionStudentCourseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AssignmentGradeId");
+
+                    b.HasIndex("AssignmentId");
+
+                    b.HasIndex("studentCourseConnectionStudentCourseId");
+
+                    b.ToTable("StudentAssignment");
+                });
+
             modelBuilder.Entity("TGTOAT.Data.StudentCourseConnection", b =>
                 {
                     b.Property<int>("StudentCourseId")
@@ -262,6 +300,9 @@ namespace TGTOAT.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("AmountDue")
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
@@ -324,7 +365,7 @@ namespace TGTOAT.Migrations
                     b.HasOne("TGTOAT.Data.InstructorCourseConnection", "InstructorCourse")
                         .WithMany()
                         .HasForeignKey("InstructorCourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Course");
@@ -362,10 +403,27 @@ namespace TGTOAT.Migrations
                     b.Navigation("Instructor");
                 });
 
+            modelBuilder.Entity("TGTOAT.Data.StudentAssignments", b =>
+                {
+                    b.HasOne("TGTOAT.Data.Assignment", "Assignments")
+                        .WithMany()
+                        .HasForeignKey("AssignmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TGTOAT.Data.StudentCourseConnection", "studentCourseConnection")
+                        .WithMany()
+                        .HasForeignKey("studentCourseConnectionStudentCourseId");
+
+                    b.Navigation("Assignments");
+
+                    b.Navigation("studentCourseConnection");
+                });
+
             modelBuilder.Entity("TGTOAT.Data.StudentCourseConnection", b =>
                 {
                     b.HasOne("TGTOAT.Data.Courses", "Course")
-                        .WithMany()
+                        .WithMany("StudentCourseConnection")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -393,6 +451,8 @@ namespace TGTOAT.Migrations
                     b.Navigation("Assignments");
 
                     b.Navigation("Instructors");
+
+                    b.Navigation("StudentCourseConnection");
 
                     b.Navigation("instructorCourseConnections");
                 });

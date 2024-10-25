@@ -695,21 +695,30 @@ namespace TGTOAT.Controllers
 
         public void UpdateGrade(int studentId, int courseId)
         {
-            // Grab the assignments the user has
+            // Grab the student course connection
             var studentCourseConnection = _context.StudentCourseConnection
                 .FirstOrDefault(scc => scc.CourseId == courseId && scc.StudentID == studentId);
+
+            // Grab the assignments so we can use it in the student assignments (all foreign keys are null for some reason)
+            var listOfAssignments = _context.Assignments
+                    .Where(a => a.CourseId == courseId)
+                    .ToList();
+
+            // Grab the student assignments with the list of assignments as a foreign key
+            //   Grab the student assignments that have a grade, are in the list of assignments, and have the same student id as the student
             var studentAssignments = _context.StudentAssignment
-                .Where(a => a.studentCourseConnection == studentCourseConnection && a.Grade != null)
+                .Where(a => listOfAssignments.Select(a => a.AssignmentId).ToList().Contains(a.AssignmentId) && a.Grade != null)
+                .Where(a => a.StudentId == studentId)
                 .ToList();
 
             // If any of them are null, return with no changes
-            if (studentAssignments != null && studentCourseConnection != null)
+            if (studentAssignments != null)
             {
                 // Divide the sum of the points rewarded by the sum of the total points for all assignments, and multiply by 100 to get the percentage
-                var listOfAssignments = _context.Assignments
-                    .Where(a => a.CourseId == courseId)
-                    .ToList();
-                studentCourseConnection.Grade = (studentAssignments.Sum(a => a.Grade ?? 0) / listOfAssignments.Sum(a => a.AssignmentPoints)) * 100;
+                decimal rewardedPoints = studentAssignments.Sum(a => a.Grade ?? 0);
+                decimal totalPoints = listOfAssignments.Sum(a => a.AssignmentPoints);
+
+                studentCourseConnection.Grade = (rewardedPoints / totalPoints) * 100;
                 _context.SaveChanges();
             }
 

@@ -15,7 +15,7 @@
 
 
 
-<h1 class="h1-course">@Model.Department @Model.CourseNum</h1>
+<h1 class="h1-course">@Model.Department @Model.CourseNum @Model.UserRole</h1>
 
 <div class="course-row">
     <div class="course-nav">
@@ -33,7 +33,12 @@
         </a>
     </div>
 <div class="row">
-    <div>@Model.Grade</div>
+    <div>
+        <h3>Your Grade: @Model.Grade</h3>
+        @if (@Model.Grade == "A"){
+            <h3>Excellent!</h3>
+        }
+    </div>
 </div>    
 
 </div>

@@ -7,16 +7,24 @@
       "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spencerhobert\\desktop\\coding\\cs3750\\tg-toat\\models\\coursegradeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:models\\coursegradeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spencerhobert\\desktop\\coding\\cs3750\\tg-toat\\data\\assignment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:data\\assignment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spencerhobert\\desktop\\coding\\cs3750\\tg-toat\\models\\userindexviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:models\\userindexviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spencerhobert\\desktop\\coding\\cs3750\\tg-toat\\data\\studentassignments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:data\\studentassignments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spencerhobert\\desktop\\coding\\cs3750\\tg-toat\\views\\course\\grades.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\course\\grades.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spencerhobert\\desktop\\coding\\cs3750\\tg-toat\\views\\course\\viewsubmissions.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\course\\viewsubmissions.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spencerhobert\\desktop\\coding\\cs3750\\tg-toat\\models\\studentsubmissionviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:models\\studentsubmissionviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spencerhobert\\desktop\\coding\\cs3750\\tg-toat\\data\\instructorcourseconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:data\\instructorcourseconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,61 +33,9 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 312,
+          "SelectedChildIndex": 10,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CourseGradeViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Models\\CourseGradeViewModel.cs",
-              "RelativeDocumentMoniker": "Models\\CourseGradeViewModel.cs",
-              "ToolTip": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Models\\CourseGradeViewModel.cs",
-              "RelativeToolTip": "Models\\CourseGradeViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T18:01:42.133Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CourseController.cs",
-              "DocumentMoniker": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Controllers\\CourseController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CourseController.cs",
-              "ToolTip": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Controllers\\CourseController.cs",
-              "RelativeToolTip": "Controllers\\CourseController.cs",
-              "ViewState": "AgIAAL8CAAAAAAAAAAAswNkCAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T17:43:39.503Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserIndexViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Models\\UserIndexViewModel.cs",
-              "RelativeDocumentMoniker": "Models\\UserIndexViewModel.cs",
-              "ToolTip": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Models\\UserIndexViewModel.cs",
-              "RelativeToolTip": "Models\\UserIndexViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T17:41:10.677Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Grades.cshtml",
-              "DocumentMoniker": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Views\\Course\\Grades.cshtml",
-              "RelativeDocumentMoniker": "Views\\Course\\Grades.cshtml",
-              "ToolTip": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Views\\Course\\Grades.cshtml",
-              "RelativeToolTip": "Views\\Course\\Grades.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-23T17:58:04.121Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -111,6 +67,89 @@
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StudentSubmissionViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Models\\StudentSubmissionViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\StudentSubmissionViewModel.cs",
+              "ToolTip": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Models\\StudentSubmissionViewModel.cs",
+              "RelativeToolTip": "Models\\StudentSubmissionViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-25T20:21:02.228Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ViewSubmissions.cshtml",
+              "DocumentMoniker": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Views\\Course\\ViewSubmissions.cshtml",
+              "RelativeDocumentMoniker": "Views\\Course\\ViewSubmissions.cshtml",
+              "ToolTip": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Views\\Course\\ViewSubmissions.cshtml",
+              "RelativeToolTip": "Views\\Course\\ViewSubmissions.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-25T20:20:46.519Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CourseController.cs",
+              "DocumentMoniker": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Controllers\\CourseController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CourseController.cs",
+              "ToolTip": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Controllers\\CourseController.cs",
+              "RelativeToolTip": "Controllers\\CourseController.cs",
+              "ViewState": "AgIAALECAAAAAAAAAAAAAMMCAACWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-25T19:00:35.775Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 312,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "InstructorCourseConnection.cs",
+              "DocumentMoniker": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Data\\InstructorCourseConnection.cs",
+              "RelativeDocumentMoniker": "Data\\InstructorCourseConnection.cs",
+              "ToolTip": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Data\\InstructorCourseConnection.cs",
+              "RelativeToolTip": "Data\\InstructorCourseConnection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-25T20:02:00.963Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Assignment.cs",
+              "DocumentMoniker": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Data\\Assignment.cs",
+              "RelativeDocumentMoniker": "Data\\Assignment.cs",
+              "ToolTip": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Data\\Assignment.cs",
+              "RelativeToolTip": "Data\\Assignment.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-25T19:59:50.321Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StudentAssignments.cs",
+              "DocumentMoniker": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Data\\StudentAssignments.cs",
+              "RelativeDocumentMoniker": "Data\\StudentAssignments.cs",
+              "ToolTip": "C:\\Users\\spencerhobert\\Desktop\\Coding\\CS3750\\TG-TOAT\\Data\\StudentAssignments.cs",
+              "RelativeToolTip": "Data\\StudentAssignments.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-25T19:59:23.959Z",
+              "EditorCaption": ""
             }
           ]
         }

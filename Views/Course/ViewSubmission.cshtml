@@ -20,7 +20,7 @@
                 <td>@submission.StudentFullName</td>
                 <td>@submission.DueDate.ToString("MM/dd/yyyy hh:mm tt")</td>
                 <td>@submission.SubmissionDate.ToString("MM/dd/yyyy hh:mm tt")</td>
-                <td>@submission.MaxPoints</td>
+                <td id="maxPoints">@submission.MaxPoints</td>
                 <td>
                     <form asp-action="UpdateSubmission" method="post" style="display:inline;">
                         <input type="hidden" name="assignmentId" value="@submission.AssignmentId" />

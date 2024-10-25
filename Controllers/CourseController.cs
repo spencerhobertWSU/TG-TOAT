@@ -545,8 +545,16 @@ namespace TGTOAT.Controllers
             {
                 if (int.TryParse(givenPoints, out int grade))
                 {
-                    submission.Grade = grade; 
-                    _context.SaveChanges();    
+                    // Submit the assignment grade
+                    submission.Grade = grade;
+                    _context.SaveChanges();
+
+                    // Update the students course grade
+                    var assignment = _context.Assignments
+                        .FirstOrDefault(a => a.AssignmentId == assignmentId);
+                    UpdateGrade(studentId, assignment.CourseId);
+
+
                     return RedirectToAction("ViewSubmissions", new { assignmentId });
                 }
                 else
@@ -583,6 +591,132 @@ namespace TGTOAT.Controllers
         }
 
 
+
+        #region Grades
+
+        public string GetGradeLetter(decimal? grade)
+        {
+            if (grade == null)
+            {
+                return "N/A";
+            }
+            else if (grade >= 94)
+            {
+                return "A";
+            }
+            else if (grade >= 90)
+            {
+                return "A-";
+            }
+            else if (grade >= 87)
+            {
+                return "B+";
+            }
+            else if (grade >= 84)
+            {
+                return "B";
+            }
+            else if (grade >= 80)
+            {
+                return "B-";
+            }
+            else if (grade >= 77)
+            {
+                return "C+";
+            }
+            else if (grade >= 74)
+            {
+                return "C";
+            }
+            else if (grade >= 70)
+            {
+                return "C-";
+            }
+            else if (grade >= 67)
+            {
+                return "D+";
+            }
+            else if (grade >= 64)
+            {
+                return "D";
+            }
+            else if (grade >= 60)
+            {
+                return "D-";
+            }
+            else
+            {
+                return "E";
+            }
+        }
+
+        public ActionResult Grades(int? id)
+        {
+            var user = _auth.GetUser();
+
+            if (user == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            var course = _context.Courses
+                .Include(c => c.Assignments)
+                .FirstOrDefault(c => c.CourseId == id);
+
+            var dept = _context.Departments.FirstOrDefault(d => d.DepartmentId == course.DepartmentId);
+
+            if (course == null)
+            {
+                return Redirect("User/Index");
+            }
+            else
+            {
+                var courseConnection = (from connection in _context.StudentCourseConnection
+                                        join c in _context.Courses on connection.CourseId equals c.CourseId
+                                        where connection.StudentID == user.Id
+                                        select connection).FirstOrDefault();
+
+                if (courseConnection == null)
+                {
+                    return Redirect("User/Index");
+                }
+
+                var viewModel = new CourseGradeViewModel
+                {
+                    CourseId = course.CourseId,
+                    UserRole = _auth.GetRole(),
+                    Department = dept.DepartmentName,
+                    CourseNum = course.CourseNumber,
+                    Grade = GetGradeLetter(courseConnection.Grade)
+                };
+                return View(viewModel);
+            }
+        }
+
+        public void UpdateGrade(int studentId, int courseId)
+        {
+            // Grab the assignments the user has
+            var studentCourseConnection = _context.StudentCourseConnection
+                .FirstOrDefault(scc => scc.CourseId == courseId && scc.StudentID == studentId);
+            var studentAssignments = _context.StudentAssignment
+                .Where(a => a.studentCourseConnection == studentCourseConnection && a.Grade != null)
+                .ToList();
+
+            // If any of them are null, return with no changes
+            if (studentAssignments != null && studentCourseConnection != null)
+            {
+                // Divide the sum of the points rewarded by the sum of the total points for all assignments, and multiply by 100 to get the percentage
+                var listOfAssignments = _context.Assignments
+                    .Where(a => a.CourseId == courseId)
+                    .ToList();
+                studentCourseConnection.Grade = (studentAssignments.Sum(a => a.Grade ?? 0) / listOfAssignments.Sum(a => a.AssignmentPoints)) * 100;
+                _context.SaveChanges();
+            }
+
+            return;
+        }
+
+        #endregion
 
 
         #region SubmitAssignments
@@ -775,109 +909,6 @@ namespace TGTOAT.Controllers
         }
         #endregion
 
-
-        #region Grades
-
-        public string GetGradeLetter(decimal? grade)
-        {
-            if (grade == null)
-            {
-                return "N/A";
-            }
-            else if (grade >= 94)
-            {
-                return "A";
-            }
-            else if (grade >= 90)
-            {
-                return "A-";
-            }
-            else if (grade >= 87)
-            {
-                return "B+";
-            }
-            else if (grade >= 84)
-            {
-                return "B";
-            }
-            else if (grade >= 80)
-            {
-                return "B-";
-            }
-            else if (grade >= 77)
-            {
-                return "C+";
-            }
-            else if (grade >= 74)
-            {
-                return "C";
-            }
-            else if (grade >= 70)
-            {
-                return "C-";
-            }
-            else if (grade >= 67)
-            {
-                return "D+";
-            }
-            else if (grade >= 64)
-            {
-                return "D";
-            }
-            else if (grade >= 60)
-            {
-                return "D-";
-            }
-            else
-            {
-                return "E";
-            }
-        }
-
-        public ActionResult Grades(int? id)
-        {
-            var user = _auth.GetUser();
-
-            if (user == null)
-            {
-                return RedirectToAction("Login", "User");
-            }
-
-            var course = _context.Courses
-                .Include(c => c.Assignments)
-                .FirstOrDefault(c => c.CourseId == id);
-
-            var dept = _context.Departments.FirstOrDefault(d => d.DepartmentId == course.DepartmentId);
-
-            if (course == null)
-            {
-                return Redirect("User/Index");
-            }
-            else
-            {
-                var courseConnection = (from connection in _context.StudentCourseConnection
-                                        join c in _context.Courses on connection.CourseId equals c.CourseId
-                                        where connection.StudentID == user.Id
-                                        select connection).FirstOrDefault();
-
-                if (courseConnection == null)
-                {
-                    return Redirect("User/Index");
-                }
-
-                var viewModel = new CourseGradeViewModel
-                {
-                    CourseId = course.CourseId,
-                    UserRole = _auth.GetRole(),
-                    Department = dept.DepartmentName,
-                    CourseNum = course.CourseNumber,
-                    Grade = GetGradeLetter(courseConnection.Grade)
-                };
-                return View(viewModel);
-            }
-        }
-
-        #endregion
 
     }
 

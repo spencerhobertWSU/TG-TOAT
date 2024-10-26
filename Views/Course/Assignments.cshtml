@@ -23,7 +23,7 @@
         <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Grades" asp-route-id="@Model.CourseId">Grades</a>
     </div>
 
-    <div class="row">
+    <div class="row assignmentList">
         @if (Model.UserRole == "Student")
         {
             @foreach (var assignment in Model.Assignments)

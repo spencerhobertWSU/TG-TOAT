@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.ComponentModel;
 using TGTOAT.Data;
 using TGTOAT.Helpers;
 using TGTOAT.Models;
@@ -528,36 +529,38 @@ namespace TGTOAT.Controllers
             {
                 buildings = new List<SelectListItem>
                 {
-                    new SelectListItem { Value = "Browning Center", Text = "Browning Center" },
-                    new SelectListItem { Value = "Elizabeth Hall", Text = "Elizabeth Hall" },
-                    new SelectListItem { Value = "Engineering Technology", Text = "Engineering Technology" },
-                    new SelectListItem { Value = "Hurst Center For Lifelong Learning", Text = "Hurst Center For Lifelong Learning" },
-                    new SelectListItem { Value = "Interprofessional Education Building", Text = "Interprofessional Education Building" },
-                    new SelectListItem { Value = "Kimball Visual Arts Center", Text = "Kimball Visual Arts Center" },
-                    new SelectListItem { Value = "Lampros Hall", Text = "Lampros Hall" },
-                    new SelectListItem { Value = "Lind Lecture Hall", Text = "Lind Lecture Hall" },
-                    new SelectListItem { Value = "Lindquist Hall", Text = "Lindquist Hall" },
-                    new SelectListItem { Value = "Marriott Health Services", Text = "Marriott Health Services" },
-                    new SelectListItem { Value = "McKay Education", Text = "McKay Education" },
-                    new SelectListItem { Value = "Noorda Engineering, Applied Science & Technology", Text = "Noorda Engineering, Applied Science & Technology" },
-                    new SelectListItem { Value = "Noorda High Bay", Text = "Noorda High Bay" },
-                    new SelectListItem { Value = "Shepherd Union", Text = "Shepherd Union" },
-                    new SelectListItem { Value = "Steward Library", Text = "Steward Library" },
-                    new SelectListItem { Value = "Student Services Center", Text = "Student Services Center" },
-                    new SelectListItem { Value = "Swenson Building", Text = "Swenson Building" },
-                    new SelectListItem { Value = "Tracey Hall Science Center", Text = "Tracey Hall Science Center" },
-                    new SelectListItem { Value = "Wattis Building", Text = "Wattis Building" }
+                    new SelectListItem { Value = "", Text = "Select a Building" },
+                    new SelectListItem { Value = "BC", Text = "Browing Center" },
+                    new SelectListItem { Value = "EH", Text = "Elizabeth Hall" },
+                    new SelectListItem { Value = "ET", Text = "Engineering Technology" },
+                    new SelectListItem { Value = "HC", Text = "Hurst Center For Lifelong Learning" },
+                    new SelectListItem { Value = "IE", Text = "Interprofessional Education Building" },
+                    new SelectListItem { Value = "KA", Text = "Kimball Visual Arts Center" },
+                    new SelectListItem { Value = "LP", Text = "Lampros Hall" },
+                    new SelectListItem { Value = "LL", Text = "Lind Lecture Hall" },
+                    new SelectListItem { Value = "LH", Text = "Lindquist Hall" },
+                    new SelectListItem { Value = "MH", Text = "Marriott Health Services" },
+                    new SelectListItem { Value = "ED", Text = "McKay Education" },
+                    new SelectListItem { Value = "NB", Text = "Noorda Engineering, Applied Science & Technology" },
+                    new SelectListItem { Value = "HB", Text = "Noorda High Bay" },
+                    new SelectListItem { Value = "SU", Text = "Shepherd Union" },
+                    new SelectListItem { Value = "LI", Text = "Steward Library" },
+                    new SelectListItem { Value = "SC", Text = "Student Services Center" },
+                    new SelectListItem { Value = "SW", Text = "Swenson Building" },
+                    new SelectListItem { Value = "TY", Text = "Tracey Hall Science Center" },
+                    new SelectListItem { Value = "WB", Text = "Wattis Building" }
                 };
             }
             else if (campus == "Davis")
             {
                 buildings = new List<SelectListItem>
                 {
-                    new SelectListItem { Value = "Building D2", Text = "Building D2" },
-                    new SelectListItem { Value = "Building D13", Text = "Building D13" },
-                    new SelectListItem { Value = "Stewart Center", Text = "Stewart Center" },
-                    new SelectListItem { Value = "Center for Continuing Education", Text = "Center for Continuing Education" },
-                    new SelectListItem { Value = "Computer & Automotive Engineering", Text = "Computer & Automotive Engineering" }
+                    new SelectListItem { Value = "", Text = "Select a Building" },
+                    new SelectListItem { Value = "D2", Text = "Building D2" },
+                    new SelectListItem { Value = "D13", Text = "Building D13" },
+                    new SelectListItem { Value = "DSC", Text = "Stewart Center" },
+                    new SelectListItem { Value = "CCE", Text = "Center for Continuing Education" },
+                    new SelectListItem { Value = "CAE", Text = "Computer & Automotive Engineering" }
                 };
             }
 

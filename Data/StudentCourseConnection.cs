@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using TGTOAT.Models;
 
 namespace TGTOAT.Data
@@ -20,5 +21,9 @@ namespace TGTOAT.Data
 
         [ForeignKey("CourseId")]
         public Courses? Course { get; set; }
+
+        [AllowNull]
+        [Column(TypeName = "decimal(5, 2)")] // RAAAAH
+        public decimal? Grade { get; set; }
     }
 }

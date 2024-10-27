@@ -476,19 +476,29 @@ namespace TGTOAT.Controllers
             };
 
             return View(viewModel);
-        }
+        }       
 
         [HttpPost]
-        public IActionResult Edit(AddCourseViewModel model)
-        {
+        public async Task<IActionResult> Edit(AddCourseViewModel model)
+        {                
+
             if (ModelState.IsValid)
             {
-                var course = _context.Courses.FirstOrDefault(c => c.CourseId == model.CourseId);
-                if (course != null)
+                try
                 {
+                    var course = await _context.Courses.FindAsync(model.CourseId);
+                    if (course == null)
+                    {
+                        Console.WriteLine("Course not found");
+                        return NotFound();
+                    }                    
+
+                    // Update course properties
+                    course.DepartmentId = model.SelectedDepartmentId;
                     course.CourseNumber = model.CourseNumber;
                     course.CourseName = model.CourseName;
-                    course.DepartmentId = model.SelectedDepartmentId;
+                    course.CourseDescription = model.CourseDescription;
+                    course.NumberOfCredits = model.NumberOfCredits;
                     course.Capacity = model.Capacity;
                     course.Campus = model.Campus;
                     course.Building = model.Building;
@@ -496,29 +506,68 @@ namespace TGTOAT.Controllers
                     course.DaysOfTheWeek = model.DaysOfTheWeek;
                     course.StartTime = model.StartTime;
                     course.EndTime = model.EndTime;
-                    course.NumberOfCredits = model.NumberOfCredits;
-                    course.CourseDescription = model.CourseDescription;
                     course.Semester = model.Semester;
                     course.Year = model.Year;
 
-                    var instructorConnection = _context.InstructorCourseConnection.FirstOrDefault(icc => icc.CourseId == course.CourseId);
+                    _context.Update(course);
+                    await _context.SaveChangesAsync();
+                    Console.WriteLine("Course updated successfully");
+
+                    // Update instructor connection
+                    var instructorConnection = await _context.InstructorCourseConnection
+                        .FirstOrDefaultAsync(icc => icc.CourseId == course.CourseId);
+
                     if (instructorConnection != null)
                     {
-                        instructorConnection.InstructorID = model.SelectedInstructorId;
+                        if (instructorConnection.InstructorID != model.SelectedInstructorId)
+                        {
+                            instructorConnection.InstructorID = model.SelectedInstructorId;
+                            _context.Update(instructorConnection);
+                            await _context.SaveChangesAsync();
+                            Console.WriteLine("Instructor connection updated");
+                        }
+                    }
+                    else
+                    {
+                        var newInstructorConnection = new InstructorCourseConnection
+                        {
+                            InstructorID = model.SelectedInstructorId,
+                            CourseId = course.CourseId
+                        };
+                        _context.InstructorCourseConnection.Add(newInstructorConnection);
+                        await _context.SaveChangesAsync();
+                        Console.WriteLine("New instructor connection created");
                     }
 
-                    _context.SaveChanges();
-
-                    // Redirect to the Courses page after saving
-                    return RedirectToAction("Courses");
+                    return RedirectToAction(nameof(Courses));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error occurred: {ex.Message}");
+                    ModelState.AddModelError("", "An error occurred while saving the changes.");
                 }
             }
 
-            // If model is invalid, repopulate necessary lists
-            model.Departments = _context.Departments.ToList();
-            model.Instructors = _context.User.Where(u => u.UserRole == "Instructor").ToList();
+            // If we got this far, something failed, redisplay form
+            model.Departments = await _context.Departments.ToListAsync();
+            model.CampusList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Ogden", Text = "Ogden Campus" },
+                new SelectListItem { Value = "Davis", Text = "Davis Campus" }
+            };
+            model.Buildings = GetBuildingListByCampus(model.Campus);
+            model.SemesterList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Spring", Text = "Spring" },
+                new SelectListItem { Value = "Summer", Text = "Summer" },
+                new SelectListItem { Value = "Fall", Text = "Fall" }
+            };
+            model.Instructors = await _context.User.Where(u => u.UserRole == "Instructor").ToListAsync();
+            
             return View(model);
         }
+
+
 
         [HttpGet]
         private List<SelectListItem> GetBuildingListByCampus(string campus)
@@ -1063,6 +1112,7 @@ namespace TGTOAT.Controllers
     }
 
 }
+
 
 
 

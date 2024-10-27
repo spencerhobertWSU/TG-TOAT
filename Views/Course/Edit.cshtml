@@ -1,4 +1,4 @@
-﻿@model TGTOAT.Models.AddCourseViewModel
+@model TGTOAT.Models.AddCourseViewModel
 
 @{
     ViewData["Title"] = "Edit Course";
@@ -6,22 +6,20 @@
 }
 
 <h1 class="text-center">Edit a Course</h1>
-<form asp-action="Edit" method="post">
+@* <form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="CourseId" /> *@
+<form asp-controller="Course" asp-action="Edit" method="post">
+    <input type="hidden" asp-for="CourseId" />
 
     <div class="container-fluid">
         <!-- Department & Course Number -->
         <div class="row justify-content-center">
             <div class="form-group col-md-3">
-                <label asp-for="SelectedDepartmentId"></label>
-
-                @if (Model.Departments != null && Model.Departments.Any())
-                {
-                    <select asp-for="SelectedDepartmentId"
-                            asp-items="@(new SelectList(Model.Departments, "DepartmentId", "DepartmentName", Model.SelectedDepartmentId))"
-                            class="form-control">
-                        <option value="">Select a department</option>
-                    </select>
-                }
+                <label asp-for="SelectedDepartmentId" class="control-label"></label>
+                <select asp-for="SelectedDepartmentId" class="form-control" 
+                        asp-items="@(new SelectList(Model.Departments, "DepartmentId", "DepartmentName", Model.SelectedDepartmentId))">
+                    <option value="">Select Department</option>
+                </select>
                 <span asp-validation-for="SelectedDepartmentId" class="text-danger"></span>
             </div>
 
@@ -74,13 +72,7 @@
                     <label class="btn btn-outline-primary" for="thuBtn">Thursday</label>
 
                     <input type="checkbox" class="btn-check" id="friBtn" value="Fr" @(Model.DaysOfTheWeek.Contains("Fr") ? "checked" : "") autocomplete="off">
-                    <label class="btn btn-outline-primary" for="friBtn">Friday</label>
-
-                    @* <input type="checkbox" class="btn-check" id="satBtn" value="Sa" @(Model.DaysOfTheWeek.Contains("Sa") ? "checked" : "") autocomplete="off">
-                    <label class="btn btn-outline-primary" for="satBtn">Saturday</label>
-
-                    <input type="checkbox" class="btn-check" id="sunBtn" value="Su" @(Model.DaysOfTheWeek.Contains("Su") ? "checked" : "") autocomplete="off">
-                    <label class="btn btn-outline-primary" for="sunBtn">Sunday</label> *@
+                    <label class="btn btn-outline-primary" for="friBtn">Friday</label>                    
                 </div>
             </div>
             <input asp-for="DaysOfTheWeek" type="hidden" id="DaysOfTheWeek" />
@@ -99,17 +91,7 @@
             </div>
 
             <div class="form-group col-md-3">
-                <label asp-for="Building"></label>
-                @*     <select asp-for="Building" class="form-select" id="buildSelect">
-                <option value="">Select a Building</option>
-                @foreach (var building in Model.Buildings)
-                {
-                <option value="@building.Value" selected="@(Model.Building == building.Value ? "selected" : null)">
-                @building.Text
-                </option>
-                }
-
-                </select> *@
+                <label asp-for="Building"></label>                
                 <select asp-for="Building" id="Building" asp-items="Model.Buildings" class="form-select">
                     <option value="">Select a Building</option>
                 </select>
@@ -135,6 +117,12 @@
                 <label asp-for="EndTime">End Time</label>
                 <input asp-for="EndTime" type="time" class="form-control" />
                 <span asp-validation-for="EndTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="Capacity">Capacity</label>
+                <input asp-for="Capacity" class="form-control" type="number" min="0" max="999"/>
+                <span asp-validation-for="Capacity" class="text-danger"></span>
             </div>
         </div>
 
@@ -168,7 +156,7 @@
 
         <br />
         <div class="col text-center">
-            <button type="submit" class="btn btn-primary text-center" onclick="UpdateDays()">Save</button>
+            <button type="submit" class="btn btn-primary text-center">Save</button>
             <a href="@Url.Action("Courses", "Course")" class="btn btn-secondary">Cancel</a>
         </div>
 
@@ -178,7 +166,6 @@
 <script src="~/js/courses.js" asp-append-version="true"></script>
 
 @section Scripts {
-
     <script>
         function updateDaysOfTheWeek() {
             let selectedDays = [];
@@ -187,14 +174,26 @@
             if (document.getElementById("wedBtn").checked) selectedDays.push("We");
             if (document.getElementById("thuBtn").checked) selectedDays.push("Th");
             if (document.getElementById("friBtn").checked) selectedDays.push("Fr");
-            if (document.getElementById("satBtn").checked) selectedDays.push("Sa");
-            if (document.getElementById("sunBtn").checked) selectedDays.push("Su");
-
+            
             document.getElementById("DaysOfTheWeek").value = selectedDays.join(',');
+            return true; // Allow form submission
         }
 
-        document.querySelector("form").addEventListener("submit", updateDaysOfTheWeek);
+        // Remove the onclick="UpdateDays()" from your save button and update it to:
+        document.querySelector("form").addEventListener("submit", function(e) {
+            e.preventDefault(); // Prevent immediate form submission
+            console.log("Form submission intercepted");
+            
+            // Update days of the week
+            updateDaysOfTheWeek();
+            console.log("Days updated:", document.getElementById("DaysOfTheWeek").value);
+            
+            // Submit the form
+            console.log("Submitting form");
+            this.submit();
+        });
     </script>
+
     <script>
         $(document).ready(function () {
             $('#Campus').change(function () {
@@ -225,6 +224,6 @@
     </script>
 
     @{
-        Html.RenderPartialAsync("_ValidationScriptsPartial");
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }

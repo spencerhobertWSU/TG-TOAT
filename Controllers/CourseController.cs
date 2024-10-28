@@ -846,7 +846,7 @@ namespace TGTOAT.Controllers
 
             if (user == null)
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Index", "Course", new { id = id });
             }
 
             var course = _context.Courses
@@ -857,10 +857,23 @@ namespace TGTOAT.Controllers
 
             if (course == null)
             {
-                return Redirect("User/Index");
+                return RedirectToAction("Index", "Course", new { id = id });
             }
             else
             {
+                if (user.UserRole == "Instructor")
+                {
+                    var instructorViewModel = new CourseGradeViewModel
+                    {
+                        CourseId = course.CourseId,
+                        UserRole = _auth.GetRole(),
+                        Department = dept.DepartmentName,
+                        CourseNum = course.CourseNumber,
+                        Grade = null
+                    };
+                    return View(instructorViewModel);
+                }
+
                 var courseConnection = (from connection in _context.StudentCourseConnection
                                         join c in _context.Courses on connection.CourseId equals c.CourseId
                                         where connection.StudentID == user.Id
@@ -868,7 +881,7 @@ namespace TGTOAT.Controllers
 
                 if (courseConnection == null)
                 {
-                    return Redirect("User/Index");
+                    return RedirectToAction("Index", "Course", new { id = id });
                 }
 
                 var viewModel = new CourseGradeViewModel

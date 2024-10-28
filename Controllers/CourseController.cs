@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.ComponentModel;
 using TGTOAT.Data;
 using TGTOAT.Helpers;
 using TGTOAT.Models;
@@ -431,7 +432,196 @@ namespace TGTOAT.Controllers
             return File(imageBytes, "image/png");
         }
 
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
+            if (course == null)
+            {
+                return NotFound();
+            }
 
+            var viewModel = new AddCourseViewModel
+            {
+                CourseId = course.CourseId,
+                CourseNumber = course.CourseNumber,
+                CourseName = course.CourseName,
+                NumberOfCredits = course.NumberOfCredits,
+                SelectedDepartmentId = course.DepartmentId,
+                Departments = _context.Departments?.ToList() ?? new List<Departments>(),
+                CampusList = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "Ogden", Text = "Ogden Campus" },
+                    new SelectListItem { Value = "Davis", Text = "Davis Campus" }
+                },
+                Building = course.Building,  // This ensures the selected building is set
+                Buildings = GetBuildingListByCampus(course.Campus),  // Prepopulate buildings based on current campus
+                CourseDescription = course.CourseDescription,
+                DaysOfTheWeek = course.DaysOfTheWeek,
+                StartTime = course.StartTime,
+                EndTime = course.EndTime,
+                RoomNumber = course.RoomNumber,
+                Capacity = course.Capacity,
+                Campus = course.Campus,
+                Semester = course.Semester,
+                SemesterList = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "Spring", Text = "Spring" },
+                    new SelectListItem { Value = "Summer", Text = "Summer" },
+                    new SelectListItem { Value = "Fall", Text = "Fall" }
+                },
+                Year = course.Year,
+                SelectedInstructorId = _context.InstructorCourseConnection.FirstOrDefault(icc => icc.CourseId == id)?.InstructorID ?? 0,
+                Instructors = _context.User?.Where(u => u.UserRole == "Instructor").ToList() ?? new List<User>()
+            };
+
+            return View(viewModel);
+        }       
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(AddCourseViewModel model)
+        {                
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var course = await _context.Courses.FindAsync(model.CourseId);
+                    if (course == null)
+                    {
+                        Console.WriteLine("Course not found");
+                        return NotFound();
+                    }                    
+
+                    // Update course properties
+                    course.DepartmentId = model.SelectedDepartmentId;
+                    course.CourseNumber = model.CourseNumber;
+                    course.CourseName = model.CourseName;
+                    course.CourseDescription = model.CourseDescription;
+                    course.NumberOfCredits = model.NumberOfCredits;
+                    course.Capacity = model.Capacity;
+                    course.Campus = model.Campus;
+                    course.Building = model.Building;
+                    course.RoomNumber = model.RoomNumber;
+                    course.DaysOfTheWeek = model.DaysOfTheWeek;
+                    course.StartTime = model.StartTime;
+                    course.EndTime = model.EndTime;
+                    course.Semester = model.Semester;
+                    course.Year = model.Year;
+
+                    _context.Update(course);
+                    await _context.SaveChangesAsync();
+                    Console.WriteLine("Course updated successfully");
+
+                    // Update instructor connection
+                    var instructorConnection = await _context.InstructorCourseConnection
+                        .FirstOrDefaultAsync(icc => icc.CourseId == course.CourseId);
+
+                    if (instructorConnection != null)
+                    {
+                        if (instructorConnection.InstructorID != model.SelectedInstructorId)
+                        {
+                            instructorConnection.InstructorID = model.SelectedInstructorId;
+                            _context.Update(instructorConnection);
+                            await _context.SaveChangesAsync();
+                            Console.WriteLine("Instructor connection updated");
+                        }
+                    }
+                    else
+                    {
+                        var newInstructorConnection = new InstructorCourseConnection
+                        {
+                            InstructorID = model.SelectedInstructorId,
+                            CourseId = course.CourseId
+                        };
+                        _context.InstructorCourseConnection.Add(newInstructorConnection);
+                        await _context.SaveChangesAsync();
+                        Console.WriteLine("New instructor connection created");
+                    }
+
+                    return RedirectToAction(nameof(Courses));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error occurred: {ex.Message}");
+                    ModelState.AddModelError("", "An error occurred while saving the changes.");
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            model.Departments = await _context.Departments.ToListAsync();
+            model.CampusList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Ogden", Text = "Ogden Campus" },
+                new SelectListItem { Value = "Davis", Text = "Davis Campus" }
+            };
+            model.Buildings = GetBuildingListByCampus(model.Campus);
+            model.SemesterList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Spring", Text = "Spring" },
+                new SelectListItem { Value = "Summer", Text = "Summer" },
+                new SelectListItem { Value = "Fall", Text = "Fall" }
+            };
+            model.Instructors = await _context.User.Where(u => u.UserRole == "Instructor").ToListAsync();
+            
+            return View(model);
+        }
+
+
+
+        [HttpGet]
+        private List<SelectListItem> GetBuildingListByCampus(string campus)
+        {
+            var buildings = new List<SelectListItem>();
+
+            if (campus == "Ogden")
+            {
+                buildings = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "", Text = "Select a Building" },
+                    new SelectListItem { Value = "BC", Text = "Browing Center" },
+                    new SelectListItem { Value = "EH", Text = "Elizabeth Hall" },
+                    new SelectListItem { Value = "ET", Text = "Engineering Technology" },
+                    new SelectListItem { Value = "HC", Text = "Hurst Center For Lifelong Learning" },
+                    new SelectListItem { Value = "IE", Text = "Interprofessional Education Building" },
+                    new SelectListItem { Value = "KA", Text = "Kimball Visual Arts Center" },
+                    new SelectListItem { Value = "LP", Text = "Lampros Hall" },
+                    new SelectListItem { Value = "LL", Text = "Lind Lecture Hall" },
+                    new SelectListItem { Value = "LH", Text = "Lindquist Hall" },
+                    new SelectListItem { Value = "MH", Text = "Marriott Health Services" },
+                    new SelectListItem { Value = "ED", Text = "McKay Education" },
+                    new SelectListItem { Value = "NB", Text = "Noorda Engineering, Applied Science & Technology" },
+                    new SelectListItem { Value = "HB", Text = "Noorda High Bay" },
+                    new SelectListItem { Value = "SU", Text = "Shepherd Union" },
+                    new SelectListItem { Value = "LI", Text = "Steward Library" },
+                    new SelectListItem { Value = "SC", Text = "Student Services Center" },
+                    new SelectListItem { Value = "SW", Text = "Swenson Building" },
+                    new SelectListItem { Value = "TY", Text = "Tracey Hall Science Center" },
+                    new SelectListItem { Value = "WB", Text = "Wattis Building" }
+                };
+            }
+            else if (campus == "Davis")
+            {
+                buildings = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "", Text = "Select a Building" },
+                    new SelectListItem { Value = "D2", Text = "Building D2" },
+                    new SelectListItem { Value = "D13", Text = "Building D13" },
+                    new SelectListItem { Value = "DSC", Text = "Stewart Center" },
+                    new SelectListItem { Value = "CCE", Text = "Center for Continuing Education" },
+                    new SelectListItem { Value = "CAE", Text = "Computer & Automotive Engineering" }
+                };
+            }
+
+            return buildings;
+        }
+
+        [HttpGet]
+        public JsonResult GetBuildingsByCampus(string campus)
+        {
+            var buildings = GetBuildingListByCampus(campus);  // Reuse the helper method
+            return Json(buildings);  // Return the list as JSON for AJAX
+        }
 
 
         [HttpGet]
@@ -922,6 +1112,7 @@ namespace TGTOAT.Controllers
     }
 
 }
+
 
 
 

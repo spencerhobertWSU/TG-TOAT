@@ -51,6 +51,9 @@ namespace TGTOAT.Models
         // Campus List
         public List<SelectListItem>? CampusList { get; set; }
 
+        // Building List       
+        public List<SelectListItem> Buildings { get; set; } = new List<SelectListItem>();
+
         // Building
         [Required(ErrorMessage = "Building is required.")]
         [MaxLength(50, ErrorMessage = "Max 50 characters allowed.")]

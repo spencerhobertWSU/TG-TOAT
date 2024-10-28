@@ -33,12 +33,18 @@
         </a>
     </div>
 <div class="row">
-    <div>
-        <h3>Your Grade: @Model.Grade</h3>
-        @if (@Model.Grade == "A"){
-            <h3>Excellent!</h3>
+        @if (Model.UserRole == "Instructor")
+        {
+            <div>
+                <!-- Do something here for instructors -->
+            </div>
         }
-    </div>
+        else
+        {
+            <div>
+                <h3>Your Grade: @Model.Grade</h3>
+            </div>
+        }
 </div>    
 
 </div>

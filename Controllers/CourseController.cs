@@ -852,49 +852,41 @@ namespace TGTOAT.Controllers
             var course = _context.Courses
                 .Include(c => c.Assignments)
                 .FirstOrDefault(c => c.CourseId == id);
-
             var dept = _context.Departments.FirstOrDefault(d => d.DepartmentId == course.DepartmentId);
 
             if (course == null)
             {
                 return RedirectToAction("Index", "Course", new { id = id });
             }
-            else
+
+            // Compute grade distribution for all students in the course
+            var studentConnections = _context.StudentCourseConnection
+                .Where(s => s.CourseId == course.CourseId && s.Grade != null)
+                .Select(s => s.Grade)
+                .ToList();
+
+            var gradeDistribution = new List<KeyValuePair<string, int>>()
+    {
+        new KeyValuePair<string, int>("<60%", studentConnections.Count(g => g < 60)),
+        new KeyValuePair<string, int>("60-70%", studentConnections.Count(g => g >= 60 && g <= 70)),
+        new KeyValuePair<string, int>("71-80%", studentConnections.Count(g => g >= 71 && g <= 80)),
+        new KeyValuePair<string, int>("81-90%", studentConnections.Count(g => g >= 81 && g <= 90)),
+        new KeyValuePair<string, int>("91-100%", studentConnections.Count(g => g >= 91))
+    };
+
+            var viewModel = new CourseGradeViewModel
             {
-                if (user.UserRole == "Instructor")
-                {
-                    var instructorViewModel = new CourseGradeViewModel
-                    {
-                        CourseId = course.CourseId,
-                        UserRole = _auth.GetRole(),
-                        Department = dept.DepartmentName,
-                        CourseNum = course.CourseNumber,
-                        Grade = null
-                    };
-                    return View(instructorViewModel);
-                }
+                CourseId = course.CourseId,
+                UserRole = _auth.GetRole(),
+                Department = dept.DepartmentName,
+                CourseNum = course.CourseNumber,
+                Grade = user.UserRole == "Student" ? GetGradeLetter(studentConnections.FirstOrDefault()) : null,
+                GradeDistribution = gradeDistribution
+            };
 
-                var courseConnection = (from connection in _context.StudentCourseConnection
-                                        join c in _context.Courses on connection.CourseId equals c.CourseId
-                                        where connection.StudentID == user.Id
-                                        select connection).FirstOrDefault();
-
-                if (courseConnection == null)
-                {
-                    return RedirectToAction("Index", "Course", new { id = id });
-                }
-
-                var viewModel = new CourseGradeViewModel
-                {
-                    CourseId = course.CourseId,
-                    UserRole = _auth.GetRole(),
-                    Department = dept.DepartmentName,
-                    CourseNum = course.CourseNumber,
-                    Grade = GetGradeLetter(courseConnection.Grade)
-                };
-                return View(viewModel);
-            }
+            return View(viewModel);
         }
+
 
         public void UpdateGrade(int studentId, int courseId)
         {

@@ -307,4 +307,34 @@ nav li a:hover {
         height: 33vh;
     }
 }
+.notifications-container {
+    position: relative; /* Ensure the dropdown is positioned relative to the button */
+}
 
+.notification-dropdown {
+    position: absolute;
+    top: 100%; /* Position below the button */
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Ensure it appears above other elements */
+    width: 700px; /* Increased width */
+}
+
+    .notification-dropdown ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .notification-dropdown li {
+        padding: 15px; /* Increased padding */
+        border-bottom: 1px solid #f0f0f0; /* Optional: Add a bottom border */
+        font-size: 1.1em; /* Increased font size for better readability */
+    }
+
+        .notification-dropdown li a {
+            text-decoration: none;
+            color: #007bff; /* Bootstrap primary color or customize */
+        }

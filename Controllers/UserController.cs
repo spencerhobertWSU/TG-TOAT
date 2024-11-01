@@ -26,12 +26,14 @@ namespace TGTOAT.Controllers
         private readonly IPasswordHasher _passwordHasher;
         private readonly UserContext _context;
         private readonly IAuthentication _auth;
+        private readonly NotificationService _notificationService;
 
-        public UserController(UserContext context, IPasswordHasher passwordHasher, IAuthentication auth)
+        public UserController(NotificationService notificationService, UserContext context, IPasswordHasher passwordHasher, IAuthentication auth)
         {
             _context = context;
             _passwordHasher = passwordHasher;
             _auth = auth;
+            _notificationService = notificationService;
         }
 
         //Logout User and Go to Login page
@@ -71,6 +73,8 @@ namespace TGTOAT.Controllers
                     var viewModel = new UserIndexViewModel
                     {
                         Id = user.Id,
+                        Notifications = _notificationService.GetNotificationsForUser(user.Id).ToList(),
+
                         FirstName = user.FirstName,
                         LastName = user.LastName,
                         UserRole = user.UserRole,
@@ -89,7 +93,7 @@ namespace TGTOAT.Controllers
             }
 
             // Check if the password matches
-            if (_passwordHasher.Verify(user.Password, model.Password))
+            if (_passwordHasher.Verify(user.Password, model.Password))//
             {
                 // Find all classes that the user is enrolled in
                 var courses = (from connection in _context.StudentCourseConnection
@@ -99,6 +103,8 @@ namespace TGTOAT.Controllers
 
                 var viewModel = new UserIndexViewModel
                 {
+                    Notifications = _notificationService.GetNotificationsForUser(user.Id).ToList(),
+
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     UserRole = user.UserRole,
@@ -131,6 +137,14 @@ namespace TGTOAT.Controllers
                 // If the password is incorrect, redirect back to login screen
                 return View(model);
             }
+        }
+
+        public ActionResult Notifications()
+        {
+            var user = _auth.GetUser(); // Get the current user's object
+            int userId = Convert.ToInt32(user);
+            var notifications = _notificationService.GetNotificationsForUser(userId);
+            return View(notifications);
         }
 
         // Home page for User
@@ -166,6 +180,7 @@ namespace TGTOAT.Controllers
 
             var viewModel = new UserIndexViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(user.Id).ToList(),
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 UserRole = user.UserRole,
@@ -195,6 +210,9 @@ namespace TGTOAT.Controllers
         //Course Registration action
         public async Task<IActionResult> CourseRegistration()
         {
+
+            var user = _auth.GetUser();//Grab User Info
+            int userId = user.Id;
             // Get all user-course connections
             var instructorCourseConnections = await _context.InstructorCourseConnection.ToListAsync();
 
@@ -226,6 +244,7 @@ namespace TGTOAT.Controllers
             //// Create the view model to pass to the view
             var viewModel = new CourseRegisterViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(user.Id).ToList(),
                 Departments = await _context.Departments.ToListAsync(),
                 Courses = courses,
                 Instructors = instructors,
@@ -242,6 +261,8 @@ namespace TGTOAT.Controllers
 
         public async Task<IActionResult> FilterCourses(int? departmentId, string searchTerm)
         {
+            var user = _auth.GetUser();//Grab User Info
+            int userId = user.Id;
             // Fetch all departments for the dropdown
             var departments = await _context.Departments.ToListAsync();
 
@@ -277,6 +298,7 @@ namespace TGTOAT.Controllers
             // Create the view model to pass to the view
             var viewModel = new CourseRegisterViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(user.Id).ToList(),
                 DepartmentId = departmentId ?? 0,
                 Departments = departments,
                 Courses = courses,
@@ -557,6 +579,7 @@ namespace TGTOAT.Controllers
 
             AccountViewModel UserInfo = new AccountViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(User.Id).ToList(),
                 UserRole = User.UserRole,
                 FirstName = User.FirstName,
                 LastName = User.LastName,
@@ -793,6 +816,7 @@ namespace TGTOAT.Controllers
             // Create the view model
             var viewModel = new PaymentViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(user.Id).ToList(),
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Courses = courses,

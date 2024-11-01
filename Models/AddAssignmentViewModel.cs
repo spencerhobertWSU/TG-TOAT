@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TGTOAT.Data;
 namespace TGTOAT.Models
 {
     public class AddAssignmentViewModel
@@ -31,6 +32,9 @@ namespace TGTOAT.Models
         [DataType(DataType.DateTime)]
         [Required(ErrorMessage = "Due date and time is required.")]
         public DateTime DueDateAndTime { get; set; }
+
+        //notifications
+        public List<Notifications> Notifications { get; set; }
 
     }
 }

@@ -1,0 +1,79 @@
+@model TGTOAT.Models.UserIndexViewModel
+
+@section Scripts {
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+}
+
+@{
+    ViewData["Title"] = "Calendar";
+
+    if (Model.UserRole == "Student")
+    {
+        Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    }
+    else if (Model.UserRole == "Instructor")
+    {
+        Layout = "~/Views/Shared/_InstructorLayout.cshtml";
+    }
+}
+
+<!-- Calendar Container -->
+<div id="calendar"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        // Initialize FullCalendar
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',  // Month view by default
+            headerToolbar: {
+                left: 'prev,next today',   // Previous/Next buttons
+                center: 'title',           // Calendar title
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'  // Month, Week, Day views
+            },
+            views: {
+                dayGridMonth: {  // Month view
+                    buttonText: 'Month'
+                },
+                timeGridWeek: {  // Week view
+                    buttonText: 'Week'
+                },
+                timeGridDay: {   // Day view
+                    buttonText: 'Day'
+                }
+            },
+
+            events: function(fetchInfo, successCallback, failureCallback) {
+                // AJAX call to get course events
+                $.ajax({
+                    url: '/Course/GetCoursesForCalendar',  // Controller method to fetch events
+                    type: 'GET',
+                    success: function(data) {
+                        console.log(data);  // Debugging: log the data returned from server
+                        successCallback(data);  // Pass events to FullCalendar
+                    },
+                    error: function() {
+                        failureCallback();
+                    }
+                });
+            },
+            eventTimeFormat: {  // Customize time display
+                hour: '2-digit',
+                minute: '2-digit',
+                meridiem: true
+            },
+            eventClick: function (info) {
+                // Navigate to assignment or course when clicked
+                if (info.event.url) {
+                    window.open(info.event.url, "_self");  // Open assignment or course link in the same window
+                    info.jsEvent.preventDefault();  // Prevent default behavior
+                }
+            }
+        });
+
+        // Render the calendar
+        calendar.render();
+    });    
+</script>

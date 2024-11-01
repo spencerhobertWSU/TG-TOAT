@@ -1,0 +1,74 @@
+﻿@model TGTOAT.Models.AccountViewModel
+
+@{
+    ViewData["Title"] = "Account";
+
+    if (Model.UserRole == "Student")
+    {
+        Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    }
+    else if (Model.UserRole == "Instructor")
+    {
+        Layout = "~/Views/Shared/_InstructorLayout.cshtml";
+    }
+}
+
+<link rel="stylesheet" href="~/css/account.css" asp-append-version="true" />
+
+<!-- User account details -->
+<form asp-action="UpdateUser" method="post">
+    <h4>User Info</h4>
+    <button type="button" id="NameEdit" class="inline btn btn-danger" onclick="editName()">Edit</button>
+    <button type="button" id="NameSave" class="save-btn inline btn btn-success">Save</button>
+    <hr />
+    <div class="row justify-content-center">
+            <input type="hidden" asp-for="Id" /> <!-- Include User Id for updating -->
+            <div class="form-group col-md-3">
+                <label asp-for="FirstName">First Name</label>
+                <input type="text" asp-for="FirstName" class="form-control" readonly id="firstName">
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="LastName">Last Name</label>
+                <input type="text" asp-for="LastName" class="form-control" readonly id="lastName">
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+    </div>
+</form>
+
+<form asp-action="UpdateAdd" method="post">
+    <br />
+    <h4>User Address</h4>
+    <button type="button" id="AddEdit" class="btn btn-danger" onclick="editAdd()">Edit</button>
+    <button type="button" id="AddSave" class="save-btn btn btn-success" onclick="saveAdd()">Save</button>
+    <hr />
+    <div class="justify-content-center">
+            <div class="form-group col-md-3">
+                <label asp-for="Address.AddressLineOne">Address Line 1</label>
+                <input type="text" asp-for="Address.AddressLineOne" class="form-control" readonly id="addressLineOne">
+                <span asp-validation-for="Address.AddressLineOne" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="Address.AddressLineTwo">Address Line 2</label>
+                <input type="text" asp-for="Address.AddressLineTwo" class="form-control"  readonly id="addressLineTwo">
+                <span asp-validation-for="Address.AddressLineOne" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="Address.ZipCode">Zip Code</label>
+                <input type="text" asp-for="Address.ZipCode" class="form-control"  readonly id="zip">
+                <span asp-validation-for="Address.AddressLineOne" class="text-danger"></span>
+            </div>
+
+            <!-- Toast notification -->
+            <div id="toast" class="toast" style="display:none;">
+                <p>Saved!</p>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+<script src="~/js/account.js" asp-append-version="true"></script>

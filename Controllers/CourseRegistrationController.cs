@@ -28,6 +28,7 @@ namespace TGTOAT.Controllers
 
             var viewModel = new CourseRegisterViewModel
                 {
+
                     Id = user.Id,
                     Departments = _context.Departments.ToList(), // Make sure this is not null
                     Courses = _context.Courses.ToList(), // Optional, depending on your needs

@@ -12,8 +12,8 @@ using TGTOAT.Data;
 namespace TGTOAT.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20241023045616_AzureSqlServerMigration")]
-    partial class AzureSqlServerMigration
+    [Migration("20241030024507_CreateNotification")]
+    partial class CreateNotification
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -232,6 +232,32 @@ namespace TGTOAT.Migrations
                     b.ToTable("InstructorCourseConnection");
                 });
 
+            modelBuilder.Entity("TGTOAT.Data.Notifications", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("TGTOAT.Data.StudentAssignments", b =>
                 {
                     b.Property<int>("AssignmentGradeId")
@@ -280,6 +306,9 @@ namespace TGTOAT.Migrations
 
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
+
+                    b.Property<decimal?>("Grade")
+                        .HasColumnType("decimal(5, 2)");
 
                     b.Property<int>("StudentID")
                         .HasColumnType("int");

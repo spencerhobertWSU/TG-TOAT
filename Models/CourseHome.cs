@@ -9,5 +9,6 @@ namespace TGTOAT.Models
         public string Department { get; set; }
         public string CourseNum { get; set; }
         public List<Assignment> Assignments { get; set; }
+        public List<Notifications> Notifications { get; set; } // Adjust type as needed
     }
 }

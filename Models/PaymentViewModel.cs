@@ -44,5 +44,9 @@ namespace TGTOAT.Models
 
         // If the Stripe payment was successful
         public bool? didSucceed { get; set; }
+
+
+        //notifications
+        public List<Notifications> Notifications { get; set; }
     }
 }

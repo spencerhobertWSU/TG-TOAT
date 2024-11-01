@@ -12,6 +12,8 @@ namespace TGTOAT.Models
 
         public int StudentId { get; set; }
         public StudentCourseConnection? studentCourseConnection { get; set; }
+        //notifications
+        public List<Notifications> Notifications { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime DueDateAndTime { get; set; }

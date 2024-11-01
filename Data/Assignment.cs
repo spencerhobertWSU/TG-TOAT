@@ -19,6 +19,8 @@ namespace TGTOAT.Data
         public InstructorCourseConnection InstructorCourse { get; set; }
 
 
+
+
         [StringLength(60, MinimumLength = 1, ErrorMessage = "Description must be between 1 and 60 characters.")]
         [Required(ErrorMessage = "Assignment description is required.")]
         public string AssignmentDescription { get; set; }

@@ -21,6 +21,8 @@ namespace TGTOAT.Models
         public int Capacity { get; set; } // Class capacity
         public string Semester { get; set; } // Semester
 
+        public List<Notifications> Notifications { get; set; } // notifications
+
         public int CurrentStudent { get; set; }
         public List<Departments> Departments { get; set; } = new List<Departments>();
         public List<Courses> Courses { get; set; } = new List<Courses>();

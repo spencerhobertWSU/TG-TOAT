@@ -14,11 +14,13 @@ namespace TGTOAT.Controllers
     {
         private readonly UserContext _context;
         private readonly IAuthentication _auth;
+        private readonly NotificationService _notificationService;
 
-        public CourseController(UserContext context, IAuthentication auth)
+        public CourseController(NotificationService notificationService, UserContext context, IAuthentication auth)
         {
             _context = context;
             _auth = auth;
+            _notificationService = notificationService;
         }
 
         // Display the AddCourse view with the list of departments
@@ -42,9 +44,12 @@ namespace TGTOAT.Controllers
             var instructors = _context.User.Where(u => u.UserRole == "Instructor").ToList();
 
             var UserRole = _auth.GetRole();
+            var user = _auth.GetUser();//Grab User Info
+            int userId = user.Id;
 
             var viewModel = new AddCourseViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(userId).ToList(),
                 UserRole = UserRole,
                 Departments = departments,
                 CampusList = campus,
@@ -80,6 +85,7 @@ namespace TGTOAT.Controllers
 
                 var viewModel = new CourseHome
                 {
+                    Notifications = _notificationService.GetNotificationsForUser(user.Id).ToList(),
                     CourseId = course.CourseId,
                     UserRole = _auth.GetRole(),
                     Department = dept.DepartmentName,
@@ -99,11 +105,13 @@ namespace TGTOAT.Controllers
 
         public ActionResult Assignments(int? id)
         {
+
             if (_auth.GetUser == null)
             {
                 return Redirect("User/Login");
 
             }
+            var user = _auth.GetUser();
             var course = _context.Courses
                 .Include(c => c.Assignments)
                 .FirstOrDefault(c => c.CourseId == id);
@@ -117,6 +125,7 @@ namespace TGTOAT.Controllers
             {
                 var viewModel = new CourseHome
                 {
+                    Notifications = _notificationService.GetNotificationsForUser(user.Id).ToList(),
                     CourseId = course.CourseId,
                     UserRole = _auth.GetRole(),
                     Department = dept.DepartmentName,
@@ -198,7 +207,8 @@ namespace TGTOAT.Controllers
             {
                 return RedirectToAction("Login", "User");
             }
-
+            var user = _auth.GetUser();//Grab User Info
+            int userId = user.Id;
             // Fetch the courses that are linked to the current instructor
             var courses = _context.InstructorCourseConnection
                 .Include(icc => icc.Course)
@@ -212,6 +222,7 @@ namespace TGTOAT.Controllers
             // Create the ViewModel that combines courses and user info
             var viewModel = new CourseListViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(userId).ToList(),
                 Courses = courses,
                 UserLoginViewModel = currentUser
             };
@@ -220,19 +231,39 @@ namespace TGTOAT.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddAssignment()
+
+        //public ActionResult Assignments(int? id)
+        public ActionResult AddAssignment(int? id)
         {
-            return View();
+
+            var user = _auth.GetUser();//Grab User Info
+            int userId = user.Id;
+
+
+                var viewModel = new AddAssignmentViewModel
+                {
+                    Notifications = _notificationService.GetNotificationsForUser(userId).ToList(),
+
+
+                };
+
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddAssignment(int id, AddAssignmentViewModel model)
+        public async Task<IActionResult> AddAssignment(int id, AddAssignmentViewModel model) 
         {
-
+              var user = _auth.GetUser();//Grab User Info
+            int userId = user.Id;
 
             var userIdInt = _auth.GetCurrentUserId();
+            var ClassName = _context.Courses
+          .Where(uc => uc.CourseId == id)
+          .Select(uc => uc.CourseName)
+         .FirstOrDefault();
 
+            string CourseName = ClassName.ToString();
 
             var userCourses = await _context.InstructorCourseConnection
            .Where(uc => uc.InstructorID == userIdInt)
@@ -244,10 +275,12 @@ namespace TGTOAT.Controllers
           .Select(uc => uc.InstructorCourseConnectionId)
           .FirstOrDefaultAsync();
 
-            if (ModelState.IsValid)
-            {
+       
+
+         
                 var assignment = new Assignment
                 {
+                 
                     AssignmentName = model.AssignmentName,
                     AssignmentDescription = model.AssignmentDescription,
                     AssignmentPoints = model.AssignmentPoints,
@@ -261,11 +294,39 @@ namespace TGTOAT.Controllers
 
                 _context.Assignments.Add(assignment);
                 await _context.SaveChangesAsync();
+                var message = $"{CourseName}: New assignment '{assignment.AssignmentName}' has been created.";
+                NotifyStudents(message, id);
                 return RedirectToAction("Assignments", new { id });
 
-            }
+          
 
             return View(model);
+        }
+        private void NotifyInstructors(string message, int CourseId)
+        {
+
+            var stuentIds = _context.InstructorCourseConnection
+            .Where(uc => uc.CourseId == CourseId)
+            .Select(uc => uc.InstructorID)
+            .ToList();
+
+            foreach (var studentId in stuentIds)
+            {
+                _notificationService.CreateNotification(message, studentId);
+            }
+        }
+        private void NotifyStudents(string message, int CourseId)
+        {
+
+            var stuentIds = _context.StudentCourseConnection
+            .Where(uc => uc.CourseId == CourseId)
+            .Select(uc => uc.StudentID)
+            .ToList();
+
+            foreach (var studentId in stuentIds)
+            {
+                _notificationService.CreateNotification(message, studentId);
+            }
         }
         public IActionResult ViewCourse(int id)
         {
@@ -440,9 +501,12 @@ namespace TGTOAT.Controllers
             {
                 return NotFound();
             }
+            var user = _auth.GetUser();//Grab User Info
+            int userId = user.Id;
 
             var viewModel = new AddCourseViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(userId).ToList(),
                 CourseId = course.CourseId,
                 CourseNumber = course.CourseNumber,
                 CourseName = course.CourseName,
@@ -727,7 +791,7 @@ namespace TGTOAT.Controllers
         [HttpPost]
         public ActionResult UpdateSubmission(int assignmentId, int studentId, string givenPoints)
         {
-            
+           
             var submission = _context.StudentAssignment
                 .FirstOrDefault(sa => sa.AssignmentId == assignmentId && sa.StudentId == studentId);
 
@@ -738,12 +802,21 @@ namespace TGTOAT.Controllers
                     // Submit the assignment grade
                     submission.Grade = grade;
                     _context.SaveChanges();
-
+                    
                     // Update the students course grade
                     var assignment = _context.Assignments
                         .FirstOrDefault(a => a.AssignmentId == assignmentId);
                     UpdateGrade(studentId, assignment.CourseId);
 
+                    var ClassName = _context.Courses
+                    .Where(uc => uc.CourseId == assignment.CourseId)
+                    .Select(uc => uc.CourseName)
+                    .FirstOrDefault();
+
+                    string CourseName = ClassName.ToString();
+
+                    var message = $"{CourseName}: assignment '{assignment.AssignmentName}' has been Graded.";
+                    NotifyStudents(message, assignment.CourseId);
 
                     return RedirectToAction("ViewSubmissions", new { assignmentId });
                 }
@@ -881,7 +954,8 @@ namespace TGTOAT.Controllers
                 Department = dept.DepartmentName,
                 CourseNum = course.CourseNumber,
                 Grade = user.UserRole == "Student" ? GetGradeLetter(studentConnections.FirstOrDefault()) : null,
-                GradeDistribution = gradeDistribution
+                GradeDistribution = gradeDistribution,
+                Notifications = _notificationService.GetNotificationsForUser(user.Id).ToList(),
             };
 
             return View(viewModel);
@@ -948,6 +1022,7 @@ namespace TGTOAT.Controllers
 
             var viewModel = new SubmitAssignmentViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(studentId).ToList(),
                 AssignmentId = assignment.AssignmentId,
                 AssignmentName = assignment.AssignmentName,
                 Description = assignment.AssignmentDescription,
@@ -989,6 +1064,7 @@ namespace TGTOAT.Controllers
 
             var viewModel = new SubmitAssignmentViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(studentId).ToList(),
                 AssignmentId = assignment.AssignmentId,
                 AssignmentName = assignment.AssignmentName,
                 Description = assignment.AssignmentDescription,
@@ -1001,8 +1077,22 @@ namespace TGTOAT.Controllers
     
 
         [HttpPost]
-        public async Task<ActionResult> SubmitAssignment(SubmitAssignmentViewModel model, int assignmentId, IFormFile FileSubmission, string TextSubmission)
+        public async Task<ActionResult> SubmitAssignment(SubmitAssignmentViewModel model, int assignmentId, IFormFile FileSubmission, string TextSubmission) // Place notification code for instructors
         {
+
+            var CourseId = _context.Assignments
+          .Where(uc => uc.AssignmentId == assignmentId)
+          .Select(uc => uc.CourseId)
+        .FirstOrDefault();
+
+            int CouseID = Convert.ToInt32(CourseId);
+
+            var ClassName = _context.Courses
+          .Where(uc => uc.CourseId == CouseID)
+          .Select(uc => uc.CourseName)
+       .FirstOrDefault();
+
+            string CourseName = ClassName.ToString();
             var assignment = _context.Assignments.FirstOrDefault(a => a.AssignmentId == assignmentId);
 
             model.AssignmentId = assignmentId;
@@ -1059,6 +1149,8 @@ namespace TGTOAT.Controllers
                 }
                 existingSubmission.SubmissionDate = DateTime.UtcNow;
                 await _context.SaveChangesAsync();
+                var message = $"A student has submitted '{assignment.AssignmentName}' Assignment from: {CourseName}";
+                NotifyInstructors(message, CouseID);
             }
 
 
@@ -1108,6 +1200,9 @@ namespace TGTOAT.Controllers
                 };
                 _context.StudentAssignment.Add(newSubmission);
                 await _context.SaveChangesAsync();
+
+                var message = $"A student has submitted '{assignment.AssignmentName}' Assignment from : {CourseName}";
+                NotifyInstructors(message, CouseID);
             }
             return RedirectToAction("SubmitPage", new { assignmentId = assignmentId });
         }

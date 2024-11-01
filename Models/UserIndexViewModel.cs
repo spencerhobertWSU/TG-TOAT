@@ -28,6 +28,8 @@ namespace TGTOAT.Models
         [Required]
         public string? UserRole { get; set; }
 
+        //notifications
+        public List<Notifications> Notifications { get; set; }
 
         /* Courses */
 

@@ -15,20 +15,23 @@ window.addEventListener('load', function () {
     }
 })
 
-
 function openNotif() {
-    //Open Notifictions
-    if (notif == 0) {
-        document.getElementById("account").style.display = "none";
-        document.getElementById("notifications").style.display = "block";
-        notif = 1;
-    }
-    //Close Notifications
-    else {
-        document.getElementById("notifications").style.display = "none";
-        notif = 0;
-    } 
+    const dropdown = document.getElementById('notificationDropdown');
+    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
 }
+//function openNotif() {
+//    //Open Notifictions
+//    if (notif == 0) {
+//        document.getElementById("account").style.display = "none";
+//        document.getElementById("notifications").style.display = "block";
+//        notif = 1;
+//    }
+//    //Close Notifications
+//    else {
+//        document.getElementById("notifications").style.display = "none";
+//        notif = 0;
+//    } 
+//}
 
 function openAccount() {
     //Open Account

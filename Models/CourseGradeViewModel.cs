@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TGTOAT.Data;
 
 namespace TGTOAT.Models
 {
@@ -11,5 +12,7 @@ namespace TGTOAT.Models
         public string? Grade { get; set; }
 
         public List<KeyValuePair<string, int>> GradeDistribution { get; set; }
+
+        public List<Notifications> Notifications { get; set; }
     }
 }

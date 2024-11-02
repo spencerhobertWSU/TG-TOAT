@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TGTOATTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4cb2df5e10c6329c4d5c91a6f12afa417624a980")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c3a19049d84ba46f0fa7d4899cb5c1a24cae9789")]
 [assembly: System.Reflection.AssemblyProductAttribute("TGTOATTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TGTOATTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

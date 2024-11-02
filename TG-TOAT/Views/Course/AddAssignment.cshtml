@@ -1,0 +1,60 @@
+﻿@model TGTOAT.Models.AddAssignmentViewModel //hhhhh
+
+@{
+    ViewData["Title"] = "AddAssignment";
+
+    Layout = "~/Views/Shared/_InstructorLayout.cshtml";
+}
+
+
+<h2>Create Assignment</h2>
+
+<form asp-action="AddAssignment" method="post">
+    <div class="form-group">
+        <label for="assignmentName">Assignment Title</label>
+        <input type="text" class="form-control" id="assignmentName" name="AssignmentName" placeholder="Assignment Title" required />
+    </div>
+
+    <div class="form-group">
+        <label for="assignmentDescription">Assignment Description</label>
+        <input type="text" class="form-control" id="assignmentDescription" name="AssignmentDescription" placeholder="Assignment Description" required />
+    </div>
+
+    <div class="form-group">
+        <label for="assignmentPoints">Assignment Points</label>
+        <input type="number" class="form-control" id="assignmentPoints" name="AssignmentPoints" placeholder="Enter points" required min="0" />
+    </div>
+
+    <div class="form-group">
+        <label for="dueDateAndTime">Assignment Due Date and Time</label>
+        <input type="datetime-local" class="form-control" id="dueDateAndTime" name="DueDateAndTime" required />
+    </div>
+
+    <div class="form-group">
+        <label>Submission Type</label>
+        <div>
+            <input type="radio" id="textSubmission" name="AssignmentType" value="text" checked />
+            <label for="textSubmission">Text</label>
+        </div>
+        <div>
+            <input type="radio" id="fileSubmission" name="AssignmentType" value="file" />
+            <label for="fileSubmission">File</label>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <button type="button" class="btn btn-secondary" onclick="window.history.back();">Cancel</button>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}

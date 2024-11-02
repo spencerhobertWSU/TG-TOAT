@@ -101,7 +101,7 @@ namespace TGTOAT.Models
         public List<User> Instructors { get; set; } = new List<User>();
 
         //notifications
-        public List<Notifications> Notifications { get; set; }
+        public List<Notifications> Notifications { get; set; } = new List<Notifications>();
 
     }
 }

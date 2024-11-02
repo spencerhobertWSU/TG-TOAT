@@ -148,8 +148,11 @@ namespace TGTOAT.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = _auth.GetUser();//Grab User Info
+                int userId = user.Id;
                 var course = new Courses
                 {
+                    Notifications = _notificationService.GetNotificationsForUser(userId).ToList(),
                     CourseNumber = model.CourseNumber,
                     CourseName = model.CourseName,
                     DepartmentId = model.SelectedDepartmentId,
@@ -493,8 +496,8 @@ namespace TGTOAT.Controllers
             return File(imageBytes, "image/png");
         }
 
-        [HttpGet]
-        public IActionResult Edit(int id)
+
+        public ActionResult Edit(int id)
         {
             var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
             if (course == null)
@@ -543,7 +546,7 @@ namespace TGTOAT.Controllers
         }       
 
         [HttpPost]
-        public async Task<IActionResult> Edit(AddCourseViewModel model)
+        public async Task<ActionResult> Edit(AddCourseViewModel model)
         {                
 
             if (ModelState.IsValid)
@@ -555,9 +558,10 @@ namespace TGTOAT.Controllers
                     {
                         Console.WriteLine("Course not found");
                         return NotFound();
-                    }                    
+                    }
 
                     // Update course properties
+                    course.Notifications = model.Notifications;
                     course.DepartmentId = model.SelectedDepartmentId;
                     course.CourseNumber = model.CourseNumber;
                     course.CourseName = model.CourseName;
@@ -1079,133 +1083,135 @@ namespace TGTOAT.Controllers
         [HttpPost]
         public async Task<ActionResult> SubmitAssignment(SubmitAssignmentViewModel model, int assignmentId, IFormFile FileSubmission, string TextSubmission) // Place notification code for instructors
         {
+            
 
-            var CourseId = _context.Assignments
+                var CourseId = _context.Assignments
           .Where(uc => uc.AssignmentId == assignmentId)
           .Select(uc => uc.CourseId)
         .FirstOrDefault();
 
-            int CouseID = Convert.ToInt32(CourseId);
+                int CouseID = Convert.ToInt32(CourseId);
 
-            var ClassName = _context.Courses
-          .Where(uc => uc.CourseId == CouseID)
-          .Select(uc => uc.CourseName)
-       .FirstOrDefault();
+                var ClassName = _context.Courses
+              .Where(uc => uc.CourseId == CouseID)
+              .Select(uc => uc.CourseName)
+           .FirstOrDefault();
 
-            string CourseName = ClassName.ToString();
-            var assignment = _context.Assignments.FirstOrDefault(a => a.AssignmentId == assignmentId);
+                string CourseName = ClassName.ToString();
+                var assignment = _context.Assignments.FirstOrDefault(a => a.AssignmentId == assignmentId);
 
-            model.AssignmentId = assignmentId;
-            model.AssignmentName = assignment.AssignmentName;
-            model.Description = assignment.AssignmentDescription;
-            model.Points = assignment.AssignmentPoints;
-            model.SubmissionType = assignment.AssignmentType;
-
-
-            string NewTextSubmission = "";
-            string NewFileSubmission = "";
-            if (_auth.GetUser() == null)
-            {
-                return RedirectToAction("Login", "User");
-            }
-            var studentId = _auth.GetCurrentUserId(); // Get the current user (student)
-            var existingSubmission = await _context.StudentAssignment
-                .Where(sa => sa.AssignmentId == assignmentId && sa.StudentId == studentId)
-                .FirstOrDefaultAsync();
+                model.AssignmentId = assignmentId;
+                model.AssignmentName = assignment.AssignmentName;
+                model.Description = assignment.AssignmentDescription;
+                model.Points = assignment.AssignmentPoints;
+                model.SubmissionType = assignment.AssignmentType;
 
 
-            if (existingSubmission != null)
-            {
-                if (assignment.AssignmentType == "text" && !string.IsNullOrEmpty(TextSubmission))
+                string NewTextSubmission = "";
+                string NewFileSubmission = "";
+                if (_auth.GetUser() == null)
                 {
-                    // Update the submission column with the text submission
-                    existingSubmission.TextSubmission = TextSubmission;
+                    return RedirectToAction("Login", "User");
                 }
-                else if (assignment.AssignmentType == "file" && FileSubmission != null && FileSubmission.Length > 0)
+                var studentId = _auth.GetCurrentUserId(); // Get the current user (student)
+                var existingSubmission = await _context.StudentAssignment
+                    .Where(sa => sa.AssignmentId == assignmentId && sa.StudentId == studentId)
+                    .FirstOrDefaultAsync();
+
+
+                if (existingSubmission != null)
                 {
-                    // Check the file type
-                    var fileExtension = Path.GetExtension(FileSubmission.FileName).ToLower();
-                    if (fileExtension != ".pdf" && fileExtension != ".doc" && fileExtension != ".docx")
+                    if (assignment.AssignmentType == "text" && !string.IsNullOrEmpty(TextSubmission))
                     {
-                        ModelState.AddModelError("", "Invalid file type. Only PDF and Word documents are allowed.");
+                        // Update the submission column with the text submission
+                        existingSubmission.TextSubmission = TextSubmission;
+                    }
+                    else if (assignment.AssignmentType == "file" && FileSubmission != null && FileSubmission.Length > 0)
+                    {
+                        // Check the file type
+                        var fileExtension = Path.GetExtension(FileSubmission.FileName).ToLower();
+                        if (fileExtension != ".pdf" && fileExtension != ".doc" && fileExtension != ".docx")
+                        {
+                            ModelState.AddModelError("", "Invalid file type. Only PDF and Word documents are allowed.");
+                            return View(model);
+                        }
+
+                        // Convert the file to a Base64 string
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            await FileSubmission.CopyToAsync(memoryStream);
+                            var fileBytes = memoryStream.ToArray();
+                            var base64String = Convert.ToBase64String(fileBytes);
+
+                            // Update the submission column with the base64-encoded file submission
+                            existingSubmission.TextSubmission = base64String;
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "No valid submission found.");
                         return View(model);
                     }
-
-                    // Convert the file to a Base64 string
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        await FileSubmission.CopyToAsync(memoryStream);
-                        var fileBytes = memoryStream.ToArray();
-                        var base64String = Convert.ToBase64String(fileBytes);
-
-                        // Update the submission column with the base64-encoded file submission
-                        existingSubmission.TextSubmission = base64String;
-                    }
+                    existingSubmission.SubmissionDate = DateTime.UtcNow;
+                    await _context.SaveChangesAsync();
+                    var message = $"A student has submitted '{assignment.AssignmentName}' Assignment from: {CourseName}";
+                    NotifyInstructors(message, CouseID);
                 }
+
+
                 else
                 {
-                    ModelState.AddModelError("", "No valid submission found.");
-                    return View(model);
-                }
-                existingSubmission.SubmissionDate = DateTime.UtcNow;
-                await _context.SaveChangesAsync();
-                var message = $"A student has submitted '{assignment.AssignmentName}' Assignment from: {CourseName}";
-                NotifyInstructors(message, CouseID);
-            }
-
-
-            else
-            {
-                if (assignment.AssignmentType == "text" && !string.IsNullOrEmpty(TextSubmission))
-                {
-                    // Update the submission column with the text submission
-                    NewTextSubmission = TextSubmission;
-                }
-                else if (assignment.AssignmentType == "file" && FileSubmission != null && FileSubmission.Length > 0)
-                {
-                    // Check the file type
-                    var fileExtension = Path.GetExtension(FileSubmission.FileName).ToLower();
-                    if (fileExtension != ".pdf" && fileExtension != ".doc" && fileExtension != ".docx")
+                    if (assignment.AssignmentType == "text" && !string.IsNullOrEmpty(TextSubmission))
                     {
-                        ModelState.AddModelError("", "Invalid file type. Only PDF and Word documents are allowed.");
+                        // Update the submission column with the text submission
+                        NewTextSubmission = TextSubmission;
+                    }
+                    else if (assignment.AssignmentType == "file" && FileSubmission != null && FileSubmission.Length > 0)
+                    {
+                        // Check the file type
+                        var fileExtension = Path.GetExtension(FileSubmission.FileName).ToLower();
+                        if (fileExtension != ".pdf" && fileExtension != ".doc" && fileExtension != ".docx")
+                        {
+                            ModelState.AddModelError("", "Invalid file type. Only PDF and Word documents are allowed.");
+                            return View(model);
+                        }
+
+                        // Convert the file to a Base64 string
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            await FileSubmission.CopyToAsync(memoryStream);
+                            var fileBytes = memoryStream.ToArray();
+                            var base64String = Convert.ToBase64String(fileBytes);
+
+                            // Update the submission column with the base64-encoded file submission
+                            NewFileSubmission = base64String;
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "No valid submission found.");
                         return View(model);
                     }
-
-                    // Convert the file to a Base64 string
-                    using (var memoryStream = new MemoryStream())
+                    var newSubmission = new StudentAssignments
                     {
-                        await FileSubmission.CopyToAsync(memoryStream);
-                        var fileBytes = memoryStream.ToArray();
-                        var base64String = Convert.ToBase64String(fileBytes);
+                        TextSubmission = NewTextSubmission,
+                        FileSubmission = NewFileSubmission,
+                        AssignmentId = assignmentId,
+                        StudentId = studentId,
+                        Grade = null,
+                        SubmissionDate = DateTime.UtcNow,
 
-                        // Update the submission column with the base64-encoded file submission
-                        NewFileSubmission = base64String;
-                    }
+
+                    };
+                    _context.StudentAssignment.Add(newSubmission);
+                    await _context.SaveChangesAsync();
+
+                    var message = $"A student has submitted '{assignment.AssignmentName}' Assignment from : {CourseName}";
+                    NotifyInstructors(message, CouseID);
                 }
-                else
-                {
-                    ModelState.AddModelError("", "No valid submission found.");
-                    return View(model);
-                }
-                var newSubmission = new StudentAssignments
-                {
-                    TextSubmission = NewTextSubmission,
-                    FileSubmission = NewFileSubmission,
-                    AssignmentId = assignmentId,
-                    StudentId = studentId,
-                    Grade = null,
-                  SubmissionDate = DateTime.UtcNow,
-
-
-                };
-                _context.StudentAssignment.Add(newSubmission);
-                await _context.SaveChangesAsync();
-
-                var message = $"A student has submitted '{assignment.AssignmentName}' Assignment from : {CourseName}";
-                NotifyInstructors(message, CouseID);
-            }
-            return RedirectToAction("SubmitPage", new { assignmentId = assignmentId });
+                return RedirectToAction("SubmitPage", new { assignmentId = assignmentId });
         }
+        
         #endregion
 
 

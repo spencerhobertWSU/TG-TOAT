@@ -13,11 +13,11 @@
 .vscode-test/
 .idea/
 .vs/
-obj/
-bin/
-TG-TOAT/.vs/
-TG-TOAT/obj/
-TG-TOAT/bin/
+/obj/
+/bin/
+/TG-TOAT/.vs/
+/TG-TOAT/obj/
+/TG-TOAT/bin/
 
 # Mono Auto Generated Files
 mono_crash.*
@@ -97,3 +97,4 @@ artifacts/
 
 # Include to Ignore SDK folders
 sdk/*/
+/TG-TOAT/.vs

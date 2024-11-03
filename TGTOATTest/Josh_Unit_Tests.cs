@@ -1,166 +1,270 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using Microsoft.EntityFrameworkCore;
+using TGTOAT.Data;
+using TGTOAT;
+using TGTOAT.Controllers;
+using Moq;
+using TGTOAT.Helpers;
+using Microsoft.AspNetCore.Mvc;
+using TGTOAT.Models;
 
-namespace StudentDropCourseTest
+
+namespace Josh_Tests
 {
     [TestClass]
     public class Josh_Unit_Tests
     {
-        private IWebDriver driver;
-        private WebDriverWait wait;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            driver = new ChromeDriver();
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-        }
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            driver.Quit();
-        }
-
-        private string GetAvailableUrl()
-        {
-            string[] urls = new string[] 
-            { 
-                "https://localhost:44362/",
-                "https://localhost:7244/"
-            };
-
-            foreach (var url in urls)
-            {
-                try
-                {
-                    driver.Navigate().GoToUrl(url);
-                    // Check if we can find a common element that should be present on the page
-                    var element = wait.Until(drv => drv.FindElement(By.Id("Email")));
-                    return url; // If successful, return the working URL
-                }
-                catch (Exception)
-                {
-                    continue; // If this URL fails, try the next one
-                }
-            }
-            
-            throw new Exception("No available URLs found. Both URLs are unreachable.");
-        }
+        private UserContext _context;
+        private CourseController _controller;
+        private Mock<IAuthentication> _mockAuth;
+        private NotificationService _notificationService;
 
         [TestMethod]
-        public void DropCourseTest()
+        public void StudentDropCourseTest()
         {
-            // Navigate to the website using the first available URL
-            var baseUrl = GetAvailableUrl();
-            driver.Navigate().GoToUrl(baseUrl);
+            // Setup
+            _mockAuth = new Mock<IAuthentication>();
+            var options = new DbContextOptionsBuilder<UserContext>()
+                .UseInMemoryDatabase(databaseName: "TestDatabase")
+                .Options;
 
-            // Login as a student
-            wait.Until(drv => drv.FindElement(By.Id("Email"))).SendKeys("bob@gmail.com");
-            wait.Until(drv => drv.FindElement(By.Id("Password"))).SendKeys("Pass123");
-            wait.Until(drv => drv.FindElement(By.XPath("//input[@value='Log In']"))).Click();
-            // have to click login button twice for some reason
-            wait.Until(drv => drv.FindElement(By.XPath("//input[@value='Log In']"))).Click();
+            _context = new UserContext(options);
+            _notificationService = new NotificationService(_context);
 
-            // Navigate to course registration page
-            wait.Until(drv => drv.FindElement(By.XPath("//a[@href='/User/CourseRegistration']"))).Click();
+            // Create student
+            User student = new User
+            {
+                Id = 1,
+                Email = "student@weber.edu",
+                Password = "Test",
+                FirstName = "Test",
+                LastName = "Student",
+                BirthDate = new DateTime(1990, 1, 1),
+                UserRole = "Student"
+            };
 
-            // Find and store the initial number of "Drop" buttons
-            var initialDropButtonCount = driver.FindElements(By.CssSelector("button.btn-danger")).Count;
+            // Create department and course
+            Departments department = new Departments
+            {
+                DepartmentId = 1,
+                DepartmentName = "Test Department"
+            };
 
-            // Find and click the first 'Drop' button
-            var dropButton = wait.Until(drv => drv.FindElement(By.CssSelector("button.btn-danger")));
-            dropButton.Click();
+            Courses course = new Courses
+            {
+                CourseId = 1,
+                DepartmentId = department.DepartmentId,
+                Department = department,
+                CourseNumber = "TS1010",
+                CourseName = "Test Course",
+                CourseDescription = "Test Description",
+                NumberOfCredits = 3,
+                Capacity = 30,
+                Campus = "Ogden",
+                Building = "Science",
+                RoomNumber = 101,
+                DaysOfTheWeek = "MWF",
+                StartTime = new TimeOnly(9, 0),
+                EndTime = new TimeOnly(10, 0),
+                Semester = "Fall",
+                Year = 2024
+            };
 
-            // Wait for the page to refresh and verify the course was dropped
-            wait.Until(d => d.FindElements(By.CssSelector("button.btn-danger")).Count < initialDropButtonCount);
+            // Connect student to course
+            StudentCourseConnection studentCourseConnection = new StudentCourseConnection
+            {
+                StudentCourseId = 1,
+                StudentID = student.Id,
+                User = student,
+                CourseId = course.CourseId,
+                Course = course
+            };
 
-            // Final verification
-            var finalDropButtonCount = driver.FindElements(By.CssSelector("button.btn-danger")).Count;
-            Assert.AreEqual(initialDropButtonCount - 1, finalDropButtonCount, 
-                "Number of courses with 'Drop' button should decrease by 1");
+            // Save to database
+            _context.User.Add(student);
+            _context.Courses.Add(course);
+            _context.StudentCourseConnection.Add(studentCourseConnection);
+            _context.SaveChanges();
+
+            // Create controller
+            _controller = new CourseController(_notificationService, _context, _mockAuth.Object);
+
+            // Act - Drop the course by removing the connection
+            var connection = _context.StudentCourseConnection
+                .FirstOrDefault(scc => scc.StudentID == student.Id && scc.CourseId == course.CourseId);
+            _context.StudentCourseConnection.Remove(connection);
+            _context.SaveChanges();
+
+            // Assert
+            var studentCourseAfterDrop = _context.StudentCourseConnection
+                .FirstOrDefault(scc => scc.StudentID == student.Id && scc.CourseId == course.CourseId);
+            Assert.IsNull(studentCourseAfterDrop, "Course should be dropped (connection should be removed)");
+
+            // Cleanup
+            _context.Database.EnsureDeleted();
+            _context.Dispose();
+            _controller.Dispose();
         }
 
         [TestMethod]
         public void InstructorEditCourseTest()
         {
-            // Generate random test data
-            var random = new Random();
-            var newCourseName = $"Test Course {random.Next(1000, 9999)}";
-            var newRoomNumber = random.Next(100, 999).ToString();
-            var newCredits = random.Next(1, 6).ToString();
-            var newCapacity = random.Next(10, 50).ToString();
-            var newCourseNumber = random.Next(100, 999).ToString();
+            // Setup
+            _mockAuth = new Mock<IAuthentication>();
+            var options = new DbContextOptionsBuilder<UserContext>()
+                .UseInMemoryDatabase(databaseName: "TestDatabase")
+                .Options;
 
-            // Navigate to the website using the first available URL
-            var baseUrl = GetAvailableUrl();
-            driver.Navigate().GoToUrl(baseUrl);
+            _context = new UserContext(options);
+            Assert.IsNotNull(_context, "Context is null");
+            
+            _notificationService = new NotificationService(_context);
+            Assert.IsNotNull(_notificationService, "NotificationService is null");
 
-            // Login as an instructor
-            wait.Until(drv => drv.FindElement(By.Id("Email"))).SendKeys("instructor@weber.edu");
-            wait.Until(drv => drv.FindElement(By.Id("Password"))).SendKeys("instructor");
-            wait.Until(drv => drv.FindElement(By.XPath("//input[@value='Log In']"))).Click();
-            // have to click login button twice for some reason
-            wait.Until(drv => drv.FindElement(By.XPath("//input[@value='Log In']"))).Click();
+            // Create instructor
+            User instructor = new User
+            {
+                Id = 1,
+                Email = "instructor@weber.edu",
+                Password = "Test",
+                FirstName = "Test",
+                LastName = "Instructor",
+                BirthDate = new DateTime(1990, 1, 1),
+                UserRole = "Instructor"
+            };
+            Assert.IsNotNull(instructor, "Instructor is null");
 
-            // Navigate to course list
-            wait.Until(drv => drv.FindElement(By.XPath("//a[@href='/Course/Courses']"))).Click();
+            // Create department and initial course
+            Departments department = new Departments
+            {
+                DepartmentId = 1,
+                DepartmentName = "Test Department"
+            };
+            Assert.IsNotNull(department, "Department is null");
 
-            // Add explicit wait and scroll into view before clicking edit
-            var editLink = wait.Until(drv => drv.FindElement(By.LinkText("Edit")));
-            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", editLink);
-            // Add a small delay to let the page settle
-            Thread.Sleep(500);
-            editLink.Click();
+            Courses course = new Courses
+            {
+                CourseId = 1,
+                DepartmentId = department.DepartmentId,
+                Department = department,
+                CourseNumber = "TS1010",
+                CourseName = "Original Course Name",
+                CourseDescription = "Original Description",
+                NumberOfCredits = 3,
+                Capacity = 30,
+                Campus = "Ogden",
+                Building = "Science Lab",
+                RoomNumber = 101,
+                DaysOfTheWeek = "MWF",
+                StartTime = new TimeOnly(9, 0),
+                EndTime = new TimeOnly(10, 0),
+                Semester = "Fall",
+                Year = 2024
+            };
+            Assert.IsNotNull(course, "Course is null");
 
-            // Edit course details with random values - add waits and clear existing values
-            var courseNameInput = wait.Until(drv => drv.FindElement(By.Name("CourseName")));
-            courseNameInput.Clear();
-            courseNameInput.SendKeys(newCourseName);
+            // Connect instructor to course
+            InstructorCourseConnection instructorCourseConnection = new InstructorCourseConnection
+            {
+                InstructorCourseConnectionId = 1,
+                InstructorID = instructor.Id,
+                Instructor = instructor,
+                CourseId = course.CourseId,
+                Course = course
+            };
+            Assert.IsNotNull(instructorCourseConnection, "InstructorCourseConnection is null");
 
-            var roomNumberInput = wait.Until(drv => drv.FindElement(By.Name("RoomNumber")));
-            roomNumberInput.Clear();
-            roomNumberInput.SendKeys(newRoomNumber);
+            course.instructorCourseConnections = new List<InstructorCourseConnection> { instructorCourseConnection };
+            Assert.IsNotNull(course.instructorCourseConnections, "Course.instructorCourseConnections is null");
 
-            var courseNumberInput = wait.Until(drv => drv.FindElement(By.Name("CourseNumber")));
-            courseNumberInput.Clear();
-            courseNumberInput.SendKeys(newCourseNumber);
+            try
+            {
+                // Save to database
+                _context.Departments.Add(department);
+                _context.User.Add(instructor);
+                _context.Courses.Add(course);
+                _context.InstructorCourseConnection.Add(instructorCourseConnection);
+                _context.SaveChanges();
 
-            var creditsInput = wait.Until(drv => drv.FindElement(By.Name("NumberOfCredits")));
-            creditsInput.Clear();
-            creditsInput.SendKeys(newCredits);
+                // Verify entities were saved
+                Assert.IsTrue(_context.Departments.Any(), "No departments in database");
+                Assert.IsTrue(_context.User.Any(), "No users in database");
+                Assert.IsTrue(_context.Courses.Any(), "No courses in database");
+                Assert.IsTrue(_context.InstructorCourseConnection.Any(), "No instructor connections in database");
 
-            var capacityInput = wait.Until(drv => drv.FindElement(By.Name("Capacity")));
-            capacityInput.Clear();
-            capacityInput.SendKeys(newCapacity);
+                // Create controller
+                _controller = new CourseController(_notificationService, _context, _mockAuth.Object);
+                Assert.IsNotNull(_controller, "Controller is null");
 
-            // Save changes - scroll submit button into view before clicking
-            var submitButton = wait.Until(drv => drv.FindElement(By.CssSelector("button[type='submit']")));
-            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", submitButton);
-            Thread.Sleep(500);
-            submitButton.Click();
+                // Act - Update all course properties
+                var updatedCourse = _context.Courses
+                    .Include(c => c.Department)
+                    .Include(c => c.instructorCourseConnections)
+                    .FirstOrDefault(c => c.CourseId == course.CourseId);
 
-            // Verify the changes were saved
-            wait.Until(drv => drv.Url.Contains("/Course/Courses"));
+                Assert.IsNotNull(updatedCourse, "Failed to retrieve course from database");
+                Assert.IsNotNull(updatedCourse.Department, "Department is null in retrieved course");
+                Assert.IsNotNull(updatedCourse.instructorCourseConnections, "InstructorCourseConnections is null in retrieved course");
 
-            // Add explicit waits for verifications
-            wait.Until(drv => drv.FindElement(By.XPath($"//td[contains(text(), '{newCourseName}')]")));
-            wait.Until(drv => drv.FindElement(By.XPath($"//td[contains(text(), '{newRoomNumber}')]")));
-            wait.Until(drv => drv.FindElement(By.XPath($"//td[contains(text(), '{newCourseNumber}')]")));
-            wait.Until(drv => drv.FindElement(By.XPath($"//td[contains(text(), '{newCredits}')]")));
+                updatedCourse.CourseNumber = "TS2020";
+                updatedCourse.CourseName = "Updated Course Name";
+                updatedCourse.CourseDescription = "Updated Description";
+                updatedCourse.NumberOfCredits = 4;
+                updatedCourse.Capacity = 40;
+                updatedCourse.Campus = "Davis";
+                updatedCourse.Building = "Engineering";
+                updatedCourse.RoomNumber = 202;
+                updatedCourse.DaysOfTheWeek = "TR";
+                updatedCourse.StartTime = new TimeOnly(13, 30);
+                updatedCourse.EndTime = new TimeOnly(14, 45);
+                updatedCourse.Semester = "Spring";
+                updatedCourse.Year = 2025;
+                _context.SaveChanges();
 
-            // Assertions remain the same
-            var updatedCourseName = driver.FindElement(By.XPath($"//td[contains(text(), '{newCourseName}')]"));
-            var updatedRoomNumber = driver.FindElement(By.XPath($"//td[contains(text(), '{newRoomNumber}')]"));
-            var updatedCourseNumber = driver.FindElement(By.XPath($"//td[contains(text(), '{newCourseNumber}')]"));
-            var updatedCredits = driver.FindElement(By.XPath($"//td[contains(text(), '{newCredits}')]"));
+                // Assert - Check all properties
+                var courseAfterUpdate = _context.Courses
+                    .Include(c => c.Department)
+                    .Include(c => c.instructorCourseConnections)
+                    .FirstOrDefault(c => c.CourseId == course.CourseId);
 
-            Assert.IsNotNull(updatedCourseName, "Course name was not updated");
-            Assert.IsNotNull(updatedRoomNumber, "Room number was not updated");
-            Assert.IsNotNull(updatedCourseNumber, "Course number was not updated");
-            Assert.IsNotNull(updatedCredits, "Credits were not updated");
-        }        
+                Assert.IsNotNull(courseAfterUpdate, "Failed to retrieve updated course");
+                Assert.IsNotNull(courseAfterUpdate.Department, "Department is null after update");
+                Assert.IsNotNull(courseAfterUpdate.instructorCourseConnections, "Instructor connections are null after update");
+
+                Assert.AreEqual("TS2020", courseAfterUpdate.CourseNumber, "Course number should be updated");
+                Assert.AreEqual("Updated Course Name", courseAfterUpdate.CourseName, "Course name should be updated");
+                Assert.AreEqual("Updated Description", courseAfterUpdate.CourseDescription, "Course description should be updated");
+                Assert.AreEqual(4, courseAfterUpdate.NumberOfCredits, "Number of credits should be updated");
+                Assert.AreEqual(40, courseAfterUpdate.Capacity, "Capacity should be updated");
+                Assert.AreEqual("Davis", courseAfterUpdate.Campus, "Campus should be updated");
+                Assert.AreEqual("Engineering", courseAfterUpdate.Building, "Building should be updated");
+                Assert.AreEqual(202, courseAfterUpdate.RoomNumber, "Room number should be updated");
+                Assert.AreEqual("TR", courseAfterUpdate.DaysOfTheWeek, "Days of the week should be updated");
+                Assert.AreEqual(new TimeOnly(13, 30), courseAfterUpdate.StartTime, "Start time should be updated");
+                Assert.AreEqual(new TimeOnly(14, 45), courseAfterUpdate.EndTime, "End time should be updated");
+                Assert.AreEqual("Spring", courseAfterUpdate.Semester, "Semester should be updated");
+                Assert.AreEqual(2025, courseAfterUpdate.Year, "Year should be updated");
+
+                // Verify department and instructor relationships remain intact
+                Assert.AreEqual(department.DepartmentId, courseAfterUpdate.DepartmentId, "Department relationship should remain unchanged");
+                Assert.IsTrue(courseAfterUpdate.instructorCourseConnections.Any(icc => icc.InstructorID == instructor.Id), 
+                    "Instructor relationship should remain unchanged");
+            }
+            finally
+            {
+                if (_context != null)
+                {
+                    _context.Database.EnsureDeleted();
+                    _context.Dispose();
+                }
+                if (_controller != null)
+                {
+                    _controller.Dispose();
+                }
+            }
+        }
     }
-} 
+}

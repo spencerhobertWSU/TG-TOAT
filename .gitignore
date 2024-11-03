@@ -1,5 +1,4 @@
-# Ignore Visual Studio temporary files, build results, and
-# Windows-specific files
+# Ignore Visual Studio temporary files, build results, and Windows-specific files
 
 # User-specific files
 *.rsuser
@@ -10,96 +9,36 @@
 
 # User-specific folders
 .vscode/
-.vscode-test/
 .idea/
 .vs/
 obj/
 bin/
-/.vs/
-/obj/
-/bin/
-*/.vs/
-*/obj/
-*/bin/
-*/.vs/*
-*/obj/*
-*/bin/*
-/TG-TOAT/.vs/
-/TG-TOAT/obj/
-/TG-TOAT/bin/
-/TGTOATTest/.vs/
-/TGTOATTest/obj/
-/TGTOATTest/bin/
 
-# Mono Auto Generated Files
-mono_crash.*
-
-# Team Foundation Service
-$tf/
+# Specific project folders to ignore
+TG-TOAT/.vs/
+TG-TOAT/obj/
+TG-TOAT/bin/
+TGTOATTest/.vs/
+TGTOATTest/obj/
+TGTOATTest/bin/
 
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
 
-# Folder config file
+# Windows-specific files
 Desktop.ini
-
-# Recycle Bin used on file shares
 $RECYCLE.BIN/
-
-# VS Code directories
-.vscode/
 
 # CMake
 CMakeSettings.json
 CMakeLists.txt.user
 
-# Visual Studio Code
-.vscode/*
-
-# GitHub Actions
-.github/*
-
 # Windows Installer files
 *.cab
 *.msi
 *.msm
 *.msp
-
-# Windows shortcuts
-*.lnk
-
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
-
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
-
-# DotNet
-project.lock.json
-project.fragment.lock.json
-artifacts/
-
-# DotNet Core
-project.lock.json
-artifacts/
-
-# Visual Studio Code User Specific
-.vscode/*
-.idea/
-
-# Rider
-.idea/
-
-# Rider
-.idea/
 
 # Backup & temp files
 *.bak
@@ -107,6 +46,7 @@ artifacts/
 *.tmp.*
 ~$*
 
-# Include to Ignore SDK folders
-sdk/*/
-/TG-TOAT/.vs
+# DotNet Core and project files
+project.lock.json
+project.fragment.lock.json
+artifacts/

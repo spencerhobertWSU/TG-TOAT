@@ -4,9 +4,6 @@
   "Documents": [
     {
       "AbsoluteMoniker": "D:0:0:{47587C37-4690-49FD-9D28-ABBBBB83FBAD}|..\\TGTOATTest\\TGTOATTest.csproj|c:\\users\\spenc\\desktop\\coding\\cs 3750\\tg-toat\\tgtoattest\\spencer_unit_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{47587C37-4690-49FD-9D28-ABBBBB83FBAD}|..\\TGTOATTest\\TGTOATTest.csproj|c:\\users\\spenc\\desktop\\coding\\cs 3750\\tg-toat\\tgtoattest\\josh_unit_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -16,25 +13,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 547,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 8,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Josh_Unit_Tests.cs",
-              "DocumentMoniker": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\TGTOATTest\\Josh_Unit_Tests.cs",
-              "RelativeDocumentMoniker": "..\\TGTOATTest\\Josh_Unit_Tests.cs",
-              "ToolTip": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\TGTOATTest\\Josh_Unit_Tests.cs",
-              "RelativeToolTip": "..\\TGTOATTest\\Josh_Unit_Tests.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAABQAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T01:39:56.284Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -75,7 +55,7 @@
               "RelativeDocumentMoniker": "..\\TGTOATTest\\Spencer_Unit_Tests.cs",
               "ToolTip": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\TGTOATTest\\Spencer_Unit_Tests.cs",
               "RelativeToolTip": "..\\TGTOATTest\\Spencer_Unit_Tests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGwBAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAG0BAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-03T01:22:49.121Z",
               "EditorCaption": ""

@@ -13,11 +13,23 @@
 .vscode-test/
 .idea/
 .vs/
+obj/
+bin/
+/.vs/
 /obj/
 /bin/
+*/.vs/
+*/obj/
+*/bin/
+*/.vs/*
+*/obj/*
+*/bin/*
 /TG-TOAT/.vs/
 /TG-TOAT/obj/
 /TG-TOAT/bin/
+/TGTOATTest/.vs/
+/TGTOATTest/obj/
+/TGTOATTest/bin/
 
 # Mono Auto Generated Files
 mono_crash.*

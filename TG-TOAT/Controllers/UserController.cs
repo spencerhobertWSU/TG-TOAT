@@ -165,18 +165,32 @@ namespace TGTOAT.Controllers
             if (user.UserRole == "Student")
             {
                 courses = (from connection in _context.StudentCourseConnection
-                               join course in _context.Courses on connection.CourseId equals course.CourseId
-                               where connection.StudentID == userId
-                               select course).ToList();
+                          join course in _context.Courses.Include(c => c.Department) on connection.CourseId equals course.CourseId
+                          where connection.StudentID == userId
+                          select course).ToList();
             }
             else if (user.UserRole == "Instructor")
             {
                 courses = (from connection in _context.InstructorCourseConnection
-                           join course in _context.Courses on connection.CourseId equals course.CourseId
-                           where connection.InstructorID == userId
-                           select course).ToList();
+                          join course in _context.Courses.Include(c => c.Department) on connection.CourseId equals course.CourseId
+                          where connection.InstructorID == userId
+                          select course).ToList();
             }
             
+
+            // Fetch upcoming assignments
+            var upcomingAssignments = await _context.Assignments
+                .Include(a => a.Course)
+                .ThenInclude(c => c.Department)
+                .Where(a => (
+                    // For students: check student enrollment
+                    (user.UserRole == "Student" && a.Course.StudentCourseConnection.Any(sc => sc.StudentID == userId)) ||
+                    // For instructors: check if they teach the course (updated to match the lowercase property name)
+                    (user.UserRole == "Instructor" && a.Course.instructorCourseConnections.Any(ic => ic.InstructorID == userId))
+                ) && a.DueDateAndTime > DateTime.Now)
+                .OrderBy(a => a.DueDateAndTime)
+                .Take(5)
+                .ToListAsync();
 
             var viewModel = new UserIndexViewModel
             {
@@ -186,6 +200,7 @@ namespace TGTOAT.Controllers
                 UserRole = user.UserRole,
                 Courses = courses,
                 Id = user.Id,
+                UpcomingAssignments = upcomingAssignments
             };
 
             //Go to index

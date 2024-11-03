@@ -27,7 +27,7 @@
                     <a class="class-link" asp-area="" asp-controller="Course" asp-action="Index" asp-route-id="@course.CourseId">
                         <img href="">
                         <div class="card-info">
-                            <p class="class-info">@course.Department @course.CourseNumber - @course.Semester @course.Year</p>
+                            <p class="class-info">@course.Department.DepartmentName @course.CourseNumber - @course.Semester @course.Year</p>
                             <p class="class-name">@course.CourseName</p>
                             <p class="class-time">@course.DaysOfTheWeek, @course.StartTime-@course.EndTime</p>
                         </div>
@@ -55,35 +55,32 @@
             <h3>To Do</h3>
         </div>
         <div class="todo-items">
-            <a href="">
-                <p class="todo-class">CS 1010</p>
-                <p class="todo-name">Quiz 3: Foundations</p>
-                <p class="todo-time">Sep 18 at 11:59pm</p>
-            </a>
-
-            <a href="">
-                <p class="todo-class">CS 1010</p>
-                <p class="todo-name">Exam 1: Foundations</p>
-                <p class="todo-time">Sep 20 at 11:59pm</p>
-            </a>
-
-            <a href="">
-                <p class="todo-class">CS 1010</p>
-                <p class="todo-name">Code 4: Java For loops</p>
-                <p class="todo-time">Sep 27 at 11:59pm</p>
-            </a>
-
-            <a href="">
-                <p class="todo-class">CS 1010</p>
-                <p class="todo-name">Code 5: Java Switches</p>
-                <p class="todo-time">Sep 27 at 11:59pm</p>
-            </a>
-
-            <a href="">
-                <p class="todo-class">CS 1010</p>
-                <p class="todo-name">Code 6: Java While loops</p>
-                <p class="todo-time">Sep 29 at 11:59pm</p>
-            </a>
+            @if (Model.UpcomingAssignments != null && Model.UpcomingAssignments.Any())
+            {
+                @foreach (var assignment in Model.UpcomingAssignments)
+                {
+                    @if (Model.UserRole == "Student")
+                    {
+                        <a asp-controller="Course" asp-action="SubmitAssignment" asp-route-assignmentId="@assignment.AssignmentId">
+                            <p class="todo-class">@assignment.Course.Department.DepartmentName @assignment.Course.CourseNumber</p>
+                            <p class="todo-name">@assignment.AssignmentName</p>
+                            <p class="todo-time">@assignment.DueDateAndTime.ToString("MMM dd 'at' h:mmtt")</p>
+                        </a>
+                    }
+                    else if (Model.UserRole == "Instructor")
+                    {
+                        <a asp-controller="Course" asp-action="ViewSubmissions" asp-route-assignmentId="@assignment.AssignmentId">
+                            <p class="todo-class">@assignment.Course.Department.DepartmentName @assignment.Course.CourseNumber</p>
+                            <p class="todo-name">@assignment.AssignmentName</p>
+                            <p class="todo-time">@assignment.DueDateAndTime.ToString("MMM dd 'at' h:mmtt")</p>
+                        </a>
+                    }
+                }
+            }
+            else
+            {
+                <p>No upcoming assignments!</p>
+            }
         </div>
     </div>
 </div>

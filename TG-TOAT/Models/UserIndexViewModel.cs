@@ -34,5 +34,7 @@ namespace TGTOAT.Models
         /* Courses */
 
         public List<Courses> Courses { get; set; } = new List<Courses>();
+
+        public List<Assignment> UpcomingAssignments { get; set; }
     }
 }

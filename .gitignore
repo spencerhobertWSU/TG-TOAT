@@ -1,2 +1,52 @@
+# Ignore Visual Studio temporary files, build results, and Windows-specific files
 
-/TGTOATTest/obj
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific folders
+.vscode/
+.idea/
+.vs/
+obj/
+bin/
+
+# Specific project folders to ignore
+TG-TOAT/.vs/
+TG-TOAT/obj/
+TG-TOAT/bin/
+TGTOATTest/.vs/
+TGTOATTest/obj/
+TGTOATTest/bin/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Windows-specific files
+Desktop.ini
+$RECYCLE.BIN/
+
+# CMake
+CMakeSettings.json
+CMakeLists.txt.user
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Backup & temp files
+*.bak
+*.tmp
+*.tmp.*
+~$*
+
+# DotNet Core and project files
+project.lock.json
+project.fragment.lock.json
+artifacts/

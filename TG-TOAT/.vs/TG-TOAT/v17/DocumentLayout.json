@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\TG-TOAT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spenc\\desktop\\coding\\cs 3750\\tg-toat\\tg-toat\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{47587C37-4690-49FD-9D28-ABBBBB83FBAD}|..\\TGTOATTest\\TGTOATTest.csproj|c:\\users\\spenc\\desktop\\coding\\cs 3750\\tg-toat\\tgtoattest\\studentregisterforcoursetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{47587C37-4690-49FD-9D28-ABBBBB83FBAD}|..\\TGTOATTest\\TGTOATTest.csproj|c:\\users\\spenc\\desktop\\coding\\cs 3750\\tg-toat\\tgtoattest\\studentregisterforcoursetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spenc\\desktop\\coding\\cs 3750\\tg-toat\\tg-toat\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\spenc\\desktop\\coding\\cs 3750\\tg-toat\\tg-toat\\data\\instructorcourseconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -79,13 +79,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "StudentRegisterForCourseTest.cs",
               "DocumentMoniker": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\TGTOATTest\\StudentRegisterForCourseTest.cs",
               "RelativeDocumentMoniker": "..\\TGTOATTest\\StudentRegisterForCourseTest.cs",
               "ToolTip": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\TGTOATTest\\StudentRegisterForCourseTest.cs",
               "RelativeToolTip": "..\\TGTOATTest\\StudentRegisterForCourseTest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-03T00:10:56.249Z",
               "EditorCaption": ""
@@ -98,7 +98,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\TG-TOAT\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",

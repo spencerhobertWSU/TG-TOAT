@@ -1036,19 +1036,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Josh\\.nuget\\packages\\": {}
+    "C:\\Users\\spenc\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TGTOATTest\\TGTOATTest.csproj",
+      "projectUniqueName": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\TGTOATTest\\TGTOATTest.csproj",
       "projectName": "TGTOATTest",
-      "projectPath": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TGTOATTest\\TGTOATTest.csproj",
-      "packagesPath": "C:\\Users\\Josh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Josh\\Documents\\WSU\\2024 FALL\\CS 3750\\project\\TG-TOAT\\TGTOATTest\\obj\\",
+      "projectPath": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\TGTOATTest\\TGTOATTest.csproj",
+      "packagesPath": "C:\\Users\\spenc\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\spenc\\Desktop\\Coding\\CS 3750\\TG-TOAT\\TGTOATTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Josh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\spenc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1117,7 +1117,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

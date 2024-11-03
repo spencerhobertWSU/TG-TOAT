@@ -1,2 +1,96 @@
+# Ignore Visual Studio temporary files, build results, and
+# Windows-specific files
 
-/TGTOATTest/obj
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific folders
+.vscode/
+.vscode-test/
+.idea/
+.vs/
+obj/
+bin/
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Team Foundation Service
+$tf/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories
+.vscode/
+
+# CMake
+CMakeSettings.json
+CMakeLists.txt.user
+
+# Visual Studio Code
+.vscode/*
+
+# GitHub Actions
+.github/*
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# DotNet
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# DotNet Core
+project.lock.json
+artifacts/
+
+# Visual Studio Code User Specific
+.vscode/*
+.idea/
+
+# Rider
+.idea/
+
+# Rider
+.idea/
+
+# Backup & temp files
+*.bak
+*.tmp
+*.tmp.*
+~$*
+
+# Include to Ignore SDK folders
+sdk/*/

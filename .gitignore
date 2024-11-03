@@ -6,21 +6,19 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.userprefs
 
 # User-specific folders
-.vscode/
-.idea/
-.vs/
-obj/
-bin/
-
-# Specific project folders to ignore
-TG-TOAT/.vs/
-TG-TOAT/obj/
-TG-TOAT/bin/
-TGTOATTest/.vs/
-TGTOATTest/obj/
-TGTOATTest/bin/
+**/.vscode/
+**/.idea/
+**/.vs/
+**/[Oo]bj/
+**/[Bb]in/
+**/[Dd]ebug/
+**/[Rr]elease/
+**/[Ll]og/
+**/[Ll]ogs/
+**/TestResults/
 
 # Windows image file caches
 Thumbs.db

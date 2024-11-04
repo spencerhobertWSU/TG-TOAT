@@ -123,6 +123,7 @@ function UpdateInfo() {
 
     days.length = 0;
 
+
     if (onlBtn.checked) {
         days.push(document.getElementById("onlBtn").value);
 
@@ -148,8 +149,9 @@ function UpdateInfo() {
         buildings.value = "Onl";
 
         room.value = "0";
-        startTime.value = '00:00'
-        endTime.value = '00:00'
+        startTime.value = '04:20'
+        endTime.value = '16:20'
+
     }
     else {
         for (i = 0; i < dayBtns.length; i++) {

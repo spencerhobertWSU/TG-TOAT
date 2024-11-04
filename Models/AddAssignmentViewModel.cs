@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace TGTOAT.Models
+namespace Models
 {
     public class AddAssignmentViewModel
-{
+    {
         // Primary Key for the Assignment
         public int AssignmentId { get; set; }
 

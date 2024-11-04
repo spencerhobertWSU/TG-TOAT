@@ -1,44 +1,121 @@
 ﻿
 using System.Security.Cryptography;
+using Data;
+using Microsoft.EntityFrameworkCore;
+using Models;
 
 namespace TGTOAT.Helpers;
 
 public class Authentication : IAuthentication
 {
-    private static TGTOAT.Models.UserIndexViewModel currUser;
-    private static string UserRole;
-
-    //Set Current Users Basic Information
-    public void SetUser(TGTOAT.Models.UserIndexViewModel user)
+    private readonly UserContext _context;
+    public Authentication(UserContext context)
     {
-        currUser = user;
+        _context = context;
     }
 
-    public int GetCurrentUserId()
+    private static CurrUser User;
+    private static UserIndexViewModel CurrIndex;
+
+    public void setUser(CurrUser UserData)
     {
-        return currUser.Id; // Assuming the UserLoginViewModel has an Id property
+        User = UserData;
     }
 
-    //Logout User
+    public CurrUser getUser()
+    {
+        return User;
+    }
+
     public void Logout()
     {
-        currUser = null;
+        User = null;
+        CurrIndex = null;
     }
 
-    ///Grab basic User information
-    public TGTOAT.Models.UserIndexViewModel GetUser()
+    public void setIndex()
     {
-        return currUser;
+
+        var user = getUser();
+        var courses = new List<Courses>();
+        var Currcourses = new List<CurrClasses>();
+
+        if (user.Role == "Student")
+        {
+            courses = (from connection in _context.StudentConnection
+                       join course in _context.Courses on connection.CourseId equals course.CourseId
+                       where connection.StudentId == user.UserId
+                       select course).ToList();
+        }
+        else if (user.Role == "Instructor")
+        {
+            courses = (from connection in _context.InstructorConnection
+                       join course in _context.Courses on connection.CourseId equals course.CourseId
+                       where connection.InstructorId == user.UserId
+                       select course).ToList();
+        }
+        foreach (var c in courses)
+        {
+
+            string deptName = _context.Departments.First(d => d.DeptId == c.DeptId).DeptName;
+
+            switch (deptName)
+            {
+                case "Compuer Science":
+                    deptName = "CS";
+                    break;
+                case "Mathematics":
+                    deptName = "MATH";
+                    break;
+                case "Physics":
+                    deptName = "PHYS";
+                    break;
+                case "Biology":
+                    deptName = "BIOL";
+                    break;
+                case "Chemistry":
+                    deptName = "CHEM";
+                    break;
+            }
+
+            var CourseModel = new CurrClasses
+            {
+                DeptName = deptName,
+                CourseId = c.CourseId,
+                CourseNum = c.CourseNum,
+                CourseName = c.CourseName,
+                Campus = c.Campus,
+                Building = c.Building,
+                Room = c.Room,
+                Days = c.Days,
+                StartTime = c.StartTime,
+                StopTime = c.StopTime,
+                Semester = c.Semester,
+                Year = c.Year,
+                Color = c.Color,
+                Picture = c.Picture
+            };
+            Currcourses.Add(CourseModel);
+
+        }
+
+
+        var viewModel = new UserIndexViewModel
+        {
+            Id = user.UserId,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            UserRole = user.Role,
+            Courses = Currcourses,
+        };
+
+        CurrIndex = viewModel;
+
     }
 
-    public void SetRole(string role)
+    public UserIndexViewModel getIndex()
     {
-        UserRole = role;
-    }
-
-    public string GetRole()
-    {
-        return UserRole;
+        return CurrIndex;
     }
 
     public string createToken(int ranNum)
@@ -54,6 +131,36 @@ public class Authentication : IAuthentication
         }
 
         return token;
+    }
+
+    public void CreateNotification(string message, int studentId)
+    {
+        var notification = new Notifications
+        {
+            Message = message,
+            CreatedAt = DateTime.UtcNow,
+            StudentId = studentId
+        };
+
+        //_context.Notifications.Add(notification);
+        _context.SaveChanges();
+    }
+
+    public IEnumerable<Notifications> GetNotificationsForUser(int studentId)
+    {
+        return _context.Notifications
+            .Where(n => n.StudentId == studentId)
+            .ToList();
+    }
+
+    public void MarkAsRead(int notificationId)
+    {
+        var notification = _context.Notifications.Find(notificationId);
+        if (notification != null)
+        {
+            notification.IsRead = true;
+            _context.SaveChanges();
+        }
     }
 
 

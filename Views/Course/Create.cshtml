@@ -1,4 +1,4 @@
-﻿@model TGTOAT.Models.AddCourseViewModel
+﻿@model AddCourseViewModel
 
 @{
     ViewData["Title"] = "Add Course";
@@ -6,21 +6,21 @@
     Layout = "~/Views/Shared/_InstructorLayout.cshtml";
 }
 
-
-
 <form asp-action="Create" method="post">
 
     <div class="container-fluid">
-        <h1 class="text-center">Add a Course</h1>
+        <h1 class="text-center">Create a Course</h1>
         <!--Department & Course Number-->
         <div class="row justify-content-center ">
 
             <div class="form-group col-md-3">
                 <label asp-for="SelectedDepartmentId"></label>
-                <select asp-for="SelectedDepartmentId"
-                        asp-items="@(new SelectList(Model.Departments, "DepartmentId", "DepartmentName", Model.SelectedDepartmentId))"
-                        class="form-select">
+                <select asp-for="SelectedDepartmentId" class="form-select">
                     <option value="">Select a department</option>
+                    @foreach (var department in Model.Departments)
+                        {
+                            <option value=@department.DeptId> @department.DeptName </option>
+                        }
                 </select>
                 <span asp-validation-for="SelectedDepartmentId" class="text-danger"></span>
             </div>
@@ -48,7 +48,7 @@
 
         <div class="row justify-content-center">
             <div class="form-group col-md-6">
-                <label asp-for="CourseDescription">Course Description</label>
+                <label asp-for="CourseDescription">Course Description (400 Char Max)</label>
                 <textarea asp-for="CourseDescription" class="form-control"></textarea>
                 <span asp-validation-for="CourseDescription" class="text-danger"></span>
             </div>
@@ -162,20 +162,37 @@
             </div>
         </div>
         <div class="row justify-content-center">
-        <div class="form-group col-md-6">
+            <div class="form-group col-md-6">
                 <label asp-for="SelectedInstructorId"></label>
-                <select asp-for="SelectedInstructorId"
-                        asp-items="@(new SelectList(Model.Instructors, "Id", "FullName", Model.SelectedInstructorId))"
-                        class="form-select">
+                <select asp-for="SelectedInstructorId" class="form-select">
                     <option value="">Select an instructor</option>
+                    @foreach (var instructor in Model.Instructors)
+                    {
+                        <option value=@instructor.UserId> @instructor.FirstName @instructor.LastName </option>
+                    }
                 </select>
                 <span asp-validation-for="SelectedInstructorId" class="text-danger"></span>
             </div>
         </div>
+        <div class="row justify-content-center">
+            <div class="form-group col-md-3 color-div">
+                <label asp-for="Color">Select a Color:</label>
+                <input asp-for="Color" type="color" id="classColor" value="#ff0000">
+            </div>
+        </div>
+        </br>
+        <div class="row justify-content-center">
+            <div class="form-group col-md-3 picture-div">
+                <span>Choose an Image:</span>
+                <label asp-for="Picture" class="custombtn">Browse</label>
+                <input asp-for="Picture" type="file" name="Picture" accept="image/png, image/jpeg, image/jpg" class="custombtn" />
+            </div>
+        </div>
+
 
             <br/>
-            <div class="col text-center">
-                <button type="submit" class="btn btn-primary text-center" onclick="UpdateInfo()">Create</button>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary text-center" id="courseSubmit" onclick="UpdateInfo()">Create</button>
             </div>
         </div>
 </form>

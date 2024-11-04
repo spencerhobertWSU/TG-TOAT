@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TGTOAT.Data;
+using Data;
 
-namespace TGTOAT.Models
+namespace Models
 {
-    public class SubmitAssignmentViewModel{
+    public class SubmitAssignmentViewModel
+    {
         public int AssignmentId { get; set; }
         public string AssignmentName { get; set; }
         public string Description { get; set; }
@@ -11,7 +12,7 @@ namespace TGTOAT.Models
         public string SubmissionType { get; set; }
 
         public int StudentId { get; set; }
-        public StudentCourseConnection? studentCourseConnection { get; set; }
+        public StudentConnection? studentConnection { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime DueDateAndTime { get; set; }

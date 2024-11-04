@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -7,8 +8,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
-using TGTOAT.Data;
-using TGTOAT.Models;
 using TGTOAT.Helpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
@@ -18,6 +17,13 @@ using NuGet.Common;
 using Stripe.Checkout;
 using Stripe.V2;
 using Stripe;
+using static TGTOAT.Helpers.Authentication;
+using Data;
+using Stripe.Issuing;
+using Models;
+using Azure;
+using TGTOAT.Data;
+using System.Drawing;
 
 namespace TGTOAT.Controllers
 {
@@ -26,13 +32,133 @@ namespace TGTOAT.Controllers
         private readonly IPasswordHasher _passwordHasher;
         private readonly UserContext _context;
         private readonly IAuthentication _auth;
+        //private readonly INotificationService _notif;
 
         public UserController(UserContext context, IPasswordHasher passwordHasher, IAuthentication auth)
         {
             _context = context;
             _passwordHasher = passwordHasher;
             _auth = auth;
+            //_notif = notif;
         }
+        private Random rnd = new Random();
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        #region Account Creation
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
+        // POST: User/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(UserCreateModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Calculate the user's age based on their birthdate
+                var today = DateTime.Today;
+                var age = today.Year - model.BirthDate.Year;
+
+                // Check if the user is at least 16 years old
+                if (age < 16)
+                {
+                    ModelState.AddModelError("", "You must be at least 16 years old to register.");
+                    return View(model);
+                }
+
+                var emails = (from e in _context.User select e.Email).ToList();
+
+                for (int i = 0; i < emails.Count; i++)
+                {
+                    if (emails[i] == model.Email)
+                    {
+                        ModelState.AddModelError("", "Email already registered");
+                        return View(model);
+                    }
+                }
+
+                // Manually map from ViewModel to User entity
+                User user = new User
+                {
+                    Email = model.Email,
+                    Password = model.Password
+                };
+
+                // Hash the password
+                user.Password = _passwordHasher.Hash(user.Password);
+
+                // Add the user and save changes
+                _context.User.Add(user);
+                await _context.SaveChangesAsync();
+
+                string pfpPath = "wwwroot/resources/default-pfp.png";
+
+                string base64String = ConvertToBase64(pfpPath);
+
+
+                UserInfo newInfo = new UserInfo
+                {
+                    UserId = user.UserId,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Role = model.UserRole == "Student" ? "Student" : "Instructor",
+                    PFP = base64String,
+                    BirthDate = model.BirthDate,
+                };
+
+                // Add the User Info
+                _context.UserInfo.Add(newInfo);
+
+                Addresses newaddress = new Addresses
+                {
+                    UserId = user.UserId,
+                    AddOne = null,
+                    AddTwo = null,
+                    City = null,
+                    State = null,
+                    Zip = null
+                };
+
+
+                // Add the Address
+                _context.Address.Add(newaddress);
+
+
+
+                if(model.UserRole == "Student")
+                {
+                    Tuition newTuition = new Tuition
+                    {
+                        UserId = user.UserId,
+                        AmountDue = 0
+                    };
+                    _context.Tuition.Add(newTuition);
+
+                }
+
+                await _context.SaveChangesAsync();
+
+
+
+
+                //return RedirectToAction(nameof(Login), new { Email = user.Email, Password = user.Password });
+                return RedirectToAction("Login");
+            }
+
+            return View(model);
+        }
+        #endregion
+
+        #region Login/Logout
 
         //Logout User and Go to Login page
         public ActionResult Logout()
@@ -42,87 +168,121 @@ namespace TGTOAT.Controllers
             return RedirectToAction("Login");
         }
 
-        //Login Page
-        public ActionResult Login(LoginViewModel model)
+        //Login Page - Landing Page
+        public ActionResult Login()
         {
             string? Email = Request.Cookies["Email"];
             string? Series = Request.Cookies["Series"];
             string? Token = Request.Cookies["Token"];
 
-            var user = _context.User.FirstOrDefault(m => m.Email == model.Email);
-
-            // If no user is found
-            if (user == null)
-            {
-                return View(model);
-            }
+            var cookies = new Cookies();
 
             if (Email != null && Series != null && Token != null)
             {
-                user = _context.User.FirstOrDefault(u => u.Email == Email);
-                if (Series == "13" && Token == "token13")
+                var user = _context.User.FirstOrDefault(u => u.Email == Email);
+
+                if(user == null)
                 {
-                    // Find all classes that the user is enrolled in
-                    var courses = (from connection in _context.StudentCourseConnection
-                                   join course in _context.Courses on connection.CourseId equals course.CourseId
-                                   where connection.StudentID == user.Id
-                                   select course).ToList();
-
-                    var viewModel = new UserIndexViewModel
+                    return RedirectToAction("Logout");
+                }
+                    try
                     {
-                        Id = user.Id,
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        UserRole = user.UserRole,
-                        Courses = courses,
+                        cookies = _context.Cookies.First(c => c.UserId == user.UserId);
+                    }
+                    catch
+                    {
+                        DeleteCookie();
+                        return View("Login");
+                    }
 
+                if (cookies.Series == "13" && cookies.Token == "token13")
+                {
+
+                    if (user == null)
+                    {
+                        return RedirectToAction("Login");
+                    }
+
+                    var userInfo = _context.UserInfo.First(db => db.UserId == user.UserId);
+                    var userPFP = Convert.FromBase64String(userInfo.PFP);
+
+                    var User = new CurrUser
+                    {
+                        UserId = user.UserId,
+                        Email = user.Email,
+                        FirstName = userInfo.FirstName,
+                        LastName = userInfo.LastName,
+                        Role = userInfo.Role,
+                        PFP = userPFP,
+                        BirthDate = userInfo.BirthDate,
                     };
 
-                    _auth.SetRole(user.UserRole);
-                    _auth.SetUser(viewModel);
+                    _auth.setUser(User);
+                    _auth.setIndex();
+
                     return Redirect("User/Index");
                 }
                 else
                 {
-                    return View(model);
+                    return View("Login");
                 }
             }
+            else
+            {
+                return View("Login");
+            }
+        }
+
+        //Login Page - Pressed Login
+        [HttpPost]
+        public ActionResult Login(LoginViewModel model)
+        {
+            var user = _context.User.First(m => m.Email == model.Email);
+
+
+            if (user == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            var userInfo = _context.UserInfo.First(db => db.UserId == user.UserId);
+            var userPFP = Convert.FromBase64String(userInfo.PFP);
+
+            var User = new CurrUser
+            {
+                UserId = user.UserId,
+                Email = user.Email,
+                FirstName = userInfo.FirstName,
+                LastName = userInfo.LastName,
+                Role = userInfo.Role,
+                PFP = userPFP,
+                BirthDate = userInfo.BirthDate,
+            };
 
             // Check if the password matches
             if (_passwordHasher.Verify(user.Password, model.Password))
             {
-                // Find all classes that the user is enrolled in
-                var courses = (from connection in _context.StudentCourseConnection
-                               join course in _context.Courses on connection.CourseId equals course.CourseId
-                               where connection.StudentID == user.Id
-                               select course).ToList();
-
-                var viewModel = new UserIndexViewModel
-                {
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    UserRole = user.UserRole,
-                    Courses = courses,
-                    Id = user.Id,
-                };
-
-                // If the password is correct, log the user in
-                _auth.SetRole(user.UserRole);
-                _auth.SetUser(viewModel);
 
                 if (model.RememberMe == true)
                 {
                     string seriesIden = _auth.createToken(16);
-
                     string token = _auth.createToken(32);
 
-                    seriesIden = "13";
-                    token = "token13";
+                    var newCookie = new Cookies
+                    {
+                        //Series = seriesIden,
+                        //Token = token
+                        UserId = user.UserId,
+                        Series = "13",
+                        Token = "token13"
+                    };
 
-                    //_context.Cookies.Add(seriesIden, token);
+                    _context.Cookies.Add(newCookie);
+                    _context.SaveChangesAsync();
 
                     CreateCookie(user.Email, seriesIden, token);
                 }
+                _auth.setUser(User);
 
                 return Redirect("User/Index");
             }
@@ -136,53 +296,32 @@ namespace TGTOAT.Controllers
         // Home page for User
         public async Task<IActionResult> Index(UserIndexViewModel Model)
         {
-            var user = _auth.GetUser();//Grab User Info
+            var user = _auth.getUser();
 
-            //Don't let user go to index if they aren't logged in
+            if (user == null)
+            {
+                return RedirectToAction("Login");
+            }
+            _auth.setIndex();
+            var viewModel = _auth.getIndex();
+            //Go to index
+            return View(viewModel);
+
+        }
+        #endregion
+
+        #region Calendar
+        // instructor Calendar action
+        public IActionResult Calendar()
+        {
+            var user = _auth.getUser();
+
             if (user == null)
             {
                 return RedirectToAction("Login");
             }
 
-            //This is used to populate the students main menu with course cards
-            int userId = user.Id;
-
-            var courses = new List<Courses>();
-            if (user.UserRole == "Student")
-            {
-                courses = (from connection in _context.StudentCourseConnection
-                               join course in _context.Courses on connection.CourseId equals course.CourseId
-                               where connection.StudentID == userId
-                               select course).ToList();
-            }
-            else if (user.UserRole == "Instructor")
-            {
-                courses = (from connection in _context.InstructorCourseConnection
-                           join course in _context.Courses on connection.CourseId equals course.CourseId
-                           where connection.InstructorID == userId
-                           select course).ToList();
-            }
-            
-
-            var viewModel = new UserIndexViewModel
-            {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                UserRole = user.UserRole,
-                Courses = courses,
-                Id = user.Id,
-            };
-
-            //Go to index
-            return View(viewModel);
-
-        }
-
-        // instructor Calendar action
-        public IActionResult Calendar()
-        {
-            var user = _auth.GetUser();//Grab User Info
-            return View(user); // This will look for Views/User/Calendar.cshtml
+            return View(_auth.getIndex()); // This will look for Views/User/Calendar.cshtml
         }
         
         //student calendar action
@@ -191,62 +330,88 @@ namespace TGTOAT.Controllers
             return View();
         }
 
+        #endregion
+
         #region Course Registration
         //Course Registration action
         public async Task<IActionResult> CourseRegistration()
         {
-            // Get all user-course connections
-            var instructorCourseConnections = await _context.InstructorCourseConnection.ToListAsync();
+            var user = _auth.getUser();
 
-            //Get unique course IDs from the user-course connections
-            var instructorCourseIds = instructorCourseConnections
-                .Select(uc => uc.CourseId)
-                .Distinct()
-                .ToList();
-
-            // Get unique user IDs from the user-course connections for the selected courses
-            var userIds = instructorCourseConnections
-                .Where(uc => instructorCourseIds.Contains(uc.CourseId))
-                .Select(uc => uc.InstructorID)
-                .Distinct()
-                .ToList();
-
-            //  Retrieve the instructors associated with those User IDs
-            var instructors = await _context.User
-                .Where(u => u.UserRole == "Instructor" && userIds.Contains(u.Id))
-                .ToListAsync();
-
-            // Get Courses that has a instructorCourseId
-            var courses = await _context.Courses
-               .Where(c => instructorCourseIds.Contains(c.CourseId))
-               .Include(c => c.Instructors) // Assuming there's a navigation property for instructors
-               .ToListAsync();
-
-            var userIdInt = _auth.GetCurrentUserId();
-            //// Create the view model to pass to the view
-            var viewModel = new CourseRegisterViewModel
+            if (user == null)
             {
-                Departments = await _context.Departments.ToListAsync(),
-                Courses = courses,
-                Instructors = instructors,
-                CurrentStudent = userIdInt,
-                StudentCourseConnection = await _context.StudentCourseConnection.ToListAsync(),
-                InstructorCourseConnections = instructorCourseConnections
+                return RedirectToAction("Login");
+            }
 
+            var courses = (from db in _context.Courses select db).ToList();
+
+            var Courses = new List<CourseInfo>();
+
+            foreach (var c in courses)
+            {
+
+                string deptName = _context.Departments.First(d => d.DeptId == c.DeptId).DeptName;
+
+                int instructorId = _context.InstructorConnection.First(ic => ic.CourseId == c.CourseId).InstructorId;
+
+                string instructorFName = _context.UserInfo.First(u => u.UserId == instructorId).FirstName;
+                string instructorLName = _context.UserInfo.First(u => u.UserId == instructorId).LastName;
+
+                string instructor = instructorFName + " " + instructorLName;
+
+                var CourseModel = new CourseInfo
+                {
+                    CourseId = c.CourseId,
+                    DeptName = deptName,
+                    CourseNumber = c.CourseNum,
+                    NumberOfCredits = c.Credits,
+                    CourseName = c.CourseName,
+                    Campus = c.Campus,
+                    Building = c.Building,
+                    Room = c.Room,
+                    DaysOfTheWeek = c.Days,
+                    StartTime = c.StartTime,
+                    EndTime = c.StopTime,
+                    Capacity = c.Capacity,
+                    Semester = c.Semester,
+                    Year = c.Year,
+                    Instructor = instructor,
+                    CourseDescription = c.CourseDesc,
+                };
+                Courses.Add(CourseModel);
 
             };
+
+            var StudentCourses = (from connection in _context.StudentConnection
+                                  join course in _context.Courses on connection.CourseId equals course.CourseId
+                                  where connection.StudentId == user.UserId
+                                  select connection).ToList();
+
+
+
+            var RegisterCourses = new CourseRegisterViewModel
+            {
+                Courses = Courses,
+                CurrentStudent = user.UserId,
+                StudentConnection = StudentCourses
+
+            };
+
+
             ViewBag.ErrorMessage = TempData["ErrorMessage"] as string;
             ViewBag.SuccessMessage = TempData["SuccessMessage"] as string;
-            return View(viewModel); // Pass the populated view model to the view
-        }
+            //ViewBag.InfoMessage = 
 
+            return View(RegisterCourses); // Pass the populated view model to the view
+
+        }
         public async Task<IActionResult> FilterCourses(int? departmentId, string searchTerm)
         {
             // Fetch all departments for the dropdown
             var departments = await _context.Departments.ToListAsync();
 
             // Fetch all user-course connections
-            var instructorCourseConnections = await _context.InstructorCourseConnection.ToListAsync();
+            var instructorCourseConnections = await _context.InstructorConnection.ToListAsync();
 
             // Get unique course IDs from user-course connections
             var instructorCourseIds = instructorCourseConnections
@@ -254,16 +419,15 @@ namespace TGTOAT.Controllers
                 .Distinct()
                 .ToList();
 
-            // Get courses that match the instructor course IDs
+            //Get courses that match the instructor course IDs
             var courses = await _context.Courses
                 .Where(c => instructorCourseIds.Contains(c.CourseId))
-                .Include(c => c.Instructors)
                 .ToListAsync();
-
+            
             // Filter based on selected department
             if (departmentId.HasValue)
             {
-                courses = courses.Where(c => c.DepartmentId == departmentId.Value).ToList();
+                courses = courses.Where(c => c.DeptId == departmentId.Value).ToList();
             }
 
             // Filter based on search term
@@ -273,27 +437,57 @@ namespace TGTOAT.Controllers
                     .Where(c => c.CourseName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
                     .ToList();
             }
-            var userIdInt = _auth.GetCurrentUserId();
+            var userIdInt = _auth.getUser().UserId;
             // Create the view model to pass to the view
-            var viewModel = new CourseRegisterViewModel
+            var allCourses = (from db in _context.Courses select db).ToList();
+
+            var Courses = new List<CourseInfo>();
+
+            foreach (var c in allCourses)
             {
-                DepartmentId = departmentId ?? 0,
-                Departments = departments,
-                Courses = courses,
-                CurrentStudent = userIdInt,
-                Instructors = await _context.User.Where(u => u.UserRole == "Instructor").ToListAsync(),
-                InstructorCourseConnections = instructorCourseConnections,
-                StudentCourseConnection = await _context.StudentCourseConnection.ToListAsync(),
+
+                string deptName = _context.Departments.First(d => d.DeptId == c.DeptId).DeptName;
+
+                var CourseModel = new CourseInfo
+                {
+                    CourseId = c.CourseId,
+                    DeptName = deptName,
+                    CourseNumber = c.CourseNum,
+                    NumberOfCredits = c.Credits,
+                    CourseName = c.CourseName,
+                    Campus = c.Campus,
+                    Building = c.Building,
+                    Room = c.Room,
+                    DaysOfTheWeek = c.Days,
+                    StartTime = c.StartTime,
+                    EndTime = c.StopTime,
+                    Capacity = c.Capacity,
+                    Semester = c.Semester,
+                    Year = c.Year,
+
+                    CourseDescription = c.CourseDesc,
+                };
+                Courses.Add(CourseModel);
+
             };
 
-            return View("CourseRegistration", viewModel); // Return the view with the filtered courses
+            var RegisterCourses = new CourseRegisterViewModel
+            {
+                Courses = Courses,
+                CurrentStudent = _auth.getUser().UserId,
+            };
+
+            return View("CourseRegistration", RegisterCourses); // Return the view with the filtered courses
         }
 
+        
         [HttpPost]
         public IActionResult Register(int CourseId)
         {
-            var userIdInt = _auth.GetCurrentUserId();
+            var userIdInt = _auth.getUser().UserId;
+
             var userIdString = userIdInt.ToString();
+
             if (string.IsNullOrEmpty(userIdString))
             {
                 return Unauthorized();
@@ -305,23 +499,30 @@ namespace TGTOAT.Controllers
             
             } 
             // Check if the user is already registered
-            if (_context.StudentCourseConnection.Any(uc => uc.StudentID == userId && uc.CourseId == CourseId))
+            if (_context.StudentConnection.Any(uc => uc.StudentId == userId && uc.CourseId == CourseId))
             {
                 TempData["ErrorMessage"] = "User is already registered for this course.";
                 return RedirectToAction("CourseRegistration");
             }
-            var connection = new StudentCourseConnection
+
+            string randomColor = (Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256))).ToString();
+
+            var connection = new StudentConnection
             {
-                StudentID = userId,
-                CourseId = CourseId
+                StudentId = userId,
+                CourseId = CourseId,
+                Grade = 0
             };
 
             // Add dues to the users account
-            var user = _context.User.FirstOrDefault(u => u.Id == userId);
-            user.AmountDue += 100 * _context.Courses.FirstOrDefault(u => u.CourseId == CourseId).NumberOfCredits;
+            var user = _context.User.FirstOrDefault(u => u.UserId == userId);
+
+            var tuition = _context.Tuition.First(t => t.UserId == userId).AmountDue;
+
+            tuition += 100 * _context.Courses.FirstOrDefault(u => u.CourseId == CourseId).Credits;
 
             _context.User.Update(user);
-            _context.StudentCourseConnection.Add(connection);
+            _context.StudentConnection.Add(connection);
             _context.SaveChanges();
             TempData["SuccessMessage"] = "Successfully registered for the course!";
             return RedirectToAction("CourseRegistration"); // Redirect back to the course registration page
@@ -330,7 +531,7 @@ namespace TGTOAT.Controllers
         [HttpPost]
         public IActionResult Drop(int CourseId)
         {
-            var userIdInt = _auth.GetCurrentUserId();
+            var userIdInt = _auth.getUser().UserId;
             var userIdString = userIdInt.ToString();
             if (string.IsNullOrEmpty(userIdString))
             {
@@ -343,18 +544,20 @@ namespace TGTOAT.Controllers
                 return RedirectToAction("CourseRegistration");
             }
 
-            var connection = _context.StudentCourseConnection
-                .FirstOrDefault(uc => uc.StudentID == userId && uc.CourseId == CourseId);
+            var connection = _context.StudentConnection
+                .FirstOrDefault(uc => uc.StudentId == userId && uc.CourseId == CourseId);
 
             if (connection != null)
             {
                 // Remove dues from the users account (connection always had null User and Courses, so I did it this way)
-                var user = _context.User.FirstOrDefault(u => u.Id == userId);
+                var user = _context.User.FirstOrDefault(u => u.UserId == userId);
                 var course = _context.Courses.FirstOrDefault(c => c.CourseId == CourseId);
-                user.AmountDue -= 100 * course.NumberOfCredits;
+                var tuition = _context.Tuition.First(t => t.UserId == userId).AmountDue;
+
+                tuition -= 100 * course.Credits;
 
                 _context.User.Update(user);
-                _context.StudentCourseConnection.Remove(connection);
+                _context.StudentConnection.Remove(connection);
                 _context.SaveChanges();
                 TempData["SuccessMessage"] = "Successfully Dropped for the course!";
                 return RedirectToAction("CourseRegistration"); // Redirect back to the course registration page
@@ -365,7 +568,7 @@ namespace TGTOAT.Controllers
         }
         #endregion
         
-
+        /*
         // GET: User/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -383,76 +586,8 @@ namespace TGTOAT.Controllers
 
             return View(user);
         }
-
-        // GET: User/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: User/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(RegistrationViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                // Calculate the user's age based on their birthdate
-                var today = DateTime.Today;
-                var age = today.Year - model.BirthDate.Year;
-                if (model.BirthDate.Date > today.AddYears(-age)) age--;
-
-                // Check if the user is at least 16 years old
-                if (age < 16)
-                {
-                    ModelState.AddModelError("", "You must be at least 16 years old to register.");
-                    return View(model);
-                }
-
-                // Manually map from ViewModel to User entity
-                User user = new User
-                {
-                    Email = model.Email,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Password = model.Password,
-                    BirthDate = model.BirthDate,
-                    UserRole = model.UserRole == "Student" ? "Student" : "Instructor"
-                };
-
-                // Hash the password
-                user.Password = _passwordHasher.Hash(user.Password);
-
-                // Add the user and save changes
-                _context.Add(user);
-                await _context.SaveChangesAsync();
-                
-                Data.Address address = new Data.Address
-                {
-                    UserId = user.Id,
-                    AddressLineOne = null,
-                    AddressLineTwo = null,
-                    //City = null,
-                    //State = null,
-                    ZipCode = null
-                };
-
-                // Add the Address and save changes
-                _context.Address.Add(address);
-                
-
-                await _context.SaveChangesAsync();
-
-
-                return RedirectToAction(nameof(Login), new { Email = user.Email, Password = user.Password });
-            }
-
-            return View(model);
-        }
-
-
+        */
+        #region Account Editing
         // GET: User/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -468,15 +603,14 @@ namespace TGTOAT.Controllers
             }
             return View(user);
         }
-
         // POST: User/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Password,FirstName,LastName,BirthDate")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Password")] User user)
         {
-            if (id != user.Id)
+            if (id != user.UserId)
             {
                 return NotFound();
             }
@@ -490,7 +624,7 @@ namespace TGTOAT.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.Id))
+                    if (!UserExists(user.UserId))
                     {
                         return NotFound();
                     }
@@ -513,7 +647,7 @@ namespace TGTOAT.Controllers
             }
 
             var user = await _context.User
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.UserId == id);
             if (user == null)
             {
                 return NotFound();
@@ -539,25 +673,24 @@ namespace TGTOAT.Controllers
 
         private bool UserExists(int id)
         {
-            return _context.User.Any(e => e.Id == id);
+            return _context.User.Any(e => e.UserId == id);
         }
-
 
         // GET: UserAccount
         public async Task<IActionResult> Account()
         {
-            var User = _auth.GetUser();
+            var User = _auth.getUser();
 
             if (User == null)
             {
                 return RedirectToAction("Login");
             }
 
-            var UserAdd = _context.Address.First(a => a.UserId == User.Id);
+            var UserAdd = _context.Address.First(a => a.UserId == User.UserId);
 
             AccountViewModel UserInfo = new AccountViewModel
             {
-                UserRole = User.UserRole,
+                UserRole = User.Role,
                 FirstName = User.FirstName,
                 LastName = User.LastName,
                 Address = UserAdd
@@ -566,106 +699,72 @@ namespace TGTOAT.Controllers
 
             return View(UserInfo);
         }
-
+        
         // POST: User/UpdateUser
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateUser(AccountViewModel model)
+        public async Task<IActionResult> UpdateUserName(AccountViewModel model)
         {
             if (ModelState.IsValid)
             {
-                try
+                var user = _auth.getUser();
+                var userName = _context.UserInfo.First(un => un.UserId == user.UserId);
+
+                UserInfo newName = new UserInfo
                 {
-                    // Find the existing user
-                    var existingUser = await _context.User.Include(u => u.Address).FirstOrDefaultAsync(u => u.Id == model.Id);
-                    if (existingUser == null)
-                    {
-                        return NotFound();
-                    }
+                    UserId = user.UserId,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                };
 
-                    // Update only the fields you want to change
-                    existingUser.FirstName = model.FirstName;
-                    existingUser.LastName = model.LastName;
-
-                    // Update Address if it exists
-                    if (model.Address != null)
-                    {
-                        // If the user's Address is null, create a new one
-                        if (existingUser.Address == null)
-                        {
-                            existingUser.Address = new Data.Address
-                            {
-                                UserId = existingUser.Id
-                            };
-                        }
-
-                        existingUser.Address.AddressLineOne = model.Address.AddressLineOne;
-                        existingUser.Address.AddressLineTwo = model.Address.AddressLineTwo;
-                        existingUser.Address.ZipCode = model.Address.ZipCode;
-
-                        _context.Update(existingUser.Address);
-                    }
-
-                    // Save changes
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Account), new { id = existingUser.Id });
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UserExists(model.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                _context.UserInfo.Update(newName);
+                await _context.SaveChangesAsync();
             }
 
             return RedirectToAction("Account");
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateAdd(AccountViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = _auth.GetUser();
+                var user = _auth.getUser();
                 var userAdd = _context.Address.First(a => a.UserId == model.Id);
 
-                userAdd.AddressLineOne = model.Address.AddressLineOne;
-                userAdd.AddressLineTwo = model.Address.AddressLineTwo;
-                userAdd.ZipCode = model.Address.ZipCode;
+                Addresses newAddress = new Addresses{
+                    UserId = user.UserId,
+                    AddOne = model.Address.AddOne,
+                    AddTwo = model.Address.AddTwo,
+                    City = model.Address.City,
+                    State = model.Address.State,
+                    Zip =   model.Address.Zip,
+                };
 
-
-
-                _context.Address.Update(userAdd);
+                _context.Address.Update(newAddress);
                 await _context.SaveChangesAsync();
             }
 
             return RedirectToAction("Account");
         }
 
+        #endregion
+
+        #region Profile Image
+
+        static string ConvertToBase64(string imagePath)
+        {
+
+            byte[] imageBytes = System.IO.File.ReadAllBytes(imagePath);
+            string base64String = Convert.ToBase64String(imageBytes);
+
+            return base64String;
+        }
+
+
         public IActionResult GetProfileImage()
         {
-            var userLoginInfo = _auth.GetUser();
-            var fullUser = _context.User.Find(userLoginInfo.Id);
-
-            var imageBytes = Convert.FromBase64String("");
-
-
-            if (fullUser == null || string.IsNullOrEmpty(fullUser.ProfileImageBase64))
-            {
-                imageBytes = Convert.FromBase64String("+IMQ3yEZtXwBVkKazXUlLCAZV4UKaXKsOMIc4olDFdJo/FbADOKRCZ6th3yFeOj4PqRBBA4hnvrwEFKvL11APHW9GjLxOOT2PqROCOYQT81XQ8RnDyG12pJ47H9INkNqhEB8JoT8BNEuPSTVExuQAAAAAElFTkSuQmCC");
-            }
-            else
-            {
-
-                imageBytes = Convert.FromBase64String(fullUser.ProfileImageBase64);
-
-            }
+            var imageBytes = _auth.getUser().PFP;
 
             return File(imageBytes, "image/png");
         }
@@ -675,25 +774,19 @@ namespace TGTOAT.Controllers
         public async Task<IActionResult> ChangeProfilePicture()
         {
             //Grab user log in info
-            var userLoginInfo = _auth.GetUser();
-            if (userLoginInfo == null)
+            var user = _auth.getUser();
+
+            if (user == null)
             {
                 return RedirectToAction("Login");
             }
 
-            //Grab full user info
-            var user = await _context.User
-                .Include(u => u.Address)
-                .FirstOrDefaultAsync(m => m.Id == userLoginInfo.Id);
             if (user == null)
             {
                 return NotFound();
             }
-
-
-            return View(user);
+            return View(_auth.getIndex());
         }
-
 
 
 
@@ -701,8 +794,8 @@ namespace TGTOAT.Controllers
         [HttpPost]
         public async Task<IActionResult> ChangeProfilePicture(IFormFile profileImage)
         {
-            var userLoginInfo = _auth.GetUser();
-            var fullUser = await _context.User.FindAsync(userLoginInfo.Id);
+            var userLoginInfo = _auth.getUser();
+            var fullUser = await _context.User.FindAsync(userLoginInfo.UserId);
 
             if (profileImage != null && fullUser != null)
             {
@@ -714,7 +807,7 @@ namespace TGTOAT.Controllers
 
                     string base64String = Convert.ToBase64String(imageBytes);
 
-                    fullUser.ProfileImageBase64 = base64String;
+                    //fullUser.ProfileImageBase64 = base64String;
 
                     _context.Update(fullUser);
                     await _context.SaveChangesAsync();
@@ -724,8 +817,9 @@ namespace TGTOAT.Controllers
 
             return View(fullUser);
         }
+        #endregion
 
-
+        #region Cookies
         public void CreateCookie(String Email, String Series, String Token)
         {
             CookieOptions options = new CookieOptions
@@ -741,9 +835,10 @@ namespace TGTOAT.Controllers
             Response.Cookies.Append("Email", Email, options);
             Response.Cookies.Append("Series", Series, options);
             Response.Cookies.Append("Token", Token, options);
+            
         }
 
-        public void DeleteCookie()
+        public async void DeleteCookie()
         {
             CookieOptions options = new CookieOptions
             {
@@ -758,12 +853,28 @@ namespace TGTOAT.Controllers
             Response.Cookies.Append("Email", "", options);
             Response.Cookies.Append("Series", "", options);
             Response.Cookies.Append("Token", "", options);
-        }
 
+            //var CurrCookies = _context.Cookies.First(cc => cc.UserId == _auth.getUser().UserId);
+
+            //_context.Cookies.Remove(CurrCookies);
+            //await _context.SaveChangesAsync();
+        }
+        #endregion
+
+        #region Payment
         // GET: /User/Payment
         [HttpGet]
         public IActionResult Payment(bool? didSucceed, string? receiptUrl)
         {
+            var user = _auth.getUser();
+
+            var amountDue = _context.Tuition.First(t => t.UserId == user.UserId).AmountDue;
+
+            if (user == null)
+            {
+                return RedirectToAction("Login");
+            }
+
             // Check if a receiptUrl was passed in
             if (receiptUrl != null)
             {
@@ -777,18 +888,17 @@ namespace TGTOAT.Controllers
             }
 
             // Get user and course information
-            var user = _context.User.FirstOrDefault(u => u.Id == _auth.GetCurrentUserId());
-            var courses = (from connection in _context.StudentCourseConnection
+            var courses = (from connection in _context.StudentConnection
                            join course in _context.Courses on connection.CourseId equals course.CourseId
-                           where connection.StudentID == user.Id
+                           where connection.StudentId == user.UserId
                            select course).ToList();
 
             decimal totalPaid = 0;
             foreach (var course in courses)
             {
-                totalPaid += course.NumberOfCredits * 100;
+                totalPaid += course.Credits * 100;
             }
-            totalPaid = (user.AmountDue - totalPaid) * -1; // For some reason if I don't multiply it by 1 it shows up with () around the number
+            totalPaid = (amountDue - totalPaid) * -1; // For some reason if I don't multiply it by 1 it shows up with () around the number
 
             // Create the view model
             var viewModel = new PaymentViewModel
@@ -796,18 +906,21 @@ namespace TGTOAT.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Courses = courses,
-                AmountDue = user.AmountDue,
+                AmountDue = amountDue,
                 AmountPaid = totalPaid
             };
 
             return View(viewModel);
         }
-
+        
         // Checkout page
         public ActionResult Checkout(decimal amount)
         {
             // Check if the amount is valid
-            var amountDue = _context.User.FirstOrDefault(u => u.Id == _auth.GetCurrentUserId()).AmountDue;
+            var user = _auth.getUser();
+
+            var amountDue = _context.Tuition.First(t => t.UserId == user.UserId).AmountDue;
+
             if (amount <= 0 || amount > amountDue)
             {
                 return RedirectToAction("PaymentFailure", "User");
@@ -871,8 +984,8 @@ namespace TGTOAT.Controllers
             var amountPaid = decimal.Parse(Request.Query["amountPaid"]);
 
             // Update the user's balance
-            var user = _context.User.FirstOrDefault(u => u.Id == _auth.GetCurrentUserId());
-            user.AmountDue -= amountPaid;
+            var user = _context.User.FirstOrDefault(u => u.UserId == _auth.getUser().UserId);
+            //user.AmountDue -= amountPaid;
             _context.User.Update(user);
             _context.SaveChanges();
 
@@ -887,6 +1000,6 @@ namespace TGTOAT.Controllers
         {
             return RedirectToAction("Payment", "User", new { didSucceed = false });
         }
-
+        #endregion
     }
 }

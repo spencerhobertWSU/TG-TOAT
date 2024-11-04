@@ -1,4 +1,4 @@
-﻿@model TGTOAT.Models.CourseRegisterViewModel
+﻿@model CourseRegisterViewModel
 
 @{
     ViewData["Title"] = "Course Registration";
@@ -27,14 +27,7 @@
         <div class="col">
             <div class="form-group">
                 <label for="departmentSelect">Select Department:</label>
-                <select asp-for="DepartmentId" class="form-control" id="departmentId" name="DepartmentId">
-                    <!-- Fixed name to match model -->
-                    <option value="">All Departments</option> <!-- This allows departmentId to be null -->
-                    @foreach (var department in Model.Departments)
-                    {
-                        <option value="@department.DepartmentId">@department.DepartmentName</option>
-                    }
-                </select>
+
             </div>
         </div>
         <div class="col">
@@ -55,6 +48,8 @@
 <table class="table">
     <thead>
         <tr>
+            <th></th>
+            <th>Department</th>
             <th>Course Number</th>
             <th>Course Name</th>
             <th>Credits</th>
@@ -62,61 +57,38 @@
             <th>Days</th>
             <th>Time</th>
             <th>Location</th>
-            <th>Selection</th>
+            <th>Registration</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var course in Model.Courses) // Corrected line
         {
             <tr>
+                <td>
+                    <a class="nav-link" href="javascript:void(0)" onclick="classInfo('@course.CourseDescription')">
+                        <i class="fa-regular fa-circle-info"></i>
+                    </a>
+                </td>
+                <td>@course.DeptName</td>
                 <td>@course.CourseNumber</td>
                 <td>@course.CourseName</td>
                 <td>@course.NumberOfCredits</td>
        
                 <td>
-                        @if (Model.Instructors != null && Model.Instructors.Any())
-                        {
-                            // Get the CourseId for the current course
-                            var courseId = course.CourseId;
-
-                            // Filter instructors based on UserCourseConnections
-                            var courseInstructors = Model.InstructorCourseConnections
-                            .Where(uc => uc.CourseId == courseId)
-                            .Select(uc => Model.Instructors.FirstOrDefault(i => i.Id == uc.InstructorID))
-                            .Where(i => i != null) // Ensure that we only include valid instructors
-                            .ToList();
-
-                            if (courseInstructors.Any())
-                            {
-                            <ul>
-                                    @foreach (var instructor in courseInstructors)
-                                    {
-                                        @instructor.FirstName @instructor.LastName
-                                    }
-                            </ul>
-                            }
-                            else
-                            {
-                            <span>No instructors assigned</span>
-                            }
-                        }
-                        else
-                        {
-                        <span>No instructors assigned</span>
-                        }
+                    @course.Instructor
                 </td>
            
                 <td>@course.DaysOfTheWeek</td>
                 <td>
                     @(course.StartTime?.ToString("hh:mm tt") ?? "N/A") - @(course.EndTime?.ToString("hh:mm tt") ?? "N/A")
                 </td>
-                <td>@course.RoomNumber</td>
+                <td>@course.Room</td>
                 <td>
                     @{
                         // Assuming you have the current student ID accessible in your view.
                         var currentStudentId = Model.CurrentStudent; // Adjust as necessary _auth.GetCurrentUserId();
-                        var isRegistered = Model.StudentCourseConnection
-                        .Any(conn => conn.StudentID == currentStudentId && conn.CourseId == course.CourseId);
+                        var isRegistered = Model.StudentConnection
+                        .Any(conn => conn.StudentId == currentStudentId && conn.CourseId == course.CourseId);
                     }
 
                     <div class="row">
@@ -145,5 +117,15 @@
         }
     </tbody>
 </table>
+
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id="modalText">Some text in the Modal..</p>
+  </div>
+
+</div>
 
 <script src="~/js/account.js" asp-append-version="true"></script>

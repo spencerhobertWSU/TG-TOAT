@@ -1,4 +1,4 @@
-﻿@model TGTOAT.Models.AccountViewModel
+﻿@model AccountViewModel
 
 @{
     ViewData["Title"] = "Account";
@@ -14,61 +14,88 @@
 }
 
 <link rel="stylesheet" href="~/css/account.css" asp-append-version="true" />
-
-<!-- User account details -->
-<form asp-action="UpdateUser" method="post">
-    <h4>User Info</h4>
-    <button type="button" id="NameEdit" class="inline btn btn-danger" onclick="editName()">Edit</button>
-    <button type="button" id="NameSave" class="save-btn inline btn btn-success">Save</button>
-    <hr />
-    <div class="row justify-content-center">
-            <input type="hidden" asp-for="Id" /> <!-- Include User Id for updating -->
-            <div class="form-group col-md-3">
-                <label asp-for="FirstName">First Name</label>
-                <input type="text" asp-for="FirstName" class="form-control" readonly id="firstName">
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+<div class="container col-md-9 justify-content-center">
+    <div>
+        <h4>Profile Picture</h4>
+        <hr />
+        <div class="container pfpEdit">
+            <div class="linkDiv">
+                <a class="nav-link" asp-area="" asp-controller="User" asp-action="ChangeProfilePicture">Change Profile Picture</a>
             </div>
-
-            <div class="form-group col-md-3">
-                <label asp-for="LastName">Last Name</label>
-                <input type="text" asp-for="LastName" class="form-control" readonly id="lastName">
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-    </div>
-</form>
-
-<form asp-action="UpdateAdd" method="post">
-    <br />
-    <h4>User Address</h4>
-    <button type="button" id="AddEdit" class="btn btn-danger" onclick="editAdd()">Edit</button>
-    <button type="button" id="AddSave" class="save-btn btn btn-success" onclick="saveAdd()">Save</button>
-    <hr />
-    <div class="justify-content-center">
-            <div class="form-group col-md-3">
-                <label asp-for="Address.AddressLineOne">Address Line 1</label>
-                <input type="text" asp-for="Address.AddressLineOne" class="form-control" readonly id="addressLineOne">
-                <span asp-validation-for="Address.AddressLineOne" class="text-danger"></span>
-            </div>
-
-            <div class="form-group col-md-3">
-                <label asp-for="Address.AddressLineTwo">Address Line 2</label>
-                <input type="text" asp-for="Address.AddressLineTwo" class="form-control"  readonly id="addressLineTwo">
-                <span asp-validation-for="Address.AddressLineOne" class="text-danger"></span>
-            </div>
-
-            <div class="form-group col-md-3">
-                <label asp-for="Address.ZipCode">Zip Code</label>
-                <input type="text" asp-for="Address.ZipCode" class="form-control"  readonly id="zip">
-                <span asp-validation-for="Address.AddressLineOne" class="text-danger"></span>
-            </div>
-
-            <!-- Toast notification -->
-            <div id="toast" class="toast" style="display:none;">
-                <p>Saved!</p>
-            </div>
+            
+            <img src="@Url.Action("GetProfileImage", "User")" alt="Profile Image" />
         </div>
-
     </div>
-</form>
+
+    <!-- User account details -->
+    <form asp-action="UpdateUserName" id="userNameForm" method="post">
+        <br />
+        <h4>User Info</h4>
+        <button type="button" id="NameEdit" class="inline btn btn-danger" onclick="editName()">Edit</button>
+        <button type="submit" id="NameSave" class="save-btn inline btn btn-success" onclick="saveName()">Save</button>
+        <hr />
+        <div class="row justify-content-center">
+                <input type="hidden" asp-for="Id" /> <!-- Include User Id for updating -->
+                <div class="form-group col-md-3">
+                    <label asp-for="FirstName">First Name</label>
+                    <input type="text" asp-for="FirstName" class="form-control userName" disabled id="firstName">
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label asp-for="LastName">Last Name</label>
+                    <input type="text" asp-for="LastName" class="form-control userName" disabled id="lastName">
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+        </div>
+    </form>
+
+    <form asp-action="UpdateAdd" id="userAddForm" method="post">
+        <br />
+        <h4>User Address</h4>
+        <button type="button" id="AddEdit" class="btn btn-danger" onclick="editAdd()">Edit</button>
+        <button type="button" id="AddSave" class="save-btn btn btn-success" onclick="saveAdd()">Save</button>
+        <hr />
+        <div class="container col-md-9 justify-content-center">
+                <div class="form-group col-md-6 addInput">
+                    <label asp-for="Address.AddOne">Address Line 1</label>
+                    <input type="text" asp-for="Address.AddOne" class="form-control userAdd" disabled id="addressLineOne">
+                    <span asp-validation-for="Address.AddOne" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6 addInput">
+                    <label asp-for="Address.AddTwo">Address Line 2</label>
+                    <input type="text" asp-for="Address.AddTwo" class="form-control userAdd" disabled id="addressLineTwo">
+                    <span asp-validation-for="Address.AddTwo" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6 addInput">
+                    <label asp-for="Address.City">City</label>
+                    <input type="text" asp-for="Address.City" class="form-control userAdd" disabled id="zip">
+                    <span asp-validation-for="Address.City" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6 addInput">
+                        <label asp-for="Address.State"></label>
+                            <select asp-for="Address.State" class="form-select userAdd" id="stateSelect" disabled onchange="changeState()">
+                                <option value="">Select a State</option>
+                            </select>
+                        <span asp-validation-for="Address.State" class="text-danger"></span>
+                    </div>
+
+                <div class="form-group col-md-6 addInput">
+                        <label asp-for="Address.Zip">Zip Code</label>
+                    <input type="text" asp-for="Address.Zip" class="form-control userAdd" disabled id="zip">
+                        <span asp-validation-for="Address.Zip" class="text-danger"></span>
+                </div>
+
+                <!-- Toast notification -->
+                <div id="toast" class="toast" style="display:none;">
+                    <p>Saved!</p>
+                </div>
+
+        </div>
+    </form>
+</div>
 
 <script src="~/js/account.js" asp-append-version="true"></script>

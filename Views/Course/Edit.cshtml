@@ -1,0 +1,279 @@
+@model AddCourseViewModel
+
+@{
+    ViewData["Title"] = "Add Course";
+
+    Layout = "~/Views/Shared/_InstructorLayout.cshtml";
+}
+
+<form asp-action="Edit" method="post">
+
+    <div class="container-fluid">
+        <h1 class="text-center">Edit a Course</h1>
+        <!--Department & Course Number-->
+        <div class="row justify-content-center ">
+
+            <div class="form-group col-md-3">
+                <label asp-for="CourseId">Course ID</label>
+                <input asp-for="CourseId" class="form-control" />
+                <span asp-validation-for="CourseNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="SelectedDepartmentId"></label>
+                <select asp-for="SelectedDepartmentId" class="form-select">
+                    <option value="">Select a department</option>
+                    @foreach (var department in Model.Departments)
+                    {
+                        <option value=@department.DeptId> @department.DeptName </option>
+                    }
+                </select>
+                <span asp-validation-for="SelectedDepartmentId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="CourseNumber">Course Number</label>
+                <input asp-for="CourseNumber" class="form-control" />
+                <span asp-validation-for="CourseNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="NumberOfCredits">Credit Hours</label>
+                <input asp-for="NumberOfCredits" class="form-control" type="number" min="1" value="1" />
+                <span asp-validation-for="NumberOfCredits" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="form-group col-md-6">
+                <label asp-for="CourseName">Course Name</label>
+                <input asp-for="CourseName" class="form-control" />
+                <span asp-validation-for="CourseName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="form-group col-md-6">
+                <label asp-for="CourseDescription">Course Description (400 Char Max)</label>
+                <textarea asp-for="CourseDescription" class="form-control"></textarea>
+                <span asp-validation-for="CourseDescription" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <!--Days of the Week-->
+        <div class="form-group row justify-content-center">
+            <label asp-for="DaysOfTheWeek" class="DaysLabel"></label>
+
+            <div class="btn-group-toggle row justify-content-center" data-toggle="buttons">
+                <!--Days Btns-->
+                <div class="col-md-5">
+                    <input type="checkbox" class="btn-check" id="monBtn" onchange="dayBtn('monBtn')" value="Mo" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="monBtn">Monday</label>
+
+                    <input type="checkbox" class="btn-check" id="tueBtn" onchange="dayBtn('tueBtn')" value="Tu" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="tueBtn">Tuesday</label>
+
+                    <input type="checkbox" class="btn-check" id="wedBtn" onchange="dayBtn('wedBtn')" value="We" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="wedBtn">Wednesday</label>
+
+                    <input type="checkbox" class="btn-check" id="thuBtn" onchange="dayBtn('thuBtn')" value="Th" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="thuBtn">Thursday</label>
+
+                    <input type="checkbox" class="btn-check" id="friBtn" onchange="dayBtn('friBtn')" value="Fr" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="friBtn">Friday</label>
+
+                    <input type="checkbox" class="btn-check" id="satBtn" onchange="dayBtn('satBtn')" value="Sa" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="satBtn">Saturday</label>
+
+                    <input type="checkbox" class="btn-check" id="sunBtn" onchange="dayBtn('sunBtn')" value="Su" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="sunBtn">Sunday</label>
+
+                    <input asp-for="DaysOfTheWeek" id="DaysOfTheWeek" class="form-control" />
+
+                </div>
+                <!--Online Btn-->
+                <div class="col-md-1">
+                    <input type="checkbox" class="btn-check" id="onlBtn" onchange="onlineBtn()" value="Onl" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="onlBtn">Online</label>
+                </div>
+            </div>
+            <span asp-validation-for="DaysOfTheWeek" class="text-danger"></span>
+        </div>
+
+
+        <!--Location Information-->
+        <div class="row justify-content-center">
+
+            <div class="form-group col-md-3">
+                <label asp-for="Campus"></label>
+                <select asp-for="Campus" asp-items="Model.CampusList" class="form-select" id="campusSelect" onchange="changeCampus()">
+                    <option value="">Select a Campus</option>
+                </select>
+                <span asp-validation-for="Campus" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="Building"></label>
+                <select asp-for="Building" class="form-select" id="buildSelect" disabled="true">
+                    <option value="">Select a Building First</option>
+                </select>
+                <span asp-validation-for="Building" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="RoomNumber">Room Number</label>
+                <input asp-for="RoomNumber" class="form-control" id="roomNum" />
+                <span asp-validation-for="RoomNumber" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="form-group col-md-6">
+                <label asp-for="Capacity"></label>
+                <input asp-for="Capacity" class="form-control" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+        </div>
+
+
+
+        <!--Class time-->
+        <div class="row justify-content-center">
+            <div class="form-group col-md-3">
+                <label asp-for="StartTime">Start Time</label>
+                <input asp-for="StartTime" type="time" class="form-control" />
+                <span asp-validation-for="StartTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="EndTime">End Time</label>
+                <input asp-for="EndTime" type="time" class="form-control" />
+                <span asp-validation-for="EndTime" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!--Semester, Year-->
+        <div class="row justify-content-center">
+            <div class="form-group col-md-3">
+                <label asp-for="Semester"></label>
+                <select asp-for="Semester" asp-items="Model.SemesterList" class="form-select"></select>
+                <span asp-validation-for="Semester" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label asp-for="Year"></label>
+                <input asp-for="Year" class="form-control" type="number" min="@Model.CurrYear" value="@Model.CurrYear" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="form-group col-md-6">
+                <label asp-for="SelectedInstructorId"></label>
+                <select asp-for="SelectedInstructorId" class="form-select">
+                    <option value="">Select an instructor</option>
+                    @foreach (var instructor in Model.Instructors)
+                    {
+                        <option value=@instructor.UserId> @instructor.FirstName @instructor.LastName </option>
+                    }
+                </select>
+                <span asp-validation-for="SelectedInstructorId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="form-group col-md-3 color-div">
+                <label asp-for="Color">Select a Color:</label>
+                <input asp-for="Color" type="color" id="classColor" value="#ff0000">
+            </div>
+        </div>
+        </br>
+        <div class="row justify-content-center">
+            <div class="form-group col-md-3 picture-div">
+                <span>Choose an Image:</span>
+                <label asp-for="Picture" class="custombtn">Browse</label>
+                <input asp-for="Picture" type="file" name="Picture" accept="image/png, image/jpeg, image/jpg" class="custombtn" />
+            </div>
+        </div>
+
+
+        <br />
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary text-center" id="courseSubmit" onclick="UpdateInfo()">Update</button>
+        </div>
+    </div>
+</form>
+
+<script src="~/js/courses.js" asp-append-version="true"></script>
+
+@section Scripts {
+
+    <script>
+        window.addEventListener('load', function () {
+            var campus = document.getElementById("campusSelect");
+            var buildings = document.getElementById("buildSelect");
+            var room = document.getElementById("roomNum");
+            var startTime = document.getElementById("StartTime");
+            var endTime = document.getElementById("EndTime");
+            var onlBtn = document.getElementById("onlBtn");
+
+            var yearInput = document.getElementById("Year");
+            var creditInput = document.getElementById("NumberOfCredits");
+            var instruct = document.getElementById("SelectedInstructorId");
+            var colorInput = document.getElementById("classColor");
+
+            yearInput.value = @Model.Year;
+            creditInput.value = @Model.NumberOfCredits
+
+            changeCampus();
+
+            buildings.value = "@Model.Building";
+            instruct.value = "@Model.SelectedInstructorId";
+
+            
+
+            colorInput.value = "@Model.Color" 
+
+            const Days = document.getElementById("DaysOfTheWeek").value.split(",");
+            //console.log(myArray)
+            for(let x of Days){
+                switch (x) {
+                    case "Mo":
+                        document.getElementById("monBtn").checked = true;
+                        break;
+                    case "Tu":
+                        document.getElementById("tueBtn").checked = true;
+                        break;
+                    case "We":
+                        document.getElementById("wedBtn").checked = true;
+                        break;
+                    case "Th":
+                        document.getElementById("thuBtn").checked = true;
+                        break;
+                    case "Fr":
+                        document.getElementById("friBtn").checked = true;
+                        break;
+                    case "Sa":
+                        document.getElementById("satBtn").checked = true;
+                        break;
+                    case "Su":
+                        document.getElementById("sunBtn").checked = true;
+                        break;
+                    case "Onl":
+                        document.getElementById("onlBtn").checked = true;
+                        campus.disabled = true;
+                        buildings.disabled = true;
+                        room.disabled = true;
+                        startTime.disabled = true;
+                        endTime.disabled = true;
+                        break;
+                }
+
+                
+            }
+        })
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

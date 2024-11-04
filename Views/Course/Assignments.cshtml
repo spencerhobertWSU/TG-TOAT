@@ -1,4 +1,4 @@
-﻿@model TGTOAT.Models.CourseHome
+﻿@model CourseHome
 
 @{
     ViewData["Title"] = "Home";
@@ -19,8 +19,8 @@
 
 
 
-<h1 class="h1-course">@Model.Department @Model.CourseNum</h1>
-
+<h1 class="h1-course">@Model.Department @Model.CourseNum, @Model.UserRole</h1>
+<hr />
 <div class="course-row">
     <div class="course-nav">
         <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Index" asp-route-id="@Model.CourseId">
@@ -46,25 +46,76 @@
                     <div class="row" style="align-items: center;">
                         <!-- Assignment details -->
                         <div class="col-md-6 text-left">
-                            @assignment.AssignmentName @assignment.DueDateAndTime.ToString("MM/dd/yyyy hh:mm tt")
+                            @assignment.AssignName @assignment.DueDate.ToString("MM/dd/yyyy hh:mm tt")
                         </div>
 
                         <!-- Submit -->
                         <div class="col-md-6 text-right">
                             <div class="col-md-6 text-right">
-                                <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="SubmitAssignment" asp-route-assignmentId="@assignment.AssignmentId">
+                                <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="SubmitAssignment" asp-route-assignmentId="@assignment.AssignId">
                                     Submit
                                 </a>
                             </div>
 
                         </div>
+
+                    </div>
+                }
+                @foreach (var quiz in Model.Quizzes)
+                {
+                    <div class="row" style="align-items: center;">
+                        <!-- Assignment details -->
+                        <div class="col-md-6 text-left">
+                            @quiz.QuizName @quiz.DueDate.ToString("MM/dd/yyyy hh:mm tt")
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="col-md-6 text-right">
+                            <div class="col-md-6 text-right">
+                                <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="Quiz" asp-route-id="@quiz.QuizId">
+                                    Take
+                                </a>
+                            </div>
+
+                        </div>
+
                     </div>
                 }
             }
             else if (Model.UserRole == "Instructor")
             {
-                <a asp-area="" asp-controller="Course" asp-route-id="@Model.CourseId" asp-action="AddAssignment">Add Assignment</a>
+                <div class="container">
 
+                <a class="btn btn-primary"  asp-area="" asp-controller="Course" asp-route-id="@Model.CourseId" asp-action="AddAssignment">Add Assignment</a>
+                <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-route-id="@Model.CourseId" asp-action="AddQuiz">Add Quiz</a>
+                </div>
+
+                    @foreach (var assignment in Model.Assignments)
+                    {
+                        <div class="row" style="align-items: center;">
+                            <div class="col-md-6 text-left">
+                                <strong>@assignment.AssignName</strong> - Due: @assignment.DueDate.ToString("MM/dd/yyyy hh:mm tt")
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="ViewSubmissions" asp-route-assignmentId="@assignment.AssignId">
+                                    View Submissions
+                                </a>
+                            </div>
+                        </div>
+                    }
+                @foreach (var quiz in Model.Quizzes)
+                {
+                    <div class="row" style="align-items: center;">
+                        <div class="col-md-6 text-left">
+                            <strong>@quiz.QuizName</strong> - Due: @quiz.DueDate.ToString("MM/dd/yyyy hh:mm tt")
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="ViewSubmissions" asp-route-assignmentId="@quiz.QuizId">
+                                View Submissions
+                            </a>
+                        </div>
+                    </div>
+                }
             }
 
         }

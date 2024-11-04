@@ -1,8 +1,10 @@
-﻿namespace TGTOAT.ViewModels
+﻿using Data;
+using TGTOAT.Data;
+
+namespace Models
 {
     public class CourseListViewModel
     {
-        public IEnumerable<TGTOAT.Data.Courses> Courses { get; set; }
-        public TGTOAT.Models.UserIndexViewModel UserLoginViewModel { get; set; }
+        public List<CourseInfo> Courses { get; set; } = new List<CourseInfo>();
     }
 }

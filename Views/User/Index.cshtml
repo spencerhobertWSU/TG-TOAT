@@ -1,4 +1,4 @@
-﻿@model TGTOAT.Models.UserIndexViewModel
+﻿@model UserIndexViewModel
 
 @{
     ViewData["Title"] = "Home";
@@ -13,7 +13,7 @@
     }
 }
 
-<h1>Welcome, @Model.FirstName @Model.LastName, @Model.UserRole</h1>
+<h1 class="text-center">Welcome, @Model.FirstName @Model.LastName, @Model.UserRole</h1>
 
 <div class="row">
     <!-- Cards column -->
@@ -23,13 +23,22 @@
         {
             @foreach (var course in Model.Courses)
             {
-                <div class="card">
+                <div class="card" style="color:@course.Color; border: @course.Color solid 2px; ">
+                    <!--<a class="classColorPick" href="javascript:void(0)"><i class="fa-regular fa-palette"></i></a>-->
                     <a class="class-link" asp-area="" asp-controller="Course" asp-action="Index" asp-route-id="@course.CourseId">
                         <img href="">
                         <div class="card-info">
-                            <p class="class-info">@course.Department @course.CourseNumber - @course.Semester @course.Year</p>
-                            <p class="class-name">@course.CourseName</p>
-                            <p class="class-time">@course.DaysOfTheWeek, @course.StartTime-@course.EndTime</p>
+                            <p class="class-info" style="color:@course.Color;">@course.DeptName @course.CourseNum @course.Campus</p>
+                            <p class="class-info" style="color:@course.Color;">@course.CourseName - @course.Semester @course.Year</p>
+                            @if(course.Days == "Onl")
+                            {
+                                <p class="class-time" style="color:@course.Color;">@course.Days</p>
+                            }
+                            else
+                            {
+                                <p class="class-time" style="color:@course.Color;">@course.Days - @course.StartTime-@course.StopTime</p>
+                            }
+                            
                         </div>
                     </a>
                     <div class="card-icons">
@@ -44,7 +53,15 @@
         else
         {
             <div>
-                <p>You currently have no classes!</p>
+                @if(Model.UserRole == "Student")
+                {
+                    <p>You haven't registered for any classes</p>
+                }
+                else
+                {
+                    <p>You haven't created any classes</p>
+                }
+                
             </div>
         }
     </div>
@@ -55,37 +72,17 @@
             <h3>To Do</h3>
         </div>
         <div class="todo-items">
-            <a href="">
-                <p class="todo-class">CS 1010</p>
-                <p class="todo-name">Quiz 3: Foundations</p>
-                <p class="todo-time">Sep 18 at 11:59pm</p>
-            </a>
+            @foreach (var assignment in Model.Assignments)
+            {
+                <a href="">
+                     
 
-            <a href="">
-                <p class="todo-class">CS 1010</p>
-                <p class="todo-name">Exam 1: Foundations</p>
-                <p class="todo-time">Sep 20 at 11:59pm</p>
-            </a>
-
-            <a href="">
-                <p class="todo-class">CS 1010</p>
-                <p class="todo-name">Code 4: Java For loops</p>
-                <p class="todo-time">Sep 27 at 11:59pm</p>
-            </a>
-
-            <a href="">
-                <p class="todo-class">CS 1010</p>
-                <p class="todo-name">Code 5: Java Switches</p>
-                <p class="todo-time">Sep 27 at 11:59pm</p>
-            </a>
-
-            <a href="">
-                <p class="todo-class">CS 1010</p>
-                <p class="todo-name">Code 6: Java While loops</p>
-                <p class="todo-time">Sep 29 at 11:59pm</p>
-            </a>
+                </a>
+            }
         </div>
     </div>
+
+
 </div>
 
 

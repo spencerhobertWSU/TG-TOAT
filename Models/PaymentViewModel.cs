@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TGTOAT.Data;
 
-namespace TGTOAT.Models
+namespace Models
 {
     public class PaymentViewModel
     {

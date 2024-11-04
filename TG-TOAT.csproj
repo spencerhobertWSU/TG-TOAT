@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <Folder Include="TGTOAT\Migrations\" />
   </ItemGroup>
 
   <ItemGroup>

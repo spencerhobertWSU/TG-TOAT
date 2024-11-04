@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TGTOAT.Models
+namespace Models
 {
     public class LoginViewModel
     {

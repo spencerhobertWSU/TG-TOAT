@@ -1,4 +1,4 @@
-﻿@model TGTOAT.Models.CourseHome
+﻿@model CourseHome
 
 @{
     ViewData["Title"] = "Home";
@@ -14,6 +14,7 @@
 }
 
 <h1 class="h1-course">@Model.Department @Model.CourseNum @Model.UserRole</h1>
+<hr/>
 
 <div class="course-row">
     <div class="course-nav">
@@ -21,8 +22,7 @@
         <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Announcements" asp-route-id="@Model.CourseId">Announcements</a>
         <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Assignments" asp-route-id="@Model.CourseId">Assignments</a>
         <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Grades" asp-route-id="@Model.CourseId">Grades</a>
-    </div>
-
+    </div>    
     
 </div>
 

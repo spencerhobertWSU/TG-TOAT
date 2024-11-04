@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication;
-using TGTOAT.Data;
-using TGTOAT.Models;
+using Models;
 using TGTOAT.Helpers;
 using Stripe;
+using Data;
 
 
 var builder = WebApplication.CreateBuilder(args);

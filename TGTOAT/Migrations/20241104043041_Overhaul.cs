@@ -1,5 +1,4 @@
 ﻿using System;
-using Data;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -9,12 +8,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TGTOAT.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Test : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-
             migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
@@ -191,7 +189,7 @@ namespace TGTOAT.Migrations
                 {
                     StudentId = table.Column<int>(type: "int", nullable: false),
                     CourseId = table.Column<int>(type: "int", nullable: false),
-                    Grade = table.Column<Decimal>(type: "decimal(5,2)", nullable: false)
+                    Grade = table.Column<decimal>(type: "decimal(5,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -220,7 +218,7 @@ namespace TGTOAT.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    AmountDue = table.Column<Decimal>(type: "decimal(18,2)", nullable: false)
+                    AmountDue = table.Column<decimal>(type: "decimal(5,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -292,7 +290,6 @@ namespace TGTOAT.Migrations
                     { 9, new DateOnly(2000, 1, 1), "Brooks", "Gray", "iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAAAXNSR0IArs4c6QAABTxJREFUeF7tnQtO4zAQhmtozwGcZOEkC2qQuMXCLZBIRfcklJPQPQePbKYbr7JdYo8T+/e4TCVERRzbmS/z8Gsws4I+Nzc3p29vb9+py03TnBpjTnu/t/R3Y8y2aZrd96Ojo+eHh4d1QY84M9I724NwPpvN6CfoQ3AIkjHm5/Hx8eb+/n4HS+pHLJAeiNtYwus0Z7NYLO6kghEHJAWIfaCd1qzrur6LBTtWPaKAVFVFJukp1sP56pEIRgyQqqp+tAKMZp58MPau30rRFhFAqqoirQh22IFC9xUXASU7ECEwdrDIhK1WqzMfuZTXswKRBMMKuR3XrFer1VVKobvqzgYks8/wyTub+coCBB1N+aT/2XVjzFWOUX4uIM0YISHvyeVP4ECEm6p/mOfwJzmAiNeOnoPfLhaLC+Q0CxTIcrl8bCf6LpGmZ2pbaC2BAmnNVTHa0dcScvB1XW+mwuXcDwNyfX192TTNI6dTAsvAwmAYEImDwADwm7quLwLKjy6KBFKcueqbLdSUCgRI4ebKcrlA+BEIkBKjq09sDsSPKBC+tYf4EQiQwh26RXY4QJbL5Qtt2eG/jPJKoua2UBpSbISFjrQUSIAytuvuyeWVvAF6XjVZfOoQIOrUhQE5hHEIatYXpSE591zxX09HyUMDAt2RGIXAXiWoNXaIhnT7dV9SCApVJyLComeBAKGGSnbsKHMFBVLyjC/KXEGBlGy25vP5GWqjA8xkdQNE3eTgcXpQICVqCVI7oCbLvhglbZRr+wxZlOorDVRDqOGStAQV6mYFQo0XEnFB1tD3XQpcQwoxXXBTZeWSDUg3WJQ4xwVZqh0KtrIC6fwJ7WbMfb4Qum7uinyzAuk5eUqXkesErhgYWcLeobcjcziczWeIceqfgUEfdesSB8B2tnNmprObrP1OIlJrdG2K0Yrs4xDOm5IQjEgQIsJeLpj39/fzpmnI8Y+KxiTmNBEZ9nKA9MuQ1hCcj4+Pb7uIxJHAjHJkURkpOUy4zyrOh3A7fqjlFIgwsgpEgQiTgLDuqIYoEGESENYdqIbQ1EgXqp6QHGzO3T2Z0AH959QHLPfSz/7tQj/nb9fHbeq+wEbq9qE7wQel1LCDuZhwev25DDnRZdPLIhIzJ9GQ2OscFk67Ye0XfZ/P51vfPqmuDzb79Ul7XxCEIUtmEzO349K7FJoTFUhsED7zboVjzUz31o+aXvG1NXCdzGtUMFGAJJwIHCkn7G209zdWtuzJQEra1pMSE2lpjNxak4CgF5RSCjRG3TFmlUcDybzkGkN+KesYveYyCojCYLEcBSUYiJopFgxbKBhKEBCFEQRjl7o8ND0gG4hGU2EwbOnQ6IsN5BDOmo8T6fS7Qs4osoCoqZoOpZ2TY+2m5wKR8P89okglYyWsTdxeIKodURF6tYQDRLUjHhOvlnCAFJ98LJ48p9XEyUrnBFLI0bNpUsLf7TRbTiAa6iah5TRbTiAlJs9PIsKIlfrM1iAQja4iUvi/qkGzNQhE/Uc6IK5kNgokndxdNQ/OAg8CUYeelJQCSSre8MoHIy2XU9cReriguXcoEK6kQOUUCEjQ3GYUCFdSoHIKBCRobjMKhCspUDkFAhI0txkFwpUUqJwCAQma1YxrF4prYCgx2xvrgaUXGguk+P9oIBXMqNle3amYDqcrObNvxVDnsyJzGb1iSP1QLYlM40914zc50N16FiQqFO/xBO++rK9+oDMiDi8MassLxHaIwLy+vj6FHLiP+DDFVhV6RoQNxPoUm9Etw5nwIqD0zsyvqcOhGe1+Az3XJZI28ZenAAAAAElFTkSuQmCC", "Student" },
                     { 10, new DateOnly(2000, 1, 1), "Drew", "Barnes", "iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAAAXNSR0IArs4c6QAABTxJREFUeF7tnQtO4zAQhmtozwGcZOEkC2qQuMXCLZBIRfcklJPQPQePbKYbr7JdYo8T+/e4TCVERRzbmS/z8Gsws4I+Nzc3p29vb9+py03TnBpjTnu/t/R3Y8y2aZrd96Ojo+eHh4d1QY84M9I724NwPpvN6CfoQ3AIkjHm5/Hx8eb+/n4HS+pHLJAeiNtYwus0Z7NYLO6kghEHJAWIfaCd1qzrur6LBTtWPaKAVFVFJukp1sP56pEIRgyQqqp+tAKMZp58MPau30rRFhFAqqoirQh22IFC9xUXASU7ECEwdrDIhK1WqzMfuZTXswKRBMMKuR3XrFer1VVKobvqzgYks8/wyTub+coCBB1N+aT/2XVjzFWOUX4uIM0YISHvyeVP4ECEm6p/mOfwJzmAiNeOnoPfLhaLC+Q0CxTIcrl8bCf6LpGmZ2pbaC2BAmnNVTHa0dcScvB1XW+mwuXcDwNyfX192TTNI6dTAsvAwmAYEImDwADwm7quLwLKjy6KBFKcueqbLdSUCgRI4ebKcrlA+BEIkBKjq09sDsSPKBC+tYf4EQiQwh26RXY4QJbL5Qtt2eG/jPJKoua2UBpSbISFjrQUSIAytuvuyeWVvAF6XjVZfOoQIOrUhQE5hHEIatYXpSE591zxX09HyUMDAt2RGIXAXiWoNXaIhnT7dV9SCApVJyLComeBAKGGSnbsKHMFBVLyjC/KXEGBlGy25vP5GWqjA8xkdQNE3eTgcXpQICVqCVI7oCbLvhglbZRr+wxZlOorDVRDqOGStAQV6mYFQo0XEnFB1tD3XQpcQwoxXXBTZeWSDUg3WJQ4xwVZqh0KtrIC6fwJ7WbMfb4Qum7uinyzAuk5eUqXkesErhgYWcLeobcjcziczWeIceqfgUEfdesSB8B2tnNmprObrP1OIlJrdG2K0Yrs4xDOm5IQjEgQIsJeLpj39/fzpmnI8Y+KxiTmNBEZ9nKA9MuQ1hCcj4+Pb7uIxJHAjHJkURkpOUy4zyrOh3A7fqjlFIgwsgpEgQiTgLDuqIYoEGESENYdqIbQ1EgXqp6QHGzO3T2Z0AH959QHLPfSz/7tQj/nb9fHbeq+wEbq9qE7wQel1LCDuZhwev25DDnRZdPLIhIzJ9GQ2OscFk67Ye0XfZ/P51vfPqmuDzb79Ul7XxCEIUtmEzO349K7FJoTFUhsED7zboVjzUz31o+aXvG1NXCdzGtUMFGAJJwIHCkn7G209zdWtuzJQEra1pMSE2lpjNxak4CgF5RSCjRG3TFmlUcDybzkGkN+KesYveYyCojCYLEcBSUYiJopFgxbKBhKEBCFEQRjl7o8ND0gG4hGU2EwbOnQ6IsN5BDOmo8T6fS7Qs4osoCoqZoOpZ2TY+2m5wKR8P89okglYyWsTdxeIKodURF6tYQDRLUjHhOvlnCAFJ98LJ48p9XEyUrnBFLI0bNpUsLf7TRbTiAa6iah5TRbTiAlJs9PIsKIlfrM1iAQja4iUvi/qkGzNQhE/Uc6IK5kNgokndxdNQ/OAg8CUYeelJQCSSre8MoHIy2XU9cReriguXcoEK6kQOUUCEjQ3GYUCFdSoHIKBCRobjMKhCspUDkFAhI0txkFwpUUqJwCAQma1YxrF4prYCgx2xvrgaUXGguk+P9oIBXMqNle3amYDqcrObNvxVDnsyJzGb1iSP1QLYlM40914zc50N16FiQqFO/xBO++rK9+oDMiDi8MassLxHaIwLy+vj6FHLiP+DDFVhV6RoQNxPoUm9Etw5nwIqD0zsyvqcOhGe1+Az3XJZI28ZenAAAAAElFTkSuQmCC", "Student" }
                 });
-
             migrationBuilder.InsertData(
                 table: "Address",
                 columns: new[] { "UserId", "AddOne", "AddTwo", "City", "State", "Zip" },
@@ -321,7 +318,6 @@ namespace TGTOAT.Migrations
                     { 9, 0 },
                     { 10, 0 }
                 });
-
         }
 
         /// <inheritdoc />
@@ -346,10 +342,22 @@ namespace TGTOAT.Migrations
                 name: "InstructorConnection");
 
             migrationBuilder.DropTable(
+                name: "Notifications");
+
+            migrationBuilder.DropTable(
+                name: "Quizzes");
+
+            migrationBuilder.DropTable(
                 name: "StudentAssignment");
 
             migrationBuilder.DropTable(
                 name: "StudentConnection");
+
+            migrationBuilder.DropTable(
+                name: "StudentQuizzes");
+
+            migrationBuilder.DropTable(
+                name: "Tuition");
 
             migrationBuilder.DropTable(
                 name: "User");

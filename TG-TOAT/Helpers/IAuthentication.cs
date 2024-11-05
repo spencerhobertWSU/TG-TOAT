@@ -1,20 +1,24 @@
-﻿namespace TGTOAT.Helpers;
+﻿using Data;
+using Models;
+
+namespace TGTOAT.Helpers;
 
 public interface IAuthentication
 {
-    //Set user with login info
-    public void SetUser(TGTOAT.Models.UserIndexViewModel user);
 
-    //Logout User
+    public void setUser(CurrUser User);
+    public CurrUser getUser();
     public void Logout();
 
-    //Grab user information
-    public TGTOAT.Models.UserIndexViewModel GetUser();
-    int GetCurrentUserId();
+    public void setIndex();
 
-    public void SetRole(string role);
-
-    public string GetRole();
-
+    public UserIndexViewModel getIndex();
+    
     public string createToken(int ranNum);
+
+    public void CreateNotification(string message, int studentId);
+
+    public IEnumerable<Notifications> GetNotificationsForUser(int studentId);
+
+    public void MarkAsRead(int notificationId);
 }

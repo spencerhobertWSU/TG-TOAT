@@ -1,16 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic; // For IEnumerable
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TGTOAT.Data;
+using Data;
 
-namespace TGTOAT.Models
+namespace Models
 {
     public class AddCourseViewModel
     {
-        public int? CourseId { get; set; }  // For editing course
-        public string? UserRole { get; set; }
+        public int CourseId { get; set; }  // For editing course
 
         [Required(ErrorMessage = "Department is required.")]
         [Display(Name = "Department")]
@@ -21,11 +21,11 @@ namespace TGTOAT.Models
         // Course Number
         [Required(ErrorMessage = "Course number is required.")]
         [Range(0000, 9999, ErrorMessage = "Must be a positive number and max 4 digits allowed.")]
-        public string CourseNumber { get; set; }
+        public int CourseNumber { get; set; }
 
         // Course Name
         [Required(ErrorMessage = "Course name is required.")]
-        [MaxLength(30, ErrorMessage = "Max 30 characters allowed.")]
+        [MaxLength(50, ErrorMessage = "Max 30 characters allowed.")]
         public string CourseName { get; set; }
 
         // Course Description
@@ -61,7 +61,7 @@ namespace TGTOAT.Models
 
         // Room Number
         [Required(ErrorMessage = "Room number is required.")]
-        [Range(0, 999, ErrorMessage = "Must be a positive number and max 3 digits allowed.") ]
+        [Range(0, 999, ErrorMessage = "Must be a positive number and max 3 digits allowed.")]
         public int? RoomNumber { get; set; }
 
         // Meeting Days
@@ -93,15 +93,19 @@ namespace TGTOAT.Models
         public int Year { get; set; }
         public int CurrYear { get; set; }
 
+        public string Color { get; set; }
+
+        public string? Picture { get; set; }
+
         // Instructor
         [Required(ErrorMessage = "Instructor is required.")]
         [Display(Name = "Instructor")]
         public int SelectedInstructorId { get; set; }
 
-        public List<User> Instructors { get; set; } = new List<User>();
+        public List<UserInfo> Instructors { get; set; } = new List<UserInfo>();
 
-        //notifications
         public List<Notifications> Notifications { get; set; } = new List<Notifications>();
+
 
     }
 }

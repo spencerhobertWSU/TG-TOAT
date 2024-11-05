@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TGTOAT.Data;
-using TGTOAT.Models;
+using Data;
+using Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,18 +21,19 @@ namespace TGTOAT.Controllers
 
         public async Task<IActionResult> CourseRegistration()
         {
-            var user = _auth.GetUser();
-            var userCourses = (from db in _context.StudentCourseConnection
-                       where db.StudentID == user.Id
+            var user = _auth.getUser();
+
+            var userCourses = (from db in _context.StudentConnection
+                       where db.StudentId == user.UserId
                        select db).ToList();
 
             var viewModel = new CourseRegisterViewModel
                 {
 
-                    Id = user.Id,
+                    Id = user.UserId,
                     Departments = _context.Departments.ToList(), // Make sure this is not null
-                    Courses = _context.Courses.ToList(), // Optional, depending on your needs
-                    StudentCourseConnection = userCourses,
+                    //Courses = _context.Courses.ToList(), // Optional, depending on your needs
+                    StudentConnection = userCourses,
             };
                 return View(viewModel);
         }

@@ -20,3 +20,75 @@ h4 {
 .save-btn{
     display: none;
 }
+
+select #stateSelect{
+    height: 10px;
+}
+
+.pfpEdit {
+    margin: auto;
+    text-align: center;
+    position: relative;
+    
+
+}
+.linkDiv {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+
+    .linkDiv a {
+        padding-top: 50px;
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+        border-radius: 50%;
+    }
+
+    .pfpEdit a:hover {
+        opacity: 1;
+        background-color: rgba(143,50,50,.5);
+        border-radius: 50%;
+        color: #FFBFBF;
+    }
+
+    .pfpEdit img {
+        width: 150px;
+        margin: auto;
+        border-radius: 50%;
+        display: block;
+        z-index: -1;
+    }
+
+.pfpEditLink {
+}
+
+
+.addInput {
+    margin: auto;
+}
+
+input[type="file"] {
+    display: none;
+
+}
+
+.custombtn {
+    border: 1px solid #FCB500;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 25px;
+    background-color: #FCB500;
+    color: #664A04;
+}
+
+    .custombtn:hover {
+        border-color: #A68532;
+        background-color: #A68532;
+        color: #F0DAA3;
+    }

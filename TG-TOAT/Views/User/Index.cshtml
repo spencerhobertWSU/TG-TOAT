@@ -1,4 +1,4 @@
-﻿@model TGTOAT.Models.UserIndexViewModel
+﻿@model UserIndexViewModel
 
 @{
     ViewData["Title"] = "Home";
@@ -13,7 +13,7 @@
     }
 }
 
-<h1>Welcome, @Model.FirstName @Model.LastName, @Model.UserRole</h1>
+<h1 class="text-center">Welcome, @Model.FirstName @Model.LastName, @Model.UserRole</h1>
 
 <div class="row">
     <!-- Cards column -->
@@ -23,13 +23,22 @@
         {
             @foreach (var course in Model.Courses)
             {
-                <div class="card">
+                <div class="card" style="color:@course.Color; border: @course.Color solid 2px; ">
+                    <!--<a class="classColorPick" href="javascript:void(0)"><i class="fa-regular fa-palette"></i></a>-->
                     <a class="class-link" asp-area="" asp-controller="Course" asp-action="Index" asp-route-id="@course.CourseId">
                         <img href="">
                         <div class="card-info">
-                            <p class="class-info">@course.Department.DepartmentName @course.CourseNumber - @course.Semester @course.Year</p>
-                            <p class="class-name">@course.CourseName</p>
-                            <p class="class-time">@course.DaysOfTheWeek, @course.StartTime-@course.EndTime</p>
+                            <p class="class-info" style="color:@course.Color;">@course.DeptName @course.CourseNum @course.Campus</p>
+                            <p class="class-info" style="color:@course.Color;">@course.CourseName - @course.Semester @course.Year</p>
+                            @if(course.Days == "Onl")
+                            {
+                                <p class="class-time" style="color:@course.Color;">@course.Days</p>
+                            }
+                            else
+                            {
+                                <p class="class-time" style="color:@course.Color;">@course.Days - @course.StartTime-@course.StopTime</p>
+                            }
+                            
                         </div>
                     </a>
                     <div class="card-icons">
@@ -44,7 +53,15 @@
         else
         {
             <div>
-                <p>You currently have no classes!</p>
+                @if(Model.UserRole == "Student")
+                {
+                    <p>You haven't registered for any classes</p>
+                }
+                else
+                {
+                    <p>You haven't created any classes</p>
+                }
+                
             </div>
         }
     </div>
@@ -59,21 +76,24 @@
             {
                 @foreach (var assignment in Model.UpcomingAssignments)
                 {
+
                     @if (Model.UserRole == "Student")
                     {
-                        <a asp-controller="Course" asp-action="SubmitAssignment" asp-route-assignmentId="@assignment.AssignmentId">
-                            <p class="todo-class">@assignment.Course.Department.DepartmentName @assignment.Course.CourseNumber</p>
-                            <p class="todo-name">@assignment.AssignmentName</p>
-                            <p class="todo-time">@assignment.DueDateAndTime.ToString("MMM dd 'at' h:mmtt")</p>
+                        /*
+                        <a asp-controller="Course" asp-action="SubmitAssignment" asp-route-assignmentId="@assignment.AssignId">
+                            <p class="todo-class">@assignment.Courses.Department.DepartmentName @assignment.Course.CourseNumber</p>
+                            <p class="todo-name">@assignment.AssignName</p>
+                            <p class="todo-time">@assignment.DueDate.ToString("MMM dd 'at' h:mmtt")</p>
                         </a>
                     }
                     else if (Model.UserRole == "Instructor")
                     {
-                        <a asp-controller="Course" asp-action="ViewSubmissions" asp-route-assignmentId="@assignment.AssignmentId">
-                            <p class="todo-class">@assignment.Course.Department.DepartmentName @assignment.Course.CourseNumber</p>
-                            <p class="todo-name">@assignment.AssignmentName</p>
-                            <p class="todo-time">@assignment.DueDateAndTime.ToString("MMM dd 'at' h:mmtt")</p>
+                        <a asp-controller="Course" asp-action="ViewSubmissions" asp-route-assignmentId="@assignment.AssignId">
+                            <p class="todo-class">@assignment.CourseId.Department.DepartmentName @assignment.Course.CourseNumber</p>
+                            <p class="todo-name">@assignment.AssignName</p>
+                            <p class="todo-time">@assignment.DueDate.ToString("MMM dd 'at' h:mmtt")</p>
                         </a>
+                        */
                     }
                 }
             }
@@ -83,6 +103,8 @@
             }
         </div>
     </div>
+
+
 </div>
 
 

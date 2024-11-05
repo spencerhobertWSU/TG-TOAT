@@ -1,24 +1,19 @@
-﻿using TGTOAT.Models;
-using System;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 
-namespace TGTOAT.Data
+namespace Data
 {
     public class Cookies
     {
-        [Key]
-
+        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
 
-        [Required, StringLength(100), DataType(DataType.EmailAddress)]
-        public string Email {get; set; }
+        [Required]
+        public string Series { get; set; }
 
-        [StringLength(100)]
-        public string Series {get; set; }
-
-        [StringLength(100)]
+        [Required]
         public string Token { get; set; }
     }
 }

@@ -2,11 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication;
-using TGTOAT.Data;
-using TGTOAT.Models;
+using Models;
 using TGTOAT.Helpers;
 using Stripe;
-using TGTOAT;
+using Data;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,9 +19,6 @@ builder.Services.AddScoped<IAuthentication, Authentication>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-// Register NotificationService
-builder.Services.AddScoped<NotificationService>();
 
 // Initialize Stripe
 StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];

@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel;
-using TGTOAT.Data;
+using Data;
 using TGTOAT.Helpers;
 using TGTOAT.Models;
-using TGTOAT.ViewModels;
+using Models;
 
 namespace TGTOAT.Controllers
 {
@@ -16,18 +16,25 @@ namespace TGTOAT.Controllers
         private readonly IAuthentication _auth;
         private readonly NotificationService _notificationService;
 
-        public CourseController(NotificationService notificationService, UserContext context, IAuthentication auth)
+        public CourseController(UserContext context, IAuthentication auth)
         {
             _context = context;
             _auth = auth;
-            _notificationService = notificationService;
         }
-
+        #region Create/Edit Courses
         // Display the AddCourse view with the list of departments
-        [HttpGet]
+        //[HttpGet]
         public IActionResult Create()
         {
+            var user = _auth.getUser();
+
+            if (user == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
             var departments = _context.Departments.ToList();
+
             var semesters = new List<SelectListItem>
             {
                 new SelectListItem { Value = "Spring", Text = "Spring" },
@@ -40,107 +47,24 @@ namespace TGTOAT.Controllers
                 new SelectListItem { Value = "Davis", Text = "Davis Campus" }
             };
 
+            var instructors = (from u in _context.User
+                               join ui in _context.UserInfo on u.UserId equals ui.UserId
+                               where ui.Role == "Instructor"
+                               select ui).ToList();
 
-            var instructors = _context.User.Where(u => u.UserRole == "Instructor").ToList();
-
-            var UserRole = _auth.GetRole();
-            var user = _auth.GetUser();//Grab User Info
-            int userId = user.Id;
+            var UserRole = _auth.getUser();
 
             var viewModel = new AddCourseViewModel
             {
-                Notifications = _notificationService.GetNotificationsForUser(userId).ToList(),
-                UserRole = UserRole,
                 Departments = departments,
                 CampusList = campus,
                 SemesterList = semesters,
                 CurrYear = DateTime.Now.Year,
                 Instructors = instructors
             };
+
             return View(viewModel);
         }
-
-        //[ActionName("Index")]
-        public ActionResult Index(int? id)
-        {
-            var user = _auth.GetUser();
-
-            if (user == null)
-            {
-                return RedirectToAction("Login", "User");
-            }
-
-            var course = _context.Courses
-                .Include(c => c.Assignments)
-                .FirstOrDefault(c => c.CourseId == id);
-
-            var dept = _context.Departments.FirstOrDefault(d => d.DepartmentId == course.DepartmentId);
-
-            if (course == null)
-            {
-                return Redirect("User/Index");
-            }
-            else
-            {
-
-                var viewModel = new CourseHome
-                {
-                    Notifications = _notificationService.GetNotificationsForUser(user.Id).ToList(),
-                    CourseId = course.CourseId,
-                    UserRole = _auth.GetRole(),
-                    Department = dept.DepartmentName,
-                    CourseNum = course.CourseNumber,
-                    Assignments = course.Assignments.ToList()
-                };
-                return View(viewModel);
-            }
-
-        }
-
-
-
-
-
-
-
-        public ActionResult Assignments(int? id)
-        {
-
-            if (_auth.GetUser == null)
-            {
-                return Redirect("User/Login");
-
-            }
-            var user = _auth.GetUser();
-            var course = _context.Courses
-                .Include(c => c.Assignments)
-                .FirstOrDefault(c => c.CourseId == id);
-
-            var dept = _context.Departments.FirstOrDefault(d => d.DepartmentId == course.DepartmentId);
-            if (course == null)
-            {
-                return Redirect("User/Index");
-            }
-            else
-            {
-                var viewModel = new CourseHome
-                {
-                    Notifications = _notificationService.GetNotificationsForUser(user.Id).ToList(),
-                    CourseId = course.CourseId,
-                    UserRole = _auth.GetRole(),
-                    Department = dept.DepartmentName,
-                    CourseNum = course.CourseNumber,
-                    Assignments = course.Assignments.ToList()
-                };
-                return View(viewModel);
-            }
-
-        }
-
-
-
-
-
 
         // Handle the form submission for adding a course
         [HttpPost]
@@ -148,203 +72,482 @@ namespace TGTOAT.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = _auth.GetUser();//Grab User Info
-                int userId = user.Id;
+                string coursePic = null;
+
+                if (model.Picture != null)
+                {
+                    byte[] imageBytes = System.IO.File.ReadAllBytes(model.Picture);
+                    string base64String = Convert.ToBase64String(imageBytes);
+
+                    coursePic = base64String;
+                }
+
+                TimeOnly sTime = new TimeOnly(04, 20, 00);
+                TimeOnly eTime = new TimeOnly(16, 20, 00);
+
+                if (model.StartTime == sTime & model.EndTime == eTime)
+                {
+                    model.StartTime = null;
+                    model.EndTime = null;
+                }
+
                 var course = new Courses
                 {
-                    Notifications = _notificationService.GetNotificationsForUser(userId).ToList(),
-                    CourseNumber = model.CourseNumber,
+                    CourseNum = model.CourseNumber,
                     CourseName = model.CourseName,
-                    DepartmentId = model.SelectedDepartmentId,
+                    DeptId = model.SelectedDepartmentId,
                     Capacity = model.Capacity,
                     Campus = model.Campus,
                     Building = model.Building,
-                    RoomNumber = model.RoomNumber,
-                    DaysOfTheWeek = model.DaysOfTheWeek,
+                    Room = model.RoomNumber,
+                    Days = model.DaysOfTheWeek,
                     StartTime = model.StartTime,
-                    EndTime = model.EndTime,
-                    NumberOfCredits = model.NumberOfCredits,
-                    CourseDescription = model.CourseDescription,
+                    StopTime = model.EndTime,
+                    Credits = model.NumberOfCredits,
+                    CourseDesc = model.CourseDescription,
                     Semester = model.Semester,
-                    Year = model.Year
+                    Year = model.Year,
+                    Color = model.Color,
+                    Picture = coursePic,
                 };
 
                 _context.Courses.Add(course);
                 await _context.SaveChangesAsync();
 
-                var instructorCourseConnection = new InstructorCourseConnection
+                var InstructorConnection = new InstructorConnection
                 {
-                    InstructorID = model.SelectedInstructorId,
+                    InstructorId = model.SelectedInstructorId,
                     CourseId = course.CourseId
                 };
 
-                _context.InstructorCourseConnection.Add(instructorCourseConnection);
+                _context.InstructorConnection.Add(InstructorConnection);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Courses");
             }
 
             // Re-populate if the model is invalid
-            model.Departments = _context.Departments.ToList();
+            var departments = _context.Departments.ToList();
+
+            var dempartmentslist = new List<SelectListItem>();
+
+            foreach (var department in departments)
+            {
+                new SelectListItem { Value = department.DeptId.ToString(), Text = department.DeptName };
+            }
             model.SemesterList = new List<SelectListItem>
-            {
-                new SelectListItem { Value = "Spring", Text = "Spring" },
-                new SelectListItem { Value = "Summer", Text = "Summer" },
-                new SelectListItem { Value = "Fall", Text = "Fall" }
-            };
+                    {
+                        new SelectListItem { Value = "Spring", Text = "Spring" },
+                        new SelectListItem { Value = "Summer", Text = "Summer" },
+                        new SelectListItem { Value = "Fall", Text = "Fall" }
+                    };
             model.CampusList = new List<SelectListItem>
-            {
-                new SelectListItem { Value = "Ogden", Text = "Ogden Campus" },
-                new SelectListItem { Value = "Davis", Text = "Davis Campus" }
-            };
-            model.Instructors = _context.User.Where(u => u.UserRole == "Instructor").ToList();
+                    {
+                        new SelectListItem { Value = "Ogden", Text = "Ogden Campus" },
+                        new SelectListItem { Value = "Davis", Text = "Davis Campus" }
+                    };
+            model.Instructors = _context.UserInfo.Where(u => u.Role == "Instructor").ToList();
             return View(model);
         }
 
-        // Course list page in instructor view
+        public ActionResult Edit(int id)
+        {
+            var user = _auth.getUser();
+
+            if (user == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new AddCourseViewModel
+            {
+                Notifications = _auth.GetNotificationsForUser(user.UserId).ToList(),
+                CourseId = id,
+                CourseNumber = course.CourseNum,
+                CourseName = course.CourseName,
+                NumberOfCredits = course.Credits,
+                SelectedDepartmentId = course.DeptId,
+                Departments = _context.Departments?.ToList() ?? new List<Departments>(),
+                CampusList = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "Ogden", Text = "Ogden Campus" },
+                    new SelectListItem { Value = "Davis", Text = "Davis Campus" }
+                },
+                Building = course.Building,  // This ensures the selected building is set
+                Buildings = GetBuildingListByCampus(course.Campus),  // Prepopulate buildings based on current campus
+                CourseDescription = course.CourseDesc,
+                DaysOfTheWeek = course.Days,
+                StartTime = course.StartTime,
+                EndTime = course.StopTime,
+                RoomNumber = course.Room,
+                Capacity = course.Capacity,
+                Campus = course.Campus,
+                Semester = course.Semester,
+                SemesterList = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "Spring", Text = "Spring" },
+                    new SelectListItem { Value = "Summer", Text = "Summer" },
+                    new SelectListItem { Value = "Fall", Text = "Fall" }
+                },
+                Year = course.Year,
+                Color = course.Color,
+                Picture = course.Picture,
+                SelectedInstructorId = _context.InstructorConnection.FirstOrDefault(icc => icc.CourseId == id)?.InstructorId ?? 0,
+                Instructors = _context.UserInfo?.Where(u => u.Role == "Instructor").ToList() ?? new List<UserInfo>()
+            };
+
+            if (viewModel != null)
+            {
+                return View(viewModel);
+            }
+
+            return View(new AddCourseViewModel());
+
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(AddCourseViewModel model)
+        {
+            var user = _auth.getUser();
+
+            if (user == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            var course = new Courses
+            {
+                CourseId = model.CourseId,
+                CourseNum = model.CourseNumber,
+                CourseName = model.CourseName,
+                DeptId = model.SelectedDepartmentId,
+                Capacity = model.Capacity,
+                Campus = model.Campus,
+                Building = model.Building,
+                Room = model.RoomNumber,
+                Days = model.DaysOfTheWeek,
+                StartTime = model.StartTime,
+                StopTime = model.EndTime,
+                Credits = model.NumberOfCredits,
+                CourseDesc = model.CourseDescription,
+                Semester = model.Semester,
+                Year = model.Year,
+                Color = model.Color,
+                Picture = model.Picture,
+            };
+
+            _context.Courses.Update(course);
+            await _context.SaveChangesAsync();
+
+            var courseConnect = _context.InstructorConnection.FirstOrDefault(db => db.CourseId == model.CourseId);
+
+            if (courseConnect.InstructorId != model.SelectedInstructorId)
+            {
+                var InstructorConnection = new InstructorConnection
+                {
+                    InstructorId = model.SelectedInstructorId,
+                    CourseId = model.CourseId
+                };
+                _context.InstructorConnection.Update(InstructorConnection);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("Courses");
+
+
+        }
+
+        #endregion
+
+        #region Course Pages
+        //Course/Courses
         public IActionResult Courses()
         {
-            var currInstruct = _auth.GetUser();
+            var currInstruct = _auth.getUser();
 
             if (currInstruct == null)
             {
                 return RedirectToAction("Login", "User");
             }
-            var user = _auth.GetUser();//Grab User Info
-            int userId = user.Id;
-            // Fetch the courses that are linked to the current instructor
-            var courses = _context.InstructorCourseConnection
-                .Include(icc => icc.Course)
-                .ThenInclude(c => c.Department)
-                .Where(icc => icc.InstructorID == currInstruct.Id)
-                .Select(icc => icc.Course)
-                .ToList();
 
-            var currentUser = _auth.GetUser();
+            var courses = (from db in _context.Courses select db).ToList();
 
-            // Create the ViewModel that combines courses and user info
-            var viewModel = new CourseListViewModel
+
+            var NewCourses = new List<CourseInfo>();
+
+            foreach (var c in courses)
             {
-                Notifications = _notificationService.GetNotificationsForUser(userId).ToList(),
-                Courses = courses,
-                UserLoginViewModel = currentUser
+
+                string deptName = _context.Departments.First(d => d.DeptId == c.DeptId).DeptName;
+
+                var CourseModel = new CourseInfo
+                {
+                    CourseId = c.CourseId,
+                    DeptName = deptName,
+                    CourseNumber = c.CourseNum,
+                    CourseName = c.CourseName,
+                    Campus = c.Campus,
+                    Building = c.Building,
+                    NumberOfCredits = c.Credits,
+                    Room = c.Room,
+                    DaysOfTheWeek = c.Days,
+                    StartTime = c.StartTime,
+                    EndTime = c.StopTime,
+                    Capacity = c.Capacity,
+                    Semester = c.Semester,
+                    Year = c.Year,
+                };
+                NewCourses.Add(CourseModel);
+
             };
 
-            return View(viewModel);
-        }
-
-        [HttpGet]
-
-        //public ActionResult Assignments(int? id)
-        public ActionResult AddAssignment(int? id)
-        {
-
-            var user = _auth.GetUser();//Grab User Info
-            int userId = user.Id;
-
-
-                var viewModel = new AddAssignmentViewModel
-                {
-                    Notifications = _notificationService.GetNotificationsForUser(userId).ToList(),
-
-
-                };
-
-            return View(viewModel);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddAssignment(int id, AddAssignmentViewModel model) 
-        {
-              var user = _auth.GetUser();//Grab User Info
-            int userId = user.Id;
-
-            var userIdInt = _auth.GetCurrentUserId();
-            var ClassName = _context.Courses
-          .Where(uc => uc.CourseId == id)
-          .Select(uc => uc.CourseName)
-         .FirstOrDefault();
-
-            string CourseName = ClassName.ToString();
-
-            var userCourses = await _context.InstructorCourseConnection
-           .Where(uc => uc.InstructorID == userIdInt)
-           .Select(uc => uc.Course)
-           .ToListAsync();
-
-            var InstructorCourseID = await _context.InstructorCourseConnection
-          .Where(uc => uc.InstructorID == userIdInt && uc.CourseId == id)
-          .Select(uc => uc.InstructorCourseConnectionId)
-          .FirstOrDefaultAsync();
-
-       
-
-         
-                var assignment = new Assignment
-                {
-                 
-                    AssignmentName = model.AssignmentName,
-                    AssignmentDescription = model.AssignmentDescription,
-                    AssignmentPoints = model.AssignmentPoints,
-                    DueDateAndTime = model.DueDateAndTime,
-                    AssignmentType = model.AssignmentType,
-                    InstructorCourseId = InstructorCourseID,
-                    CourseId = id
-                };
-
-
-
-                _context.Assignments.Add(assignment);
-                await _context.SaveChangesAsync();
-                var message = $"{CourseName}: New assignment '{assignment.AssignmentName}' has been created.";
-                NotifyStudents(message, id);
-                return RedirectToAction("Assignments", new { id });
-
-          
-
-            return View(model);
-        }
-        private void NotifyInstructors(string message, int CourseId)
-        {
-
-            var stuentIds = _context.InstructorCourseConnection
-            .Where(uc => uc.CourseId == CourseId)
-            .Select(uc => uc.InstructorID)
-            .ToList();
-
-            foreach (var studentId in stuentIds)
+            var CourseList = new CourseListViewModel
             {
-                _notificationService.CreateNotification(message, studentId);
-            }
+                Courses = NewCourses,
+            };
+
+            return View(CourseList);
         }
-        private void NotifyStudents(string message, int CourseId)
+
+        //Course/Index/id
+        public ActionResult Index(int? id)
         {
+            var user = _auth.getUser();
 
-            var stuentIds = _context.StudentCourseConnection
-            .Where(uc => uc.CourseId == CourseId)
-            .Select(uc => uc.StudentID)
-            .ToList();
-
-            foreach (var studentId in stuentIds)
+            if (user == null)
             {
-                _notificationService.CreateNotification(message, studentId);
+                return RedirectToAction("Login", "User");
             }
+
+            var course = _context.Courses.First(c => c.CourseId == id);
+
+            var dept = _context.Departments.First(d => d.DeptId == course.DeptId);
+
+            var assigns = (from a in _context.Assignments
+                           join c in _context.Courses on a.CourseId equals c.CourseId
+                           where c.CourseId == id
+                           select a).ToList();
+
+            var viewModel = new CourseHome
+            {
+                CourseId = course.CourseId,
+                UserRole = _auth.getUser().Role,
+                Department = dept.DeptName,
+                CourseNum = course.CourseNum,
+                Assignments = assigns
+            };
+            return View(viewModel);
+
         }
+
         public IActionResult ViewCourse(int id)
         {
-            var course = _context.Courses.Include(c => c.Department).FirstOrDefault(c => c.CourseId == id);
+            var course = _context.Courses.Include(c => c.DeptId).FirstOrDefault(c => c.CourseId == id);
             if (course == null)
             {
                 return NotFound(); // Handle case where course is not found
             }
             return View(course);
         }
+        #endregion
 
+        #region Assignments
+        public ActionResult Assignments(int? id)
+        {
+            var user = _auth.getUser();
+
+            if (user == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            var course = _context.Courses.First(c => c.CourseId == id);
+
+            var dept = _context.Departments.FirstOrDefault(d => d.DeptId == course.DeptId);
+
+            var assigns = (from a in _context.Assignments
+                           join c in _context.Courses on a.CourseId equals c.CourseId
+                           where c.CourseId == id
+                           select a).ToList();
+
+            var quizzes = (from q in _context.Quizzes
+                           join c in _context.Courses on q.CourseId equals c.CourseId
+                           where c.CourseId == id
+                           select q).ToList();
+
+            if (course == null)
+            {
+                return Redirect("User/Index");
+            }
+            else
+            {
+                var viewModel = new CourseHome
+                {
+                    CourseId = course.CourseId,
+                    UserRole = _auth.getUser().Role,
+                    Department = dept.DeptName,
+                    CourseNum = course.CourseNum,
+                    Assignments = assigns,
+                    Quizzes = quizzes
+                };
+                return View(viewModel);
+            }
+
+        }
+
+        [HttpGet]
+        public IActionResult AddAssignment()
+        {
+            var user = _auth.getUser();
+
+
+            if (user == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddAssignment(int id, AddAssignmentViewModel model)
+        {
+
+            var user = _auth.getUser();
+
+
+            if (user == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            var userIdInt = _auth.getUser().UserId;
+
+            var userCourses = await _context.InstructorConnection
+           .Where(uc => uc.InstructorId == userIdInt)
+           .Select(uc => uc.CourseId)
+           .ToListAsync();
+
+
+            if (ModelState.IsValid)
+            {
+                var assignment = new Assignment
+                {
+                    CourseId = id,
+                    AssignName = model.AssignmentName,
+                    AssignDesc = model.AssignmentDescription,
+                    MaxPoints = model.AssignmentPoints,
+                    DueDate = model.DueDateAndTime,
+                    AssignType = model.AssignmentType,
+                };
+
+
+
+                _context.Assignments.Add(assignment);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Assignments", new { id });
+
+            }
+
+            return View(model);
+        }
+        #endregion
+
+        #region Quizzes
+        public ActionResult Quiz(int id)
+        {
+            var user = _auth.getUser();
+
+            if (user == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            var quizInfo = _context.Quizzes.FirstOrDefault(q => q.QuizId == id);
+
+            AddQuizViewModel quiz = new AddQuizViewModel
+            {
+                QuizId = id,
+                QuizName = quizInfo.QuizName,
+                QuizDescription = quizInfo.QuizDesc,
+                QuizPoints = quizInfo.MaxPoints,
+                NumQuestions = quizInfo.NumQuestions,
+                Questions = quizInfo.Questions,
+                DueDateAndTime = quizInfo.DueDate
+            };
+
+            return View(quiz);
+
+        }
+
+        [HttpGet]
+        public IActionResult AddQuiz()
+        {
+
+            var user = _auth.getUser();
+
+            if (user == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddQuiz(int id, AddQuizViewModel model)
+        {
+
+            var user = _auth.getUser();
+
+            if (user == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            var userIdInt = _auth.getUser().UserId;
+
+            var userCourses = await _context.InstructorConnection
+           .Where(uc => uc.InstructorId == userIdInt)
+           .Select(uc => uc.CourseId)
+           .ToListAsync();
+
+
+            if (ModelState.IsValid)
+            {
+                var quiz = new Quizzes
+                {
+                    CourseId = id,
+                    QuizName = model.QuizName,
+                    QuizDesc = model.QuizDescription,
+                    MaxPoints = model.QuizPoints,
+                    DueDate = model.DueDateAndTime,
+                    NumQuestions = model.NumQuestions,
+                    Questions = model.Questions
+                };
+
+                _context.Quizzes.Add(quiz);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Quizzes", new { id });
+
+            }
+
+            return View(model);
+        }
+        #endregion
+
+        #region Calendar
         [HttpGet]
         public JsonResult GetCoursesForCalendar()
         {
-            var currentUser = _auth.GetUser();  // Get the current user's details
+            var currentUser = _auth.getUser();  // Get the current user's details
             var userIdString = currentUser.ToString();
 
             if (currentUser == null || string.IsNullOrEmpty(userIdString))
@@ -354,25 +557,24 @@ namespace TGTOAT.Controllers
 
             var courseEvents = new List<object>();
             var dayMap = new Dictionary<string, int>
-            {
-                { "Su", 0 },
-                { "Mo", 1 },
-                { "Tu", 2 },
-                { "We", 3 },
-                { "Th", 4 },
-                { "Fr", 5 },
-                { "Sa", 6 }
-            };
+                    {
+                        { "Su", 0 },
+                        { "Mo", 1 },
+                        { "Tu", 2 },
+                        { "We", 3 },
+                        { "Th", 4 },
+                        { "Fr", 5 },
+                        { "Sa", 6 }
+                    };
 
             // instructor role
-            if (currentUser.UserRole == "Instructor")
+            if (currentUser.Role == "Instructor")
             {
                 // Fetch courses for the instructor
-                var instructorCourses = _context.InstructorCourseConnection
-                    .Include(icc => icc.Course)
-                    .Where(icc => icc.InstructorID == currentUser.Id)
-                    .Select(icc => icc.Course)
-                    .ToList();
+                var instructorCourses = (from ic in _context.InstructorConnection
+                                         join c in _context.Courses on ic.CourseId equals c.CourseId
+                                         where ic.InstructorId == currentUser.UserId
+                                         select c).ToList();
 
                 foreach (var course in instructorCourses)
                 {
@@ -380,32 +582,31 @@ namespace TGTOAT.Controllers
                 }
             }
             // student role
-            else if (currentUser.UserRole == "Student")
+            else if (currentUser.Role == "Student")
             {
                 // Fetch courses for the student
-                var studentCourses = _context.StudentCourseConnection
-                    .Include(scc => scc.Course)
-                    .Where(scc => scc.StudentID == currentUser.Id)
-                    .Select(scc => scc.Course)
-                    .ToList();
+                var studentCourses = (from s in _context.StudentConnection
+                                      join c in _context.Courses on s.CourseId equals c.CourseId
+                                      where s.StudentId == currentUser.UserId
+                                      select c).ToList();
+
+                var assignments = (from s in _context.StudentAssignment
+                                   join a in _context.Assignments on s.AssignId equals a.AssignId
+                                   where s.StudentId == currentUser.UserId
+                                   select a).ToList();
 
                 foreach (var course in studentCourses)
                 {
                     // Add course events
                     AddCourseToEventList(course, dayMap, courseEvents);
 
-                    // Add assignment events
-                    var assignments = _context.Assignments
-                        .Where(a => a.InstructorCourse.CourseId == course.CourseId)
-                        .ToList();
-
                     foreach (var assignment in assignments)
                     {
                         courseEvents.Add(new
                         {
-                            title = assignment.AssignmentName,
-                            start = assignment.DueDateAndTime.ToString("yyyy-MM-ddTHH:mm:ss"),
-                            url = $"/Course/SubmitPage?assignmentId={assignment.AssignmentId}"
+                            title = assignment.AssignName,
+                            start = assignment.DueDate.ToString("yyyy-MM-ddTHH:mm:ss"),
+                            url = $"/Course/Assignments/{course.CourseId}"  // Link to course's assignment page
                         });
                     }
                 }
@@ -418,13 +619,13 @@ namespace TGTOAT.Controllers
         // Helper method to add course events to the list
         private void AddCourseToEventList(Courses course, Dictionary<string, int> dayMap, List<object> courseEvents)
         {
-            if (course.StartTime.HasValue && course.EndTime.HasValue)
+            if (course.StartTime.HasValue && course.StopTime.HasValue)
             {
                 var startTime = course.StartTime.Value;
-                var endTime = course.EndTime.Value;
+                var stopTime = course.StopTime.Value;
 
                 // Split the DaysOfTheWeek string by commas
-                var days = course.DaysOfTheWeek.Split(',');
+                var days = course.Days.Split(',');
 
                 // Set the default start and end dates for the semester
                 string startRecur = string.Empty;
@@ -448,194 +649,185 @@ namespace TGTOAT.Controllers
                 }
 
                 // Loop through the split days and create events
-                foreach (string day in days)
-                {
-                    string trimmedDay = day.Trim();  // Trim any extra spaces
 
+                var dayCodes = new List <int>();
+
+                foreach(var day in days)
+                {
+                    int dayCode = 0;
+                    string trimmedDay = day.Trim();
                     if (dayMap.ContainsKey(trimmedDay))
                     {
-                        int dayCode = dayMap[trimmedDay];
-                        courseEvents.Add(new
-                        {
-                            title = course.CourseName,
-                            start = new DateTime(2024, 9, 1, startTime.Hour, startTime.Minute, startTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
-                            end = new DateTime(2024, 9, 1, endTime.Hour, endTime.Minute, endTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
-                            daysOfWeek = new[] { dayCode },
-                            startRecur = startRecur,  // Use the start date for the semester
-                            endRecur = endRecur       // Use the end date for the semester
-                        });
+                        dayCode = dayMap[trimmedDay];
                     }
-                    else
-                    {
-                        Console.WriteLine($"Day {trimmedDay} not found in dayMap");  // Log any days not found in dayMap
-                    }
+                    dayCodes.Add(dayCode);
                 }
+
+                courseEvents.Add(new
+                {
+                    title = course.CourseName,
+                    start = new DateTime(2024, 9, 1, startTime.Hour, startTime.Minute, startTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
+                    end = new DateTime(2024, 9, 1, stopTime.Hour, stopTime.Minute, stopTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
+                    daysOfWeek = dayCodes,
+                    startRecur = startRecur,  // Use the start date for the semester
+                    endRecur = endRecur       // Use the end date for the semester
+                });
             }
         }
+        #endregion
 
+        #region Submissions
 
-        public IActionResult GetProfileImage()
+        public ActionResult ViewSubmissions(int assignmentId)
         {
-            var userLoginInfo = _auth.GetUser();
-            var fullUser = _context.User.Find(userLoginInfo.Id);
+            var submissions = _context.StudentAssignment
+                .Where(sa => sa.AssignId == assignmentId)
+                .ToList();
 
-            var imageBytes = Convert.FromBase64String("");
+            var Submissions = new List<StudentSubmission>();
 
-
-            if (fullUser == null || string.IsNullOrEmpty(fullUser.ProfileImageBase64))
-            {
-                imageBytes = Convert.FromBase64String("+IMQ3yEZtXwBVkKazXUlLCAZV4UKaXKsOMIc4olDFdJo/FbADOKRCZ6th3yFeOj4PqRBBA4hnvrwEFKvL11APHW9GjLxOOT2PqROCOYQT81XQ8RnDyG12pJ47H9INkNqhEB8JoT8BNEuPSTVExuQAAAAAElFTkSuQmCC");
-            }
-            else
+            foreach (var s in submissions)
             {
 
-                imageBytes = Convert.FromBase64String(fullUser.ProfileImageBase64);
+                var assigns = _context.Assignments.First(a => a.AssignId == assignmentId);
+                var sInfo = _context.UserInfo.First(ui => ui.UserId == s.StudentId);
 
+                var submission = new StudentSubmission
+                {
+                    StudentFullName = (sInfo.FirstName + " " + sInfo.LastName),
+
+                    SubmissionDate = s.Submitted,
+                    MaxPoints = assigns.MaxPoints,
+                    GivenPoints = s.Points.HasValue ? s.Points.Value.ToString() : "UG",
+                    AssignmentId = s.AssignId,
+                    StudentId = s.StudentId
+                };
+                Submissions.Add(submission);
             }
-
-            return File(imageBytes, "image/png");
+            return View(Submissions);
         }
 
-
-        public ActionResult Edit(int id)
+        public ActionResult ViewSubmission(int assignmentId, int studentId)
         {
-            var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
-            if (course == null)
+            var assignment = _context.Assignments
+                .FirstOrDefault(a => a.AssignId == assignmentId);
+
+            var submission = _context.StudentAssignment.First(sa => sa.StudentId == studentId);
+            var sInfo = _context.UserInfo.First(ui => ui.UserId == studentId);
+
+            if (assignment == null || submission == null)
             {
                 return NotFound();
             }
-            var user = _auth.GetUser();//Grab User Info
-            int userId = user.Id;
 
-            var viewModel = new AddCourseViewModel
+            var user = _context.User
+                .FirstOrDefault(u => u.UserId == submission.StudentId);
+
+            if (user == null)
             {
-                Notifications = _notificationService.GetNotificationsForUser(userId).ToList(),
-                CourseId = course.CourseId,
-                CourseNumber = course.CourseNumber,
-                CourseName = course.CourseName,
-                NumberOfCredits = course.NumberOfCredits,
-                SelectedDepartmentId = course.DepartmentId,
-                Departments = _context.Departments?.ToList() ?? new List<Departments>(),
-                CampusList = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "Ogden", Text = "Ogden Campus" },
-                    new SelectListItem { Value = "Davis", Text = "Davis Campus" }
-                },
-                Building = course.Building,  // This ensures the selected building is set
-                Buildings = GetBuildingListByCampus(course.Campus),  // Prepopulate buildings based on current campus
-                CourseDescription = course.CourseDescription,
-                DaysOfTheWeek = course.DaysOfTheWeek,
-                StartTime = course.StartTime,
-                EndTime = course.EndTime,
-                RoomNumber = course.RoomNumber,
-                Capacity = course.Capacity,
-                Campus = course.Campus,
-                Semester = course.Semester,
-                SemesterList = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "Spring", Text = "Spring" },
-                    new SelectListItem { Value = "Summer", Text = "Summer" },
-                    new SelectListItem { Value = "Fall", Text = "Fall" }
-                },
-                Year = course.Year,
-                SelectedInstructorId = _context.InstructorCourseConnection.FirstOrDefault(icc => icc.CourseId == id)?.InstructorID ?? 0,
-                Instructors = _context.User?.Where(u => u.UserRole == "Instructor").ToList() ?? new List<User>()
-            };
-
-            return View(viewModel);
-        }       
-
-        [HttpPost]
-        public async Task<ActionResult> Edit(AddCourseViewModel model)
-        {                
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var course = await _context.Courses.FindAsync(model.CourseId);
-                    if (course == null)
-                    {
-                        Console.WriteLine("Course not found");
-                        return NotFound();
-                    }
-
-                    // Update course properties
-                    course.Notifications = model.Notifications;
-                    course.DepartmentId = model.SelectedDepartmentId;
-                    course.CourseNumber = model.CourseNumber;
-                    course.CourseName = model.CourseName;
-                    course.CourseDescription = model.CourseDescription;
-                    course.NumberOfCredits = model.NumberOfCredits;
-                    course.Capacity = model.Capacity;
-                    course.Campus = model.Campus;
-                    course.Building = model.Building;
-                    course.RoomNumber = model.RoomNumber;
-                    course.DaysOfTheWeek = model.DaysOfTheWeek;
-                    course.StartTime = model.StartTime;
-                    course.EndTime = model.EndTime;
-                    course.Semester = model.Semester;
-                    course.Year = model.Year;
-
-                    _context.Update(course);
-                    await _context.SaveChangesAsync();
-                    Console.WriteLine("Course updated successfully");
-
-                    // Update instructor connection
-                    var instructorConnection = await _context.InstructorCourseConnection
-                        .FirstOrDefaultAsync(icc => icc.CourseId == course.CourseId);
-
-                    if (instructorConnection != null)
-                    {
-                        if (instructorConnection.InstructorID != model.SelectedInstructorId)
-                        {
-                            instructorConnection.InstructorID = model.SelectedInstructorId;
-                            _context.Update(instructorConnection);
-                            await _context.SaveChangesAsync();
-                            Console.WriteLine("Instructor connection updated");
-                        }
-                    }
-                    else
-                    {
-                        var newInstructorConnection = new InstructorCourseConnection
-                        {
-                            InstructorID = model.SelectedInstructorId,
-                            CourseId = course.CourseId
-                        };
-                        _context.InstructorCourseConnection.Add(newInstructorConnection);
-                        await _context.SaveChangesAsync();
-                        Console.WriteLine("New instructor connection created");
-                    }
-
-                    return RedirectToAction(nameof(Courses));
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error occurred: {ex.Message}");
-                    ModelState.AddModelError("", "An error occurred while saving the changes.");
-                }
+                return NotFound();
             }
 
-            // If we got this far, something failed, redisplay form
-            model.Departments = await _context.Departments.ToListAsync();
-            model.CampusList = new List<SelectListItem>
-            {
-                new SelectListItem { Value = "Ogden", Text = "Ogden Campus" },
-                new SelectListItem { Value = "Davis", Text = "Davis Campus" }
-            };
-            model.Buildings = GetBuildingListByCampus(model.Campus);
-            model.SemesterList = new List<SelectListItem>
-            {
-                new SelectListItem { Value = "Spring", Text = "Spring" },
-                new SelectListItem { Value = "Summer", Text = "Summer" },
-                new SelectListItem { Value = "Fall", Text = "Fall" }
-            };
-            model.Instructors = await _context.User.Where(u => u.UserRole == "Instructor").ToListAsync();
-            
-            return View(model);
+            var viewModel = new List<SubmissionDetailViewModel>
+    {
+        new SubmissionDetailViewModel
+        {
+            StudentFullName = (sInfo.FirstName+" "+sInfo.LastName),
+            DueDate = assignment.DueDate,
+            SubmissionDate = submission.Submitted,
+            MaxPoints = assignment.MaxPoints,
+            GivenPoints = submission.Points.HasValue ? submission.Points.Value.ToString() : "UG",
+            TextSubmission = submission.Submission,
+            FileSubmission = submission.Submission,
+            HasFile = !string.IsNullOrEmpty(submission.Submission),
+            AssignmentId = assignment.AssignId, // Include the assignment ID
+            StudentId = submission.StudentId // Include the student ID
+        }
+    };
+
+            return View(viewModel);
         }
 
+        [HttpPost]
+        public ActionResult UpdateSubmission(int assignmentId, int studentId, string givenPoints)
+        {
 
+            var submission = _context.StudentAssignment
+                .FirstOrDefault(sa => sa.AssignId == assignmentId && sa.StudentId == studentId);
+            var sInfo = _context.UserInfo.First(ui => ui.UserId == studentId);
+
+            if (submission != null)
+            {
+                if (int.TryParse(givenPoints, out int grade))
+                {
+                    // Submit the assignment grade
+                    submission.Points = grade;
+                    _context.SaveChanges();
+
+                    // Update the students course grade
+                    var assignment = _context.Assignments
+                        .FirstOrDefault(a => a.AssignId == assignmentId);
+                    UpdateGrade(studentId, assignment.CourseId);
+
+                    var ClassName = _context.Courses
+                    .Where(uc => uc.CourseId == assignment.CourseId)
+                    .Select(uc => uc.CourseName)
+                    .FirstOrDefault();
+
+                    string CourseName = ClassName.ToString();
+
+                    var message = $"{CourseName}: assignment '{assignment.AssignName}' has been Graded.";
+                    NotifyStudents(message, assignment.CourseId);
+
+                    return RedirectToAction("ViewSubmissions", new { assignmentId });
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid grade input. Please enter a number.");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Submission not found.");
+            }
+
+            return View("ViewSubmissions");
+        }
+        #endregion
+
+        private void NotifyInstructors(string message, int CourseId)
+        {
+
+            var stuentIds = _context.InstructorConnection
+            .Where(uc => uc.CourseId == CourseId)
+            .Select(uc => uc.InstructorId)
+            .ToList();
+
+            foreach (var studentId in stuentIds)
+            {
+                _notificationService.CreateNotification(message, studentId);
+            }
+        }
+        private void NotifyStudents(string message, int CourseId)
+        {
+
+            var stuentIds = _context.StudentConnection
+            .Where(uc => uc.CourseId == CourseId)
+            .Select(uc => uc.StudentId)
+            .ToList();
+
+            foreach (var studentId in stuentIds)
+            {
+                _notificationService.CreateNotification(message, studentId);
+            }
+        }
+
+        public IActionResult GetProfileImage()
+        {
+            var imageBytes = _auth.getUser().PFP;
+
+            return File(imageBytes, "image/png");
+        }
 
         [HttpGet]
         private List<SelectListItem> GetBuildingListByCampus(string campus)
@@ -703,10 +895,10 @@ namespace TGTOAT.Controllers
             }
 
             // Remove instructor-course connection
-            var instructorConnection = _context.InstructorCourseConnection.FirstOrDefault(icc => icc.CourseId == id);
+            var instructorConnection = _context.InstructorConnection.FirstOrDefault(icc => icc.CourseId == id);
             if (instructorConnection != null)
             {
-                _context.InstructorCourseConnection.Remove(instructorConnection);
+                _context.InstructorConnection.Remove(instructorConnection);
             }
 
             // Remove the course
@@ -716,146 +908,6 @@ namespace TGTOAT.Controllers
             return RedirectToAction("Courses");
         }
 
-
-        // Smegma
-
-        public ActionResult ViewSubmissions(int assignmentId)
-        {
-            var submissions = _context.StudentAssignment
-                .Include(sa => sa.Assignments)
-                .Where(sa => sa.AssignmentId == assignmentId)
-                .ToList();
-
-            var viewModel = submissions.Select(sa => new StudentSubmissionViewModel
-            {
-                StudentFullName = _context.User
-                    .Where(u => u.Id == sa.StudentId)
-                    .Select(u => u.FullName)
-                    .FirstOrDefault() ?? "Unknown",
-
-                SubmissionDate = sa.SubmissionDate,
-                MaxPoints = sa.Assignments?.AssignmentPoints ?? 0,
-                GivenPoints = sa.Grade.HasValue ? sa.Grade.Value.ToString() : "UG",
-                AssignmentId = sa.AssignmentId, 
-                StudentId = sa.StudentId          
-            }).ToList();
-
-            return View(viewModel);
-        }
-
-
-
-
-        public ActionResult ViewSubmission(int assignmentId, int studentId)
-        {
-            var assignment = _context.Assignments
-                .FirstOrDefault(a => a.AssignmentId == assignmentId);
-
-            var submission = _context.StudentAssignment
-                .Include(sa => sa.studentCourseConnection)
-                .FirstOrDefault(sa => sa.AssignmentId == assignmentId && sa.StudentId == studentId);
-
-            if (assignment == null || submission == null)
-            {
-                return NotFound();
-            }
-
-            var user = _context.User
-                .FirstOrDefault(u => u.Id == submission.StudentId);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            var viewModel = new List<SubmissionDetailViewModel>
-    {
-        new SubmissionDetailViewModel
-        {
-            StudentFullName = user.FullName,
-            DueDate = assignment.DueDateAndTime,
-            SubmissionDate = submission.SubmissionDate,
-            MaxPoints = assignment.AssignmentPoints,
-            GivenPoints = submission.Grade.HasValue ? submission.Grade.Value.ToString() : "UG",
-            TextSubmission = submission.TextSubmission,
-            FileSubmission = submission.FileSubmission,
-            HasFile = !string.IsNullOrEmpty(submission.FileSubmission),
-            AssignmentId = assignment.AssignmentId, // Include the assignment ID
-            StudentId = submission.StudentId // Include the student ID
-        }
-    };
-
-            return View(viewModel);
-        }
-
-
-
-
-
-        [HttpPost]
-        public ActionResult UpdateSubmission(int assignmentId, int studentId, string givenPoints)
-        {
-           
-            var submission = _context.StudentAssignment
-                .FirstOrDefault(sa => sa.AssignmentId == assignmentId && sa.StudentId == studentId);
-
-            if (submission != null)
-            {
-                if (int.TryParse(givenPoints, out int grade))
-                {
-                    // Submit the assignment grade
-                    submission.Grade = grade;
-                    _context.SaveChanges();
-                    
-                    // Update the students course grade
-                    var assignment = _context.Assignments
-                        .FirstOrDefault(a => a.AssignmentId == assignmentId);
-                    UpdateGrade(studentId, assignment.CourseId);
-
-                    var ClassName = _context.Courses
-                    .Where(uc => uc.CourseId == assignment.CourseId)
-                    .Select(uc => uc.CourseName)
-                    .FirstOrDefault();
-
-                    string CourseName = ClassName.ToString();
-
-                    var message = $"{CourseName}: assignment '{assignment.AssignmentName}' has been Graded.";
-                    NotifyStudents(message, assignment.CourseId);
-
-                    return RedirectToAction("ViewSubmissions", new { assignmentId });
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid grade input. Please enter a number.");
-                }
-            }
-            else
-            {
-                ModelState.AddModelError(string.Empty, "Submission not found.");
-            }
-
-            
-            var submissions = _context.StudentAssignment
-                .Include(sa => sa.Assignments)
-                .Where(sa => sa.AssignmentId == assignmentId)
-                .ToList();
-
-            var viewModel = submissions.Select(sa => new StudentSubmissionViewModel
-            {
-                StudentFullName = _context.User
-                    .Where(u => u.Id == sa.StudentId)
-                    .Select(u => u.FullName)
-                    .FirstOrDefault() ?? "Unknown",
-
-                SubmissionDate = sa.SubmissionDate,
-                MaxPoints = sa.Assignments?.AssignmentPoints ?? 0,
-                GivenPoints = sa.Grade.HasValue ? sa.Grade.Value.ToString() : "UG",
-                AssignmentId = sa.AssignmentId,
-                StudentId = sa.StudentId
-            }).ToList();
-
-            return View("ViewSubmissions", viewModel);
-        }
 
 
 
@@ -919,17 +971,26 @@ namespace TGTOAT.Controllers
 
         public ActionResult Grades(int? id)
         {
-            var user = _auth.GetUser();
+            var user = _auth.getUser();
 
             if (user == null)
             {
                 return RedirectToAction("Index", "Course", new { id = id });
             }
 
-            var course = _context.Courses
-                .Include(c => c.Assignments)
-                .FirstOrDefault(c => c.CourseId == id);
-            var dept = _context.Departments.FirstOrDefault(d => d.DepartmentId == course.DepartmentId);
+            var course = _context.Courses.First(c => c.CourseId == id);
+
+            var dept = _context.Departments.FirstOrDefault(d => d.DeptId == course.DeptId);
+
+            var assigns = (from a in _context.Assignments
+                           join c in _context.Courses on a.CourseId equals c.CourseId
+                           where c.CourseId == id
+                           select a).ToList();
+
+            var quizzes = (from q in _context.Quizzes
+                           join c in _context.Courses on q.CourseId equals c.CourseId
+                           where c.CourseId == id
+                           select q).ToList();
 
             if (course == null)
             {
@@ -937,7 +998,7 @@ namespace TGTOAT.Controllers
             }
 
             // Compute grade distribution for all students in the course
-            var studentConnections = _context.StudentCourseConnection
+            var studentConnections = _context.StudentConnection
                 .Where(s => s.CourseId == course.CourseId && s.Grade != null)
                 .Select(s => s.Grade)
                 .ToList();
@@ -954,12 +1015,12 @@ namespace TGTOAT.Controllers
             var viewModel = new CourseGradeViewModel
             {
                 CourseId = course.CourseId,
-                UserRole = _auth.GetRole(),
-                Department = dept.DepartmentName,
-                CourseNum = course.CourseNumber,
-                Grade = user.UserRole == "Student" ? GetGradeLetter(studentConnections.FirstOrDefault()) : null,
+                UserRole = user.Role,
+                Department = dept.DeptName,
+                CourseNum = course.CourseNum.ToString(),
+                Grade = user.Role == "Student" ? GetGradeLetter(studentConnections.FirstOrDefault()) : null,
                 GradeDistribution = gradeDistribution,
-                Notifications = _notificationService.GetNotificationsForUser(user.Id).ToList(),
+                Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
             };
 
             return View(viewModel);
@@ -969,8 +1030,8 @@ namespace TGTOAT.Controllers
         public void UpdateGrade(int studentId, int courseId)
         {
             // Grab the student course connection
-            var studentCourseConnection = _context.StudentCourseConnection
-                .FirstOrDefault(scc => scc.CourseId == courseId && scc.StudentID == studentId);
+            var studentCourseConnection = _context.StudentConnection
+                .FirstOrDefault(scc => scc.CourseId == courseId && scc.StudentId == studentId);
 
             // Grab the assignments so we can use it in the student assignments (all foreign keys are null for some reason)
             var listOfAssignments = _context.Assignments
@@ -980,7 +1041,7 @@ namespace TGTOAT.Controllers
             // Grab the student assignments with the list of assignments as a foreign key
             //   Grab the student assignments that have a grade, are in the list of assignments, and have the same student id as the student
             var studentAssignments = _context.StudentAssignment
-                .Where(a => listOfAssignments.Select(a => a.AssignmentId).ToList().Contains(a.AssignmentId) && a.Grade != null)
+                .Where(a => listOfAssignments.Select(a => a.AssignId).ToList().Contains(a.AssignId) && a.Points != null)
                 .Where(a => a.StudentId == studentId)
                 .ToList();
 
@@ -988,8 +1049,8 @@ namespace TGTOAT.Controllers
             if (studentAssignments != null)
             {
                 // Divide the sum of the points rewarded by the sum of the total points for all assignments, and multiply by 100 to get the percentage
-                decimal rewardedPoints = studentAssignments.Sum(a => a.Grade ?? 0);
-                decimal totalPoints = listOfAssignments.Sum(a => a.AssignmentPoints);
+                decimal rewardedPoints = studentAssignments.Sum(a => a.Points ?? 0);
+                decimal totalPoints = listOfAssignments.Sum(a => a.MaxPoints);
 
                 studentCourseConnection.Grade = (rewardedPoints / totalPoints) * 100;
                 _context.SaveChanges();
@@ -1000,24 +1061,24 @@ namespace TGTOAT.Controllers
 
         #endregion
 
-
         #region SubmitAssignments
         /// ////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Ivans changes
+
         public ActionResult SubmitPage(int assignmentId)
         {
-            if (_auth.GetUser() == null)
+            if (_auth.getUser() == null)
             {
                 return RedirectToAction("Login", "User");
             }
-            var studentId = _auth.GetCurrentUserId();
+            var studentId = _auth.getUser().UserId;
 
             var Submitted = _context.StudentAssignment
-           .Where(sa => sa.AssignmentId == assignmentId && sa.StudentId == studentId)
+           .Where(sa => sa.AssignId == assignmentId && sa.StudentId == studentId)
            .FirstOrDefault();
 
 
-            var assignment = _context.Assignments.FirstOrDefault(a => a.AssignmentId == assignmentId);
+            var assignment = _context.Assignments.FirstOrDefault(a => a.AssignId == assignmentId);
 
             if (assignment == null)
             {
@@ -1026,14 +1087,13 @@ namespace TGTOAT.Controllers
 
             var viewModel = new SubmitAssignmentViewModel
             {
-                Notifications = _notificationService.GetNotificationsForUser(studentId).ToList(),
-                AssignmentId = assignment.AssignmentId,
-                AssignmentName = assignment.AssignmentName,
-                Description = assignment.AssignmentDescription,
-                Points = assignment.AssignmentPoints,
-                SubmissionType = assignment.AssignmentType,
-                Grade = Submitted?.Grade ?? 0,
-                DueDateAndTime = assignment.DueDateAndTime,
+                AssignmentId = assignment.AssignId,
+                AssignmentName = assignment.AssignName,
+                Description = assignment.AssignDesc,
+                Points = assignment.MaxPoints,
+                SubmissionType = assignment.AssignType,
+                //Grade = Submitted?.Grade ?? 0,
+                DueDateAndTime = assignment.DueDate,
             };
 
             return View(viewModel);
@@ -1047,177 +1107,109 @@ namespace TGTOAT.Controllers
 
         public ActionResult SubmitAssignment(int assignmentId, bool isresubmitted)
         {
-            if (_auth.GetUser() == null)
+            if (_auth.getUser() == null)
             {
                 return RedirectToAction("Login", "User");
             }
-            var assignment = _context.Assignments.FirstOrDefault(a => a.AssignmentId == assignmentId);
+            var assignment = _context.Assignments.FirstOrDefault(a => a.AssignId == assignmentId);
 
-            var studentId = _auth.GetCurrentUserId(); // Get the current user (student)
+            var studentId = _auth.getUser().UserId; // Get the current user (student)
             var existingSubmission = _context.StudentAssignment
-                .Where(sa => sa.AssignmentId == assignmentId && sa.StudentId == studentId)
+                .Where(sa => sa.AssignId == assignmentId && sa.StudentId == studentId)
                 .FirstOrDefault();
             if (existingSubmission != null && isresubmitted == false)
             {
                 return RedirectToAction("SubmitPage", new { assignmentId = assignmentId });
             }
-                if (assignment == null)
+            if (assignment == null)
             {
                 return NotFound();
             }
 
             var viewModel = new SubmitAssignmentViewModel
             {
-                Notifications = _notificationService.GetNotificationsForUser(studentId).ToList(),
-                AssignmentId = assignment.AssignmentId,
-                AssignmentName = assignment.AssignmentName,
-                Description = assignment.AssignmentDescription,
-                Points = assignment.AssignmentPoints,
-                SubmissionType = assignment.AssignmentType
+                AssignmentId = assignment.AssignId,
+                AssignmentName = assignment.AssignName,
+                Description = assignment.AssignDesc,
+                Points = assignment.MaxPoints,
+                SubmissionType = assignment.AssignType
             };
 
             return View(viewModel);
         }
-    
 
         [HttpPost]
-        public async Task<ActionResult> SubmitAssignment(SubmitAssignmentViewModel model, int assignmentId, IFormFile FileSubmission, string TextSubmission) // Place notification code for instructors
+        public async Task<ActionResult> SubmitAssignment(SubmitAssignmentViewModel model, int assignmentId, IFormFile FileSubmission, string TextSubmission)
         {
-            
+            var user = _auth.getUser();
 
-                var CourseId = _context.Assignments
-          .Where(uc => uc.AssignmentId == assignmentId)
-          .Select(uc => uc.CourseId)
-        .FirstOrDefault();
+            if (user  == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
 
-                int CouseID = Convert.ToInt32(CourseId);
+            var assignment = _context.Assignments.FirstOrDefault(a => a.AssignId == assignmentId);
 
-                var ClassName = _context.Courses
-              .Where(uc => uc.CourseId == CouseID)
-              .Select(uc => uc.CourseName)
-           .FirstOrDefault();
+            model.AssignmentId = assignmentId;
+            model.AssignmentName = assignment.AssignName;
+            model.Description = assignment.AssignDesc;
+            model.Points = assignment.MaxPoints;
+            model.SubmissionType = assignment.AssignType;
 
-                string CourseName = ClassName.ToString();
-                var assignment = _context.Assignments.FirstOrDefault(a => a.AssignmentId == assignmentId);
+            string newFile = "";
 
-                model.AssignmentId = assignmentId;
-                model.AssignmentName = assignment.AssignmentName;
-                model.Description = assignment.AssignmentDescription;
-                model.Points = assignment.AssignmentPoints;
-                model.SubmissionType = assignment.AssignmentType;
-
-
-                string NewTextSubmission = "";
-                string NewFileSubmission = "";
-                if (_auth.GetUser() == null)
+            if (assignment.AssignType == "text" && !string.IsNullOrEmpty(TextSubmission))
+            {
+                // Update the submission column with the text submission
+                newFile = TextSubmission;
+            }
+            else if (assignment.AssignType == "file" && FileSubmission != null && FileSubmission.Length > 0)
+            {
+                // Check the file type
+                var fileExtension = Path.GetExtension(FileSubmission.FileName).ToLower();
+                if (fileExtension != ".pdf" && fileExtension != ".doc" && fileExtension != ".docx")
                 {
-                    return RedirectToAction("Login", "User");
-                }
-                var studentId = _auth.GetCurrentUserId(); // Get the current user (student)
-                var existingSubmission = await _context.StudentAssignment
-                    .Where(sa => sa.AssignmentId == assignmentId && sa.StudentId == studentId)
-                    .FirstOrDefaultAsync();
-
-
-                if (existingSubmission != null)
-                {
-                    if (assignment.AssignmentType == "text" && !string.IsNullOrEmpty(TextSubmission))
-                    {
-                        // Update the submission column with the text submission
-                        existingSubmission.TextSubmission = TextSubmission;
-                    }
-                    else if (assignment.AssignmentType == "file" && FileSubmission != null && FileSubmission.Length > 0)
-                    {
-                        // Check the file type
-                        var fileExtension = Path.GetExtension(FileSubmission.FileName).ToLower();
-                        if (fileExtension != ".pdf" && fileExtension != ".doc" && fileExtension != ".docx")
-                        {
-                            ModelState.AddModelError("", "Invalid file type. Only PDF and Word documents are allowed.");
-                            return View(model);
-                        }
-
-                        // Convert the file to a Base64 string
-                        using (var memoryStream = new MemoryStream())
-                        {
-                            await FileSubmission.CopyToAsync(memoryStream);
-                            var fileBytes = memoryStream.ToArray();
-                            var base64String = Convert.ToBase64String(fileBytes);
-
-                            // Update the submission column with the base64-encoded file submission
-                            existingSubmission.TextSubmission = base64String;
-                        }
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "No valid submission found.");
-                        return View(model);
-                    }
-                    existingSubmission.SubmissionDate = DateTime.UtcNow;
-                    await _context.SaveChangesAsync();
-                    var message = $"A student has submitted '{assignment.AssignmentName}' Assignment from: {CourseName}";
-                    NotifyInstructors(message, CouseID);
+                    ModelState.AddModelError("", "Invalid file type. Only PDF and Word documents are allowed.");
+                    return View(model);
                 }
 
-
-                else
+                // Convert the file to a Base64 string
+                using (var memoryStream = new MemoryStream())
                 {
-                    if (assignment.AssignmentType == "text" && !string.IsNullOrEmpty(TextSubmission))
-                    {
-                        // Update the submission column with the text submission
-                        NewTextSubmission = TextSubmission;
-                    }
-                    else if (assignment.AssignmentType == "file" && FileSubmission != null && FileSubmission.Length > 0)
-                    {
-                        // Check the file type
-                        var fileExtension = Path.GetExtension(FileSubmission.FileName).ToLower();
-                        if (fileExtension != ".pdf" && fileExtension != ".doc" && fileExtension != ".docx")
-                        {
-                            ModelState.AddModelError("", "Invalid file type. Only PDF and Word documents are allowed.");
-                            return View(model);
-                        }
+                    await FileSubmission.CopyToAsync(memoryStream);
+                    var fileBytes = memoryStream.ToArray();
+                    var base64String = Convert.ToBase64String(fileBytes);
 
-                        // Convert the file to a Base64 string
-                        using (var memoryStream = new MemoryStream())
-                        {
-                            await FileSubmission.CopyToAsync(memoryStream);
-                            var fileBytes = memoryStream.ToArray();
-                            var base64String = Convert.ToBase64String(fileBytes);
-
-                            // Update the submission column with the base64-encoded file submission
-                            NewFileSubmission = base64String;
-                        }
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "No valid submission found.");
-                        return View(model);
-                    }
-                    var newSubmission = new StudentAssignments
-                    {
-                        TextSubmission = NewTextSubmission,
-                        FileSubmission = NewFileSubmission,
-                        AssignmentId = assignmentId,
-                        StudentId = studentId,
-                        Grade = null,
-                        SubmissionDate = DateTime.UtcNow,
-
-
-                    };
-                    _context.StudentAssignment.Add(newSubmission);
-                    await _context.SaveChangesAsync();
-
-                    var message = $"A student has submitted '{assignment.AssignmentName}' Assignment from : {CourseName}";
-                    NotifyInstructors(message, CouseID);
+                    // Update the submission column with the base64-encoded file submission
+                    newFile = base64String;
                 }
-                return RedirectToAction("SubmitPage", new { assignmentId = assignmentId });
+            }
+            else
+            {
+                ModelState.AddModelError("", "No valid submission found.");
+                return View(model);
+            }            
+
+            var newSubmission = new StudentAssignments
+            {
+                Submission = newFile,
+                AssignId = assignmentId,
+                StudentId = user.UserId,
+                Points = null,
+                Submitted = DateTime.UtcNow,
+            };
+            _context.StudentAssignment.Add(newSubmission);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("SubmitPage", new { assignmentId = assignmentId });
         }
-        
-        #endregion
 
 
     }
 
 }
+#endregion
+
 
 
 

@@ -1,14 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 
-namespace TGTOAT.Data
+namespace Data
 {
     public class Departments
     {
-        [Key]
-        public int DepartmentId { get; set; }
+        [Key, Required]
+        public int DeptId { get; set; }
 
-        [Required(ErrorMessage = "Department name is required.")]
-        [MaxLength(50, ErrorMessage = "Max 50 characters allowed.")]
-        public string DepartmentName { get; set; }
-}
+        [Required]
+        public string DeptName { get; set; }
+
+
+    }
 }

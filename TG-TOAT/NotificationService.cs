@@ -1,4 +1,4 @@
-﻿using TGTOAT.Data;
+﻿using Data;
 
 namespace TGTOAT
 {

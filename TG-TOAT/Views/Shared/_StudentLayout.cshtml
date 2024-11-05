@@ -12,7 +12,9 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="User" asp-action="Index">TG-TOAT App</a>
+                <a class="navbar-brand" asp-area="" asp-controller="User" asp-action="Index">
+                    <img class="nav-logo" src="~/resources/TG-TOAT Logo-Colored.png" alt="TG-TOAT Logo" />
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,28 +22,25 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="User" asp-action="Index">
+                            <a class="nav-link" id="navIndex" asp-area="" asp-controller="User" asp-action="Index">
                                 <i class="nav-item fa-duotone fa-solid fa-house"></i>
                                 Home
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="User" asp-action="Calendar">
+                            <a class="nav-link" id="navCalendar" asp-area="" asp-controller="User" asp-action="Calendar">
                                 <i class="fa-duotone fa-solid fa-calendar"></i>
                                 Calendar
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="User" asp-action="CourseRegistration">
+                            <a class="nav-link" id="navCourses" asp-area="" asp-controller="User" asp-action="CourseRegistration">
                                 <i class="fa-duotone fa-solid fa-graduation-cap"></i>
                                 Registration
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="User" asp-action="Payment">
-                                <i class="fa-solid fa-file-invoice-dollar"></i>
-                                Account
-                            </a>
+
                         </li>
 
                     </ul>
@@ -49,10 +48,9 @@
                 <!--Right Side of Navbar-->
                 <div class="navbar-right justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-
                         <!--Color Modes-->
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" class="colorMode" onclick="changeColorMode()">
+                            <a href="javascript:void(0)" class="colorMode" onclick="changeColorMode()">
                                 <i id="lightMode" class="fa-solid fa-sun-bright"></i>
                                 <i id="darkMode" class="fa-solid fa-moon"></i>
                             </a>
@@ -60,46 +58,40 @@
 
                         <!--Account-->
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" onclick="openAccount()">
+                            <a class="nav-link nav-account" href="javascript:void(0)" onclick="openAccount()">
                                 <img src="@Url.Action("GetProfileImage")" alt="User Account" style="width: 30px; height: 30px; border-radius: 50%;" />
                                 
                             </a>
                         </li>
                         <div id="account" style="display: none;">
                         <li class="nav-item">
-
-                            <a class="nav-link" asp-area="" asp-controller="User" asp-action="ChangeProfilePicture">Profile Picture</a>
-                            <a class="nav-link" asp-area="" asp-controller="User" asp-action="Account">Edit Account</a>
-                            <a class="nav-link" asp-area="" asp-controller="User" asp-action="Logout">Logout</a>
+                            <a class="nav-link" id="navPayment" asp-area="" asp-controller="User" asp-action="Payment">
+                                <i class="fa-solid fa-file-invoice-dollar"></i>
+                                Tuition
+                            </a>
+                            <a class="nav-link" id="navAccount" asp-area="" asp-controller="User" asp-action="Account">
+                                <i class="fa-solid fa-user"></i>
+                                Edit Account
+                            </a>
+                            <a class="nav-link" asp-area="" asp-controller="User" asp-action="Logout">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                Logout
+                            </a>
 
                         </li>
                 </div>
 
                         <!--Notifictions-->
-                        <li class="nav-item">
+                        <li class="nav-item notifBell">
                             <a class="nav-link" href="javascript:void(0)" onclick="openNotif()">
                                 <i class="notif fa-solid fa-bell-exclamation"></i>
                                 <i class="notif fa-solid fa-bell"></i>
                                 <i class="notif fa-regular fa-bell"></i>
                             </a>
                         </li>
-                <!-- Notification Dropdown -->
-                <div id="notificationDropdown" class="notification-dropdown" style="display: none;">
-                    <ul>
-                                @foreach (var notification in Model.Notifications) // Use the Notifications property
-                                {
-                            <li>
-                                        @notification.Message
-                                <small>(@notification.CreatedAt.ToString("g"))</small>
-                                        @if (!notification.IsRead)
-                                        {
-                                        }
-                            </li>
-                                }
-                    </ul>
-                </div>
-            </div>
-            </div>
+
+                        <div id="notifications">
+                        </div>
                     </ul>
 
 
@@ -119,7 +111,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - TG-TOAT App - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - TG-TOAT App - <a class="extra-links" asp-area="" asp-controller="User" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

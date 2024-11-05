@@ -1,6 +1,6 @@
-﻿using TGTOAT.Data;
+﻿using Data;
 
-namespace TGTOAT.Models
+namespace Models
 {
     public class AccountViewModel
     {
@@ -9,7 +9,7 @@ namespace TGTOAT.Models
         public string UserRole { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Address Address { get; set; } = new Address();
+        public Addresses Address { get; set; } = new Addresses();
     }
 
 }

@@ -1,0 +1,74 @@
+﻿@model AddQuizViewModel
+
+@{
+    ViewData["Title"] = "Home";
+
+    Layout = "~/Views/Shared/_StudentCourse.cshtml";
+
+}
+
+<h1 class="h1-course">@Model.QuizName</h1>
+
+<h5>@Model.QuizDescription</h5>
+
+<div class="question-nav">
+    @for (int i = 1; i < Int32.Parse(Model.NumQuestions)+1; i++)
+    {
+        <p>Question @i</p>
+    }
+</div>
+
+<div class="container ">
+    <p>@Model.Questions</p>
+
+    @{
+        string[] wholeQuestion = Model.Questions.Split('з');
+
+        for(int i = 0; i < Int32.Parse(Model.NumQuestions); i++)
+        {
+            string[] points = wholeQuestion[i].Split('п');
+            <div class="questCard">
+                <div class="questTop">
+                    <p class="questTitle">Question @(i+1)</p>
+                    <p class="questPoint">@points[1] Points</p>
+                </div>
+                @{string[] type = points[0].Split('д');}
+
+                @{if (Int32.Parse(type[0]) == 1)
+                {
+                    <div class="questBot form-group">
+                        <p class="question">@type[1]</p>
+                        <p>Text Entry</p>
+                        <input type="text" />
+                    </div>
+                }
+                else
+                {
+                    string[] mc = type[1].Split('ч');
+                    <div class="questBot">
+                    <p class="question">@mc[0]</p>
+                    @{for(int j=1; j<mc.Length; j++)
+                    {
+                        <div class="form-group">
+                            <input class="form-check-input(@i)" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label(@i)" for="flexRadioDefault1">@mc[j]</label>
+                        </div>
+                    }
+                    }
+                    </div>
+                }      
+                }
+            </div>
+            <p></p>
+        }
+    }
+
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

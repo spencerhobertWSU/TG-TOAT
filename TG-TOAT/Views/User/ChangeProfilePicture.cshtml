@@ -1,17 +1,34 @@
-﻿@{
+﻿@model UserIndexViewModel
+
+@{
     ViewData["Title"] = "Upload Image";
+
+    if (Model.UserRole == "Student")
+    {
+        Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    }
+    else if (Model.UserRole == "Instructor")
+    {
+        Layout = "~/Views/Shared/_InstructorLayout.cshtml";
+    }
 }
+
+<link rel="stylesheet" href="~/css/account.css" asp-append-version="true" />
 
 <h2>Upload Image</h2>
 
-<div>
+<div class="container justify-content-center col-md-5">
     <h4>Current Profile Picture:</h4>
+    <hr />
     <img src="@Url.Action("GetProfileImage", "User")" alt="Profile Image" style="width: 100px; height: 100px; border-radius: 50%;" />
+
+    <form method="post" enctype="multipart/form-data">
+        <br />
+        <label for="profileImage" class="custombtn">Choose New Image</label>
+        <br />
+        <input type="file" id="profileImage" name="profileImage" accept="image/png, image/jpeg, image/jpg" />
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </div>
 
-<form method="post" enctype="multipart/form-data">
-    <label for="profileImage">Choose New Image:</label>
-    <input type="file" id="profileImage" name="profileImage" accept="image/png, image/jpeg, image/jpg" />
-    <br /><br />
-    <button type="submit">Submit</button>
-</form>

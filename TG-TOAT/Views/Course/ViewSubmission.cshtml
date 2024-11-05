@@ -1,0 +1,66 @@
+﻿@model List<Models.SubmissionDetailViewModel>
+
+@{
+    ViewData["Title"] = "Submission";
+    Layout = "~/Views/Shared/_InstructorCourse.cshtml";
+}
+
+
+<h1>Submissions</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Due Date</th>
+            <th>Submission Date</th>
+            <th>Max Points</th>
+            <th>Given Points</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var submission in Model)
+        {
+            <tr>
+                <td>@submission.StudentFullName</td>
+                <td>@submission.DueDate.ToString("MM/dd/yyyy hh:mm tt")</td>
+                <td>@submission.SubmissionDate.ToString("MM/dd/yyyy hh:mm tt")</td>
+                <td id="maxPoints">@submission.MaxPoints</td>
+                <td>
+                    <form asp-action="UpdateSubmission" method="post" style="display:inline;">
+                        <input type="hidden" name="assignmentId" value="@submission.AssignmentId" />
+                        <input type="hidden" name="studentId" value="@submission.StudentId" />
+                        <input type="text" name="givenPoints" value="@submission.GivenPoints" style="width:60px;" />
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div class="submission-details">
+                        <h4>Submission Content</h4>
+                        @if (!string.IsNullOrEmpty(submission.TextSubmission))
+                        {
+                            <div>
+                                <h5>Text Submission:</h5>
+                                <p>@submission.TextSubmission</p>
+                            </div>
+                        }
+                        else if (!string.IsNullOrEmpty(submission.FileSubmission))
+                        {
+                            <div>
+                                <h5>File Submission:</h5>
+                                <a href="@Url.Content(submission.FileSubmission)" class="btn btn-primary" download>Download File</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <p>No submission content available.</p>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,51 @@
+﻿@model SubmitAssignmentViewModel
+
+<h1>@Model.AssignmentName</h1>
+
+@{
+    ViewData["Title"] = "Submit Assignment";
+
+
+    Layout = "~/Views/Shared/_StudentCourse.cshtml";
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+    }
+}
+
+@* <form asp-action="SubmitPage" asp-controller="Course" method="post" enctype="multipart/form-data"> *@
+    <input type="hidden" name="AssignmentId" value="@Model.AssignmentId" />
+
+       <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="ReSubmitPage" asp-route-assignmentId="@Model.AssignmentId">
+            Re-Submit
+             </a>
+    <p><strong>Due:</strong> @Model.DueDateAndTime</p>
+
+    <p><strong>Points:</strong> @Model.Points</p>
+
+
+    <p><strong>Submitting Type:</strong> @Model.SubmissionType</p>
+
+    <p><strong>Description:</strong> @Model.Description</p>
+
+    <p><strong>Submission</strong></p>
+
+    <h2>Submitted!</h2>
+
+    <p><strong>Grade:</strong></P>
+        @{
+           @if (@Model.Grade == null)
+           {
+           <p>not yet graded</p>
+           }
+            else
+            {
+            <p>@Model.Grade</p>
+            }
+        }
+   
+   @*      </form> *@
+

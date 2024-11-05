@@ -1,0 +1,139 @@
+﻿@model CourseRegisterViewModel
+
+@{
+    ViewData["Title"] = "Course Registration";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<h1>Course Registration</h1>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+
+<form method="get" asp-action="FilterCourses">
+    <div class="row mb-3">
+        <div class="col">
+            <div class="form-group">
+                <label for="departmentSelect">Select Department:</label>
+                <select asp-for="DeptId" class="form-select" id="departmentId" name="DepartmentId">
+                    <!-- Fixed name to match model -->
+                    <option value="">All Departments</option> <!-- This allows departmentId to be null -->
+                    @foreach (var department in Model.Departments)
+                    {
+                        <option value="@department.DeptId">@department.DeptName</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="searchTerm">Search For Courses:</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="searchTerm" placeholder="Search for courses..." value="@Context.Request.Query["searchTerm"]" name="searchTerm" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Department</th>
+            <th>Course Number</th>
+            <th>Course Name</th>
+            <th>Credits</th>
+            <th>Instructor</th>
+            <th>Days</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Registration</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model.Courses) // Corrected line
+        {
+            <tr>
+                <td>
+                    <a class="nav-link" href="javascript:void(0)" onclick="classInfo('@course.CourseDescription')">
+                        <i class="fa-regular fa-circle-info"></i>
+                    </a>
+                </td>
+                <td><span class="deptId">@course.DeptID</span>
+                    @course.DeptName</td>
+                <td>@course.CourseNumber</td>
+                <td>@course.CourseName</td>
+                <td>@course.NumberOfCredits</td>
+       
+                <td>
+                    @course.Instructor
+                </td>
+           
+                <td>@course.DaysOfTheWeek</td>
+                <td>
+                    @(course.StartTime?.ToString("hh:mm tt") ?? "N/A") - @(course.EndTime?.ToString("hh:mm tt") ?? "N/A")
+                </td>
+                <td>@course.Room</td>
+                <td>
+                    @{
+                        // Assuming you have the current student ID accessible in your view.
+                        var currentStudentId = Model.CurrentStudent; // Adjust as necessary _auth.GetCurrentUserId();
+                        var isRegistered = Model.StudentConnection
+                        .Any(conn => conn.StudentId == currentStudentId && conn.CourseId == course.CourseId);
+                    }
+
+                    <div class="row">
+                        <div class="col-auto">
+                            @if (!isRegistered) // Show the Register button if not registered
+                            {
+                                <form id="registerForm" method="post" asp-action="Register">
+                                    <input type="hidden" name="CourseId" value="@course.CourseId" />
+                                    <button type="submit" class="btn btn-primary" id="registerBtn">Register</button>
+                                </form>
+                            }
+                            else // Show the Drop button if registered
+                            {
+                                <div id="dropContainer">
+                                    <form id="dropForm" method="post" asp-action="Drop">
+                                        <input type="hidden" name="CourseId" value="@course.CourseId" />
+                                        <button type="submit" class="btn btn-danger" id="dropBtn">Drop</button>
+                                    </form>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </td>
+               
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id="modalText">Some text in the Modal..</p>
+  </div>
+
+</div>
+
+<script src="~/js/account.js" asp-append-version="true"></script>

@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TGTOAT.Data;
-namespace TGTOAT.Models
+using Data;
+
+namespace Models
 {
     public class AddAssignmentViewModel
-{
+    {
         // Primary Key for the Assignment
         public int AssignmentId { get; set; }
 
@@ -33,8 +34,6 @@ namespace TGTOAT.Models
         [Required(ErrorMessage = "Due date and time is required.")]
         public DateTime DueDateAndTime { get; set; }
 
-        //notifications
-        public List<Notifications> Notifications { get; set; }
 
     }
 }

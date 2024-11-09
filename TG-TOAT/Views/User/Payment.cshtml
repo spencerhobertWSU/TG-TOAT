@@ -1,4 +1,4 @@
-﻿@model TGTOAT.Models.PaymentViewModel
+﻿@model PaymentViewModel
 
 @{
     ViewData["Title"] = "Login";
@@ -38,7 +38,7 @@
                     @(course.CourseName + ":")
                 </dt>
                 <dd class="col-sm-6 text-start">
-                    @string.Format("{0:C}", course.NumberOfCredits * 100)
+                    @string.Format("{0:C}", course.Credits * 100)
                 </dd>
             }
         

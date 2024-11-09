@@ -1,4 +1,4 @@
-﻿namespace TGTOAT.Data
+﻿namespace Data
 {
     public class Notifications
 {

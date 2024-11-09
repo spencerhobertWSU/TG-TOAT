@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
-using TGTOAT.Data;
+using Data;
 
-namespace TGTOAT.Models
+namespace Models
 {
     public class UserIndexViewModel
     {
@@ -32,9 +32,10 @@ namespace TGTOAT.Models
         public List<Notifications> Notifications { get; set; }
 
         /* Courses */
+        public List<CurrClasses> Courses { get; set; } = new List<CurrClasses>();
 
-        public List<Courses> Courses { get; set; } = new List<Courses>();
 
-        public List<Assignment> UpcomingAssignments { get; set; }
+        public List<UpcomingAssign> UpcomingAssignments { get; set; }
+        public List<Assignment> Assignments { get; set; } = new List<Assignment>();
     }
 }

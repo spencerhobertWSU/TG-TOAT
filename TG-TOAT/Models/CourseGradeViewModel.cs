@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using TGTOAT.Data;
+using Data;
 
-namespace TGTOAT.Models
+namespace Models
 {
     public class CourseGradeViewModel
     {

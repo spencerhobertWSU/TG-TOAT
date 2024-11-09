@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TGTOAT.Models
+namespace Models
 {
     public class SubmissionDetailViewModel
     {

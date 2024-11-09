@@ -1,12 +1,9 @@
-﻿using TGTOAT.Data;
+﻿using Data;
 
-namespace TGTOAT.ViewModels
+namespace Models
 {
     public class CourseListViewModel
     {
-        //notifications
-        public List<Notifications> Notifications { get; set; }
-        public IEnumerable<TGTOAT.Data.Courses> Courses { get; set; }
-        public TGTOAT.Models.UserIndexViewModel UserLoginViewModel { get; set; }
+        public List<CourseInfo> Courses { get; set; } = new List<CourseInfo>();
     }
 }

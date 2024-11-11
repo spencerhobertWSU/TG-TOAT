@@ -549,12 +549,13 @@ namespace TGTOAT.Controllers
             // Add dues to the users account
             var user = _context.User.FirstOrDefault(u => u.UserId == userId);
 
-            var tuition = _context.Tuition.First(t => t.UserId == userId).AmountDue;
+            var tuition = _context.Tuition.First(t => t.UserId == userId);
 
-            tuition += 100 * _context.Courses.FirstOrDefault(u => u.CourseId == CourseId).Credits;
+            tuition.AmountDue += 100 * _context.Courses.FirstOrDefault(u => u.CourseId == CourseId).Credits;
 
             _context.User.Update(user);
             _context.StudentConnection.Add(connection);
+            _context.Tuition.Update(tuition);
             _context.SaveChanges();
             TempData["SuccessMessage"] = "Successfully registered for the course!";
             return RedirectToAction("CourseRegistration"); // Redirect back to the course registration page
@@ -1019,8 +1020,9 @@ namespace TGTOAT.Controllers
 
             // Update the user's balance
             var user = _context.User.FirstOrDefault(u => u.UserId == _auth.getUser().UserId);
-            //user.AmountDue -= amountPaid;
-            _context.User.Update(user);
+            var tuition = _context.Tuition.First(t => t.UserId == user.UserId);
+            tuition.AmountDue -= amountPaid;
+            _context.Tuition.Update(tuition);
             _context.SaveChanges();
 
             // Pass the receipt URL to the view (using ViewBag)

@@ -585,12 +585,19 @@ namespace TGTOAT.Controllers
                 // Remove dues from the users account (connection always had null User and Courses, so I did it this way)
                 var user = _context.User.FirstOrDefault(u => u.UserId == userId);
                 var course = _context.Courses.FirstOrDefault(c => c.CourseId == CourseId);
-                var tuition = _context.Tuition.First(t => t.UserId == userId).AmountDue;
+                var tuition = _context.Tuition.First(t => t.UserId == userId);
 
-                tuition -= 100 * course.Credits;
+                tuition.AmountDue -= 100 * course.Credits;
+
+                // Ensure the Users balance doesn't go negative
+                if (tuition.AmountDue < 0)
+                {
+                    tuition.AmountDue = 0;
+                }
 
                 _context.User.Update(user);
                 _context.StudentConnection.Remove(connection);
+                _context.Tuition.Update(tuition);
                 _context.SaveChanges();
                 TempData["SuccessMessage"] = "Successfully Dropped for the course!";
                 return RedirectToAction("CourseRegistration"); // Redirect back to the course registration page

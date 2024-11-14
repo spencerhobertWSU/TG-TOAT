@@ -2,7 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Microsoft.EntityFrameworkCore;
-using TGTOAT.Data;
+using Data;
 using TGTOAT;
 using TGTOAT.Controllers;
 using Moq;
@@ -88,64 +88,71 @@ namespace Spencer_Unit_Tests
             // Create the instructor
             User instructor = new User
             {
-                Id = 1,
+                UserId = 1,
                 Email = "instructor@weber.edu",
-                Password = "Test",
+                Password = "Test"
+            };
+            UserInfo instructorInfo = new UserInfo
+            {
+                UserId = 1,
                 FirstName = "Test",
                 LastName = "Instructor",
-                BirthDate = new System.DateTime(1990, 1, 1),
-                UserRole = "Instructor"
+                Role = "Instructor",
+                PFP = "Test",
+                BirthDate = new DateOnly(1990, 1, 1)
             };
 
             // Create the student
             User student = new User
             {
-                Id = 2,
+                UserId = 2,
                 Email = "student@weber.edu",
-                Password = "Test",
+                Password = "Test"
+            };
+            UserInfo studentInfo = new UserInfo
+            {
+                UserId = 2,
                 FirstName = "Test",
                 LastName = "Student",
-                BirthDate = new System.DateTime(1990, 1, 1),
-                UserRole = "Student"
+                Role = "Student",
+                PFP = "Test",
+                BirthDate = new DateOnly(1990, 1, 1)
             };
 
             // Create the department (for the course)
             Departments department = new Departments
             {
-                DepartmentId = 1,
-                DepartmentName = "Test Department"
+                DeptId = 1,
+                DeptName = "Test Department"
             };
 
             // Create the course
             Courses course = new Courses
             {
                 CourseId = 1,
-                DepartmentId = department.DepartmentId,
-                Department = department,
-                CourseNumber = "TS1010",
+                DeptId = department.DeptId,
+                CourseNum = 1010,
                 CourseName = "Test Course",
-                CourseDescription = "Test Description",
-                NumberOfCredits = 3,
+                CourseDesc = "Test Description",
+                Credits = 3,
                 Capacity = 30,
                 Campus = "Ogden",
                 Building = "Science",
-                RoomNumber = 101,
-                DaysOfTheWeek = "MWF",
+                Room = 101,
+                Days = "MWF",
                 StartTime = new TimeOnly(9, 0),
-                EndTime = new TimeOnly(10, 0),
+                StopTime = new TimeOnly(10, 0),
                 Semester = "Fall",
                 Year = 2024,
-                Instructors = new List<User> { instructor }
+                Color = "Test",
+                Picture = "Test"
             };
 
             // Connect the instructor and student to the course
-            InstructorCourseConnection instructorCourseConnection = new InstructorCourseConnection
+            InstructorConnection instructorCourseConnection = new InstructorConnection
             {
-                InstructorCourseConnectionId = 1,
-                InstructorID = instructor.Id,
-                Instructor = instructor,
-                CourseId = course.CourseId,
-                Course = course
+                InstructorId = instructor.UserId,
+                CourseId = course.CourseId
             };
             StudentCourseConnection studentCourseConnection = new StudentCourseConnection
             {

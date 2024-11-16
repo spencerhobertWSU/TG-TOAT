@@ -277,14 +277,16 @@ namespace TGTOAT.Controllers
                 return RedirectToAction("Login", "User");
             }
 
-            var courses = (from db in _context.Courses select db).ToList();
-
+            // Get courses for the current instructor using InstructorConnection table
+            var instructorCourses = (from ic in _context.InstructorConnection
+                                    join c in _context.Courses on ic.CourseId equals c.CourseId
+                                    where ic.InstructorId == currInstruct.UserId
+                                    select c).ToList();
 
             var NewCourses = new List<CourseInfo>();
 
-            foreach (var c in courses)
+            foreach (var c in instructorCourses)
             {
-
                 string deptName = _context.Departments.First(d => d.DeptId == c.DeptId).DeptName;
 
                 var CourseModel = new CourseInfo
@@ -305,7 +307,6 @@ namespace TGTOAT.Controllers
                     Year = c.Year,
                 };
                 NewCourses.Add(CourseModel);
-
             };
 
             var CourseList = new CourseListViewModel

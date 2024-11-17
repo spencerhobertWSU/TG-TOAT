@@ -110,7 +110,7 @@
                             <strong>@quiz.QuizName</strong> - Due: @quiz.DueDate.ToString("MM/dd/yyyy hh:mm tt")
                         </div>
                         <div class="col-md-6 text-right">
-                            <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="ViewSubmissions" asp-route-assignmentId="@quiz.QuizId">
+                            <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="ViewSubmissions" asp-route-quizId="@quiz.QuizId">
                                 View Submissions
                             </a>
                         </div>

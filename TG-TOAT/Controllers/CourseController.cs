@@ -548,84 +548,164 @@ namespace TGTOAT.Controllers
         [HttpGet]
         public JsonResult GetCoursesForCalendar()
         {
-            var currentUser = _auth.getUser();  // Get the current user's details
-            var userIdString = currentUser.ToString();
-
-            if (currentUser == null || string.IsNullOrEmpty(userIdString))
+            var currentUser = _auth.getUser();
+            if (currentUser == null)
             {
                 return Json(new { error = "No user logged in." });
             }
 
             var courseEvents = new List<object>();
             var dayMap = new Dictionary<string, int>
-                    {
-                        { "Su", 0 },
-                        { "Mo", 1 },
-                        { "Tu", 2 },
-                        { "We", 3 },
-                        { "Th", 4 },
-                        { "Fr", 5 },
-                        { "Sa", 6 }
-                    };
+            {
+                { "Su", 0 },
+                { "Mo", 1 },
+                { "Tu", 2 },
+                { "We", 3 },
+                { "Th", 4 },
+                { "Fr", 5 },
+                { "Sa", 6 }
+            };
 
             // instructor role
             if (currentUser.Role == "Instructor")
             {
-                // Fetch courses for the instructor
                 var instructorCourses = (from ic in _context.InstructorConnection
-                                         join c in _context.Courses on ic.CourseId equals c.CourseId
-                                         where ic.InstructorId == currentUser.UserId
-                                         select c).ToList();
+                                        join c in _context.Courses on ic.CourseId equals c.CourseId
+                                        where ic.InstructorId == currentUser.UserId
+                                        select c).ToList();
+
+                // Get assignments for instructor's courses
+                var assignments = (from a in _context.Assignments
+                                 where instructorCourses.Select(c => c.CourseId).Contains(a.CourseId)
+                                 select new
+                                 {
+                                     a.AssignId,
+                                     a.AssignName,
+                                     a.DueDate,
+                                     a.CourseId
+                                 }).Distinct().ToList();
+
+                // Get quizzes for instructor's courses
+                var quizzes = (from q in _context.Quizzes
+                              where instructorCourses.Select(c => c.CourseId).Contains(q.CourseId)
+                              select new
+                              {
+                                  q.QuizId,
+                                  q.QuizName,
+                                  q.DueDate,
+                                  q.CourseId
+                              }).Distinct().ToList();
 
                 foreach (var course in instructorCourses)
                 {
                     AddCourseToEventList(course, dayMap, courseEvents);
                 }
+
+                // Add assignment events
+                foreach (var assignment in assignments)
+                {
+                    courseEvents.Add(new
+                    {
+                        title = $"Assignment: {assignment.AssignName}",
+                        start = assignment.DueDate.ToString("yyyy-MM-ddTHH:mm:ss"),
+                        url = $"/Course/ViewSubmissions?assignmentId={assignment.AssignId}",
+                        backgroundColor = "#3788d8" // Blue color for assignments
+                    });
+                }
+
+                // Add quiz events
+                foreach (var quiz in quizzes)
+                {
+                    courseEvents.Add(new
+                    {
+                        title = $"Quiz: {quiz.QuizName}",
+                        start = quiz.DueDate.ToString("yyyy-MM-ddTHH:mm:ss"),
+                        url = $"/Course/ViewSubmissions?quizId={quiz.QuizId}",
+                        backgroundColor = "#e74c3c" // Red color for quizzes
+                    });
+                }
             }
             // student role
             else if (currentUser.Role == "Student")
             {
-                // Fetch courses for the student
                 var studentCourses = (from s in _context.StudentConnection
-                                      join c in _context.Courses on s.CourseId equals c.CourseId
-                                      where s.StudentId == currentUser.UserId
-                                      select c).ToList();
+                                     join c in _context.Courses on s.CourseId equals c.CourseId
+                                     where s.StudentId == currentUser.UserId
+                                     select c).ToList();
 
-                var assignments = (from s in _context.StudentAssignment
-                                   join a in _context.Assignments on s.AssignId equals a.AssignId
-                                   where s.StudentId == currentUser.UserId
-                                   select a).ToList();
+                // Get assignments for enrolled courses
+                var assignments = (from a in _context.Assignments
+                                 where studentCourses.Select(c => c.CourseId).Contains(a.CourseId)
+                                 select new
+                                 {
+                                     a.AssignId,
+                                     a.AssignName,
+                                     a.DueDate,
+                                     a.CourseId
+                                 }).Distinct().ToList();
+
+                // Get quizzes for enrolled courses
+                var quizzes = (from q in _context.Quizzes
+                              where studentCourses.Select(c => c.CourseId).Contains(q.CourseId)
+                              select new
+                              {
+                                  q.QuizId,
+                                  q.QuizName,
+                                  q.DueDate,
+                                  q.CourseId
+                              }).Distinct().ToList();
 
                 foreach (var course in studentCourses)
                 {
                     // Add course events
                     AddCourseToEventList(course, dayMap, courseEvents);
+                }
 
-                    foreach (var assignment in assignments)
+                // Add assignment events
+                foreach (var assignment in assignments)
+                {
+                    string assignmentUrl = currentUser.Role == "Student" 
+                        ? $"/Course/SubmitPage?assignmentId={assignment.AssignId}"  // Student goes to submission page
+                        : $"/Course/ViewSubmissions?assignmentId={assignment.AssignId}";  // Instructor goes to view all submissions
+
+                    courseEvents.Add(new
                     {
-                        courseEvents.Add(new
-                        {
-                            title = assignment.AssignName,
-                            start = assignment.DueDate.ToString("yyyy-MM-ddTHH:mm:ss"),
-                            url = $"/Course/Assignments/{course.CourseId}"  // Link to course's assignment page
-                        });
-                    }
+                        title = $"Assignment: {assignment.AssignName}",
+                        start = assignment.DueDate.ToString("yyyy-MM-ddTHH:mm:ss"),
+                        url = assignmentUrl,
+                        backgroundColor = "#3788d8" // Blue color for assignments
+                    });
+                }
+
+                // Add quiz events
+                foreach (var quiz in quizzes)
+                {
+                    courseEvents.Add(new
+                    {
+                        title = $"Quiz: {quiz.QuizName}",
+                        start = quiz.DueDate.ToString("yyyy-MM-ddTHH:mm:ss"),
+                        url = $"/Course/Quiz/{quiz.QuizId}",
+                        backgroundColor = "#e74c3c" // Red color for quizzes
+                    });
                 }
             }
 
-            // Return all course and assignment events
             return Json(courseEvents);
         }
 
         // Helper method to add course events to the list
         private void AddCourseToEventList(Courses course, Dictionary<string, int> dayMap, List<object> courseEvents)
         {
-            if (course.StartTime.HasValue && course.StopTime.HasValue)
+            // Skip online courses (where Campus is "Onl")
+            if (course.Campus?.ToUpper() == "ONL")
+            {
+                return;
+            }
+
+            if (course.StartTime.HasValue && course.StopTime.HasValue && !string.IsNullOrEmpty(course.Days))
             {
                 var startTime = course.StartTime.Value;
                 var stopTime = course.StopTime.Value;
-
-                // Split the DaysOfTheWeek string by commas
                 var days = course.Days.Split(',');
 
                 // Set the default start and end dates for the semester
@@ -640,7 +720,7 @@ namespace TGTOAT.Controllers
                 }
                 else if (course.Semester == "Spring")
                 {
-                    startRecur = "2025-01-26";
+                    startRecur = "2025-01-06";
                     endRecur = "2025-04-25";
                 }
                 else if (course.Semester == "Summer")
@@ -649,19 +729,15 @@ namespace TGTOAT.Controllers
                     endRecur = "2025-08-15";
                 }
 
-                // Loop through the split days and create events
+                var dayCodes = new List<int>();
 
-                var dayCodes = new List <int>();
-
-                foreach(var day in days)
+                foreach (var day in days)
                 {
-                    int dayCode = 0;
                     string trimmedDay = day.Trim();
                     if (dayMap.ContainsKey(trimmedDay))
                     {
-                        dayCode = dayMap[trimmedDay];
+                        dayCodes.Add(dayMap[trimmedDay]);
                     }
-                    dayCodes.Add(dayCode);
                 }
 
                 courseEvents.Add(new
@@ -670,8 +746,8 @@ namespace TGTOAT.Controllers
                     start = new DateTime(2024, 9, 1, startTime.Hour, startTime.Minute, startTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
                     end = new DateTime(2024, 9, 1, stopTime.Hour, stopTime.Minute, stopTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
                     daysOfWeek = dayCodes,
-                    startRecur = startRecur,  // Use the start date for the semester
-                    endRecur = endRecur       // Use the end date for the semester
+                    startRecur = startRecur,
+                    endRecur = endRecur
                 });
             }
         }

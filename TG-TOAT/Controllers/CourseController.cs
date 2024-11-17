@@ -713,24 +713,23 @@ namespace TGTOAT.Controllers
                 string endRecur = string.Empty;
 
                 // Determine the semester and set the correct recurrence dates
-                if (course.Semester == "Fall")
+                switch (course.Semester?.ToLower())
                 {
-                    startRecur = "2024-08-26";
-                    endRecur = "2024-12-13";
-                }
-                else if (course.Semester == "Spring")
-                {
-                    startRecur = "2025-01-06";
-                    endRecur = "2025-04-25";
-                }
-                else if (course.Semester == "Summer")
-                {
-                    startRecur = "2025-05-05";
-                    endRecur = "2025-08-15";
+                    case "fall":
+                        startRecur = $"{course.Year}-08-26";
+                        endRecur = $"{course.Year}-12-13";
+                        break;
+                    case "spring":
+                        startRecur = $"{course.Year}-01-06";
+                        endRecur = $"{course.Year}-04-25";
+                        break;
+                    case "summer":
+                        startRecur = $"{course.Year}-05-05";
+                        endRecur = $"{course.Year}-08-15";
+                        break;
                 }
 
                 var dayCodes = new List<int>();
-
                 foreach (var day in days)
                 {
                     string trimmedDay = day.Trim();
@@ -743,11 +742,13 @@ namespace TGTOAT.Controllers
                 courseEvents.Add(new
                 {
                     title = course.CourseName,
-                    start = new DateTime(2024, 9, 1, startTime.Hour, startTime.Minute, startTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
-                    end = new DateTime(2024, 9, 1, stopTime.Hour, stopTime.Minute, stopTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
+                    startTime = startTime.ToString("HH:mm:ss"),
+                    endTime = stopTime.ToString("HH:mm:ss"),
                     daysOfWeek = dayCodes,
                     startRecur = startRecur,
-                    endRecur = endRecur
+                    endRecur = endRecur,
+                    backgroundColor = course.Color,
+                    url = $"/Course/Index/{course.CourseId}"
                 });
             }
         }

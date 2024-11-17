@@ -1,15 +1,9 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 using Microsoft.EntityFrameworkCore;
-using TGTOAT.Data;
+using Data;
 using TGTOAT;
 using TGTOAT.Controllers;
 using Moq;
 using TGTOAT.Helpers;
-using Microsoft.AspNetCore.Mvc;
-using TGTOAT.Models;
 
 
 namespace Josh_Tests
@@ -37,70 +31,75 @@ namespace Josh_Tests
             // Create student
             User student = new User
             {
-                Id = 1,
+                UserId = 1,
                 Email = "student@weber.edu",
-                Password = "Test",
+                Password = "Test"
+            };
+            UserInfo studentInfo = new UserInfo
+            {
+                UserId = 1,
                 FirstName = "Test",
                 LastName = "Student",
-                BirthDate = new DateTime(1990, 1, 1),
-                UserRole = "Student"
+                Role = "Student",
+                PFP = "Test",
+                BirthDate = new DateOnly(1990, 1, 1)
             };
 
-            // Create department and course
+            // Create department
             Departments department = new Departments
             {
-                DepartmentId = 1,
-                DepartmentName = "Test Department"
+                DeptId = 1,
+                DeptName = "Test Department"
             };
 
+            // Create course
             Courses course = new Courses
             {
                 CourseId = 1,
-                DepartmentId = department.DepartmentId,
-                Department = department,
-                CourseNumber = "TS1010",
+                DeptId = department.DeptId,
+                CourseNum = 1010,
                 CourseName = "Test Course",
-                CourseDescription = "Test Description",
-                NumberOfCredits = 3,
+                CourseDesc = "Test Description",
+                Credits = 3,
                 Capacity = 30,
                 Campus = "Ogden",
                 Building = "Science",
-                RoomNumber = 101,
-                DaysOfTheWeek = "MWF",
+                Room = 101,
+                Days = "MWF",
                 StartTime = new TimeOnly(9, 0),
-                EndTime = new TimeOnly(10, 0),
+                StopTime = new TimeOnly(10, 0),
                 Semester = "Fall",
-                Year = 2024
+                Year = 2024,
+                Color = "Test",
+                Picture = "Test"
             };
 
             // Connect student to course
-            StudentCourseConnection studentCourseConnection = new StudentCourseConnection
+            StudentConnection studentCourseConnection = new StudentConnection
             {
-                StudentCourseId = 1,
-                StudentID = student.Id,
-                User = student,
-                CourseId = course.CourseId,
-                Course = course
+                StudentId = student.UserId,
+                CourseId = course.CourseId
             };
 
             // Save to database
             _context.User.Add(student);
+            _context.UserInfo.Add(studentInfo);
             _context.Courses.Add(course);
-            _context.StudentCourseConnection.Add(studentCourseConnection);
+            _context.StudentConnection.Add(studentCourseConnection);
             _context.SaveChanges();
 
             // Create controller
-            _controller = new CourseController(_notificationService, _context, _mockAuth.Object);
+            _controller = new CourseController(_context, _mockAuth.Object);
 
             // Act - Drop the course by removing the connection
-            var connection = _context.StudentCourseConnection
-                .FirstOrDefault(scc => scc.StudentID == student.Id && scc.CourseId == course.CourseId);
-            _context.StudentCourseConnection.Remove(connection);
+            var connection = _context.StudentConnection
+                .FirstOrDefault(scc => scc.StudentId == student.UserId && scc.CourseId == course.CourseId);
+            _context.StudentConnection.Remove(connection);
             _context.SaveChanges();
 
             // Assert
-            var studentCourseAfterDrop = _context.StudentCourseConnection
-                .FirstOrDefault(scc => scc.StudentID == student.Id && scc.CourseId == course.CourseId);
+            var studentCourseAfterDrop = _context.StudentConnection
+                .FirstOrDefault(scc => scc.StudentId == student.UserId && scc.CourseId == course.CourseId);
             Assert.IsNull(studentCourseAfterDrop, "Course should be dropped (connection should be removed)");
 
             // Cleanup
@@ -127,130 +126,129 @@ namespace Josh_Tests
             // Create instructor
             User instructor = new User
             {
-                Id = 1,
+                UserId = 1,
                 Email = "instructor@weber.edu",
-                Password = "Test",
+                Password = "Test"
+            };
+            UserInfo instructorInfo = new UserInfo
+            {
+                UserId = 1,
                 FirstName = "Test",
                 LastName = "Instructor",
-                BirthDate = new DateTime(1990, 1, 1),
-                UserRole = "Instructor"
+                Role = "Instructor",
+                PFP = "Test",
+                BirthDate = new DateOnly(1990, 1, 1)
             };
             Assert.IsNotNull(instructor, "Instructor is null");
 
             // Create department and initial course
             Departments department = new Departments
             {
-                DepartmentId = 1,
-                DepartmentName = "Test Department"
+                DeptId = 1,
+                DeptName = "Test Department"
             };
             Assert.IsNotNull(department, "Department is null");
 
             Courses course = new Courses
             {
                 CourseId = 1,
-                DepartmentId = department.DepartmentId,
-                Department = department,
-                CourseNumber = "TS1010",
+                DeptId = department.DeptId,
+                CourseNum = 1010,
                 CourseName = "Original Course Name",
-                CourseDescription = "Original Description",
-                NumberOfCredits = 3,
+                CourseDesc = "Original Description",
+                Credits = 3,
                 Capacity = 30,
                 Campus = "Ogden",
                 Building = "Science Lab",
-                RoomNumber = 101,
-                DaysOfTheWeek = "MWF",
+                Room = 101,
+                Days = "MWF",
                 StartTime = new TimeOnly(9, 0),
-                EndTime = new TimeOnly(10, 0),
+                StopTime = new TimeOnly(10, 0),
                 Semester = "Fall",
-                Year = 2024
+                Year = 2024,
+                Color = "#FF0000",
+                Picture = "Test"
             };
             Assert.IsNotNull(course, "Course is null");
 
             // Connect instructor to course
-            InstructorCourseConnection instructorCourseConnection = new InstructorCourseConnection
+            InstructorConnection instructorCourseConnection = new InstructorConnection
             {
-                InstructorCourseConnectionId = 1,
-                InstructorID = instructor.Id,
-                Instructor = instructor,
-                CourseId = course.CourseId,
-                Course = course
+                InstructorId = instructor.UserId,
+                CourseId = course.CourseId
             };
-            Assert.IsNotNull(instructorCourseConnection, "InstructorCourseConnection is null");
-
-            course.instructorCourseConnections = new List<InstructorCourseConnection> { instructorCourseConnection };
-            Assert.IsNotNull(course.instructorCourseConnections, "Course.instructorCourseConnections is null");
+            Assert.IsNotNull(instructorCourseConnection, "InstructorConnection is null");
 
             try
             {
                 // Save to database
                 _context.Departments.Add(department);
                 _context.User.Add(instructor);
+                _context.UserInfo.Add(instructorInfo);
                 _context.Courses.Add(course);
-                _context.InstructorCourseConnection.Add(instructorCourseConnection);
+                _context.InstructorConnection.Add(instructorCourseConnection);
                 _context.SaveChanges();
 
                 // Verify entities were saved
                 Assert.IsTrue(_context.Departments.Any(), "No departments in database");
                 Assert.IsTrue(_context.User.Any(), "No users in database");
                 Assert.IsTrue(_context.Courses.Any(), "No courses in database");
-                Assert.IsTrue(_context.InstructorCourseConnection.Any(), "No instructor connections in database");
+                Assert.IsTrue(_context.InstructorConnection.Any(), "No instructor connections in database");
 
                 // Create controller
-                _controller = new CourseController(_notificationService, _context, _mockAuth.Object);
+                _controller = new CourseController(_context, _mockAuth.Object);
                 Assert.IsNotNull(_controller, "Controller is null");
 
-                // Act - Update all course properties
+                // Act - Update course properties
                 var updatedCourse = _context.Courses
-                    .Include(c => c.Department)
-                    .Include(c => c.instructorCourseConnections)
                     .FirstOrDefault(c => c.CourseId == course.CourseId);
 
                 Assert.IsNotNull(updatedCourse, "Failed to retrieve course from database");
-                Assert.IsNotNull(updatedCourse.Department, "Department is null in retrieved course");
-                Assert.IsNotNull(updatedCourse.instructorCourseConnections, "InstructorCourseConnections is null in retrieved course");
 
-                updatedCourse.CourseNumber = "TS2020";
+                updatedCourse.CourseNum = 2020;
                 updatedCourse.CourseName = "Updated Course Name";
-                updatedCourse.CourseDescription = "Updated Description";
-                updatedCourse.NumberOfCredits = 4;
+                updatedCourse.CourseDesc = "Updated Description";
+                updatedCourse.Credits = 4;
                 updatedCourse.Capacity = 40;
                 updatedCourse.Campus = "Davis";
                 updatedCourse.Building = "Engineering";
-                updatedCourse.RoomNumber = 202;
-                updatedCourse.DaysOfTheWeek = "TR";
+                updatedCourse.Room = 202;
+                updatedCourse.Days = "TR";
                 updatedCourse.StartTime = new TimeOnly(13, 30);
-                updatedCourse.EndTime = new TimeOnly(14, 45);
+                updatedCourse.StopTime = new TimeOnly(14, 45);
                 updatedCourse.Semester = "Spring";
                 updatedCourse.Year = 2025;
+                updatedCourse.Color = "#00FF00";
+                updatedCourse.Picture = "Updated Test";
                 _context.SaveChanges();
 
                 // Assert - Check all properties
                 var courseAfterUpdate = _context.Courses
-                    .Include(c => c.Department)
-                    .Include(c => c.instructorCourseConnections)
                     .FirstOrDefault(c => c.CourseId == course.CourseId);
 
                 Assert.IsNotNull(courseAfterUpdate, "Failed to retrieve updated course");
-                Assert.IsNotNull(courseAfterUpdate.Department, "Department is null after update");
-                Assert.IsNotNull(courseAfterUpdate.instructorCourseConnections, "Instructor connections are null after update");
 
-                Assert.AreEqual("TS2020", courseAfterUpdate.CourseNumber, "Course number should be updated");
+                Assert.AreEqual(2020, courseAfterUpdate.CourseNum, "Course number should be updated");
                 Assert.AreEqual("Updated Course Name", courseAfterUpdate.CourseName, "Course name should be updated");
-                Assert.AreEqual("Updated Description", courseAfterUpdate.CourseDescription, "Course description should be updated");
-                Assert.AreEqual(4, courseAfterUpdate.NumberOfCredits, "Number of credits should be updated");
+                Assert.AreEqual("Updated Description", courseAfterUpdate.CourseDesc, "Course description should be updated");
+                Assert.AreEqual(4, courseAfterUpdate.Credits, "Number of credits should be updated");
                 Assert.AreEqual(40, courseAfterUpdate.Capacity, "Capacity should be updated");
                 Assert.AreEqual("Davis", courseAfterUpdate.Campus, "Campus should be updated");
                 Assert.AreEqual("Engineering", courseAfterUpdate.Building, "Building should be updated");
-                Assert.AreEqual(202, courseAfterUpdate.RoomNumber, "Room number should be updated");
-                Assert.AreEqual("TR", courseAfterUpdate.DaysOfTheWeek, "Days of the week should be updated");
+                Assert.AreEqual(202, courseAfterUpdate.Room, "Room number should be updated");
+                Assert.AreEqual("TR", courseAfterUpdate.Days, "Days of the week should be updated");
                 Assert.AreEqual(new TimeOnly(13, 30), courseAfterUpdate.StartTime, "Start time should be updated");
-                Assert.AreEqual(new TimeOnly(14, 45), courseAfterUpdate.EndTime, "End time should be updated");
+                Assert.AreEqual(new TimeOnly(14, 45), courseAfterUpdate.StopTime, "End time should be updated");
                 Assert.AreEqual("Spring", courseAfterUpdate.Semester, "Semester should be updated");
                 Assert.AreEqual(2025, courseAfterUpdate.Year, "Year should be updated");
+                Assert.AreEqual("#00FF00", courseAfterUpdate.Color, "Color should be updated");
+                Assert.AreEqual("Updated Test", courseAfterUpdate.Picture, "Picture should be updated");
 
                 // Verify department and instructor relationships remain intact
-                Assert.AreEqual(department.DepartmentId, courseAfterUpdate.DepartmentId, "Department relationship should remain unchanged");
-                Assert.IsTrue(courseAfterUpdate.instructorCourseConnections.Any(icc => icc.InstructorID == instructor.Id), 
+                Assert.AreEqual(department.DeptId, courseAfterUpdate.DeptId, "Department relationship should remain unchanged");
+                Assert.IsTrue(_context.InstructorConnection.Any(ic => 
+                    ic.InstructorId == instructor.UserId && 
+                    ic.CourseId == courseAfterUpdate.CourseId), 
                     "Instructor relationship should remain unchanged");
             }
             finally

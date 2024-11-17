@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Data;
+using System.ComponentModel.DataAnnotations;
 namespace Models
 {
     public class AddQuizViewModel
@@ -35,6 +36,7 @@ namespace Models
         [DataType(DataType.DateTime)]
         [Required(ErrorMessage = "Due date and time is required.")]
         public DateTime DueDateAndTime { get; set; }
+        public List<Notifications> Notifications { get; set; }
 
     }
 }

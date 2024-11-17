@@ -72,25 +72,37 @@
                                 Logout
                             </a>
                         </li>
+                       
                 </div>
 
-                        <!--Notifictions-->  
-                        <li class="nav-item notifBell">
-                            <a class="nav-link" href="javascript:void(0)" onclick="openNotif()">
-                                <i class="notif fa-solid fa-bell-exclamation"></i>
-                                <i class="notif fa-solid fa-bell"></i>
-                                <i class="notif fa-regular fa-bell"></i>
-                            </a>
-                        </li>
-
-                        <div id="notifications">
+                <div class="navbar-right justify-content-between">
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)" onclick="openNotif()">
+                        <i class="notif fa-solid fa-bell-exclamation"></i>
+                        <i class="notif fa-solid fa-bell"></i>
+                        <i class="notif fa-regular fa-bell"></i>
+                    </a>
+                </li>
                         </div>
-                    </ul>
+                
+                <!-- Notification Dropdown -->
+                <div id="notificationDropdown" class="notification-dropdown" style="display: none;">
+                    <ul>
+                                @foreach (var notification in Model.Notifications) // Use the Notifications property
+                                {
+                            <li>
+                                        @notification.Message
+                                <small>(@notification.CreatedAt.ToString("g"))</small>
 
+                            </li>
+                                }
+                    </ul>
+                </div>
+                
 
                 </div>
 
-            </div>
+            
 
 
         </nav>

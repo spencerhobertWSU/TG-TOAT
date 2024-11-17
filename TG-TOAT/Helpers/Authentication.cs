@@ -11,9 +11,11 @@ namespace TGTOAT.Helpers;
 public class Authentication : IAuthentication
 {
     private readonly UserContext _context;
-    public Authentication(UserContext context)
+    private readonly NotificationService _notificationService;
+    public Authentication(UserContext context, NotificationService notification)
     {
         _context = context;
+        _notificationService = notification;
     }
 
     private static CurrUser User;
@@ -104,6 +106,7 @@ public class Authentication : IAuthentication
 
             var CourseModel = new CurrClasses
             {
+                Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
                 DeptName = deptName,
                 CourseId = c.CourseId,
                 CourseNum = c.CourseNum,
@@ -127,6 +130,7 @@ public class Authentication : IAuthentication
 
         var viewModel = new UserIndexViewModel
         {
+            Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
             Id = user.UserId,
             FirstName = user.FirstName,
             LastName = user.LastName,

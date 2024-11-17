@@ -21,5 +21,7 @@
         public string Instructor { get; set; }//Instructor
 
         public string CourseDescription { get; set; } // Course Description
+
+        public List<Notifications> Notifications { get; set; }
     }
 }

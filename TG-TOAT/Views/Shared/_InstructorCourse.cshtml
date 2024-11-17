@@ -74,21 +74,32 @@
                         </li>
                         </div>
 
-                        <!--Notifictions-->
-                        <li class="nav-item">
-                            <a id="notifBell" class="nav-link" href="javascript:void(0)" onclick="openNotif()">
-                                <i class="notif fa-solid fa-bell-exclamation"></i>
-                                <i class="notif fa-solid fa-bell"></i>
-                                <i class="notif fa-regular fa-bell"></i>
-                            </a>
-                        </li>
+                <!-- Notifications -->
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)" onclick="openNotif()">
+                        <i class="notif fa-solid fa-bell-exclamation"></i>
+                        <i class="notif fa-solid fa-bell"></i>
+                        <i class="notif fa-regular fa-bell"></i>
+                    </a>
+                </li>
+                <!-- Notification Dropdown -->
+                <div id="notificationDropdown" class="notification-dropdown" style="display: none;">
+                    <ul>
+                                @foreach (var notification in Model.Notifications) // Use the Notifications property
+                                {
+                            <li>
+                                        @notification.Message
+                                <small>(@notification.CreatedAt.ToString("g"))</small>
 
-                        <div id="notifications">
-                        </div>
+                            </li>
+                                }
                     </ul>
-
-
                 </div>
+
+                
+
+
+                
 
             </div>
 
@@ -120,3 +131,12 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<script>
+    $(document).ready(function() {
+        // Toggle the visibility of the notification dropdown when the button is clicked
+        $("#notificationButton").click(function() {
+            $("#notificationDropdown").toggle(); // Toggle visibility
+        });
+    });
+</script>

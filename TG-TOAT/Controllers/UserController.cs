@@ -31,9 +31,11 @@ namespace TGTOAT.Controllers
         private readonly IPasswordHasher _passwordHasher;
         private readonly UserContext _context;
         private readonly IAuthentication _auth;
+        private readonly NotificationService _notificationService;
 
-        public UserController(UserContext context, IPasswordHasher passwordHasher, IAuthentication auth)
+        public UserController(NotificationService notification, UserContext context, IPasswordHasher passwordHasher, IAuthentication auth)
         {
+            _notificationService = notification;
             _context = context;
             _passwordHasher = passwordHasher;
             _auth = auth;
@@ -172,6 +174,7 @@ namespace TGTOAT.Controllers
             string? Series = Request.Cookies["Series"];
             string? Token = Request.Cookies["Token"];
 
+
             var cookies = new Cookies();
 
             if (Email != null && Series != null && Token != null)
@@ -205,6 +208,7 @@ namespace TGTOAT.Controllers
 
                     var User = new CurrUser
                     {
+                        Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
                         UserId = user.UserId,
                         Email = user.Email,
                         FirstName = userInfo.FirstName,
@@ -247,6 +251,7 @@ namespace TGTOAT.Controllers
 
             var User = new CurrUser
             {
+                Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
                 UserId = user.UserId,
                 Email = user.Email,
                 FirstName = userInfo.FirstName,
@@ -359,6 +364,7 @@ namespace TGTOAT.Controllers
 
                 int instructorId = _context.InstructorConnection.First(ic => ic.CourseId == c.CourseId).InstructorId;
 
+            
                 string instructorFName = _context.UserInfo.First(u => u.UserId == instructorId).FirstName;
                 string instructorLName = _context.UserInfo.First(u => u.UserId == instructorId).LastName;
 
@@ -366,7 +372,7 @@ namespace TGTOAT.Controllers
 
                 var CourseModel = new CourseInfo
                 {
-                    
+                    Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
                     CourseId = c.CourseId,
                     DeptID = deptinfo.DeptId,
                     DeptName = deptinfo.DeptName,
@@ -398,6 +404,7 @@ namespace TGTOAT.Controllers
 
             var RegisterCourses = new CourseRegisterViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
                 Courses = Courses,
                 CurrentStudent = user.UserId,
                 StudentConnection = StudentCourses,
@@ -479,6 +486,7 @@ namespace TGTOAT.Controllers
 
                 var CourseModel = new CourseInfo
                 {
+                    Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
                     CourseId = c.CourseId,
                     DeptID = deptinfo.DeptId,
                     DeptName = deptinfo.DeptName,
@@ -503,6 +511,7 @@ namespace TGTOAT.Controllers
 
             var RegisterCourses = new CourseRegisterViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
                 Courses = Courses,
                 CurrentStudent = _auth.getUser().UserId,
                 Departments = _context.Departments.ToList(),

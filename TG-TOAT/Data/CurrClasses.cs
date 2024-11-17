@@ -7,6 +7,7 @@ namespace Data
     {
         public string DeptName { get; set; }
 
+        public List<Notifications> Notifications { get; set; }
         public int CourseId { get; set; }
         public int CourseNum { get; set; }
         public string CourseName { get; set; }

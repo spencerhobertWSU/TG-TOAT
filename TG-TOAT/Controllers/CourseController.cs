@@ -16,8 +16,9 @@ namespace TGTOAT.Controllers
         private readonly IAuthentication _auth;
         private readonly NotificationService _notificationService;
 
-        public CourseController(UserContext context, IAuthentication auth)
+        public CourseController(UserContext context, IAuthentication auth, NotificationService notificationService)
         {
+            _notificationService = notificationService;
             _context = context;
             _auth = auth;
         }
@@ -289,6 +290,7 @@ namespace TGTOAT.Controllers
 
                 var CourseModel = new CourseInfo
                 {
+                    Notifications = _notificationService.GetNotificationsForUser(currInstruct.UserId).ToList(),
                     CourseId = c.CourseId,
                     DeptName = deptName,
                     CourseNumber = c.CourseNum,
@@ -310,11 +312,15 @@ namespace TGTOAT.Controllers
 
             var CourseList = new CourseListViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(currInstruct.UserId).ToList(),
                 Courses = NewCourses,
+               
             };
 
             return View(CourseList);
         }
+
+
 
         //Course/Index/id
         public ActionResult Index(int? id)
@@ -337,6 +343,7 @@ namespace TGTOAT.Controllers
 
             var viewModel = new CourseHome
             {
+                Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
                 CourseId = course.CourseId,
                 UserRole = _auth.getUser().Role,
                 Department = dept.DeptName,
@@ -389,6 +396,8 @@ namespace TGTOAT.Controllers
             {
                 var viewModel = new CourseHome
                 {
+                    Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
+
                     CourseId = course.CourseId,
                     UserRole = _auth.getUser().Role,
                     Department = dept.DeptName,
@@ -402,16 +411,21 @@ namespace TGTOAT.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddAssignment()
+
+        //public ActionResult Assignments(int? id)
+        public ActionResult AddAssignment(int? id)
         {
-            var user = _auth.getUser();
+
+            var user = _auth.getUser();//Grab User Info
+            int userId = user.UserId;
 
 
-            if (user == null)
+            var viewModel = new AddAssignmentViewModel
             {
-                return RedirectToAction("Login", "User");
-            }
-            return View();
+                Notifications = _notificationService.GetNotificationsForUser(userId).ToList(),
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -434,11 +448,18 @@ namespace TGTOAT.Controllers
            .Select(uc => uc.CourseId)
            .ToListAsync();
 
+            var ClassName = _context.Courses
+                    .Where(uc => uc.CourseId == id)
+                    .Select(uc => uc.CourseName)
+                   .FirstOrDefault();
 
-            if (ModelState.IsValid)
-            {
+            string CourseName = ClassName.ToString();
+
+
+           
                 var assignment = new Assignment
                 {
+
                     CourseId = id,
                     AssignName = model.AssignmentName,
                     AssignDesc = model.AssignmentDescription,
@@ -451,9 +472,11 @@ namespace TGTOAT.Controllers
 
                 _context.Assignments.Add(assignment);
                 await _context.SaveChangesAsync();
+                var message = $"{CourseName}: New assignment '{assignment.AssignName}' has been created.";
+                NotifyStudents(message, id);
                 return RedirectToAction("Assignments", new { id });
 
-            }
+            
 
             return View(model);
         }
@@ -473,6 +496,7 @@ namespace TGTOAT.Controllers
 
             AddQuizViewModel quiz = new AddQuizViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
                 QuizId = id,
                 QuizName = quizInfo.QuizName,
                 QuizDescription = quizInfo.QuizDesc,
@@ -497,7 +521,14 @@ namespace TGTOAT.Controllers
                 return RedirectToAction("Login", "User");
             }
 
-            return View();
+            var viewModel = new AddQuizViewModel
+            {
+                Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
+
+
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -520,8 +551,13 @@ namespace TGTOAT.Controllers
            .ToListAsync();
 
 
-            if (ModelState.IsValid)
-            {
+            var ClassName = _context.Courses
+          .Where(uc => uc.CourseId == id)
+          .Select(uc => uc.CourseName)
+       .FirstOrDefault();
+
+            string CourseName = ClassName.ToString();
+            
                 var quiz = new Quizzes
                 {
                     CourseId = id,
@@ -535,9 +571,11 @@ namespace TGTOAT.Controllers
 
                 _context.Quizzes.Add(quiz);
                 await _context.SaveChangesAsync();
+                var message = $"A student has submitted '{quiz.QuizName}' Quiz from: {CourseName}";
+                NotifyInstructors(message, id);
                 return RedirectToAction("Quizzes", new { id });
 
-            }
+            
 
             return View(model);
         }
@@ -694,6 +732,7 @@ namespace TGTOAT.Controllers
 
                 var submission = new StudentSubmission
                 {
+                   
                     StudentFullName = (sInfo.FirstName + " " + sInfo.LastName),
 
                     SubmissionDate = s.Submitted,
@@ -732,6 +771,7 @@ namespace TGTOAT.Controllers
     {
         new SubmissionDetailViewModel
         {
+             
             StudentFullName = (sInfo.FirstName+" "+sInfo.LastName),
             DueDate = assignment.DueDate,
             SubmissionDate = submission.Submitted,
@@ -979,7 +1019,7 @@ namespace TGTOAT.Controllers
             }
 
             var course = _context.Courses.First(c => c.CourseId == id);
-
+            
             var dept = _context.Departments.FirstOrDefault(d => d.DeptId == course.DeptId);
 
             var assigns = (from a in _context.Assignments
@@ -1087,6 +1127,7 @@ namespace TGTOAT.Controllers
 
             var viewModel = new SubmitAssignmentViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(studentId).ToList(),
                 AssignmentId = assignment.AssignId,
                 AssignmentName = assignment.AssignName,
                 Description = assignment.AssignDesc,
@@ -1128,6 +1169,8 @@ namespace TGTOAT.Controllers
 
             var viewModel = new SubmitAssignmentViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(studentId).ToList(),
+
                 AssignmentId = assignment.AssignId,
                 AssignmentName = assignment.AssignName,
                 Description = assignment.AssignDesc,
@@ -1148,6 +1191,7 @@ namespace TGTOAT.Controllers
                 return RedirectToAction("Login", "User");
             }
 
+            
             var assignment = _context.Assignments.FirstOrDefault(a => a.AssignId == assignmentId);
 
             model.AssignmentId = assignmentId;
@@ -1155,6 +1199,21 @@ namespace TGTOAT.Controllers
             model.Description = assignment.AssignDesc;
             model.Points = assignment.MaxPoints;
             model.SubmissionType = assignment.AssignType;
+
+
+            var CourseId = _context.Assignments
+          .Where(uc => uc.AssignId == assignmentId)
+          .Select(uc => uc.CourseId)
+        .FirstOrDefault();
+
+            int CouseID = Convert.ToInt32(CourseId);
+
+            var ClassName = _context.Courses
+          .Where(uc => uc.CourseId == CouseID)
+          .Select(uc => uc.CourseName)
+       .FirstOrDefault();
+
+            string CourseName = ClassName.ToString();
 
             string newFile = "";
 
@@ -1200,6 +1259,8 @@ namespace TGTOAT.Controllers
             };
             _context.StudentAssignment.Add(newSubmission);
             await _context.SaveChangesAsync();
+            var message = $"A student has submitted '{assignment.AssignName}' Assignment from : {ClassName}";
+            NotifyInstructors(message, CouseID);
 
             return RedirectToAction("SubmitPage", new { assignmentId = assignmentId });
         }

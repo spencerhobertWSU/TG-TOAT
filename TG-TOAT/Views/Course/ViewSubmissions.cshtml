@@ -1,17 +1,8 @@
 ﻿@model List<StudentSubmission>
 
-@{
-    ViewData["Title"] = "All Submissions";
-    Layout = "~/Views/Shared/_InstructorCourse.cshtml";
-}
 
 <h1>Submissions</h1>
-<div class="course-nav">
-    <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Index" asp-route-id="@ViewBag.CourseId">Home</a>
-    <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Announcements" asp-route-id="@ViewBag.CourseId">Announcements</a>
-    <a class="nav-link course-curr" asp-area="" asp-controller="Course" asp-action="Assignments" asp-route-id="@ViewBag.CourseId">Assignments</a>
-    <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Grades" asp-route-id="@ViewBag.CourseId">Grades</a>
-</div>
+
 @{
     // Define the score categories
     var scoreCategories = new Dictionary<string, int>

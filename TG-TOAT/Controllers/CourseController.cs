@@ -747,8 +747,7 @@ namespace TGTOAT.Controllers
                     daysOfWeek = dayCodes,
                     startRecur = startRecur,
                     endRecur = endRecur,
-                    backgroundColor = course.Color,
-                    url = $"/Course/Index/{course.CourseId}"
+                    backgroundColor = course.Color
                 });
             }
         }

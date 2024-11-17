@@ -7,6 +7,7 @@ using Data;
 using TGTOAT.Helpers;
 using TGTOAT.Models;
 using Models;
+using Microsoft.AspNetCore.Http.Extensions;
 
 namespace TGTOAT.Controllers
 {
@@ -22,6 +23,7 @@ namespace TGTOAT.Controllers
             _auth = auth;
         }
         #region Create/Edit Courses
+
         // Display the AddCourse view with the list of departments
         //[HttpGet]
         public IActionResult Create()
@@ -249,16 +251,20 @@ namespace TGTOAT.Controllers
 
             var courseConnect = _context.InstructorConnection.FirstOrDefault(db => db.CourseId == model.CourseId);
 
-            if (courseConnect.InstructorId != model.SelectedInstructorId)
+            if (courseConnect != null)
             {
-                var InstructorConnection = new InstructorConnection
+                if (courseConnect.InstructorId != model.SelectedInstructorId)
                 {
-                    InstructorId = model.SelectedInstructorId,
-                    CourseId = model.CourseId
-                };
-                _context.InstructorConnection.Update(InstructorConnection);
-                await _context.SaveChangesAsync();
+                    var InstructorConnection = new InstructorConnection
+                    {
+                        InstructorId = model.SelectedInstructorId,
+                        CourseId = model.CourseId
+                    };
+                    _context.InstructorConnection.Update(InstructorConnection);
+                    await _context.SaveChangesAsync();
+                }
             }
+
             return RedirectToAction("Courses");
 
 
@@ -461,7 +467,57 @@ namespace TGTOAT.Controllers
         #endregion
 
         #region Quizzes
-        public ActionResult Quiz(int id)
+
+        public ActionResult Quizzes(int? id)
+        {
+            var user = _auth.getUser();
+
+            if (user == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            var course = _context.Courses.First(c => c.CourseId == id);
+
+            var dept = _context.Departments.FirstOrDefault(d => d.DeptId == course.DeptId);
+
+            var assigns = (from a in _context.Assignments
+                           join c in _context.Courses on a.CourseId equals c.CourseId
+                           where c.CourseId == id
+                           select a).ToList();
+
+            var quizzes = (from q in _context.Quizzes
+                           join c in _context.Courses on q.CourseId equals c.CourseId
+                           where c.CourseId == id
+                           select q).ToList();
+
+            var stuQuizes = (from sq in _context.StudentQuizzes
+                             join q in _context.Quizzes on sq.QuizId equals q.QuizId
+                             join c in _context.Courses on q.CourseId equals c.CourseId
+                             where c.CourseId == id
+                             select sq).ToList();
+                            
+
+            if (course == null)
+            {
+                return Redirect("User/Index");
+            }
+            else
+            {
+                var viewModel = new CourseHome
+                {
+                    CourseId = course.CourseId,
+                    UserRole = _auth.getUser().Role,
+                    Department = dept.DeptName,
+                    CourseNum = course.CourseNum,
+                    Assignments = assigns,
+                    Quizzes = quizzes,
+                    studentQuizzes = stuQuizes
+                };
+                return View(viewModel);
+            }
+
+        }
+        public ActionResult Quiz(int id, int quizId)
         {
             var user = _auth.getUser();
 
@@ -470,11 +526,12 @@ namespace TGTOAT.Controllers
                 return RedirectToAction("Login", "User");
             }
 
-            var quizInfo = _context.Quizzes.FirstOrDefault(q => q.QuizId == id);
+            var quizInfo = _context.Quizzes.FirstOrDefault(q => q.QuizId == quizId);
 
-            AddQuizViewModel quiz = new AddQuizViewModel
+            var quiz = new TakeQuizModel
             {
-                QuizId = id,
+                CourseId = id,
+                QuizId = quizId,
                 QuizName = quizInfo.QuizName,
                 QuizDescription = quizInfo.QuizDesc,
                 QuizPoints = quizInfo.MaxPoints,
@@ -542,6 +599,178 @@ namespace TGTOAT.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> SubmitQuiz(TakeQuizModel model)
+        {
+            var user = _auth.getUser();
+
+            if (user == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            var quizInfo = _context.Quizzes.FirstOrDefault(q => q.QuizId == model.QuizId);
+
+            string questions = quizInfo.Questions;
+            string submission = model.Submission;
+
+            var graded = "";
+            var gradePoints = 0;
+
+            var qPart = questions.Split("з");
+            var sPart = submission.Split("з");
+
+            for (var i = 0; i < qPart.Length; i++)
+            {
+                var qType = qPart[i].Split("д");
+                var sType = sPart[i].Split("д");
+
+                if (sType[0] == "2")
+                {
+                    var qPoints = qType[1].Split("п");
+                    var sPoints = sType[1].Split("п");
+
+                    var qCorrect = qPoints[0].Split("ж");
+                    var sCorrect = sPoints[0].Split("ж");
+
+                    var actualPoints = sPoints[1].Split("/");
+
+                    if (sCorrect[1] == qCorrect[1])
+                    {
+                        actualPoints[0] = actualPoints[1];
+                    }
+                    gradePoints += Int32.Parse(actualPoints[0]);
+
+                    graded += (sType[0]);
+                    graded += ("д");
+                    graded += (sCorrect[0]);
+                    graded += ("ж");
+                    graded += (sCorrect[1]);
+                    graded += ("п");
+                    graded += (actualPoints[0] + "/" + actualPoints[1]);
+                    graded += ("з");
+
+                }
+                else
+                {
+                    graded += (sPart[i]);
+                    graded += ("з");
+                }
+            }
+
+            var StudentQuiz = new StudentQuizzes
+            {
+                QuizId = model.QuizId,
+                StudentId = user.UserId,
+                Points = gradePoints,
+                Submitted = DateTime.UtcNow,
+                Submission = graded
+            };
+
+            _context.StudentQuizzes.Add(StudentQuiz);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("ViewQuiz", new { id = model.CourseId, quizId = model.QuizId });
+
+        }
+
+        public ActionResult ViewQuiz(int id, int quizId)
+        {
+            {
+                var user = _auth.getUser();
+
+                if (user == null)
+                {
+                    return RedirectToAction("Login", "User");
+                }
+
+                var quizInfo = _context.Quizzes.FirstOrDefault(q => q.QuizId == quizId);
+                var submittedQuiz = _context.StudentQuizzes.FirstOrDefault(q => q.QuizId == quizId && q.StudentId == user.UserId);
+
+                var quiz = new TakeQuizModel
+                {
+                    UserRole = user.Role,
+                    CourseId = id,
+                    QuizId = quizId,
+                    QuizName = quizInfo.QuizName,
+                    QuizDescription = quizInfo.QuizDesc,
+                    Points = submittedQuiz.Points.Value,
+                    QuizPoints = quizInfo.MaxPoints,
+                    NumQuestions = quizInfo.NumQuestions,
+                    Questions = submittedQuiz.Submission,
+                    Submitted = submittedQuiz.Submitted,
+                    DueDateAndTime = quizInfo.DueDate
+                };
+
+                return View(quiz);
+
+            }
+        }
+
+        public ActionResult GradeQuiz(int id, int quizId, int stuId)
+        {
+            {
+                var user = _auth.getUser();
+
+                if (user == null)
+                {
+                    return RedirectToAction("Login", "User");
+                }
+
+                var quizInfo = _context.Quizzes.FirstOrDefault(q => q.QuizId == quizId);
+                var submittedQuiz = _context.StudentQuizzes.FirstOrDefault(q => q.QuizId == quizId && q.StudentId == stuId);
+
+                var quiz = new TakeQuizModel
+                {
+                    stuId = stuId,
+                    UserRole = user.Role,
+                    CourseId = id,
+                    QuizId = quizId,
+                    QuizName = quizInfo.QuizName,
+                    QuizDescription = quizInfo.QuizDesc,
+                    Points = submittedQuiz.Points.Value,
+                    QuizPoints = quizInfo.MaxPoints,
+                    NumQuestions = quizInfo.NumQuestions,
+                    Questions = submittedQuiz.Submission,
+                    Submitted = submittedQuiz.Submitted,
+                    DueDateAndTime = quizInfo.DueDate
+                };
+
+                return View(quiz);
+
+            }
+        }
+
+        public async Task<IActionResult> UpdateQuizScore(TakeQuizModel model)
+        {
+            {
+                var user = _auth.getUser();
+
+                if (user == null)
+                {
+                    return RedirectToAction("Login", "User");
+                }
+
+
+                var quiz = new StudentQuizzes
+                {
+                    QuizId = model.QuizId,
+                    StudentId = model.stuId,
+                    Submission = model.Questions,
+                    Points = model.Points,
+                    Submitted = model.Submitted
+                };
+
+
+                _context.StudentQuizzes.Update(quiz);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("ViewSubmissions", new { id = model.CourseId, quizId = model.QuizId } );
+
+            }
+        }
+
         #endregion
 
         #region Calendar
@@ -755,33 +984,96 @@ namespace TGTOAT.Controllers
 
         #region Submissions
 
-        public ActionResult ViewSubmissions(int assignmentId)
+        //Assignments
+        public ActionResult ViewSubmissions(int id, int subId)
         {
-            var submissions = _context.StudentAssignment
-                .Where(sa => sa.AssignId == assignmentId)
-                .ToList();
+            var currInstruct = _auth.getUser();
 
-            var Submissions = new List<StudentSubmission>();
-
-            foreach (var s in submissions)
+            if (currInstruct == null)
             {
-
-                var assigns = _context.Assignments.First(a => a.AssignId == assignmentId);
-                var sInfo = _context.UserInfo.First(ui => ui.UserId == s.StudentId);
-
-                var submission = new StudentSubmission
-                {
-                    StudentFullName = (sInfo.FirstName + " " + sInfo.LastName),
-
-                    SubmissionDate = s.Submitted,
-                    MaxPoints = assigns.MaxPoints,
-                    GivenPoints = s.Points.HasValue ? s.Points.Value.ToString() : "UG",
-                    AssignmentId = s.AssignId,
-                    StudentId = s.StudentId
-                };
-                Submissions.Add(submission);
+                return RedirectToAction("Login", "User");
             }
-            return View(Submissions);
+
+            var type = Request.QueryString;
+            var typeInt = type.ToString().Split("=");
+            subId = int.Parse(typeInt[1]);
+
+            if (type.ToString().Contains("assignmentId"))
+            {
+                var submissions = (from sa in _context.StudentAssignment
+                                   where sa.AssignId == subId
+                                   select sa).ToList();
+
+                var Submissions = new List<StudentSubmission>();
+
+                foreach (var s in submissions)
+                {
+
+                    var assigns = _context.Assignments.First(a => a.AssignId == subId);
+                    var sInfo = _context.UserInfo.First(ui => ui.UserId == s.StudentId);
+
+                    var submission = new StudentSubmission
+                    {
+                        StudentFullName = (sInfo.FirstName + " " + sInfo.LastName),
+
+                        SubmissionDate = s.Submitted,
+                        MaxPoints = assigns.MaxPoints,
+                        GivenPoints = s.Points.HasValue ? s.Points.Value.ToString() : "UG",
+                        AssignmentId = s.AssignId,
+                        StudentId = s.StudentId
+                    };
+                    Submissions.Add(submission);
+
+                }
+
+                var AllSubs = new AllSubmissions
+                {
+                    type = "assignment",
+                    CourseId = id,
+                    Submissions = Submissions
+                };
+                return View(AllSubs);
+            }
+            else if (type.ToString().Contains("quizId"))
+            {
+                var submissions = (from sq in _context.StudentQuizzes
+                                   where sq.QuizId == subId
+                                   select sq).ToList();
+
+                Console.WriteLine(subId);
+
+                var Submissions = new List<StudentSubmission>();
+
+                foreach (var s in submissions)
+                {
+
+                    var quizzes = _context.Quizzes.First(a => a.QuizId == subId);
+                    var sInfo = _context.UserInfo.First(ui => ui.UserId == s.StudentId);
+
+                    var submission = new StudentSubmission
+                    {
+                        StudentFullName = (sInfo.FirstName + " " + sInfo.LastName),
+
+                        SubmissionDate = s.Submitted,
+                        MaxPoints = quizzes.MaxPoints,
+                        GivenPoints = s.Points.HasValue ? s.Points.Value.ToString() : "UG",
+                        AssignmentId = s.QuizId,
+                        StudentId = s.StudentId
+                    };
+                    Submissions.Add(submission);
+
+                }
+
+                var AllSubs = new AllSubmissions
+                {
+                    type = "quiz",
+                    CourseId = id,
+                    Submissions = Submissions
+                };
+                return View(AllSubs);
+            }
+
+            return RedirectToAction("Login", "User");
         }
 
         public ActionResult ViewSubmission(int assignmentId, int studentId)
@@ -1081,13 +1373,13 @@ namespace TGTOAT.Controllers
                 .ToList();
 
             var gradeDistribution = new List<KeyValuePair<string, int>>()
-    {
-        new KeyValuePair<string, int>("<60%", studentConnections.Count(g => g < 60)),
-        new KeyValuePair<string, int>("60-70%", studentConnections.Count(g => g >= 60 && g <= 70)),
-        new KeyValuePair<string, int>("71-80%", studentConnections.Count(g => g >= 71 && g <= 80)),
-        new KeyValuePair<string, int>("81-90%", studentConnections.Count(g => g >= 81 && g <= 90)),
-        new KeyValuePair<string, int>("91-100%", studentConnections.Count(g => g >= 91))
-    };
+            {
+                new KeyValuePair<string, int>("<60%", studentConnections.Count(g => g < 60)),
+                new KeyValuePair<string, int>("60-70%", studentConnections.Count(g => g >= 60 && g <= 70)),
+                new KeyValuePair<string, int>("71-80%", studentConnections.Count(g => g >= 71 && g <= 80)),
+                new KeyValuePair<string, int>("81-90%", studentConnections.Count(g => g >= 81 && g <= 90)),
+                new KeyValuePair<string, int>("91-100%", studentConnections.Count(g => g >= 91))
+            };
 
             var viewModel = new CourseGradeViewModel
             {

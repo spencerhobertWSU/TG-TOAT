@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Hf57u1fbGIIZ/Uc7Ds4o0TscRRWeSzRNdRwaJA8GlUM=",
+  "Hash": "pgbnNmo9gtMB1WsWAlzYT7MU3PY6aW73J9WzdbQCC8o=",
   "Source": "TG-TOAT",
   "BasePath": "_content/TG-TOAT",
   "Mode": "Default",
@@ -8869,6 +8869,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\courses.js"
+    },
+    {
+      "Identity": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\js\\quizCompile.js",
+      "SourceId": "TG-TOAT",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\",
+      "BasePath": "_content/TG-TOAT",
+      "RelativePath": "js/quizCompile.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\quizCompile.js"
     },
     {
       "Identity": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\js\\quizzes.js",

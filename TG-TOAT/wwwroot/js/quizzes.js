@@ -1,5 +1,4 @@
-﻿
-function updateNumQuest() {
+﻿function updateNumQuest() {
     var quest = document.getElementById("numQuestions");
     var questions = document.getElementById("Questions")
 
@@ -81,32 +80,31 @@ function updatemc(mcNum) {
 
     choices.innerHTML = newChoices
 }
+var maxPoints = 0
 
 function updatePoints() {
     var overallPoints = document.getElementById("QuizPoints")
     var quest = document.getElementById("numQuestions");
-    var points = 0
 
+    var totalq = Number(quest.value)
 
-    let totalq = Number(quest.value)
-
+    maxPoints = 0
 
     for (let i = 1; i < totalq + 1; i++) {
         var newPoints = document.getElementById('p' + i).value;
         newPoints = Number(newPoints)
 
-        points += newPoints;
+        maxPoints += newPoints;
     }
     overallPoints.value = "";
 
-    overallPoints.value = points;
+    overallPoints.value = maxPoints;
 }
 
 
 function submitQuiz() {
     var overallPoints = document.getElementById("QuizPoints")
     var quest = document.getElementById("numQuestions");
-    var points = 0
 
     let totalq = Number(quest.value)
 
@@ -116,6 +114,14 @@ function submitQuiz() {
         var select = document.getElementById("select" + i)
         var question = document.getElementById("q" + i)
         var points = document.getElementById("p" + i)
+
+        var date = document.getElementById("dueDate")
+        var time = document.getElementById("dueTime")
+        var due = document.getElementById("dueDateAndTime")
+
+        due.value = (date.value + "T" + time.value)
+
+        //console.log(due.value)
 
         allquestions += select.value
         allquestions += "д"
@@ -127,9 +133,11 @@ function submitQuiz() {
 
             numChoices = Number(numChoices)
 
+            allquestions += "ж";
+
             for (let j = 1; j < numChoices+1; j++) {
 
-                console.log('q' + i + 'r' + j)
+                //console.log('q' + i + 'r' + j)
 
                 var radio = document.getElementById('q' + i+'r'+j)
                 var text = document.getElementById('q' + i + 't' + j)
@@ -147,6 +155,61 @@ function submitQuiz() {
 
         allquestions += "з"
     }
+    overallPoints.value = maxPoints;
+    overallPoints.disabled = false;
     document.getElementById("hideQuest").value = allquestions
+}
+
+function compilePoints() {
+    var grades = document.getElementsByClassName("currGrade");
+    var quests = document.getElementById("fullQuest")
+    var parts = quests.value.split("з")
+
+    var aspPoints = document.getElementById("Points")
+
+    var updatedPoints = 0
+
+    var fullQuestion = ""
+
+    for (let h = 0; h < grades.length; h++) {
+        //console.log(grades[h].value);
+
+        for (let k = 0; k < parts.length; k++) {
+            //console.log(parts[k])
+            if (parts[k].includes("1д")) {
+                var nowGraded = ""
+
+                var points = parts[k].split("п")
+                var notGraded = points[1].split("/")
+                notGraded[0] = grades[h].value;
+
+                //console.log(notGraded[0] + "/" + notGraded[1]);
+
+                nowGraded += points[0];
+                nowGraded += "п";
+                nowGraded += notGraded[0] + "/" + notGraded[1];
+                parts[k] = nowGraded;
+
+            }
+            if (parts[k] != "") {
+                fullQuestion += parts[k] + "з"
+
+
+                var newPoints = parts[k].split("п");
+                //console.log(newPoints[1]);
+                var slash = newPoints[1].split("/")
+
+                updatedPoints += Number(slash[0])
+            }
+
+
+        }
+
+    }
+    //quests.style.display = "block";
+    quests.value = fullQuestion;
+    //aspPoints.style.display = "block";
+    aspPoints.value = updatedPoints;
+    
 }
 

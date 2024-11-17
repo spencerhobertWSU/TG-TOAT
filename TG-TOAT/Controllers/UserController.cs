@@ -23,6 +23,8 @@ using Stripe.Issuing;
 using Models;
 using Azure;
 using System.Drawing;
+using OpenQA.Selenium.BiDi.Modules.Script;
+using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow;
 
 namespace TGTOAT.Controllers
 {
@@ -215,6 +217,7 @@ namespace TGTOAT.Controllers
                     };
 
                     _auth.setUser(User);
+                    _auth.updateRegistration();
                     _auth.setIndex();
 
                     return Redirect("User/Index");
@@ -348,63 +351,8 @@ namespace TGTOAT.Controllers
                 return RedirectToAction("Login");
             }
 
-            var courses = (from db in _context.Courses select db).ToList();
-
-            var Courses = new List<CourseInfo>();
-
-            foreach (var c in courses)
-            {
-
-                var deptinfo = _context.Departments.First(d => d.DeptId == c.DeptId);
-
-                int instructorId = _context.InstructorConnection.First(ic => ic.CourseId == c.CourseId).InstructorId;
-
-                string instructorFName = _context.UserInfo.First(u => u.UserId == instructorId).FirstName;
-                string instructorLName = _context.UserInfo.First(u => u.UserId == instructorId).LastName;
-
-                string instructor = instructorFName + " " + instructorLName;
-
-                var CourseModel = new CourseInfo
-                {
-                    
-                    CourseId = c.CourseId,
-                    DeptID = deptinfo.DeptId,
-                    DeptName = deptinfo.DeptName,
-                    CourseNumber = c.CourseNum,
-                    NumberOfCredits = c.Credits,
-                    CourseName = c.CourseName,
-                    Campus = c.Campus,
-                    Building = c.Building,
-                    Room = c.Room,
-                    DaysOfTheWeek = c.Days,
-                    StartTime = c.StartTime,
-                    EndTime = c.StopTime,
-                    Capacity = c.Capacity,
-                    Semester = c.Semester,
-                    Year = c.Year,
-                    Instructor = instructor,
-                    CourseDescription = c.CourseDesc,
-                };
-                Courses.Add(CourseModel);
-
-            };
-
-            var StudentCourses = (from connection in _context.StudentConnection
-                                  join course in _context.Courses on connection.CourseId equals course.CourseId
-                                  where connection.StudentId == user.UserId
-                                  select connection).ToList();
-
-
-
-            var RegisterCourses = new CourseRegisterViewModel
-            {
-                Courses = Courses,
-                CurrentStudent = user.UserId,
-                StudentConnection = StudentCourses,
-                Departments = _context.Departments.ToList(),
-            };
-
-
+            var RegisterCourses = _auth.getRegistration();
+            
             ViewBag.ErrorMessage = TempData["ErrorMessage"] as string;
             ViewBag.SuccessMessage = TempData["SuccessMessage"] as string;
             //ViewBag.InfoMessage = 
@@ -512,7 +460,6 @@ namespace TGTOAT.Controllers
             return View("CourseRegistration", RegisterCourses); // Return the view with the filtered courses
         }
 
-        
         [HttpPost]
         public IActionResult Register(int CourseId)
         {
@@ -537,7 +484,7 @@ namespace TGTOAT.Controllers
                 return RedirectToAction("CourseRegistration");
             }
 
-            string randomColor = (Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256))).ToString();
+            //string randomColor = (Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256))).ToString();
 
             var connection = new StudentConnection
             {
@@ -564,26 +511,26 @@ namespace TGTOAT.Controllers
         [HttpPost]
         public IActionResult Drop(int CourseId)
         {
-            var userIdInt = _auth.getUser().UserId;
-            var userIdString = userIdInt.ToString();
-            if (string.IsNullOrEmpty(userIdString))
+            var user = _auth.getUser();
+
+            if (string.IsNullOrEmpty(user.UserId.ToString()))
             {
                 return Unauthorized();
             }
 
-            if (!int.TryParse(userIdString, out int userId))
+            if (!int.TryParse(user.UserId.ToString(), out int userId))
             {
                 TempData["ErrorMessage"] = "Invalid user ID format.";
                 return RedirectToAction("CourseRegistration");
             }
 
             var connection = _context.StudentConnection
-                .FirstOrDefault(uc => uc.StudentId == userId && uc.CourseId == CourseId);
+                .FirstOrDefault(c => c.StudentId == user.UserId && c.CourseId == CourseId);
 
             if (connection != null)
             {
                 // Remove dues from the users account (connection always had null User and Courses, so I did it this way)
-                var user = _context.User.FirstOrDefault(u => u.UserId == userId);
+                var userUpdate = _context.User.FirstOrDefault(u => u.UserId == user.UserId);
                 var course = _context.Courses.FirstOrDefault(c => c.CourseId == CourseId);
                 var tuition = _context.Tuition.First(t => t.UserId == userId);
 
@@ -595,9 +542,12 @@ namespace TGTOAT.Controllers
                     tuition.AmountDue = 0;
                 }
 
-                _context.User.Update(user);
-                _context.StudentConnection.Remove(connection);
-                _context.Tuition.Update(tuition);
+                _context.User.Update(userUpdate);
+                var studentClasses = _context.Database.ExecuteSqlRaw(
+                    "DELETE FROM StudentConnection WHERE StudentId = {0} AND CourseId = {1}",
+                    user.UserId, CourseId
+                );
+
                 _context.SaveChanges();
                 TempData["SuccessMessage"] = "Successfully Dropped for the course!";
                 return RedirectToAction("CourseRegistration"); // Redirect back to the course registration page
@@ -627,6 +577,7 @@ namespace TGTOAT.Controllers
             return View(user);
         }
         */
+
         #region Account Editing
         // GET: User/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -746,21 +697,19 @@ namespace TGTOAT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateUserName(AccountViewModel model)
         {
-            if (ModelState.IsValid)
+            var user = _auth.getUser();
+            var userName = _context.UserInfo.First(un => un.UserId == user.UserId);
+
+            
+
+            UserInfo newName = new UserInfo
             {
-                var user = _auth.getUser();
-                var userName = _context.UserInfo.First(un => un.UserId == user.UserId);
-
-                UserInfo newName = new UserInfo
-                {
-                    UserId = user.UserId,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                };
-
-                _context.UserInfo.Update(newName);
-                await _context.SaveChangesAsync();
-            }
+                UserId = user.UserId,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+            };
+            _context.UserInfo.Update(newName);
+            await _context.SaveChangesAsync();
 
             return RedirectToAction("Account");
         }

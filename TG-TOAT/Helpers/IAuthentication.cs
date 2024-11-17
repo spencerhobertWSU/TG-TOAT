@@ -13,7 +13,10 @@ public interface IAuthentication
     public void setIndex();
 
     public UserIndexViewModel getIndex();
-    
+
+    public void updateRegistration();
+    public CourseRegisterViewModel getRegistration();
+
     public string createToken(int ranNum);
 
     public void CreateNotification(string message, int studentId);

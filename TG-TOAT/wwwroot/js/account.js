@@ -76,7 +76,7 @@ function saveAdd() {
     let confirmSave = confirm("Are you sure you want to save the changes?");
     if (confirmSave) {
         // Disable editing
-        inputs.forEach(input => input.setAttribute('readonly', 'readonly'));
+        //inputs.forEach(input => input.setAttribute('readonly', 'readonly'));
         showToast();
         button.innerText = 'Edit';
         submitButton.style.display = 'none'; // Hide the submit button
@@ -95,7 +95,7 @@ function saveName() {
     let confirmSave = confirm("Are you sure you want to save the changes?");
     if (confirmSave) {
         // Disable editing
-        inputs.forEach(input => input.setAttribute('disabled', 'disabled'));
+        //inputs.forEach(input => input.setAttribute('disabled', 'disabled'));
         showToast();
         button.innerText = 'Edit';
         submitButton.style.display = 'none'; // Hide the submit button

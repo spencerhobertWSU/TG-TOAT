@@ -1621,6 +1621,10 @@
       "PackagePath": "staticwebassets\\js\\courses.js"
     },
     {
+      "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\js\\quizCompile.js",
+      "PackagePath": "staticwebassets\\js\\quizCompile.js"
+    },
+    {
       "Id": "F:\\git merges\\TG-TOAT\\TG-TOAT\\wwwroot\\js\\quizzes.js",
       "PackagePath": "staticwebassets\\js\\quizzes.js"
     },

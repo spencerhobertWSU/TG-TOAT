@@ -12,5 +12,7 @@ namespace Models
         public List<Notifications> Notifications { get; set; } // Adjust type as needed
 
         public List<Quizzes> Quizzes { get; set; }
+
+        public List<StudentQuizzes> studentQuizzes { get; set; }
     }
 }

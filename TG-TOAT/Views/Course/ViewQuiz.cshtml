@@ -1,0 +1,152 @@
+﻿@model TakeQuizModel
+
+@{
+    ViewData["Title"] = "View Quiz";
+
+    Layout = "~/Views/Shared/_StudentCourse.cshtml";
+
+}
+
+<h1 class="h1-course">@Model.QuizName</h1>
+
+<div class="d-flex justify-content-between">
+    <div class="justify-content-left">
+
+        
+
+        <h3>@Model.QuizDescription</h3>
+        <h4>Due - @Model.DueDateAndTime</h4>
+        <h4>Submitted</h4>
+        @{
+            if (Model.Submitted > Model.DueDateAndTime)
+            {
+                <h5>@Model.Submitted - <span class="incorrect">Late</span></h5>
+            }
+            else
+            {
+                <h5>@Model.Submitted</h5>
+            }
+        }
+    </div>
+
+    <div class="justify-content-right">
+        <h5>@Model.Points/@Model.QuizPoints Points</h5>
+    </div>
+</div>
+
+
+
+<!--
+<div class="question-nav">
+@for (int i = 1; i < Int32.Parse(Model.NumQuestions) + 1; i++)
+{
+            <p>Question @i</p>
+}
+</div>
+-->
+
+<form asp-action="SubmitQuiz" asp-controller="Course" method="post">
+    <div class="container ">
+        <input id="quizSub" asp-for="Submission" style="display:none;" />
+        <p style="display:none;" id="numQuest">@(Int32.Parse(Model.NumQuestions) + 1)</p>
+
+        @{
+            string[] wholeQuestion = Model.Questions.Split('з');
+            int rb = 1;
+            int rbl = 1;
+            for (int i = 0; i < Int32.Parse(Model.NumQuestions); i++)
+            {
+
+                string[] points = wholeQuestion[i].Split('п');
+                <div class="questCard">
+                    <div class="questTop">
+                        <h4 class="questTitle">Question @(i + 1)</h4>
+                        <h6 class="questPoint">@points[1] Points</h6>
+                        @{
+                            var slashP = points[1].Split('/');
+                        }
+                    </div>
+                    @{
+                        string[] type = points[0].Split('д');
+                        var input = type[1].Split('ж');
+                    }
+
+                    @{
+                        if (Int32.Parse(type[0]) == 1)
+                        {
+                            <div class="questBot form-group">
+                                <h5 class="question">@input[0]</h5>
+                                <div class="row justify-content-center">
+                                    <div class="form-group col-md-8">
+                                        <textarea class="form-control text-entry" disabled>@input[1]</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            var ans = type[1].Split("ж");
+                            string[] mc = ans[1].Split('ч');
+                            <div class="questBot">
+                                <h5 class="question">@ans[0]</h5>
+                                @{
+                                    for (int j = 1; j < mc.Length; j++)
+                                    {
+                                        if (mc[j].Contains("г"))
+                                        {
+                                            var ca = mc[j].Split("г");
+                                            mc[j] = ca[1];
+                                            <div class="form-group">
+                                                @{
+                                                    if (slashP[0] == slashP[1])
+                                                    {
+                                                        <input class="mcChoice correct" type="radio" name="radioChoice@(rbl)" id="radioChoice@(rb)" checked disabled>
+                                                        <label class="correct" for="radioChoice@(rb)">@mc[j]</label>
+                                                    }
+                                                    else
+                                                    {
+                                                        <input class="mcChoice incorrect" type="radio" name="radioChoice@(rbl)" id="radioChoice@(rb)" checked disabled>
+                                                        <label class="incorrect" for="radioChoice@(rb)">@mc[j]</label>
+                                                    }
+                                                }
+                                                
+                                                
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="form-group">
+                                                <input class="mcChoice" type="radio" name="radioChoice@(rbl)" id="radioChoice@(rb)" required disabled>
+                                                <label for="radioChoice@(rb)">@mc[j]</label>
+                                            </div>
+                                        }
+
+
+                                        rb++;
+                                    }
+
+                                }
+                                @{
+                                    rbl++;
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+                <p></p>
+            }
+        }
+
+    </div>
+
+    
+</form>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script src="~/js/quizCompile.js" asp-append-version="true"></script>

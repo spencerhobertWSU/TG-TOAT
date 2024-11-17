@@ -28,8 +28,14 @@
         </div>
 
         <div class="form-group">
-            <label asp-for="DueDateAndTime">Quiz Due Date and Time</label>
-            <input asp-for="DueDateAndTime" type="datetime-local" class="form-control" id="dueDateAndTime" name="DueDateAndTime" required />
+            <label for="DueDate">Assignment Due Date</label>
+            <input for="DueDate" type="date" class="form-control" id="dueDate" name="DueDate" required />
+        </div>
+
+        <div class="form-group">
+            <label for="DueTime">Assignment Due Time</label>
+            <input for="DueTime" type="time" class="form-control" id="dueTime" name="DueTime" value="23:59" required />
+            <input asp-for="DueDateAndTime" type="datetime-local" class="form-control hiddenDate" id="dueDateAndTime" name="DueDateAndTime" required />
         </div>
 
         <div class="form-group">

@@ -287,6 +287,7 @@ nav li a:hover {
     position: sticky;
     margin margin-left: 20px;
     width: 13vw;
+    min-width: 130px;
 }
 
     .course-nav a {
@@ -502,7 +503,23 @@ nav li a:hover {
 /*#endregion*/
 
 /*#region Quizzes*/
-.questionRow{
+.incorrect {
+    color: #994949;
+}
+
+.correct {
+    color: #93A334;
+}
+
+.assignCont{
+    justify-content: space-evenly
+}
+
+.add-btn {
+    height: 5vh;
+}
+
+.questionRow {
     margin: auto;
     width: 100%;
     display: grid;
@@ -545,7 +562,9 @@ nav li a:hover {
 }
 
 .questTop {
-    border-bottom: 5px solid #FFBFBF;
+    border-bottom: 5px solid rgba(153, 73, 73, .8);
+    display: flex;
+    justify-content: space-between;
 }
 
 .questTop p{
@@ -555,6 +574,12 @@ nav li a:hover {
 .questPointP{
     text-align: right;
 }
+
+.text-entry{
+    width: 90%;
+    height: 15vh;
+}
+
 /*#endregion*/
 
 /*#region Courses*/
@@ -562,7 +587,14 @@ h1 {
     text-align: center;
 }
 
-.hiddenDate{
+
+#score-distribution-chart{
+    width: 80vw !important;
+    height: 50vh !important;
+    z-index: 1;
+}
+
+.hiddenDate {
     display: none;
 }
 
@@ -632,10 +664,12 @@ input[type="file"] {
     }
 
 .course-table {
+    position: relative;
     width: 80%;
     margin: auto;
     overflow-x: scroll;
     min-width: 1480px;
+    z-index: 2;
     
 }
 
@@ -649,6 +683,16 @@ input[type="file"] {
 }
 
 /*#endregion*/
+
+
+.submission-table {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    overflow-x: scroll;
+    min-width: 750px;
+    z-index: 2;
+}
 
 /*#region Screen Sizes*/
 

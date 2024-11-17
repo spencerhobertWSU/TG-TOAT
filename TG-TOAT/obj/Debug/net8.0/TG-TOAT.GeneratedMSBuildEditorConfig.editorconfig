@@ -54,6 +54,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/git merges/TG-TOAT/TG-TOAT/Views/Course/GradeQuiz.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXEdyYWRlUXVpei5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/git merges/TG-TOAT/TG-TOAT/Views/Course/Grades.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXEdyYWRlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -66,12 +70,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXFF1aXouY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/git merges/TG-TOAT/TG-TOAT/Views/Course/Quizzes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXFF1aXp6ZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/git merges/TG-TOAT/TG-TOAT/Views/Course/SubmitAssignment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXFN1Ym1pdEFzc2lnbm1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [F:/git merges/TG-TOAT/TG-TOAT/Views/Course/SubmitPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXFN1Ym1pdFBhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/git merges/TG-TOAT/TG-TOAT/Views/Course/ViewQuiz.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXFZpZXdRdWl6LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [F:/git merges/TG-TOAT/TG-TOAT/Views/Course/ViewSubmission.cshtml]

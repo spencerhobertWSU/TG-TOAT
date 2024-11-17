@@ -26,11 +26,11 @@
         <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Index" asp-route-id="@Model.CourseId">
             Home
         </a>
-        <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Announcements" asp-route-id="@Model.CourseId">
-            Announcements
-        </a>
         <a class="nav-link course-curr" asp-area="" asp-controller="Course" asp-action="Assignments" asp-route-id="@Model.CourseId">
             Assignments
+        </a>
+        <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Quizzes" asp-route-id="@Model.CourseId">
+            Quizzes
         </a>
         <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Grades" asp-route-id="@Model.CourseId">
             Grades
@@ -61,33 +61,12 @@
 
                     </div>
                 }
-                @foreach (var quiz in Model.Quizzes)
-                {
-                    <div class="row" style="align-items: center;">
-                        <!-- Assignment details -->
-                        <div class="col-md-6 text-left">
-                            @quiz.QuizName @quiz.DueDate.ToString("MM/dd/yyyy hh:mm tt")
-                        </div>
-
-                        <!-- Submit -->
-                        <div class="col-md-6 text-right">
-                            <div class="col-md-6 text-right">
-                                <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="Quiz" asp-route-id="@quiz.QuizId">
-                                    Take
-                                </a>
-                            </div>
-
-                        </div>
-
-                    </div>
-                }
+                
             }
             else if (Model.UserRole == "Instructor")
             {
-                <div class="container">
-
+                <div class="container add-btn">
                     <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-route-id="@Model.CourseId" asp-action="AddAssignment">Add Assignment</a>
-                    <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-route-id="@Model.CourseId" asp-action="AddQuiz">Add Quiz</a>
                 </div>
 
                 @foreach (var assignment in Model.Assignments)
@@ -97,25 +76,13 @@
                             <strong>@assignment.AssignName</strong> - Due: @assignment.DueDate.ToString("MM/dd/yyyy hh:mm tt")
                         </div>
                         <div class="col-md-6 text-right">
-                            <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="ViewSubmissions" asp-route-assignmentId="@assignment.AssignId">
+                            <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="ViewSubmissions" asp-route-id="@Model.CourseId" asp-route-assignmentId="@assignment.AssignId">
                                 View Submissions
                             </a>
                         </div>
                     </div>
                 }
-                @foreach (var quiz in Model.Quizzes)
-                {
-                    <div class="row" style="align-items: center;">
-                        <div class="col-md-6 text-left">
-                            <strong>@quiz.QuizName</strong> - Due: @quiz.DueDate.ToString("MM/dd/yyyy hh:mm tt")
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="ViewSubmissions" asp-route-assignmentId="@quiz.QuizId">
-                                View Submissions
-                            </a>
-                        </div>
-                    </div>
-                }
+
             }
 
         }

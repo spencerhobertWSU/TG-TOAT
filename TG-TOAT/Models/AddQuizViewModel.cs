@@ -3,6 +3,7 @@ namespace Models
 {
     public class AddQuizViewModel
     {
+        
         // Primary Key for the Assignment
         public int QuizId { get; set; }
 
@@ -20,7 +21,7 @@ namespace Models
 
 
         [Required(ErrorMessage = "Quiz points are required.")]
-        [Range(0, int.MaxValue, ErrorMessage = "Points must be a positive number.")]
+        [Range(0, 1000, ErrorMessage = "Points must be a positive number.")]
         public int QuizPoints { get; set; }
 
         [StringLength(1000, MinimumLength = 1, ErrorMessage = "Assignment type must be between 1 and 60 characters.")]

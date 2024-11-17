@@ -2553,7 +2553,23 @@
           }
         }
       },
-      "Selenium.WebDriver/4.25.0": {
+      "Selenium.Support/4.26.1": {
+        "type": "package",
+        "dependencies": {
+          "Selenium.WebDriver": "4.26.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/WebDriver.Support.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/WebDriver.Support.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Selenium.WebDriver/4.26.1": {
         "type": "package",
         "compile": {
           "lib/net8.0/WebDriver.dll": {
@@ -3238,7 +3254,8 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.5",
           "Pomelo.EntityFrameworkCore.MySql": "8.0.2",
-          "Selenium.WebDriver": "4.25.0",
+          "Selenium.Support": "4.26.1",
+          "Selenium.WebDriver": "4.26.1",
           "Stripe.net": "46.1.0"
         },
         "compile": {
@@ -7650,10 +7667,24 @@
         "pomelo.entityframeworkcore.mysql.nuspec"
       ]
     },
-    "Selenium.WebDriver/4.25.0": {
-      "sha512": "0g/9I5ennfL2ZaQoXsfEPj+GcqrKlcVr1yxh3C/Eed/acNZrC38OaXLorsuHdAHiGn+QySV3iz8/hFcOXvVcoA==",
+    "Selenium.Support/4.26.1": {
+      "sha512": "fvDpwaH0QLcrlboEyX6KR0DuK5IiHrip7V0o21zUG+dTZ3PlD9DvpAESqhnnv47083fk4Cd0Ee7JjVCpDRuFng==",
       "type": "package",
-      "path": "selenium.webdriver/4.25.0",
+      "path": "selenium.support/4.26.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/netstandard2.0/WebDriver.Support.dll",
+        "lib/netstandard2.0/WebDriver.Support.xml",
+        "selenium.support.4.26.1.nupkg.sha512",
+        "selenium.support.nuspec"
+      ]
+    },
+    "Selenium.WebDriver/4.26.1": {
+      "sha512": "f0t/Oo9l2aK+znAv/McTPSz6p0fSoIYMZpkHql1ndItqu1n6PGXE1XRhziVk2zwG3RBUzEfIr6r/emkl6sP63w==",
+      "type": "package",
+      "path": "selenium.webdriver/4.26.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7668,7 +7699,7 @@
         "manager/linux/selenium-manager",
         "manager/macos/selenium-manager",
         "manager/windows/selenium-manager.exe",
-        "selenium.webdriver.4.25.0.nupkg.sha512",
+        "selenium.webdriver.4.26.1.nupkg.sha512",
         "selenium.webdriver.nuspec"
       ]
     },
@@ -9016,7 +9047,7 @@
       "Microsoft.EntityFrameworkCore.InMemory >= 8.0.10",
       "Microsoft.NET.Test.Sdk >= 17.8.0",
       "Moq >= 4.20.72",
-      "Selenium.WebDriver >= 4.25.0",
+      "Selenium.WebDriver >= 4.26.1",
       "TG-TOAT >= 1.0.0",
       "coverlet.collector >= 6.0.0"
     ]
@@ -9092,7 +9123,7 @@
           },
           "Selenium.WebDriver": {
             "target": "Package",
-            "version": "[4.25.0, )"
+            "version": "[4.26.1, )"
           },
           "coverlet.collector": {
             "target": "Package",

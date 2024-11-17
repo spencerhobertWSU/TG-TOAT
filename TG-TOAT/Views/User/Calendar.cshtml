@@ -18,6 +18,31 @@
     }
 }
 
+<style>
+    /* Make event text more readable */
+    .fc-event-title {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        font-weight: 600;
+        padding: 2px;
+        color: rgb(255, 255, 255) !important;
+    }
+
+    /* Style for month view events */
+    .fc-daygrid-event {
+        border-radius: 3px;
+        margin: 1px 0;
+        background-opacity: 0.3;
+    }
+
+    
+
+    /* Style for the day numbers */
+    .fc-daygrid-day-number {
+        color: #ffffff;
+        padding: 5px;
+    }
+</style>
+
 <!-- Calendar Container -->
 <div id="calendar"></div>
 
@@ -33,6 +58,8 @@
                 center: 'title',           // Calendar title
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'  // Month, Week, Day views
             },
+            slotMinTime: '07:00:00',  // Start calendar at 7 AM
+            slotMaxTime: '22:00:00',  // End calendar at 10 PM
             views: {
                 dayGridMonth: {  // Month view
                     buttonText: 'Month'
@@ -44,27 +71,54 @@
                     buttonText: 'Day'
                 }
             },
-
+            
             events: function (fetchInfo, successCallback, failureCallback) {
                 // AJAX call to get course events
                 $.ajax({
                     url: '/Course/GetCoursesForCalendar',  // Controller method to fetch events
                     type: 'GET',
                     success: function (data) {
-                        console.log(data);  // Debugging: log the data returned from server
-                        successCallback(data);  // Pass events to FullCalendar
-                        console.log(successCallback(data));
+                        // Transform the events to include proper time formatting
+                        const transformedEvents = data.map(event => {
+                            if (event.startTime) { // If it's a course event
+                                return {
+                                    ...event,
+                                    allDay: false,
+                                    display: 'block',
+                                    startRecur: event.startRecur,
+                                    endRecur: event.endRecur,
+                                    daysOfWeek: event.daysOfWeek,
+                                    startTime: event.startTime,
+                                    endTime: event.endTime
+                                };
+                            } else { // If it's an assignment/quiz event
+                                const isQuiz = event.title.toLowerCase().includes('quiz');
+                                return {
+                                    ...event,
+                                    display: 'list-item',
+                                    backgroundColor: isQuiz ? '#ff4444' : '#3788d8', // Red for quizzes, blue for assignments
+                                    borderColor: isQuiz ? '#ff4444' : '#3788d8',
+                                    textColor: '#FFFFFF',
+                                    allDay: true
+                                };
+                            }
+                        });
+                        successCallback(transformedEvents);
                     },
                     error: function () {
                         failureCallback();
                     }
                 });
             },
-            eventTimeFormat: {  // Customize time display
-                hour: '2-digit',
+            eventTimeFormat: {
+                hour: 'numeric',
                 minute: '2-digit',
-                meridiem: true
+                meridiem: true,
+                omitZeroMinute: true,
+                hour12: true,
+                displayEventTime: false
             },
+            displayEventTime: false,
             eventClick: function (info) {
                 // Navigate to assignment or course when clicked
                 if (info.event.url) {

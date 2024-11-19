@@ -8,11 +8,15 @@ namespace Data
 {
     public class InstructorConnection
     {
+        public int InstructorCourseConnectId { get; set; }
+
         [Key, ForeignKey("UserId"), Required]
         public int InstructorId { get; set; }
 
         [ForeignKey("CourseId"), Required]
         public int CourseId { get; set; }
+
+      
 
     }
 }

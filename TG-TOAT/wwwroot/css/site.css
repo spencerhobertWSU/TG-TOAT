@@ -110,6 +110,10 @@ footer {
     color: #3462A3;
 }
 
+.notification-dropdown ul li {
+    color: black;
+}
+
 .btn-check:checked + .btn {
     background-color: #194480;
     border-color: #194480;

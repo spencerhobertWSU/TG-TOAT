@@ -53,5 +53,6 @@ namespace Data
         public string Color { get; set; }
 
         public string? Picture { get; set; }
+
     }
 }

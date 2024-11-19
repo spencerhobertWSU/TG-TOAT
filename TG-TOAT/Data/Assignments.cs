@@ -29,6 +29,8 @@ namespace Data
         [Required, DataType(DataType.DateTime)]
         public DateTime DueDate { get; set; }
 
+        //public List<Notifications> Notifications { get; set; }
+
 
     }
 }

@@ -12,6 +12,9 @@ namespace Data
         public string Role { get; set; }
         public byte[] PFP { get; set; }
         public DateOnly BirthDate { get; set; }
+        public List<Notifications> Notifications { get; set; }
+
+
     }
 
 }

@@ -24,21 +24,15 @@ namespace TGTOAT
             _context.SaveChanges();
         }
 
+   
+
+        // Retrieves notifications for a specific user
         public IEnumerable<Notifications> GetNotificationsForUser(int studentId)
         {
             return _context.Notifications
                 .Where(n => n.StudentId == studentId)
+                .OrderByDescending(n => n.CreatedAt)
                 .ToList();
-        }
-
-        public void MarkAsRead(int notificationId)
-        {
-            var notification = _context.Notifications.Find(notificationId);
-            if (notification != null)
-            {
-                notification.IsRead = true;
-                _context.SaveChanges();
-            }
         }
     }
 }

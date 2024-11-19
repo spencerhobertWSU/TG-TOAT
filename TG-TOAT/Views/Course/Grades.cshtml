@@ -8,12 +8,20 @@
 <h1 class="h1-course">@Model.Department @Model.CourseNum Grades</h1>
 
 <div class="course-row">
-    <div class="course-nav">
-        <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Index" asp-route-id="@Model.CourseId">Home</a>
-        <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Announcements" asp-route-id="@Model.CourseId">Announcements</a>
-        <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Assignments" asp-route-id="@Model.CourseId">Assignments</a>
-        <a class="nav-link course-curr" asp-area="" asp-controller="Course" asp-action="Grades" asp-route-id="@Model.CourseId">Grades</a>
-    </div>
+        <div class="course-nav">
+            <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Index" asp-route-id="@Model.CourseId">
+                Home
+            </a>
+            <a class="nav-link course-curr" asp-area="" asp-controller="Course" asp-action="Assignments" asp-route-id="@Model.CourseId">
+                Assignments
+            </a>
+            <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Quizzes" asp-route-id="@Model.CourseId">
+                Quizzes
+            </a>
+            <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Grades" asp-route-id="@Model.CourseId">
+                Grades
+            </a>
+        </div>
 
     <div class="row">
         @if (Model.UserRole == "Instructor")

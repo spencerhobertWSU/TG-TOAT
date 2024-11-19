@@ -20,6 +20,7 @@ public class Authentication : IAuthentication
 
     private static CurrUser User;
     private static UserIndexViewModel CurrIndex;
+    private static CourseRegisterViewModel CurrReg;
 
     public void setUser(CurrUser UserData)
     {
@@ -174,6 +175,79 @@ public class Authentication : IAuthentication
         //_context.Notifications.Add(notification);
         _context.SaveChanges();
     }
+
+    public void updateRegistration()
+    {
+        var user = getUser();
+
+        var courses = (from db in _context.Courses select db).ToList();
+
+        var Courses = new List<CourseInfo>();
+
+        foreach (var c in courses)
+        {
+
+            var deptinfo = _context.Departments.First(d => d.DeptId == c.DeptId);
+
+            int instructorId = _context.InstructorConnection.First(ic => ic.CourseId == c.CourseId).InstructorId;
+
+            string instructorFName = _context.UserInfo.First(u => u.UserId == instructorId).FirstName;
+            string instructorLName = _context.UserInfo.First(u => u.UserId == instructorId).LastName;
+
+            string instructor = instructorFName + " " + instructorLName;
+
+            var CourseModel = new CourseInfo
+            {
+                CourseId = c.CourseId,
+                DeptID = deptinfo.DeptId,
+                DeptName = deptinfo.DeptName,
+                CourseNumber = c.CourseNum,
+                NumberOfCredits = c.Credits,
+                CourseName = c.CourseName,
+                Campus = c.Campus,
+                Building = c.Building,
+                Room = c.Room,
+                DaysOfTheWeek = c.Days,
+                StartTime = c.StartTime,
+                EndTime = c.StopTime,
+                Capacity = c.Capacity,
+                Semester = c.Semester,
+                Year = c.Year,
+                Instructor = instructor,
+                CourseDescription = c.CourseDesc,
+            };
+            Courses.Add(CourseModel);
+
+        };
+
+        /*
+        var StudentCourses = (from connection in _context.StudentConnection
+                              join course in _context.Courses on connection.CourseId equals course.CourseId
+                              where connection.StudentId == user.UserId
+                              select connection).ToList();
+        */
+        var StudentCourses = (from c in _context.StudentConnection
+                              where c.StudentId == user.UserId
+                              select c).AsNoTracking().ToList();
+
+
+
+        var RegisterCourses = new CourseRegisterViewModel
+        {
+            Courses = Courses,
+            CurrentStudent = user.UserId,
+            StudentConnection = StudentCourses,
+            Departments = _context.Departments.ToList(),
+        };
+
+        CurrReg = RegisterCourses;
+    }
+
+    public CourseRegisterViewModel getRegistration()
+    {
+        return CurrReg;
+    }
+
 
     public IEnumerable<Notifications> GetNotificationsForUser(int studentId)
     {

@@ -63,7 +63,7 @@
             <th>Instructor</th>
             <th>Days</th>
             <th>Time</th>
-            <th>Location</th>
+            <th>Room</th>
             <th>Registration</th>
         </tr>
     </thead>
@@ -77,7 +77,8 @@
                     </a>
                 </td>
                 <td><span class="deptId">@course.DeptID</span>
-                    @course.DeptName</td>
+                    @course.DeptName
+                </td>
                 <td>@course.CourseNumber</td>
                 <td>@course.CourseName</td>
                 <td>@course.NumberOfCredits</td>
@@ -90,19 +91,47 @@
                 <td>
                     @(course.StartTime?.ToString("hh:mm tt") ?? "N/A") - @(course.EndTime?.ToString("hh:mm tt") ?? "N/A")
                 </td>
-                <td>@course.Room</td>
-                <td>
-                    @{
-                        // Assuming you have the current student ID accessible in your view.
-                        var currentStudentId = Model.CurrentStudent; // Adjust as necessary _auth.GetCurrentUserId();
-                        var isRegistered = Model.StudentConnection
-                        .Any(conn => conn.StudentId == currentStudentId && conn.CourseId == course.CourseId);
+                @{
+                    if (course.Room == 0)
+                    {
+                        <td>Onl</td>
+                    }
+                    else
+                    {
+                        <td>@course.Room</td>       
+                    }
+                }
+                
+                @{
+                    // Assuming you have the current student ID accessible in your view.
+                    var currentStudentId = Model.CurrentStudent; // Adjust as necessary _auth.GetCurrentUserId();
+
+                    Boolean isRegistered = false;
+
+                    foreach(var stuCourse in Model.StudentConnection)
+                    {
+                        if(stuCourse.CourseId == course.CourseId)
+                        {
+                            isRegistered = true;
+                            break;
+                        }
+                        else
+                        {
+                            isRegistered = false;
+                        }
                     }
 
+                    /*
+                        var isRegistered = Model.StudentConnection
+                        .Any(conn => conn.CourseId == course.CourseId);
+                    */
+                    }
+                    <td>
                     <div class="row">
                         <div class="col-auto">
                             @if (!isRegistered) // Show the Register button if not registered
                             {
+                                
                                 <form id="registerForm" method="post" asp-action="Register">
                                     <input type="hidden" name="CourseId" value="@course.CourseId" />
                                     <button type="submit" class="btn btn-primary" id="registerBtn">Register</button>
@@ -125,6 +154,7 @@
         }
     </tbody>
 </table>
+
 
 <div id="myModal" class="modal">
 

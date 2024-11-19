@@ -7,6 +7,7 @@ using Data;
 using TGTOAT.Helpers;
 using TGTOAT.Models;
 using Models;
+using Microsoft.AspNetCore.Http.Extensions;
 
 namespace TGTOAT.Controllers
 {
@@ -23,6 +24,7 @@ namespace TGTOAT.Controllers
             _auth = auth;
         }
         #region Create/Edit Courses
+
         // Display the AddCourse view with the list of departments
         //[HttpGet]
         public IActionResult Create()
@@ -250,16 +252,20 @@ namespace TGTOAT.Controllers
 
             var courseConnect = _context.InstructorConnection.FirstOrDefault(db => db.CourseId == model.CourseId);
 
-            if (courseConnect.InstructorId != model.SelectedInstructorId)
+            if (courseConnect != null)
             {
-                var InstructorConnection = new InstructorConnection
+                if (courseConnect.InstructorId != model.SelectedInstructorId)
                 {
-                    InstructorId = model.SelectedInstructorId,
-                    CourseId = model.CourseId
-                };
-                _context.InstructorConnection.Update(InstructorConnection);
-                await _context.SaveChangesAsync();
+                    var InstructorConnection = new InstructorConnection
+                    {
+                        InstructorId = model.SelectedInstructorId,
+                        CourseId = model.CourseId
+                    };
+                    _context.InstructorConnection.Update(InstructorConnection);
+                    await _context.SaveChangesAsync();
+                }
             }
+
             return RedirectToAction("Courses");
 
 
@@ -278,14 +284,16 @@ namespace TGTOAT.Controllers
                 return RedirectToAction("Login", "User");
             }
 
-            var courses = (from db in _context.Courses select db).ToList();
-
+            // Get courses for the current instructor using InstructorConnection table
+            var instructorCourses = (from ic in _context.InstructorConnection
+                                    join c in _context.Courses on ic.CourseId equals c.CourseId
+                                    where ic.InstructorId == currInstruct.UserId
+                                    select c).ToList();
 
             var NewCourses = new List<CourseInfo>();
 
-            foreach (var c in courses)
+            foreach (var c in instructorCourses)
             {
-
                 string deptName = _context.Departments.First(d => d.DeptId == c.DeptId).DeptName;
 
                 var CourseModel = new CourseInfo
@@ -307,7 +315,6 @@ namespace TGTOAT.Controllers
                     Year = c.Year,
                 };
                 NewCourses.Add(CourseModel);
-
             };
 
             var CourseList = new CourseListViewModel
@@ -483,7 +490,57 @@ namespace TGTOAT.Controllers
         #endregion
 
         #region Quizzes
-        public ActionResult Quiz(int id)
+
+        public ActionResult Quizzes(int? id)
+        {
+            var user = _auth.getUser();
+
+            if (user == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            var course = _context.Courses.First(c => c.CourseId == id);
+
+            var dept = _context.Departments.FirstOrDefault(d => d.DeptId == course.DeptId);
+
+            var assigns = (from a in _context.Assignments
+                           join c in _context.Courses on a.CourseId equals c.CourseId
+                           where c.CourseId == id
+                           select a).ToList();
+
+            var quizzes = (from q in _context.Quizzes
+                           join c in _context.Courses on q.CourseId equals c.CourseId
+                           where c.CourseId == id
+                           select q).ToList();
+
+            var stuQuizes = (from sq in _context.StudentQuizzes
+                             join q in _context.Quizzes on sq.QuizId equals q.QuizId
+                             join c in _context.Courses on q.CourseId equals c.CourseId
+                             where c.CourseId == id
+                             select sq).ToList();
+                            
+
+            if (course == null)
+            {
+                return Redirect("User/Index");
+            }
+            else
+            {
+                var viewModel = new CourseHome
+                {
+                    CourseId = course.CourseId,
+                    UserRole = _auth.getUser().Role,
+                    Department = dept.DeptName,
+                    CourseNum = course.CourseNum,
+                    Assignments = assigns,
+                    Quizzes = quizzes,
+                    studentQuizzes = stuQuizes
+                };
+                return View(viewModel);
+            }
+
+        }
+        public ActionResult Quiz(int id, int quizId)
         {
             var user = _auth.getUser();
 
@@ -492,12 +549,13 @@ namespace TGTOAT.Controllers
                 return RedirectToAction("Login", "User");
             }
 
-            var quizInfo = _context.Quizzes.FirstOrDefault(q => q.QuizId == id);
+            var quizInfo = _context.Quizzes.FirstOrDefault(q => q.QuizId == quizId);
 
-            AddQuizViewModel quiz = new AddQuizViewModel
+            var quiz = new TakeQuizModel
             {
                 Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
-                QuizId = id,
+                CourseId = id,
+                QuizId = quizId,
                 QuizName = quizInfo.QuizName,
                 QuizDescription = quizInfo.QuizDesc,
                 QuizPoints = quizInfo.MaxPoints,
@@ -579,90 +637,342 @@ namespace TGTOAT.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> SubmitQuiz(TakeQuizModel model)
+        {
+            var user = _auth.getUser();
+
+            if (user == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            var quizInfo = _context.Quizzes.FirstOrDefault(q => q.QuizId == model.QuizId);
+
+            string questions = quizInfo.Questions;
+            string submission = model.Submission;
+
+            var graded = "";
+            var gradePoints = 0;
+
+            var qPart = questions.Split("з");
+            var sPart = submission.Split("з");
+
+            for (var i = 0; i < qPart.Length; i++)
+            {
+                var qType = qPart[i].Split("д");
+                var sType = sPart[i].Split("д");
+
+                if (sType[0] == "2")
+                {
+                    var qPoints = qType[1].Split("п");
+                    var sPoints = sType[1].Split("п");
+
+                    var qCorrect = qPoints[0].Split("ж");
+                    var sCorrect = sPoints[0].Split("ж");
+
+                    var actualPoints = sPoints[1].Split("/");
+
+                    if (sCorrect[1] == qCorrect[1])
+                    {
+                        actualPoints[0] = actualPoints[1];
+                    }
+                    gradePoints += Int32.Parse(actualPoints[0]);
+
+                    graded += (sType[0]);
+                    graded += ("д");
+                    graded += (sCorrect[0]);
+                    graded += ("ж");
+                    graded += (sCorrect[1]);
+                    graded += ("п");
+                    graded += (actualPoints[0] + "/" + actualPoints[1]);
+                    graded += ("з");
+
+                }
+                else
+                {
+                    graded += (sPart[i]);
+                    graded += ("з");
+                }
+            }
+
+            var StudentQuiz = new StudentQuizzes
+            {
+                QuizId = model.QuizId,
+                StudentId = user.UserId,
+                Points = gradePoints,
+                Submitted = DateTime.UtcNow,
+                Submission = graded
+            };
+
+            _context.StudentQuizzes.Add(StudentQuiz);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("ViewQuiz", new { id = model.CourseId, quizId = model.QuizId });
+
+        }
+
+        public ActionResult ViewQuiz(int id, int quizId)
+        {
+            {
+                var user = _auth.getUser();
+
+                if (user == null)
+                {
+                    return RedirectToAction("Login", "User");
+                }
+
+                var quizInfo = _context.Quizzes.FirstOrDefault(q => q.QuizId == quizId);
+                var submittedQuiz = _context.StudentQuizzes.FirstOrDefault(q => q.QuizId == quizId && q.StudentId == user.UserId);
+
+                var quiz = new TakeQuizModel
+                {
+                    UserRole = user.Role,
+                    CourseId = id,
+                    QuizId = quizId,
+                    QuizName = quizInfo.QuizName,
+                    QuizDescription = quizInfo.QuizDesc,
+                    Points = submittedQuiz.Points.Value,
+                    QuizPoints = quizInfo.MaxPoints,
+                    NumQuestions = quizInfo.NumQuestions,
+                    Questions = submittedQuiz.Submission,
+                    Submitted = submittedQuiz.Submitted,
+                    DueDateAndTime = quizInfo.DueDate
+                };
+
+                return View(quiz);
+
+            }
+        }
+
+        public ActionResult GradeQuiz(int id, int quizId, int stuId)
+        {
+            {
+                var user = _auth.getUser();
+
+                if (user == null)
+                {
+                    return RedirectToAction("Login", "User");
+                }
+
+                var quizInfo = _context.Quizzes.FirstOrDefault(q => q.QuizId == quizId);
+                var submittedQuiz = _context.StudentQuizzes.FirstOrDefault(q => q.QuizId == quizId && q.StudentId == stuId);
+
+                var quiz = new TakeQuizModel
+                {
+                    stuId = stuId,
+                    UserRole = user.Role,
+                    CourseId = id,
+                    QuizId = quizId,
+                    QuizName = quizInfo.QuizName,
+                    QuizDescription = quizInfo.QuizDesc,
+                    Points = submittedQuiz.Points.Value,
+                    QuizPoints = quizInfo.MaxPoints,
+                    NumQuestions = quizInfo.NumQuestions,
+                    Questions = submittedQuiz.Submission,
+                    Submitted = submittedQuiz.Submitted,
+                    DueDateAndTime = quizInfo.DueDate
+                };
+
+                return View(quiz);
+
+            }
+        }
+
+        public async Task<IActionResult> UpdateQuizScore(TakeQuizModel model)
+        {
+            {
+                var user = _auth.getUser();
+
+                if (user == null)
+                {
+                    return RedirectToAction("Login", "User");
+                }
+
+
+                var quiz = new StudentQuizzes
+                {
+                    QuizId = model.QuizId,
+                    StudentId = model.stuId,
+                    Submission = model.Questions,
+                    Points = model.Points,
+                    Submitted = model.Submitted
+                };
+
+
+                _context.StudentQuizzes.Update(quiz);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("ViewSubmissions", new { id = model.CourseId, quizId = model.QuizId } );
+
+            }
+        }
+
         #endregion
 
         #region Calendar
         [HttpGet]
         public JsonResult GetCoursesForCalendar()
         {
-            var currentUser = _auth.getUser();  // Get the current user's details
-            var userIdString = currentUser.ToString();
-
-            if (currentUser == null || string.IsNullOrEmpty(userIdString))
+            var currentUser = _auth.getUser();
+            if (currentUser == null)
             {
                 return Json(new { error = "No user logged in." });
             }
 
             var courseEvents = new List<object>();
             var dayMap = new Dictionary<string, int>
-                    {
-                        { "Su", 0 },
-                        { "Mo", 1 },
-                        { "Tu", 2 },
-                        { "We", 3 },
-                        { "Th", 4 },
-                        { "Fr", 5 },
-                        { "Sa", 6 }
-                    };
+            {
+                { "Su", 0 },
+                { "Mo", 1 },
+                { "Tu", 2 },
+                { "We", 3 },
+                { "Th", 4 },
+                { "Fr", 5 },
+                { "Sa", 6 }
+            };
 
             // instructor role
             if (currentUser.Role == "Instructor")
             {
-                // Fetch courses for the instructor
                 var instructorCourses = (from ic in _context.InstructorConnection
-                                         join c in _context.Courses on ic.CourseId equals c.CourseId
-                                         where ic.InstructorId == currentUser.UserId
-                                         select c).ToList();
+                                        join c in _context.Courses on ic.CourseId equals c.CourseId
+                                        where ic.InstructorId == currentUser.UserId
+                                        select c).ToList();
+
+                // Get assignments for instructor's courses
+                var assignments = (from a in _context.Assignments
+                                 where instructorCourses.Select(c => c.CourseId).Contains(a.CourseId)
+                                 select new
+                                 {
+                                     a.AssignId,
+                                     a.AssignName,
+                                     a.DueDate,
+                                     a.CourseId
+                                 }).Distinct().ToList();
+
+                // Get quizzes for instructor's courses
+                var quizzes = (from q in _context.Quizzes
+                              where instructorCourses.Select(c => c.CourseId).Contains(q.CourseId)
+                              select new
+                              {
+                                  q.QuizId,
+                                  q.QuizName,
+                                  q.DueDate,
+                                  q.CourseId
+                              }).Distinct().ToList();
 
                 foreach (var course in instructorCourses)
                 {
                     AddCourseToEventList(course, dayMap, courseEvents);
                 }
+
+                // Add assignment events
+                foreach (var assignment in assignments)
+                {
+                    courseEvents.Add(new
+                    {
+                        title = $"Assignment: {assignment.AssignName}",
+                        start = assignment.DueDate.ToString("yyyy-MM-ddTHH:mm:ss"),
+                        url = $"/Course/ViewSubmissions?assignmentId={assignment.AssignId}",
+                        backgroundColor = "#3788d8" // Blue color for assignments
+                    });
+                }
+
+                // Add quiz events
+                foreach (var quiz in quizzes)
+                {
+                    courseEvents.Add(new
+                    {
+                        title = $"Quiz: {quiz.QuizName}",
+                        start = quiz.DueDate.ToString("yyyy-MM-ddTHH:mm:ss"),
+                        url = $"/Course/ViewSubmissions?quizId={quiz.QuizId}",
+                        backgroundColor = "#e74c3c" // Red color for quizzes
+                    });
+                }
             }
             // student role
             else if (currentUser.Role == "Student")
             {
-                // Fetch courses for the student
                 var studentCourses = (from s in _context.StudentConnection
-                                      join c in _context.Courses on s.CourseId equals c.CourseId
-                                      where s.StudentId == currentUser.UserId
-                                      select c).ToList();
+                                     join c in _context.Courses on s.CourseId equals c.CourseId
+                                     where s.StudentId == currentUser.UserId
+                                     select c).ToList();
 
-                var assignments = (from s in _context.StudentAssignment
-                                   join a in _context.Assignments on s.AssignId equals a.AssignId
-                                   where s.StudentId == currentUser.UserId
-                                   select a).ToList();
+                // Get assignments for enrolled courses
+                var assignments = (from a in _context.Assignments
+                                 where studentCourses.Select(c => c.CourseId).Contains(a.CourseId)
+                                 select new
+                                 {
+                                     a.AssignId,
+                                     a.AssignName,
+                                     a.DueDate,
+                                     a.CourseId
+                                 }).Distinct().ToList();
+
+                // Get quizzes for enrolled courses
+                var quizzes = (from q in _context.Quizzes
+                              where studentCourses.Select(c => c.CourseId).Contains(q.CourseId)
+                              select new
+                              {
+                                  q.QuizId,
+                                  q.QuizName,
+                                  q.DueDate,
+                                  q.CourseId
+                              }).Distinct().ToList();
 
                 foreach (var course in studentCourses)
                 {
                     // Add course events
                     AddCourseToEventList(course, dayMap, courseEvents);
+                }
 
-                    foreach (var assignment in assignments)
+                // Add assignment events
+                foreach (var assignment in assignments)
+                {
+                    string assignmentUrl = currentUser.Role == "Student" 
+                        ? $"/Course/SubmitPage?assignmentId={assignment.AssignId}"  // Student goes to submission page
+                        : $"/Course/ViewSubmissions?assignmentId={assignment.AssignId}";  // Instructor goes to view all submissions
+
+                    courseEvents.Add(new
                     {
-                        courseEvents.Add(new
-                        {
-                            title = assignment.AssignName,
-                            start = assignment.DueDate.ToString("yyyy-MM-ddTHH:mm:ss"),
-                            url = $"/Course/Assignments/{course.CourseId}"  // Link to course's assignment page
-                        });
-                    }
+                        title = $"Assignment: {assignment.AssignName}",
+                        start = assignment.DueDate.ToString("yyyy-MM-ddTHH:mm:ss"),
+                        url = assignmentUrl,
+                        backgroundColor = "#3788d8" // Blue color for assignments
+                    });
+                }
+
+                // Add quiz events
+                foreach (var quiz in quizzes)
+                {
+                    courseEvents.Add(new
+                    {
+                        title = $"Quiz: {quiz.QuizName}",
+                        start = quiz.DueDate.ToString("yyyy-MM-ddTHH:mm:ss"),
+                        url = $"/Course/Quiz/{quiz.QuizId}",
+                        backgroundColor = "#e74c3c" // Red color for quizzes
+                    });
                 }
             }
 
-            // Return all course and assignment events
             return Json(courseEvents);
         }
 
         // Helper method to add course events to the list
         private void AddCourseToEventList(Courses course, Dictionary<string, int> dayMap, List<object> courseEvents)
         {
-            if (course.StartTime.HasValue && course.StopTime.HasValue)
+            // Skip online courses (where Campus is "Onl")
+            if (course.Campus?.ToUpper() == "ONL")
+            {
+                return;
+            }
+
+            if (course.StartTime.HasValue && course.StopTime.HasValue && !string.IsNullOrEmpty(course.Days))
             {
                 var startTime = course.StartTime.Value;
                 var stopTime = course.StopTime.Value;
-
-                // Split the DaysOfTheWeek string by commas
                 var days = course.Days.Split(',');
 
                 // Set the default start and end dates for the semester
@@ -670,45 +980,41 @@ namespace TGTOAT.Controllers
                 string endRecur = string.Empty;
 
                 // Determine the semester and set the correct recurrence dates
-                if (course.Semester == "Fall")
+                switch (course.Semester?.ToLower())
                 {
-                    startRecur = "2024-08-26";
-                    endRecur = "2024-12-13";
-                }
-                else if (course.Semester == "Spring")
-                {
-                    startRecur = "2025-01-26";
-                    endRecur = "2025-04-25";
-                }
-                else if (course.Semester == "Summer")
-                {
-                    startRecur = "2025-05-05";
-                    endRecur = "2025-08-15";
+                    case "fall":
+                        startRecur = $"{course.Year}-08-26";
+                        endRecur = $"{course.Year}-12-13";
+                        break;
+                    case "spring":
+                        startRecur = $"{course.Year}-01-06";
+                        endRecur = $"{course.Year}-04-25";
+                        break;
+                    case "summer":
+                        startRecur = $"{course.Year}-05-05";
+                        endRecur = $"{course.Year}-08-15";
+                        break;
                 }
 
-                // Loop through the split days and create events
-
-                var dayCodes = new List <int>();
-
-                foreach(var day in days)
+                var dayCodes = new List<int>();
+                foreach (var day in days)
                 {
-                    int dayCode = 0;
                     string trimmedDay = day.Trim();
                     if (dayMap.ContainsKey(trimmedDay))
                     {
-                        dayCode = dayMap[trimmedDay];
+                        dayCodes.Add(dayMap[trimmedDay]);
                     }
-                    dayCodes.Add(dayCode);
                 }
 
                 courseEvents.Add(new
                 {
                     title = course.CourseName,
-                    start = new DateTime(2024, 9, 1, startTime.Hour, startTime.Minute, startTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
-                    end = new DateTime(2024, 9, 1, stopTime.Hour, stopTime.Minute, stopTime.Second).ToString("yyyy-MM-ddTHH:mm:ss"),
+                    startTime = startTime.ToString("HH:mm:ss"),
+                    endTime = stopTime.ToString("HH:mm:ss"),
                     daysOfWeek = dayCodes,
-                    startRecur = startRecur,  // Use the start date for the semester
-                    endRecur = endRecur       // Use the end date for the semester
+                    startRecur = startRecur,
+                    endRecur = endRecur,
+                    backgroundColor = course.Color
                 });
             }
         }
@@ -716,34 +1022,96 @@ namespace TGTOAT.Controllers
 
         #region Submissions
 
-        public ActionResult ViewSubmissions(int assignmentId)
+        //Assignments
+        public ActionResult ViewSubmissions(int id, int subId)
         {
-            var submissions = _context.StudentAssignment
-                .Where(sa => sa.AssignId == assignmentId)
-                .ToList();
+            var currInstruct = _auth.getUser();
 
-            var Submissions = new List<StudentSubmission>();
-
-            foreach (var s in submissions)
+            if (currInstruct == null)
             {
-
-                var assigns = _context.Assignments.First(a => a.AssignId == assignmentId);
-                var sInfo = _context.UserInfo.First(ui => ui.UserId == s.StudentId);
-
-                var submission = new StudentSubmission
-                {
-                   
-                    StudentFullName = (sInfo.FirstName + " " + sInfo.LastName),
-
-                    SubmissionDate = s.Submitted,
-                    MaxPoints = assigns.MaxPoints,
-                    GivenPoints = s.Points.HasValue ? s.Points.Value.ToString() : "UG",
-                    AssignmentId = s.AssignId,
-                    StudentId = s.StudentId
-                };
-                Submissions.Add(submission);
+                return RedirectToAction("Login", "User");
             }
-            return View(Submissions);
+
+            var type = Request.QueryString;
+            var typeInt = type.ToString().Split("=");
+            subId = int.Parse(typeInt[1]);
+
+            if (type.ToString().Contains("assignmentId"))
+            {
+                var submissions = (from sa in _context.StudentAssignment
+                                   where sa.AssignId == subId
+                                   select sa).ToList();
+
+                var Submissions = new List<StudentSubmission>();
+
+                foreach (var s in submissions)
+                {
+
+                    var assigns = _context.Assignments.First(a => a.AssignId == subId);
+                    var sInfo = _context.UserInfo.First(ui => ui.UserId == s.StudentId);
+
+                    var submission = new StudentSubmission
+                    {
+                        StudentFullName = (sInfo.FirstName + " " + sInfo.LastName),
+
+                        SubmissionDate = s.Submitted,
+                        MaxPoints = assigns.MaxPoints,
+                        GivenPoints = s.Points.HasValue ? s.Points.Value.ToString() : "UG",
+                        AssignmentId = s.AssignId,
+                        StudentId = s.StudentId
+                    };
+                    Submissions.Add(submission);
+
+                }
+
+                var AllSubs = new AllSubmissions
+                {
+                    type = "assignment",
+                    CourseId = id,
+                    Submissions = Submissions
+                };
+                return View(AllSubs);
+            }
+            else if (type.ToString().Contains("quizId"))
+            {
+                var submissions = (from sq in _context.StudentQuizzes
+                                   where sq.QuizId == subId
+                                   select sq).ToList();
+
+                Console.WriteLine(subId);
+
+                var Submissions = new List<StudentSubmission>();
+
+                foreach (var s in submissions)
+                {
+
+                    var quizzes = _context.Quizzes.First(a => a.QuizId == subId);
+                    var sInfo = _context.UserInfo.First(ui => ui.UserId == s.StudentId);
+
+                    var submission = new StudentSubmission
+                    {
+                        StudentFullName = (sInfo.FirstName + " " + sInfo.LastName),
+
+                        SubmissionDate = s.Submitted,
+                        MaxPoints = quizzes.MaxPoints,
+                        GivenPoints = s.Points.HasValue ? s.Points.Value.ToString() : "UG",
+                        AssignmentId = s.QuizId,
+                        StudentId = s.StudentId
+                    };
+                    Submissions.Add(submission);
+
+                }
+
+                var AllSubs = new AllSubmissions
+                {
+                    type = "quiz",
+                    CourseId = id,
+                    Submissions = Submissions
+                };
+                return View(AllSubs);
+            }
+
+            return RedirectToAction("Login", "User");
         }
 
         public ActionResult ViewSubmission(int assignmentId, int studentId)
@@ -1044,13 +1412,13 @@ namespace TGTOAT.Controllers
                 .ToList();
 
             var gradeDistribution = new List<KeyValuePair<string, int>>()
-    {
-        new KeyValuePair<string, int>("<60%", studentConnections.Count(g => g < 60)),
-        new KeyValuePair<string, int>("60-70%", studentConnections.Count(g => g >= 60 && g <= 70)),
-        new KeyValuePair<string, int>("71-80%", studentConnections.Count(g => g >= 71 && g <= 80)),
-        new KeyValuePair<string, int>("81-90%", studentConnections.Count(g => g >= 81 && g <= 90)),
-        new KeyValuePair<string, int>("91-100%", studentConnections.Count(g => g >= 91))
-    };
+            {
+                new KeyValuePair<string, int>("<60%", studentConnections.Count(g => g < 60)),
+                new KeyValuePair<string, int>("60-70%", studentConnections.Count(g => g >= 60 && g <= 70)),
+                new KeyValuePair<string, int>("71-80%", studentConnections.Count(g => g >= 71 && g <= 80)),
+                new KeyValuePair<string, int>("81-90%", studentConnections.Count(g => g >= 81 && g <= 90)),
+                new KeyValuePair<string, int>("91-100%", studentConnections.Count(g => g >= 91))
+            };
 
             var viewModel = new CourseGradeViewModel
             {

@@ -11,7 +11,7 @@ namespace Data
         public int UserId { get; set; }
 
         [Required, DataType(DataType.Currency)]
-        [Column(TypeName = "decimal(5, 2)")]
+        [Column(TypeName = "decimal(11, 2)")]
         public Decimal AmountDue { get; set; }
     }
 }

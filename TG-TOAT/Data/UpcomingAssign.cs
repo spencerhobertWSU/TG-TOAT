@@ -11,6 +11,8 @@ namespace Data
         [Key, Required]
         public int AssignId { get; set; }
 
+        public int Type { get; set; }
+
         [Required]
         public string DeptName { get; set; }
 

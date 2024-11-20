@@ -42,6 +42,13 @@ public class Authentication : IAuthentication
         var user = getUser();
         var courses = new List<Courses>();
         var Currcourses = new List<CurrClasses>();
+        
+        var upAssigns = new List<Assignment>();
+        var upQuizzes = new List<Quizzes>();
+
+        var ToDo = new List<UpcomingAssign>();
+        
+
 
         if (user.Role == "Student")
         {
@@ -50,7 +57,22 @@ public class Authentication : IAuthentication
                        where connection.StudentId == user.UserId
                        select course).ToList();
 
-            
+            upAssigns = (from a in _context.Assignments
+                       join c in _context.Courses on a.CourseId equals c.CourseId
+                       join sc in _context.StudentConnection on c.CourseId equals sc.CourseId
+                       where sc.StudentId == user.UserId
+                       where a.DueDate >= DateTime.Now
+                       orderby a.DueDate 
+                       select a).Take(5).ToList();
+
+            upQuizzes = (from q in _context.Quizzes
+                            join c in _context.Courses on q.CourseId equals c.CourseId
+                            join sc in _context.StudentConnection on c.CourseId equals sc.CourseId
+                            where sc.StudentId == user.UserId
+                            where q.DueDate >= DateTime.Now
+                            orderby q.DueDate
+                            select q).Take(5).ToList();
+
         }
         else if (user.Role == "Instructor")
         {
@@ -58,9 +80,58 @@ public class Authentication : IAuthentication
                        join course in _context.Courses on connection.CourseId equals course.CourseId
                        where connection.InstructorId == user.UserId
                        select course).ToList();
-        }
 
-        var upcoming = new List<UpcomingAssign>();
+            upAssigns = (from a in _context.Assignments
+                         join c in _context.Courses on a.CourseId equals c.CourseId
+                         join ic in _context.InstructorConnection on c.CourseId equals ic.CourseId
+                         where ic.InstructorId == user.UserId
+                         where a.DueDate >= DateTime.Now
+                         orderby a.DueDate
+                         select a).Take(5).ToList();
+
+            upQuizzes = (from q in _context.Quizzes
+                         join c in _context.Courses on q.CourseId equals c.CourseId
+                         join ic in _context.InstructorConnection on c.CourseId equals ic.CourseId
+                         where ic.InstructorId == user.UserId
+                         where q.DueDate >= DateTime.Now
+                         orderby q.DueDate
+                         select q).Take(5).ToList();
+        }
+        var mostRecQuiz = new Quizzes();
+        /*
+        foreach (var assign in upAssigns)
+        {
+            var mostRecAssign = assign;
+
+            foreach(var quiz in upQuizzes)
+            {
+                mostRecQuiz = quiz;
+                if (mostRecAssign.DueDate > mostRecQuiz.DueDate)
+                {
+                    mostRecAssign = null;
+                }
+
+
+            }
+            if(mostRecAssign == null)
+            {
+                var newToDo = new UpcomingAssign
+                {
+                    AssignId = mostRecQuiz.QuizId,
+                    Type = 1,
+                    DeptName = mostRecQuiz.
+                };
+            }
+            else
+            {
+                var newToDo = new UpcomingAssign
+                {
+
+                };
+            }
+
+        }
+        */
 
         foreach (var c in courses)
         {

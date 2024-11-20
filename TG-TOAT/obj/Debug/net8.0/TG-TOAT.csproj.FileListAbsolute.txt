@@ -270,3 +270,4 @@ F:\git merges\TG-TOAT\TG-TOAT\obj\Debug\net8.0\refint\TG-TOAT.dll
 F:\git merges\TG-TOAT\TG-TOAT\obj\Debug\net8.0\TG-TOAT.pdb
 F:\git merges\TG-TOAT\TG-TOAT\obj\Debug\net8.0\TG-TOAT.genruntimeconfig.cache
 F:\git merges\TG-TOAT\TG-TOAT\obj\Debug\net8.0\ref\TG-TOAT.dll
+F:\git merges\TG-TOAT\TG-TOAT\bin\Debug\net8.0\WebDriver.Support.dll

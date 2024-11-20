@@ -13,10 +13,11 @@
     }
 }
 
-<h1 class="h1-course">@Model.Department @Model.CourseNum @Model.UserRole</h1>
+<h1 class="h1-course">@Model.Department @Model.CourseNum - @Model.UserRole</h1>
 <hr/>
 
-<div class="course-row">
+
+<div class="course-row col-md-10">
     <div class="course-nav">
         <a class="nav-link course-curr" asp-area="" asp-controller="Course" asp-action="Index" asp-route-id="@Model.CourseId">
             Home
@@ -30,6 +31,9 @@
         <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Grades" asp-route-id="@Model.CourseId">
             Grades
         </a>
+    </div>
+    <div>
+        <p class="home-desc">@Model.Description</p>
     </div>
 
 </div>

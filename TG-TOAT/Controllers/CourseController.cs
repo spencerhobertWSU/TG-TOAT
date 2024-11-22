@@ -528,6 +528,7 @@ namespace TGTOAT.Controllers
             {
                 var viewModel = new CourseHome
                 {
+                    Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
                     CourseId = course.CourseId,
                     UserRole = _auth.getUser().Role,
                     Department = dept.DeptName,

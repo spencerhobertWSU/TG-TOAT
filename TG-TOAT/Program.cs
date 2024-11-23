@@ -6,6 +6,7 @@ using Models;
 using TGTOAT.Helpers;
 using Stripe;
 using Data;
+using TGTOAT;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,8 @@ builder.Services.AddScoped<IAuthentication, Authentication>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Register NotificationService
+builder.Services.AddScoped<NotificationService>();
 // Initialize Stripe
 StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
 

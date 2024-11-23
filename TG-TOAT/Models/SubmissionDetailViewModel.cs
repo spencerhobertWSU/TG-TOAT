@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Data;
+using System;
 
 namespace Models
 {
     public class SubmissionDetailViewModel
     {
+        public List<Notifications> Notifications { get; set; }
         public string StudentFullName { get; set; }
         public DateTime DueDate { get; set; }
         public DateTime SubmissionDate { get; set; }
@@ -13,6 +15,7 @@ namespace Models
         public string FileSubmission { get; set; }
         public bool HasFile { get; set; }
         public int AssignmentId { get; set; } 
-        public int StudentId { get; set; }     
+        public int StudentId { get; set; }
+
     }
 }

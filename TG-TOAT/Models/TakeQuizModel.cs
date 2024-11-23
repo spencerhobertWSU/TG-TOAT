@@ -26,7 +26,6 @@ namespace Models
         [DataType(DataType.DateTime)]
         public DateTime Submitted { get; set; }
         public string Submission { get; set; }
-
-
+        public List<Notifications> Notifications { get; internal set; }
     }
 }

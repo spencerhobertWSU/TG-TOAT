@@ -12,11 +12,14 @@ namespace TGTOAT.Controllers
     {
         private readonly UserContext _context;
         private readonly IAuthentication _auth;
+        private readonly NotificationService _notificationService;
 
-        public CourseRegistrationController(UserContext context, IAuthentication auth)
+        public CourseRegistrationController(NotificationService notificationService, UserContext context, IAuthentication auth)
         {
             _context = context;
             _auth = auth;
+            _notificationService = notificationService;
+
         }
 
         public async Task<IActionResult> CourseRegistration()
@@ -30,7 +33,8 @@ namespace TGTOAT.Controllers
             var viewModel = new CourseRegisterViewModel
                 {
 
-                    Id = user.UserId,
+                Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
+                Id = user.UserId,
                     Departments = _context.Departments.ToList(), // Make sure this is not null
                     //Courses = _context.Courses.ToList(), // Optional, depending on your needs
                     StudentConnection = userCourses,

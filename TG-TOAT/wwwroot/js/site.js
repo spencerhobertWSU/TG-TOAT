@@ -24,21 +24,19 @@ window.addEventListener('load', function () {
 })
 
 function openNotif() {
-    //Open Notifictions
-    var accountMenu = document.getElementById("account")
-    var notifMenu = document.getElementById("notifications")
+    // Toggle Notifications
+    var notifMenu = document.getElementById("notificationDropdown");
 
-    if (notifMenu.style.display == "none") {
-        accountMenu.style.display = "none";
+    if (notifMenu.style.display === "none" || notifMenu.style.display === "") {
+        // Show the notification dropdown
         notifMenu.style.display = "block";
-        notif = 1;
-    }
-    //Close Notifications
-    else {
+    } else {
+        // Hide the notification dropdown
         notifMenu.style.display = "none";
-    } 
-
+    }
+    
 }
+
 
 function openAccount() {
     var accountMenu = document.getElementById("account")

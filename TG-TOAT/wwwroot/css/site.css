@@ -43,22 +43,14 @@ $color-mode-type: data;
 }
 
 html {
-    font-size: 14px;
+    font-size: 1rem;
+    position: relative;
+    min-height: 100%;
 }
 
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-    position: relative;
-    min-height: 100%;
 }
 
 body {
@@ -89,8 +81,12 @@ footer {
         background-color: #BF6060;
     }
 
+.submit-page {
+    margin: auto;
+}
+
 /*#region Button*/
-.btn{
+.btn {
     margin: 5px;
 }
 
@@ -138,8 +134,13 @@ footer {
         background-color: #59660D;
         border-color: #59660D;
     }
-/*#endregion*/
 
+.submit-btn{
+    width: 40%;
+    display: block;
+    margin: auto;
+}
+/*#endregion*/
 /*#region Color Modes*/
 #lightMode {
     display: none;
@@ -168,18 +169,11 @@ footer {
 /*#endregion*/
 
 /*#region Nav*/
-
-nav {
-    position: sticky !important;
-    top: 0;
-    width: 100%;
-}
-
 .navbar-nav {
     flex-direction: row;
 }
 
-.navbar-toggler{
+.navbar-toggler {
     float: left;
 }
 
@@ -191,6 +185,10 @@ nav {
 a {
     color: #A0ABBA;
     text-decoration: none;
+}
+
+.nav-item {
+    list-style-type: none;
 }
 
 .nav-link {
@@ -212,19 +210,15 @@ a {
     margin-top: 5px;
 }
 
-.nav-account:hover {
-    border-radius: 50%;
-}
-
-.notifBell {
-    margin-top: 5px;
-}
+    .nav-account:hover {
+        border-radius: 50%;
+    }
 
 .form-check label, .form-check input {
     cursor: pointer;
 }
 
-#DaysOfTheWeek{
+#DaysOfTheWeek {
     display: none;
 }
 
@@ -249,7 +243,7 @@ nav li a:hover {
         display: none;
     }
 
-.nav-logo{
+.nav-logo {
     width: 40px;
 }
 
@@ -267,7 +261,7 @@ nav li a:hover {
 }
 
 #account {
-    padding:10px 0;
+    padding: 10px 0;
     display: none;
     background: var(--bs-secondary-bg);
     position: absolute;
@@ -399,7 +393,7 @@ nav li a:hover {
     display: none;
 }
 
-.classColorPick{
+.classColorPick {
     position: absolute;
     top: 5px;
     right: 10px;
@@ -425,7 +419,11 @@ nav li a:hover {
     }
 
 .todo-class {
+    display: inline;
     margin-bottom: 2px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #8F3232;
 }
 
 .todo-name {
@@ -437,22 +435,23 @@ nav li a:hover {
 }
 
 .todo-items a:hover {
-    color: red;
+    text-decoration: underline;
+    color: #BF6060;
 }
 
-.DaysLabel{
+.DaysLabel {
     display: inline;
     text-align: center;
 }
 
-#searchTerm{
+#searchTerm {
     border-radius: 10px;
 }
 /*#endregion*/
 
 /*#region Modal*/
 .modal {
-    display: none; 
+    display: none;
     position: fixed;
     z-index: 2;
     left: 0;
@@ -486,9 +485,9 @@ nav li a:hover {
         color: #153561;
         text-decoration: none;
         cursor: pointer;
-    } 
+    }
 
-#modalText{
+#modalText {
     text-align: center;
 }
 
@@ -506,7 +505,7 @@ nav li a:hover {
 /*#endregion*/
 
 /*#region Quizzes*/
-.top-assign{
+.top-assign {
     margin: auto;
 }
 
@@ -514,7 +513,7 @@ nav li a:hover {
     text-align: right;
 }
 
-.h1-assign{
+.h1-assign {
     display: inline;
 }
 
@@ -523,11 +522,11 @@ nav li a:hover {
     font-weight: bold;
 }
 
-.due{
+.due {
     font-weight: bold;
 }
 
-.assign-info{
+.assign-info {
     font-size: 16px;
 }
 
@@ -539,7 +538,7 @@ nav li a:hover {
     color: #93A334;
 }
 
-.assignCont{
+.assignCont {
     justify-content: space-evenly
 }
 
@@ -553,11 +552,12 @@ nav li a:hover {
     display: grid;
     grid-template-columns: 50% 30% 20%;
 }
+
 #selectq {
     flex-grow: .7;
 }
 
-#qText{
+#qText {
     flex-grow: 3;
 }
 
@@ -565,9 +565,8 @@ nav li a:hover {
     flex-grow: .5;
 }
 
-#hideQuest{
+#hideQuest {
     display: none;
-
 }
 
 .question-nav {
@@ -578,9 +577,9 @@ nav li a:hover {
     text-align: center
 }
 
-.question-nav p{
-    position: sticky;
-}
+    .question-nav p {
+        position: sticky;
+    }
 
 .questCard {
     width: 50%;
@@ -595,15 +594,15 @@ nav li a:hover {
     justify-content: space-between;
 }
 
-.questTop p{
-    display: inline;
-}
+    .questTop p {
+        display: inline;
+    }
 
-.questPointP{
+.questPointP {
     text-align: right;
 }
 
-.text-entry{
+.text-entry {
     width: 90%;
     height: 15vh;
 }
@@ -634,7 +633,7 @@ h1 {
     z-index: -1;
 }
 
-#departmentId{
+#departmentId {
     height: 48px;
 }
 
@@ -649,19 +648,19 @@ h1 {
     margin-bottom: 20px;
 }
 
-.course-btn .btn{
-    width: 100%;
-    border-radius: 25px;
-}
+    .course-btn .btn {
+        width: 100%;
+        border-radius: 25px;
+    }
 
 .color-div {
     display: flex;
     flex-direction: column;
 }
 
-.color-div label{
-    text-align: center;
-}
+    .color-div label {
+        text-align: center;
+    }
 
 #classColor {
     width: 50%;
@@ -678,15 +677,29 @@ input[type="file"] {
     display: none;
 }
 
+.account-pfp img {
+    display: block;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+#file-upload-filename{
+    text-align: center;
+}
+
 .custombtn {
     text-align: center;
     border: 1px solid #FCB500;
-    display: inline-block;
+    display: block;
     padding: 6px 12px;
     cursor: pointer;
     border-radius: 25px;
     background-color: #FCB500;
     color: #664A04;
+    width: 40%;
+    margin: auto;
 }
 
     .custombtn:hover {
@@ -702,7 +715,6 @@ input[type="file"] {
     overflow-x: scroll;
     min-width: 1480px;
     z-index: 2;
-    
 }
 
     .course-table tr:nth-child(even) {
@@ -728,45 +740,48 @@ input[type="file"] {
 
 /*#region Screen Sizes*/
 
-    /*Width*/
-    @media only screen and (max-width: 1600px) {
-        .course-table {
-            margin-left: min(50px, 15%);
-            
-        }
-
-        .tableHor h1{
-            position: sticky;
-            left: 0;
-        }
-
+/*Width*/
+@media only screen and (max-width: 1600px) {
+    .course-table {
+        margin-left: min(50px, 15%);
     }
 
-    @media only screen and (max-width: 1200px) {
-        .card {
-            height: 30vh;
-            width: 33%
-        }
+    .tableHor h1 {
+        position: sticky;
+        left: 0;
     }
+}
+
+@media only screen and (max-width: 1200px) {
+    .card {
+        height: 30vh;
+        width: 33%
+    }
+}
 
 @media only screen and (max-width: 600px) {
     .card {
         height: 33vh;
     }
 }
-.notifications-container {
-    position: relative; /* Ensure the dropdown is positioned relative to the button */
+/*#endregion*/
+
+/*#region Notifications*/
+
+#notifBell {
+    margin-top: 6px;
 }
 
 .notification-dropdown {
     position: absolute;
     top: 100%; /* Position below the button */
     right: 0;
-    background-color: white;
+    background-color: #FFBFBF;
     border: 1px solid #ccc;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000; /* Ensure it appears above other elements */
     width: 700px; /* Increased width */
+    border-radius: 5px;
 }
 
     .notification-dropdown ul {
@@ -785,3 +800,4 @@ input[type="file"] {
             text-decoration: none;
             color: #007bff; /* Bootstrap primary color or customize */
         }
+/*#endregion*/

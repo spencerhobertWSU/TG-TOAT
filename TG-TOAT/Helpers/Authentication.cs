@@ -65,7 +65,7 @@ public class Authentication : IAuthentication
                        where sc.StudentId == user.UserId
                        where a.DueDate >= DateTime.Now
                        orderby a.DueDate 
-                       select a).Take(5).ToList();
+                       select a).ToList();
 
             upQuizzes = (from q in _context.Quizzes
                             join c in _context.Courses on q.CourseId equals c.CourseId
@@ -73,7 +73,35 @@ public class Authentication : IAuthentication
                             where sc.StudentId == user.UserId
                             where q.DueDate >= DateTime.Now
                             orderby q.DueDate
-                            select q).Take(5).ToList();
+                            select q).ToList();
+
+            var submittedA = (from sa in _context.StudentAssignment
+                            select sa).ToList();
+            var submittedQ = (from sq in _context.StudentQuizzes
+                             select sq).ToList();
+
+            for(int i=0; i<upAssigns.Count; i++)
+            {
+                foreach(var s in submittedA)
+                {
+                    if(upAssigns[i].AssignId == s.AssignId)
+                    {
+                        upAssigns.RemoveAt(i);
+                    }
+                }
+            }
+
+            for (int i = 0; i < upQuizzes.Count; i++)
+            {
+                foreach (var q in submittedQ)
+                {
+                    if (upQuizzes[i].QuizId == q.QuizId)
+                    {
+                        upAssigns.RemoveAt(i);
+                    }
+                }
+            }
+
 
         }
         else if (user.Role == "Instructor")
@@ -99,63 +127,62 @@ public class Authentication : IAuthentication
                          orderby q.DueDate
                          select q).Take(5).ToList();
         }
-        var mostRecQuiz = new Quizzes();
-        /*
-        foreach (var assign in upAssigns)
+        //0=Assign, 1=Quiz
+        var type = 0;
+        int quizStart = 0;
+
+        
+        for(int i = 0; i < upAssigns.Count; i++)
         {
-            var mostRecAssign = assign;
-
-            foreach(var quiz in upQuizzes)
+            for(int j = quizStart; j < upQuizzes.Count; j++)
             {
-                mostRecQuiz = quiz;
-                if (mostRecAssign.DueDate > mostRecQuiz.DueDate)
+                if (upAssigns[i].DueDate > upQuizzes[j].DueDate)
                 {
-                    mostRecAssign = null;
+                    type = 1;
+                    i--;
+                    break;
                 }
-
-
+                
             }
-            if(mostRecAssign == null)
+
+            if(type == 0)
             {
-                var newToDo = new UpcomingAssign
+                var newUp = new UpcomingAssign
                 {
-                    AssignId = mostRecQuiz.QuizId,
-                    Type = 1,
-                    DeptName = mostRecQuiz.
+                    AssignId = upAssigns[i].AssignId,
+                    Type = type,
+                    CourseId = upAssigns[i].CourseId,
+                    AssignName = upAssigns[i].AssignName,
+                    DueDate = upAssigns[i].DueDate,
+
                 };
+                ToDo.Add(newUp);
             }
             else
             {
-                var newToDo = new UpcomingAssign
+                var newUp = new UpcomingAssign
                 {
-
+                    AssignId = upQuizzes[quizStart].QuizId,
+                    Type = type,
+                    CourseId = upQuizzes[quizStart].CourseId,
+                    AssignName = upQuizzes[quizStart].QuizName,
+                    DueDate = upQuizzes[quizStart].DueDate,
                 };
+                ToDo.Add(newUp);
+                type = 0;
+                quizStart++;
             }
-
-        }
-        */
-
-        foreach (var c in courses)
-        {
-            string deptName = _context.Departments.First(d => d.DeptId == c.DeptId).DeptName;
-
-            var assigns = (from a in _context.Assignments
-                           join ci in _context.Courses on a.CourseId equals c.CourseId
-                           where ci.CourseId == c.CourseId
-                           select a).ToList();
-
-            foreach (var a in assigns)
+            if(ToDo.Count >= 5)
             {
-                var newAssign = new UpcomingAssign
-                {
-                    AssignId = a.AssignId,
-                    AssignName = a.AssignName,
-                    CourseNum = c.CourseNum,
-                    DeptName = deptName,
-                    DueDate = a.DueDate,
-                };
-
+                break;
             }
+        }
+
+        foreach (var up in ToDo)
+        {
+            var connect = _context.Courses.First(c => c.CourseId == up.CourseId);
+
+            string deptName = _context.Departments.First(d => d.DeptId == connect.DeptId).DeptName;
 
             switch (deptName)
             {
@@ -175,6 +202,40 @@ public class Authentication : IAuthentication
                     deptName = "CHEM";
                     break;
             }
+            up.CourseNum = connect.CourseNum;
+            up.DeptName = deptName;
+        }
+
+
+        foreach (var c in courses)
+        {
+            string deptName = _context.Departments.First(d => d.DeptId == c.DeptId).DeptName;
+
+            var assigns = (from a in _context.Assignments
+                           join ci in _context.Courses on a.CourseId equals c.CourseId
+                           where ci.CourseId == c.CourseId
+                           select a).ToList();
+
+            switch (deptName)
+            {
+                case "Compuer Science":
+                    deptName = "CS";
+                    break;
+                case "Mathematics":
+                    deptName = "MATH";
+                    break;
+                case "Physics":
+                    deptName = "PHYS";
+                    break;
+                case "Biology":
+                    deptName = "BIOL";
+                    break;
+                case "Chemistry":
+                    deptName = "CHEM";
+                    break;
+            }
+
+
 
             var CourseModel = new CurrClasses
             {
@@ -208,6 +269,7 @@ public class Authentication : IAuthentication
             LastName = user.LastName,
             UserRole = user.Role,
             Courses = Currcourses,
+            UpcomingAssignments = ToDo
         };
 
         CurrIndex = viewModel;

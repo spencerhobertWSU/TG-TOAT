@@ -76,19 +76,3 @@ input[type="file"] {
     display: none;
 
 }
-
-.custombtn {
-    border: 1px solid #FCB500;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-    border-radius: 25px;
-    background-color: #FCB500;
-    color: #664A04;
-}
-
-    .custombtn:hover {
-        border-color: #A68532;
-        background-color: #A68532;
-        color: #F0DAA3;
-    }

@@ -66,44 +66,16 @@
         }
     </div>
 
-    <!-- To-do list column -->
+    <!-- To-do list column
     <div class="col-md-2">
         <div class="todo">
             <h3>To Do</h3>
         </div>
         <div class="todo-items">
-            @if (Model.UpcomingAssignments != null && Model.UpcomingAssignments.Any())
-            {
-                @foreach (var assignment in Model.UpcomingAssignments)
-                {
 
-                    @if (Model.UserRole == "Student")
-                    {
-                        
-                        <a asp-controller="Course" asp-action="SubmitAssignment" asp-route-assignmentId="@assignment.AssignId">
-                            <p class="todo-class">@assignment.Courses.Department.DepartmentName @assignment.Course.CourseNumber</p>
-                            <p class="todo-name">@assignment.AssignName</p>
-                            <p class="todo-time">@assignment.DueDate.ToString("MMM dd 'at' h:mmtt")</p>
-                        </a>
-                    }
-                    else if (Model.UserRole == "Instructor")
-                    {
-                        <a asp-controller="Course" asp-action="ViewSubmissions" asp-route-assignmentId="@assignment.AssignId">
-                            <p class="todo-class">@assignment.CourseId.Department.DepartmentName @assignment.Course.CourseNumber</p>
-                            <p class="todo-name">@assignment.AssignName</p>
-                            <p class="todo-time">@assignment.DueDate.ToString("MMM dd 'at' h:mmtt")</p>
-                        </a>
-                        
-                    }
-                }
-            }
-            else
-            {
-                <p>No upcoming assignments!</p>
-            }
         </div>
     </div>
-
+    -->
 
 </div>
 

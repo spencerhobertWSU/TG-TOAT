@@ -270,6 +270,9 @@ F:\git merges\TG-TOAT\TG-TOAT\obj\Debug\net8.0\refint\TG-TOAT.dll
 F:\git merges\TG-TOAT\TG-TOAT\obj\Debug\net8.0\TG-TOAT.pdb
 F:\git merges\TG-TOAT\TG-TOAT\obj\Debug\net8.0\TG-TOAT.genruntimeconfig.cache
 F:\git merges\TG-TOAT\TG-TOAT\obj\Debug\net8.0\ref\TG-TOAT.dll
+<<<<<<< HEAD
+F:\git merges\TG-TOAT\TG-TOAT\bin\Debug\net8.0\WebDriver.Support.dll
+=======
 C:\Users\Ivan1\Source\Repos\TG-TOAT3\TG-TOAT\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\Ivan1\Source\Repos\TG-TOAT3\TG-TOAT\bin\Debug\net8.0\appsettings.json
 C:\Users\Ivan1\Source\Repos\TG-TOAT3\TG-TOAT\bin\Debug\net8.0\libman.json
@@ -545,3 +548,4 @@ C:\Users\Ivan1\Source\Repos\TG-TOAT3\TG-TOAT\obj\Debug\net8.0\refint\TG-TOAT.dll
 C:\Users\Ivan1\Source\Repos\TG-TOAT3\TG-TOAT\obj\Debug\net8.0\TG-TOAT.pdb
 C:\Users\Ivan1\Source\Repos\TG-TOAT3\TG-TOAT\obj\Debug\net8.0\TG-TOAT.genruntimeconfig.cache
 C:\Users\Ivan1\Source\Repos\TG-TOAT3\TG-TOAT\obj\Debug\net8.0\ref\TG-TOAT.dll
+>>>>>>> main

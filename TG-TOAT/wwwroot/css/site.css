@@ -92,7 +92,6 @@ footer {
 /*#region Button*/
 .btn{
     margin: 5px;
-    z-index: -1 !important;
 }
 
 .btn-primary {
@@ -181,7 +180,7 @@ nav {
 }
 
 .navbar-toggler{
-float: left;
+    float: left;
 }
 
 .currPage {
@@ -307,10 +306,10 @@ nav li a:hover {
 }
 
 .course-row {
-    width: 80vw;
     display: grid;
-    grid-template-columns: 20vw 70vw;
+    grid-template-columns: 15vw 70%;
     margin-left: 5vw;
+    word-wrap: break-word;
 }
 
 .h1-course {
@@ -507,6 +506,31 @@ nav li a:hover {
 /*#endregion*/
 
 /*#region Quizzes*/
+.top-assign{
+    margin: auto;
+}
+
+.right-assign {
+    text-align: right;
+}
+
+.h1-assign{
+    display: inline;
+}
+
+.assign-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.due{
+    font-weight: bold;
+}
+
+.assign-info{
+    font-size: 16px;
+}
+
 .incorrect {
     color: #994949;
 }
@@ -591,8 +615,12 @@ h1 {
     text-align: center;
 }
 
+.home-desc {
+    font-size: 30px;
+    display: inline;
+}
 
-#score-distribution-chart{
+#score-distribution-chart {
     width: 80vw !important;
     height: 50vh !important;
     z-index: 1;

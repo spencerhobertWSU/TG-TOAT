@@ -350,6 +350,7 @@ namespace TGTOAT.Controllers
 
             var viewModel = new CourseHome
             {
+                Description = course.CourseDesc,
                 Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
                 CourseId = course.CourseId,
                 UserRole = _auth.getUser().Role,
@@ -876,7 +877,7 @@ namespace TGTOAT.Controllers
                     {
                         title = $"Assignment: {assignment.AssignName}",
                         start = assignment.DueDate.ToString("yyyy-MM-ddTHH:mm:ss"),
-                        url = $"/Course/ViewSubmissions?assignmentId={assignment.AssignId}",
+                        url = $"/Course/ViewSubmissions/{assignment.CourseId}?assignmentId={assignment.AssignId}",
                         backgroundColor = "#3788d8" // Blue color for assignments
                     });
                 }
@@ -888,7 +889,7 @@ namespace TGTOAT.Controllers
                     {
                         title = $"Quiz: {quiz.QuizName}",
                         start = quiz.DueDate.ToString("yyyy-MM-ddTHH:mm:ss"),
-                        url = $"/Course/ViewSubmissions?quizId={quiz.QuizId}",
+                        url = $"/Course/ViewSubmissions/{quiz.CourseId}?quizId={quiz.QuizId}",
                         backgroundColor = "#e74c3c" // Red color for quizzes
                     });
                 }
@@ -933,8 +934,8 @@ namespace TGTOAT.Controllers
                 foreach (var assignment in assignments)
                 {
                     string assignmentUrl = currentUser.Role == "Student" 
-                        ? $"/Course/SubmitPage?assignmentId={assignment.AssignId}"  // Student goes to submission page
-                        : $"/Course/ViewSubmissions?assignmentId={assignment.AssignId}";  // Instructor goes to view all submissions
+                        ? $"/Course/SubmitPage/{assignment.CourseId}?assignmentId={assignment.AssignId}"  // Student goes to submission page
+                        : $"/Course/ViewSubmissions/{assignment.CourseId}?assignmentId={assignment.AssignId}";  // Instructor goes to view all submissions
 
                     courseEvents.Add(new
                     {
@@ -952,7 +953,7 @@ namespace TGTOAT.Controllers
                     {
                         title = $"Quiz: {quiz.QuizName}",
                         start = quiz.DueDate.ToString("yyyy-MM-ddTHH:mm:ss"),
-                        url = $"/Course/Quiz/{quiz.QuizId}",
+                        url = $"/Course/Quiz/{quiz.CourseId}?quizId={quiz.QuizId}",
                         backgroundColor = "#e74c3c" // Red color for quizzes
                     });
                 }

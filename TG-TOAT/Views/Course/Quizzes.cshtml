@@ -19,7 +19,7 @@
 
 
 
-<h1 class="h1-course">@Model.Department @Model.CourseNum, @Model.UserRole</h1>
+<h1 class="h1-course">@Model.Department @Model.CourseNum - @Model.UserRole</h1>
 <hr />
 <div class="course-row">
     <div class="course-nav">
@@ -47,7 +47,8 @@
                     <div class="row" style="align-items: center;">
                         <!-- Assignment details -->
                         <div class="col-md-6 text-left">
-                            @quiz.QuizName @quiz.DueDate.ToString("MM/dd/yyyy hh:mm tt")
+                            <p class="assign-title">@quiz.QuizName</p>
+                            <p class="assign-info"><span class="due">Due:</span> @quiz.DueDate.ToString("MM/dd/yyyy 'at' hh:mm tt")&emsp;@quiz.MaxPoints Points&emsp;@quiz.NumQuestions Questions</p>
                         </div>
 
                         <!-- Submit -->
@@ -55,27 +56,35 @@
                             <div class="col-md-6 text-right">
 
                                 @{
-                                    foreach(var sub in Model.studentQuizzes)
-                                    {
-                                        if(sub.QuizId == quiz.QuizId)
-                                        {
-                                            <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="ViewQuiz" asp-route-id="@Model.CourseId" asp-route-quizId="@quiz.QuizId">
-                                                View Submission
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="Quiz" asp-route-id="@Model.CourseId" asp-route-quizId="@quiz.QuizId">
-                                                Take
-                                            </a>
-                                        }
-                                    }
                                     if (!Model.studentQuizzes.Any())
                                     {
                                         <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="Quiz" asp-route-id="@Model.CourseId" asp-route-quizId="@quiz.QuizId">
                                             Take
                                         </a>
                                     }
+                                    else
+                                    {
+                                        foreach (var sub in Model.studentQuizzes)
+                                        {
+          
+                                            if (sub.QuizId == quiz.QuizId)
+                                            {
+                                                <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="ViewQuiz" asp-route-id="@Model.CourseId" asp-route-quizId="@quiz.QuizId">
+                                                    View Submission
+                                                </a>
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                <a class="btn btn-primary" asp-area="" asp-controller="Course" asp-action="Quiz" asp-route-id="@Model.CourseId" asp-route-quizId="@quiz.QuizId">
+                                                    Take
+                                                </a>
+                                                break;
+                                            }
+                                        }
+                                    }
+
+
                                 }
 
 

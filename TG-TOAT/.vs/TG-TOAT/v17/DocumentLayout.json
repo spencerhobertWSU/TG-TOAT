@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\ivan1\\source\\repos\\tg-toat3\\tg-toat\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\ivan1\\source\\repos\\tg-toat3\\tg-toat\\notificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:notificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -29,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\ivan1\\source\\repos\\tg-toat3\\tg-toat\\views\\course\\submitassignment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:views\\course\\submitassignment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\ivan1\\source\\repos\\tg-toat3\\tg-toat\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|solutionrelative:controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E24D7014-5802-4938-9D99-E942B30F3591}|TG-TOAT.csproj|c:\\users\\ivan1\\source\\repos\\tg-toat3\\tg-toat\\views\\course\\assignments.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -114,46 +114,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Notifications.cs",
-              "DocumentMoniker": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Data\\Notifications.cs",
-              "RelativeDocumentMoniker": "Data\\Notifications.cs",
-              "ToolTip": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Data\\Notifications.cs",
-              "RelativeToolTip": "Data\\Notifications.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T19:58:03.593Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "ViewSubmission.cshtml",
-              "DocumentMoniker": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Views\\Course\\ViewSubmission.cshtml",
-              "RelativeDocumentMoniker": "Views\\Course\\ViewSubmission.cshtml",
-              "ToolTip": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Views\\Course\\ViewSubmission.cshtml",
-              "RelativeToolTip": "Views\\Course\\ViewSubmission.cshtml",
-              "ViewState": "AgIAABkAAAAAAAAAcBwnwB4AAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-20T20:13:10.54Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Assignments.cs",
-              "DocumentMoniker": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Data\\Assignments.cs",
-              "RelativeDocumentMoniker": "Data\\Assignments.cs",
-              "ToolTip": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Data\\Assignments.cs",
-              "RelativeToolTip": "Data\\Assignments.cs",
-              "ViewState": "AgIAAAQAAAAAAAAA4DgOwA0AAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T19:47:51.987Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "ViewSubmissions.cshtml",
               "DocumentMoniker": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Views\\Course\\ViewSubmissions.cshtml",
               "RelativeDocumentMoniker": "Views\\Course\\ViewSubmissions.cshtml",
@@ -166,12 +127,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "NotificationService.cs",
               "DocumentMoniker": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\NotificationService.cs",
               "RelativeDocumentMoniker": "NotificationService.cs",
-              "ToolTip": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\NotificationService.cs*",
-              "RelativeToolTip": "NotificationService.cs*",
+              "ToolTip": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\NotificationService.cs",
+              "RelativeToolTip": "NotificationService.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAAADIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-13T22:57:23.37Z",
@@ -179,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "SubmitAssignment.cshtml",
               "DocumentMoniker": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Views\\Course\\SubmitAssignment.cshtml",
               "RelativeDocumentMoniker": "Views\\Course\\SubmitAssignment.cshtml",
@@ -192,7 +153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
@@ -205,15 +166,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "CourseController.cs",
               "DocumentMoniker": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Controllers\\CourseController.cs",
               "RelativeDocumentMoniker": "Controllers\\CourseController.cs",
               "ToolTip": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Controllers\\CourseController.cs",
               "RelativeToolTip": "Controllers\\CourseController.cs",
-              "ViewState": "AgIAAEsBAAAAAAAAAAAmwFcBAABSAAAAAAAAAA==",
+              "ViewState": "AgIAAPgBAAAAAAAAAAAAAAACAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-19T18:51:42.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Assignments.cs",
+              "DocumentMoniker": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Data\\Assignments.cs",
+              "RelativeDocumentMoniker": "Data\\Assignments.cs",
+              "ToolTip": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Data\\Assignments.cs",
+              "RelativeToolTip": "Data\\Assignments.cs",
+              "ViewState": "AgIAAAQAAAAAAAAA4DgOwA0AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T19:47:51.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ViewSubmission.cshtml",
+              "DocumentMoniker": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Views\\Course\\ViewSubmission.cshtml",
+              "RelativeDocumentMoniker": "Views\\Course\\ViewSubmission.cshtml",
+              "ToolTip": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Views\\Course\\ViewSubmission.cshtml",
+              "RelativeToolTip": "Views\\Course\\ViewSubmission.cshtml",
+              "ViewState": "AgIAABkAAAAAAAAAcBwnwB4AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-20T20:13:10.54Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Notifications.cs",
+              "DocumentMoniker": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Data\\Notifications.cs",
+              "RelativeDocumentMoniker": "Data\\Notifications.cs",
+              "ToolTip": "C:\\Users\\Ivan1\\source\\repos\\TG-TOAT3\\TG-TOAT\\Data\\Notifications.cs",
+              "RelativeToolTip": "Data\\Notifications.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T19:58:03.593Z",
               "EditorCaption": ""
             },
             {

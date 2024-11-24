@@ -1,64 +1,69 @@
 ﻿@model SubmissionDetailViewModel
 
 @{
-    ViewData["Title"] = "Submission";
+    ViewData["Title"] = "Submission Details";
     Layout = "~/Views/Shared/_InstructorCourse.cshtml";
 }
 
+<div class="container mt-4">
+    <h1 class="text-center">Submission Details</h1>
 
-<h1>Submission</h1>
+    <!-- Notifications Section -->
+    @if (Model.Notifications != null && Model.Notifications.Any())
+    {
+        <div class="alert alert-info mt-4">
+            <h4>Notifications</h4>
+            <ul>
+                @foreach (var notification in Model.Notifications)
+                {
+                    <li>@notification.Message</li>
+                }
+            </ul>
+        </div>
+    }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Student Name</th>
-            <th>Due Date</th>
-            <th>Submission Date</th>
-            <th>Max Points</th>
-            <th>Given Points</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-            <tr>
-                <td>@Model.StudentFullName</td>
-                <td>@Model.DueDate.ToString("MM/dd/yyyy hh:mm tt")</td>
-                <td>@Model.SubmissionDate.ToString("MM/dd/yyyy hh:mm tt")</td>
-                <td id="maxPoints">@Model.MaxPoints</td>
-                <td>
-                    <form asp-action="UpdateSubmission" method="post" style="display:inline;">
-                        <input type="hidden" name="assignmentId" value="@Model.AssignmentId" />
-                        <input type="hidden" name="studentId" value="@Model.StudentId" />
-                        <input type="text" name="givenPoints" value="@Model.GivenPoints" style="width:60px;" />
-                        <button type="submit" class="btn btn-success">Update</button>
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="6">
-                    <div class="submission-details">
-                        <h4>Submission Content</h4>
-                        @if (!string.IsNullOrEmpty(Model.TextSubmission))
-                        {
-                            <div>
-                                <h5>Text Submission:</h5>
-                                <p>@Model.TextSubmission</p>
-                            </div>
-                        }
-                        else if (!string.IsNullOrEmpty(Model.FileSubmission))
-                        {
-                            <div>
-                                <h5>File Submission:</h5>
-                                <a href="@Url.Content(Model.FileSubmission)" class="btn btn-primary" download>Download File</a>
-                            </div>
-                        }
-                        else
-                        {
-                            <p>No submission content available.</p>
-                        }
-                    </div>
-                </td>
-            </tr>
-  
-    </tbody>
-</table>
+    <!-- Submission Details -->
+    <section class="mt-4">
+        <h3 class="mb-3">Student Information</h3>
+        <p><strong>Student Name:</strong> @Model.StudentFullName</p>
+    </section>
+
+    <section class="mt-4">
+        <h3 class="mb-3">Submission Details</h3>
+        <p><strong>Due Date:</strong> @Model.DueDate.ToString("MM/dd/yyyy hh:mm tt")</p>
+        <p><strong>Submission Date:</strong> @Model.SubmissionDate.ToString("MM/dd/yyyy hh:mm tt")</p>
+        <p><strong>Max Points:</strong> <span id="maxPoints">@Model.MaxPoints</span></p>
+        <form asp-action="UpdateSubmission" method="post" class="mt-3">
+            <input type="hidden" name="assignmentId" value="@Model.AssignmentId" />
+            <input type="hidden" name="studentId" value="@Model.StudentId" />
+            <div class="form-group">
+                <label for="givenPoints"><strong>Given Points:</strong></label>
+                <input type="text" id="givenPoints" name="givenPoints" value="@Model.GivenPoints" class="form-control" style="width:120px; display:inline;" />
+                <button type="submit" class="btn btn-success ml-2">Update</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Submission Content -->
+    <section class="mt-4">
+        <h3 class="mb-3">Submission Content</h3>
+        @if (Model.HasFile)
+        {
+            <div>
+                <h5>File Submission:</h5>
+                <a href="@Url.Content(Model.FileSubmission)" class="btn btn-primary" download>Download File</a>
+            </div>
+        }
+        else if (!string.IsNullOrEmpty(Model.TextSubmission))
+        {
+            <div>
+                <h5>Text Submission:</h5>
+                <p>@Model.TextSubmission</p>
+            </div>
+        }
+        else
+        {
+            <p class="text-muted">No submission content available.</p>
+        }
+    </section>
+</div>

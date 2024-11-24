@@ -23,6 +23,7 @@ namespace TGTOAT.Controllers
             _context = context;
             _auth = auth;
         }
+
         #region CRUD Courses
 
             #region Create Courses
@@ -1449,7 +1450,6 @@ namespace TGTOAT.Controllers
 
             return View(viewModel);
         }
-
 
         public void UpdateGrade(int studentId, int courseId)
         {

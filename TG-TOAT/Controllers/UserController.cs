@@ -407,6 +407,7 @@ namespace TGTOAT.Controllers
 
             var RegisterCourses = new CourseRegisterViewModel
             {
+                Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
                 Courses = Courses,
                 CurrentStudent = user.UserId,
                 StudentConnection = StudentCourses,

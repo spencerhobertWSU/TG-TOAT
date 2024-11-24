@@ -23,79 +23,215 @@ namespace TGTOAT.Controllers
             _context = context;
             _auth = auth;
         }
-        #region Create/Edit Courses
+        #region CRUD Courses
 
-        // Display the AddCourse view with the list of departments
-        //[HttpGet]
-        public IActionResult Create()
-        {
-            var user = _auth.getUser();
-
-            if (user == null)
+            #region Create Courses
+            // Display the AddCourse view with the list of departments
+            //[HttpGet]
+            public IActionResult Create()
             {
-                return RedirectToAction("Login", "User");
-            }
+                var user = _auth.getUser();
 
-            var departments = _context.Departments.ToList();
-
-            var semesters = new List<SelectListItem>
-            {
-                new SelectListItem { Value = "Spring", Text = "Spring" },
-                new SelectListItem { Value = "Summer", Text = "Summer" },
-                new SelectListItem { Value = "Fall", Text = "Fall" }
-            };
-            var campus = new List<SelectListItem>
-            {
-                new SelectListItem { Value = "Ogden", Text = "Ogden Campus" },
-                new SelectListItem { Value = "Davis", Text = "Davis Campus" }
-            };
-
-            var instructors = (from u in _context.User
-                               join ui in _context.UserInfo on u.UserId equals ui.UserId
-                               where ui.Role == "Instructor"
-                               select ui).ToList();
-
-            var UserRole = _auth.getUser();
-
-            var viewModel = new AddCourseViewModel
-            {
-                Departments = departments,
-                CampusList = campus,
-                SemesterList = semesters,
-                CurrYear = DateTime.Now.Year,
-                Instructors = instructors
-            };
-
-            return View(viewModel);
-        }
-
-        // Handle the form submission for adding a course
-        [HttpPost]
-        public async Task<IActionResult> Create(AddCourseViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                string coursePic = null;
-
-                if (model.Picture != null)
+                if (user == null)
                 {
-                    byte[] imageBytes = System.IO.File.ReadAllBytes(model.Picture);
-                    string base64String = Convert.ToBase64String(imageBytes);
-
-                    coursePic = base64String;
+                    return RedirectToAction("Login", "User");
                 }
 
-                TimeOnly sTime = new TimeOnly(04, 20, 00);
-                TimeOnly eTime = new TimeOnly(16, 20, 00);
+                var departments = _context.Departments.ToList();
 
-                if (model.StartTime == sTime & model.EndTime == eTime)
+                var semesters = new List<SelectListItem>
                 {
-                    model.StartTime = null;
-                    model.EndTime = null;
+                    new SelectListItem { Value = "Spring", Text = "Spring" },
+                    new SelectListItem { Value = "Summer", Text = "Summer" },
+                    new SelectListItem { Value = "Fall", Text = "Fall" }
+                };
+                var campus = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "Ogden", Text = "Ogden Campus" },
+                    new SelectListItem { Value = "Davis", Text = "Davis Campus" }
+                };
+
+                var instructors = (from u in _context.User
+                                   join ui in _context.UserInfo on u.UserId equals ui.UserId
+                                   where ui.Role == "Instructor"
+                                   select ui).ToList();
+
+                var UserRole = _auth.getUser();
+
+                var viewModel = new AddCourseViewModel
+                {
+                    Departments = departments,
+                    CampusList = campus,
+                    SemesterList = semesters,
+                    CurrYear = DateTime.Now.Year,
+                    Instructors = instructors
+                };
+
+                return View(viewModel);
+            }
+
+            // Handle the form submission for adding a course
+            [HttpPost]
+            public async Task<IActionResult> Create(AddCourseViewModel model)
+            {
+                if (ModelState.IsValid)
+                {
+                    string coursePic = null;
+
+                    if (model.Picture != null)
+                    {
+                        byte[] imageBytes = System.IO.File.ReadAllBytes(model.Picture);
+                        string base64String = Convert.ToBase64String(imageBytes);
+
+                        coursePic = base64String;
+                    }
+
+                    TimeOnly sTime = new TimeOnly(04, 20, 00);
+                    TimeOnly eTime = new TimeOnly(16, 20, 00);
+
+                    if (model.StartTime == sTime & model.EndTime == eTime)
+                    {
+                        model.StartTime = null;
+                        model.EndTime = null;
+                    }
+
+                    var course = new Courses
+                    {
+                        CourseNum = model.CourseNumber,
+                        CourseName = model.CourseName,
+                        DeptId = model.SelectedDepartmentId,
+                        Capacity = model.Capacity,
+                        Campus = model.Campus,
+                        Building = model.Building,
+                        Room = model.RoomNumber,
+                        Days = model.DaysOfTheWeek,
+                        StartTime = model.StartTime,
+                        StopTime = model.EndTime,
+                        Credits = model.NumberOfCredits,
+                        CourseDesc = model.CourseDescription,
+                        Semester = model.Semester,
+                        Year = model.Year,
+                        Color = model.Color,
+                        Picture = coursePic,
+                    };
+
+                    _context.Courses.Add(course);
+                    await _context.SaveChangesAsync();
+
+                    var InstructorConnection = new InstructorConnection
+                    {
+                        InstructorId = model.SelectedInstructorId,
+                        CourseId = course.CourseId
+                    };
+
+                    _context.InstructorConnection.Add(InstructorConnection);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction("Courses");
+                }
+
+                // Re-populate if the model is invalid
+                var departments = _context.Departments.ToList();
+
+                var dempartmentslist = new List<SelectListItem>();
+
+                foreach (var department in departments)
+                {
+                    new SelectListItem { Value = department.DeptId.ToString(), Text = department.DeptName };
+                }
+                model.SemesterList = new List<SelectListItem>
+                        {
+                            new SelectListItem { Value = "Spring", Text = "Spring" },
+                            new SelectListItem { Value = "Summer", Text = "Summer" },
+                            new SelectListItem { Value = "Fall", Text = "Fall" }
+                        };
+                model.CampusList = new List<SelectListItem>
+                        {
+                            new SelectListItem { Value = "Ogden", Text = "Ogden Campus" },
+                            new SelectListItem { Value = "Davis", Text = "Davis Campus" }
+                        };
+                model.Instructors = _context.UserInfo.Where(u => u.Role == "Instructor").ToList();
+                return View(model);
+            }
+            #endregion
+
+            #region Edit Courses
+            public ActionResult Edit(int id)
+            {
+                var user = _auth.getUser();
+
+                if (user == null)
+                {
+                    return RedirectToAction("Login", "User");
+                }
+
+                var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
+
+                if (course == null)
+                {
+                    return NotFound();
+                }
+
+                var viewModel = new AddCourseViewModel
+                {
+                    Notifications = _auth.GetNotificationsForUser(user.UserId).ToList(),
+                    CourseId = id,
+                    CourseNumber = course.CourseNum,
+                    CourseName = course.CourseName,
+                    NumberOfCredits = course.Credits,
+                    SelectedDepartmentId = course.DeptId,
+                    Departments = _context.Departments?.ToList() ?? new List<Departments>(),
+                    CampusList = new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "Ogden", Text = "Ogden Campus" },
+                        new SelectListItem { Value = "Davis", Text = "Davis Campus" }
+                    },
+                    Building = course.Building,  // This ensures the selected building is set
+                    Buildings = GetBuildingListByCampus(course.Campus),  // Prepopulate buildings based on current campus
+                    CourseDescription = course.CourseDesc,
+                    DaysOfTheWeek = course.Days,
+                    StartTime = course.StartTime,
+                    EndTime = course.StopTime,
+                    RoomNumber = course.Room,
+                    Capacity = course.Capacity,
+                    Campus = course.Campus,
+                    Semester = course.Semester,
+                    SemesterList = new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "Spring", Text = "Spring" },
+                        new SelectListItem { Value = "Summer", Text = "Summer" },
+                        new SelectListItem { Value = "Fall", Text = "Fall" }
+                    },
+                    Year = course.Year,
+                    Color = course.Color,
+                    Picture = course.Picture,
+                    SelectedInstructorId = _context.InstructorConnection.FirstOrDefault(icc => icc.CourseId == id)?.InstructorId ?? 0,
+                    Instructors = _context.UserInfo?.Where(u => u.Role == "Instructor").ToList() ?? new List<UserInfo>()
+                };
+
+                if (viewModel != null)
+                {
+                    return View(viewModel);
+                }
+
+                return View(new AddCourseViewModel());
+
+
+            }
+
+            [HttpPost]
+            public async Task<ActionResult> Edit(AddCourseViewModel model)
+            {
+                var user = _auth.getUser();
+
+                if (user == null)
+                {
+                    return RedirectToAction("Login", "User");
                 }
 
                 var course = new Courses
                 {
+                    CourseId = model.CourseId,
                     CourseNum = model.CourseNumber,
                     CourseName = model.CourseName,
                     DeptId = model.SelectedDepartmentId,
@@ -111,165 +247,113 @@ namespace TGTOAT.Controllers
                     Semester = model.Semester,
                     Year = model.Year,
                     Color = model.Color,
-                    Picture = coursePic,
+                    Picture = model.Picture,
                 };
 
-                _context.Courses.Add(course);
+                _context.Courses.Update(course);
                 await _context.SaveChangesAsync();
 
-                var InstructorConnection = new InstructorConnection
+                var courseConnect = _context.InstructorConnection.FirstOrDefault(db => db.CourseId == model.CourseId);
+
+                if (courseConnect != null)
                 {
-                    InstructorId = model.SelectedInstructorId,
-                    CourseId = course.CourseId
-                };
+                    if (courseConnect.InstructorId != model.SelectedInstructorId)
+                    {
+                        var InstructorConnection = new InstructorConnection
+                        {
+                            InstructorId = model.SelectedInstructorId,
+                            CourseId = model.CourseId
+                        };
+                        _context.InstructorConnection.Update(InstructorConnection);
+                        await _context.SaveChangesAsync();
+                    }
+                }
 
-                _context.InstructorConnection.Add(InstructorConnection);
-                await _context.SaveChangesAsync();
+                return RedirectToAction("Courses");
+
+
+            }
+
+            [HttpGet]
+            private List<SelectListItem> GetBuildingListByCampus(string campus)
+            {
+                var buildings = new List<SelectListItem>();
+
+                if (campus == "Ogden")
+                {
+                    buildings = new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "", Text = "Select a Building" },
+                        new SelectListItem { Value = "BC", Text = "Browing Center" },
+                        new SelectListItem { Value = "EH", Text = "Elizabeth Hall" },
+                        new SelectListItem { Value = "ET", Text = "Engineering Technology" },
+                        new SelectListItem { Value = "HC", Text = "Hurst Center For Lifelong Learning" },
+                        new SelectListItem { Value = "IE", Text = "Interprofessional Education Building" },
+                        new SelectListItem { Value = "KA", Text = "Kimball Visual Arts Center" },
+                        new SelectListItem { Value = "LP", Text = "Lampros Hall" },
+                        new SelectListItem { Value = "LL", Text = "Lind Lecture Hall" },
+                        new SelectListItem { Value = "LH", Text = "Lindquist Hall" },
+                        new SelectListItem { Value = "MH", Text = "Marriott Health Services" },
+                        new SelectListItem { Value = "ED", Text = "McKay Education" },
+                        new SelectListItem { Value = "NB", Text = "Noorda Engineering, Applied Science & Technology" },
+                        new SelectListItem { Value = "HB", Text = "Noorda High Bay" },
+                        new SelectListItem { Value = "SU", Text = "Shepherd Union" },
+                        new SelectListItem { Value = "LI", Text = "Steward Library" },
+                        new SelectListItem { Value = "SC", Text = "Student Services Center" },
+                        new SelectListItem { Value = "SW", Text = "Swenson Building" },
+                        new SelectListItem { Value = "TY", Text = "Tracey Hall Science Center" },
+                        new SelectListItem { Value = "WB", Text = "Wattis Building" }
+                    };
+                }
+                else if (campus == "Davis")
+                {
+                    buildings = new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "", Text = "Select a Building" },
+                        new SelectListItem { Value = "D2", Text = "Building D2" },
+                        new SelectListItem { Value = "D13", Text = "Building D13" },
+                        new SelectListItem { Value = "DSC", Text = "Stewart Center" },
+                        new SelectListItem { Value = "CCE", Text = "Center for Continuing Education" },
+                        new SelectListItem { Value = "CAE", Text = "Computer & Automotive Engineering" }
+                    };
+                }
+
+                return buildings;
+            }
+
+            [HttpGet]
+            public JsonResult GetBuildingsByCampus(string campus)
+            {
+                var buildings = GetBuildingListByCampus(campus);  // Reuse the helper method
+                return Json(buildings);  // Return the list as JSON for AJAX
+            }
+            #endregion
+
+            #region Delete Courses
+        [HttpGet]
+            public IActionResult Delete(int id)
+            {
+                var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
+
+                if (course == null)
+                {
+                    return NotFound();
+                }
+
+                // Remove instructor-course connection
+                var instructorConnection = _context.InstructorConnection.FirstOrDefault(icc => icc.CourseId == id);
+                if (instructorConnection != null)
+                {
+                    _context.InstructorConnection.Remove(instructorConnection);
+                }
+
+                // Remove the course
+                _context.Courses.Remove(course);
+                _context.SaveChanges();
 
                 return RedirectToAction("Courses");
             }
-
-            // Re-populate if the model is invalid
-            var departments = _context.Departments.ToList();
-
-            var dempartmentslist = new List<SelectListItem>();
-
-            foreach (var department in departments)
-            {
-                new SelectListItem { Value = department.DeptId.ToString(), Text = department.DeptName };
-            }
-            model.SemesterList = new List<SelectListItem>
-                    {
-                        new SelectListItem { Value = "Spring", Text = "Spring" },
-                        new SelectListItem { Value = "Summer", Text = "Summer" },
-                        new SelectListItem { Value = "Fall", Text = "Fall" }
-                    };
-            model.CampusList = new List<SelectListItem>
-                    {
-                        new SelectListItem { Value = "Ogden", Text = "Ogden Campus" },
-                        new SelectListItem { Value = "Davis", Text = "Davis Campus" }
-                    };
-            model.Instructors = _context.UserInfo.Where(u => u.Role == "Instructor").ToList();
-            return View(model);
-        }
-
-        public ActionResult Edit(int id)
-        {
-            var user = _auth.getUser();
-
-            if (user == null)
-            {
-                return RedirectToAction("Login", "User");
-            }
-
-            var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
-
-            if (course == null)
-            {
-                return NotFound();
-            }
-
-            var viewModel = new AddCourseViewModel
-            {
-                Notifications = _auth.GetNotificationsForUser(user.UserId).ToList(),
-                CourseId = id,
-                CourseNumber = course.CourseNum,
-                CourseName = course.CourseName,
-                NumberOfCredits = course.Credits,
-                SelectedDepartmentId = course.DeptId,
-                Departments = _context.Departments?.ToList() ?? new List<Departments>(),
-                CampusList = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "Ogden", Text = "Ogden Campus" },
-                    new SelectListItem { Value = "Davis", Text = "Davis Campus" }
-                },
-                Building = course.Building,  // This ensures the selected building is set
-                Buildings = GetBuildingListByCampus(course.Campus),  // Prepopulate buildings based on current campus
-                CourseDescription = course.CourseDesc,
-                DaysOfTheWeek = course.Days,
-                StartTime = course.StartTime,
-                EndTime = course.StopTime,
-                RoomNumber = course.Room,
-                Capacity = course.Capacity,
-                Campus = course.Campus,
-                Semester = course.Semester,
-                SemesterList = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "Spring", Text = "Spring" },
-                    new SelectListItem { Value = "Summer", Text = "Summer" },
-                    new SelectListItem { Value = "Fall", Text = "Fall" }
-                },
-                Year = course.Year,
-                Color = course.Color,
-                Picture = course.Picture,
-                SelectedInstructorId = _context.InstructorConnection.FirstOrDefault(icc => icc.CourseId == id)?.InstructorId ?? 0,
-                Instructors = _context.UserInfo?.Where(u => u.Role == "Instructor").ToList() ?? new List<UserInfo>()
-            };
-
-            if (viewModel != null)
-            {
-                return View(viewModel);
-            }
-
-            return View(new AddCourseViewModel());
-
-
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> Edit(AddCourseViewModel model)
-        {
-            var user = _auth.getUser();
-
-            if (user == null)
-            {
-                return RedirectToAction("Login", "User");
-            }
-
-            var course = new Courses
-            {
-                CourseId = model.CourseId,
-                CourseNum = model.CourseNumber,
-                CourseName = model.CourseName,
-                DeptId = model.SelectedDepartmentId,
-                Capacity = model.Capacity,
-                Campus = model.Campus,
-                Building = model.Building,
-                Room = model.RoomNumber,
-                Days = model.DaysOfTheWeek,
-                StartTime = model.StartTime,
-                StopTime = model.EndTime,
-                Credits = model.NumberOfCredits,
-                CourseDesc = model.CourseDescription,
-                Semester = model.Semester,
-                Year = model.Year,
-                Color = model.Color,
-                Picture = model.Picture,
-            };
-
-            _context.Courses.Update(course);
-            await _context.SaveChangesAsync();
-
-            var courseConnect = _context.InstructorConnection.FirstOrDefault(db => db.CourseId == model.CourseId);
-
-            if (courseConnect != null)
-            {
-                if (courseConnect.InstructorId != model.SelectedInstructorId)
-                {
-                    var InstructorConnection = new InstructorConnection
-                    {
-                        InstructorId = model.SelectedInstructorId,
-                        CourseId = model.CourseId
-                    };
-                    _context.InstructorConnection.Update(InstructorConnection);
-                    await _context.SaveChangesAsync();
-                }
-            }
-
-            return RedirectToAction("Courses");
-
-
-        }
+            #endregion
 
         #endregion
 
@@ -551,6 +635,13 @@ namespace TGTOAT.Controllers
                 return RedirectToAction("Login", "User");
             }
 
+            var submitted = _context.StudentQuizzes.FirstOrDefault(sq => sq.QuizId == quizId);
+
+            if (submitted != null)
+            {
+                return RedirectToAction("ViewQuiz", new { id, quizId });
+            }
+
             var quizInfo = _context.Quizzes.FirstOrDefault(q => q.QuizId == quizId);
 
             var quiz = new TakeQuizModel
@@ -730,6 +821,7 @@ namespace TGTOAT.Controllers
 
                 var quiz = new TakeQuizModel
                 {
+                    Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
                     UserRole = user.Role,
                     CourseId = id,
                     QuizId = quizId,
@@ -763,6 +855,7 @@ namespace TGTOAT.Controllers
 
                 var quiz = new TakeQuizModel
                 {
+                    Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
                     stuId = stuId,
                     UserRole = user.Role,
                     CourseId = id,
@@ -1068,6 +1161,7 @@ namespace TGTOAT.Controllers
 
                 var AllSubs = new AllSubmissions
                 {
+                    Notifications = _notificationService.GetNotificationsForUser(currInstruct.UserId).ToList(),
                     type = "assignment",
                     CourseId = id,
                     Submissions = Submissions
@@ -1106,6 +1200,7 @@ namespace TGTOAT.Controllers
 
                 var AllSubs = new AllSubmissions
                 {
+                    Notifications = _notificationService.GetNotificationsForUser(currInstruct.UserId).ToList(),
                     type = "quiz",
                     CourseId = id,
                     Submissions = Submissions
@@ -1116,7 +1211,7 @@ namespace TGTOAT.Controllers
             return RedirectToAction("Login", "User");
         }
 
-        public ActionResult ViewSubmission(int assignmentId, int studentId)
+        public ActionResult ViewSubmission(int courseId, int assignmentId, int studentId)
         {
             var assignment = _context.Assignments
                 .FirstOrDefault(a => a.AssignId == assignmentId);
@@ -1137,25 +1232,22 @@ namespace TGTOAT.Controllers
                 return NotFound();
             }
 
-            var viewModel = new List<SubmissionDetailViewModel>
-    {
-        new SubmissionDetailViewModel
-        {
-             
-            StudentFullName = (sInfo.FirstName+" "+sInfo.LastName),
-            DueDate = assignment.DueDate,
-            SubmissionDate = submission.Submitted,
-            MaxPoints = assignment.MaxPoints,
-            GivenPoints = submission.Points.HasValue ? submission.Points.Value.ToString() : "UG",
-            TextSubmission = submission.Submission,
-            FileSubmission = submission.Submission,
-            HasFile = !string.IsNullOrEmpty(submission.Submission),
-            AssignmentId = assignment.AssignId, // Include the assignment ID
-            StudentId = submission.StudentId // Include the student ID
-        }
-    };
+            var SubmissionDetailViewModel = new SubmissionDetailViewModel
+            {
+                Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
+                StudentFullName = (sInfo.FirstName + " " + sInfo.LastName),
+                DueDate = assignment.DueDate,
+                SubmissionDate = submission.Submitted,
+                MaxPoints = assignment.MaxPoints,
+                GivenPoints = submission.Points.HasValue ? submission.Points.Value.ToString() : "UG",
+                TextSubmission = submission.Submission,
+                FileSubmission = submission.Submission,
+                HasFile = !string.IsNullOrEmpty(submission.Submission),
+                AssignmentId = assignment.AssignId, // Include the assignment ID
+                StudentId = submission.StudentId // Include the student ID
+            };
 
-            return View(viewModel);
+            return View(SubmissionDetailViewModel);
         }
 
         [HttpPost]
@@ -1205,6 +1297,7 @@ namespace TGTOAT.Controllers
         }
         #endregion
 
+        #region Notifications
         private void NotifyInstructors(string message, int CourseId)
         {
 
@@ -1231,95 +1324,16 @@ namespace TGTOAT.Controllers
                 _notificationService.CreateNotification(message, studentId);
             }
         }
+        #endregion
 
+        #region PFP
         public IActionResult GetProfileImage()
         {
             var imageBytes = _auth.getUser().PFP;
 
             return File(imageBytes, "image/png");
         }
-
-        [HttpGet]
-        private List<SelectListItem> GetBuildingListByCampus(string campus)
-        {
-            var buildings = new List<SelectListItem>();
-
-            if (campus == "Ogden")
-            {
-                buildings = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "", Text = "Select a Building" },
-                    new SelectListItem { Value = "BC", Text = "Browing Center" },
-                    new SelectListItem { Value = "EH", Text = "Elizabeth Hall" },
-                    new SelectListItem { Value = "ET", Text = "Engineering Technology" },
-                    new SelectListItem { Value = "HC", Text = "Hurst Center For Lifelong Learning" },
-                    new SelectListItem { Value = "IE", Text = "Interprofessional Education Building" },
-                    new SelectListItem { Value = "KA", Text = "Kimball Visual Arts Center" },
-                    new SelectListItem { Value = "LP", Text = "Lampros Hall" },
-                    new SelectListItem { Value = "LL", Text = "Lind Lecture Hall" },
-                    new SelectListItem { Value = "LH", Text = "Lindquist Hall" },
-                    new SelectListItem { Value = "MH", Text = "Marriott Health Services" },
-                    new SelectListItem { Value = "ED", Text = "McKay Education" },
-                    new SelectListItem { Value = "NB", Text = "Noorda Engineering, Applied Science & Technology" },
-                    new SelectListItem { Value = "HB", Text = "Noorda High Bay" },
-                    new SelectListItem { Value = "SU", Text = "Shepherd Union" },
-                    new SelectListItem { Value = "LI", Text = "Steward Library" },
-                    new SelectListItem { Value = "SC", Text = "Student Services Center" },
-                    new SelectListItem { Value = "SW", Text = "Swenson Building" },
-                    new SelectListItem { Value = "TY", Text = "Tracey Hall Science Center" },
-                    new SelectListItem { Value = "WB", Text = "Wattis Building" }
-                };
-            }
-            else if (campus == "Davis")
-            {
-                buildings = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "", Text = "Select a Building" },
-                    new SelectListItem { Value = "D2", Text = "Building D2" },
-                    new SelectListItem { Value = "D13", Text = "Building D13" },
-                    new SelectListItem { Value = "DSC", Text = "Stewart Center" },
-                    new SelectListItem { Value = "CCE", Text = "Center for Continuing Education" },
-                    new SelectListItem { Value = "CAE", Text = "Computer & Automotive Engineering" }
-                };
-            }
-
-            return buildings;
-        }
-
-        [HttpGet]
-        public JsonResult GetBuildingsByCampus(string campus)
-        {
-            var buildings = GetBuildingListByCampus(campus);  // Reuse the helper method
-            return Json(buildings);  // Return the list as JSON for AJAX
-        }
-
-
-        [HttpGet]
-        public IActionResult Delete(int id)
-        {
-            var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
-
-            if (course == null)
-            {
-                return NotFound();
-            }
-
-            // Remove instructor-course connection
-            var instructorConnection = _context.InstructorConnection.FirstOrDefault(icc => icc.CourseId == id);
-            if (instructorConnection != null)
-            {
-                _context.InstructorConnection.Remove(instructorConnection);
-            }
-
-            // Remove the course
-            _context.Courses.Remove(course);
-            _context.SaveChanges();
-
-            return RedirectToAction("Courses");
-        }
-
-
-
+        #endregion
 
         #region Grades
 
@@ -1475,6 +1489,7 @@ namespace TGTOAT.Controllers
         /// ////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Ivans changes
 
+        //After Assignment Has Been Submitted
         public ActionResult SubmitPage(int assignmentId)
         {
             if (_auth.getUser() == null)
@@ -1497,6 +1512,7 @@ namespace TGTOAT.Controllers
 
             var viewModel = new SubmitAssignmentViewModel
             {
+                Submission = Submitted.Submission,
                 Notifications = _notificationService.GetNotificationsForUser(studentId).ToList(),
                 AssignmentId = assignment.AssignId,
                 AssignmentName = assignment.AssignName,
@@ -1619,15 +1635,36 @@ namespace TGTOAT.Controllers
                 return View(model);
             }            
 
-            var newSubmission = new StudentAssignments
+
+
+            var resubmit = _context.StudentAssignment.FirstOrDefault(sa => sa.AssignId == assignmentId);
+            _context.Entry<StudentAssignments>(resubmit).State = EntityState.Detached;
+
+            if(resubmit == null)
             {
-                Submission = newFile,
-                AssignId = assignmentId,
-                StudentId = user.UserId,
-                Points = null,
-                Submitted = DateTime.UtcNow,
-            };
-            _context.StudentAssignment.Add(newSubmission);
+                var newSubmission = new StudentAssignments
+                {
+                    Submission = newFile,
+                    AssignId = assignmentId,
+                    StudentId = user.UserId,
+                    Points = null,
+                    Submitted = DateTime.UtcNow,
+                };
+                _context.StudentAssignment.Add(newSubmission);
+            }
+            else
+            {
+                var newSubmission = new StudentAssignments
+                {
+                    Submission = newFile,
+                    AssignId = assignmentId,
+                    StudentId = user.UserId,
+                    Points = resubmit.Points,
+                    Submitted = DateTime.UtcNow,
+                };
+                _context.StudentAssignment.Update(newSubmission);
+            }
+
             await _context.SaveChangesAsync();
             var message = $"A student has submitted '{assignment.AssignName}' Assignment from : {ClassName}";
             NotifyInstructors(message, CouseID);

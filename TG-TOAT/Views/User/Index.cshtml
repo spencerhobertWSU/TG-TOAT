@@ -66,16 +66,68 @@
         }
     </div>
 
-    <!-- To-do list column
+    <!-- To-do list column-->
     <div class="col-md-2">
         <div class="todo">
             <h3>To Do</h3>
         </div>
         <div class="todo-items">
+            
+            @if (Model.UpcomingAssignments != null && Model.UpcomingAssignments.Any())
+            {
+                @foreach (var assignment in Model.UpcomingAssignments)
+                {
 
+                    @if (Model.UserRole == "Student")
+                    {             
+                        if (assignment.Type == 0)
+                        {
+                            <a asp-controller="Course" asp-action="SubmitAssignment" asp-route-id="@assignment.CourseId" asp-route-assignmentId="@assignment.AssignId">
+                                <p class="todo-class">@assignment.DeptName @assignment.CourseNum</p>
+                                <p class="todo-name"><span class="due">Assignment:</span> @assignment.AssignName</p>
+                                <p class="todo-time"><span class="due">Due:</span> @assignment.DueDate.ToString("MMM dd 'at' h:mmtt")</p>
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Course" asp-action="Quiz" asp-route-id="@assignment.CourseId" asp-route-quizId="@assignment.AssignId">
+                                <p class="todo-class">@assignment.DeptName @assignment.CourseNum</p>
+                                <p class="todo-name"><span class="due">Quiz:</span> @assignment.AssignName</p>
+                                <p class="todo-time"><span class="due">Due:</span> @assignment.DueDate.ToString("MMM dd 'at' h:mmtt")</p>
+                            </a>
+                            
+                        }
+                    }
+                    else if (Model.UserRole == "Instructor")
+                    {
+                        if (assignment.Type == 0)
+                        {
+                            <a asp-controller="Course" asp-action="SubmitAssignment" asp-route-id="@assignment.CourseId" asp-route-assignmentId="@assignment.AssignId">
+                                <p class="todo-class">@assignment.DeptName @assignment.CourseNum</p>
+                                <p class="todo-name"><span class="due">Assignment:</span> @assignment.AssignName</p>
+                                <p class="todo-time"><span class="due">Due:</span> @assignment.DueDate.ToString("MMM dd 'at' h:mmtt")</p>
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Course" asp-action="SubmitAssignment" asp-route-id="@assignment.CourseId" asp-route-quizId="@assignment.AssignId">
+                                <p class="todo-class">@assignment.DeptName @assignment.CourseNum</p>
+                                <p class="todo-name"><span class="due">Quiz:</span> @assignment.AssignName</p>
+                                <p class="todo-time"><span class="due">Due:</span> @assignment.DueDate.ToString("MMM dd 'at' h:mmtt")</p>
+                            </a>
+
+                        }
+                        
+                    }
+                }
+            }
+            else
+            {
+                <p>No upcoming assignments!</p>
+            }
         </div>
     </div>
-    -->
+    
 
 </div>
 

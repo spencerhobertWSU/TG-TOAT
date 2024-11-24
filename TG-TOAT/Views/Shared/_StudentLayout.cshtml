@@ -39,9 +39,6 @@
                                 Registration
                             </a>
                         </li>
-                        <li class="nav-item">
-
-                        </li>
 
                     </ul>
                 </div>
@@ -60,7 +57,6 @@
                         <li class="nav-item">
                             <a class="nav-link nav-account" href="javascript:void(0)" onclick="openAccount()">
                                 <img src="@Url.Action("GetProfileImage")" alt="User Account" style="width: 30px; height: 30px; border-radius: 50%;" />
-                                
                             </a>
                         </li>
                         <div id="account" style="display: none;">
@@ -82,7 +78,7 @@
                 </div>
 
                         <!--Notifictions-->
-                <li class="nav-item">
+                <li class="nav-item" id="notifBell">
                     <a class="nav-link" href="javascript:void(0)" onclick="openNotif()">
                         <i class="notif fa-solid fa-bell-exclamation"></i>
                         <i class="notif fa-solid fa-bell"></i>

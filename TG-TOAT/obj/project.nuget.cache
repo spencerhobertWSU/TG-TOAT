@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "E250T/1VAso=",
+  "dgSpecHash": "Ku/1v1W2qcg=",
   "success": true,
   "projectFilePath": "C:\\Users\\Ivan1\\Source\\Repos\\TG-TOAT3\\TG-TOAT\\TG-TOAT.csproj",
   "expectedPackageFiles": [
@@ -134,7 +134,8 @@
     "C:\\Users\\Ivan1\\.nuget\\packages\\nuget.protocol\\6.11.0\\nuget.protocol.6.11.0.nupkg.sha512",
     "C:\\Users\\Ivan1\\.nuget\\packages\\nuget.versioning\\6.11.0\\nuget.versioning.6.11.0.nupkg.sha512",
     "C:\\Users\\Ivan1\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\8.0.2\\pomelo.entityframeworkcore.mysql.8.0.2.nupkg.sha512",
-    "C:\\Users\\Ivan1\\.nuget\\packages\\selenium.webdriver\\4.25.0\\selenium.webdriver.4.25.0.nupkg.sha512",
+    "C:\\Users\\Ivan1\\.nuget\\packages\\selenium.support\\4.26.1\\selenium.support.4.26.1.nupkg.sha512",
+    "C:\\Users\\Ivan1\\.nuget\\packages\\selenium.webdriver\\4.26.1\\selenium.webdriver.4.26.1.nupkg.sha512",
     "C:\\Users\\Ivan1\\.nuget\\packages\\stripe.net\\46.1.0\\stripe.net.46.1.0.nupkg.sha512",
     "C:\\Users\\Ivan1\\.nuget\\packages\\system.codedom\\5.0.0\\system.codedom.5.0.0.nupkg.sha512",
     "C:\\Users\\Ivan1\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",

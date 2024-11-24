@@ -545,3 +545,4 @@ C:\Users\Ivan1\Source\Repos\TG-TOAT3\TG-TOAT\obj\Debug\net8.0\refint\TG-TOAT.dll
 C:\Users\Ivan1\Source\Repos\TG-TOAT3\TG-TOAT\obj\Debug\net8.0\TG-TOAT.pdb
 C:\Users\Ivan1\Source\Repos\TG-TOAT3\TG-TOAT\obj\Debug\net8.0\TG-TOAT.genruntimeconfig.cache
 C:\Users\Ivan1\Source\Repos\TG-TOAT3\TG-TOAT\obj\Debug\net8.0\ref\TG-TOAT.dll
+C:\Users\Ivan1\Source\Repos\TG-TOAT3\TG-TOAT\bin\Debug\net8.0\WebDriver.Support.dll

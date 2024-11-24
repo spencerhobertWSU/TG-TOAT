@@ -1621,6 +1621,10 @@
       "PackagePath": "staticwebassets\\js\\courses.js"
     },
     {
+      "Id": "C:\\Users\\Ivan1\\Source\\Repos\\TG-TOAT3\\TG-TOAT\\wwwroot\\js\\quizCompile.js",
+      "PackagePath": "staticwebassets\\js\\quizCompile.js"
+    },
+    {
       "Id": "C:\\Users\\Ivan1\\Source\\Repos\\TG-TOAT3\\TG-TOAT\\wwwroot\\js\\quizzes.js",
       "PackagePath": "staticwebassets\\js\\quizzes.js"
     },

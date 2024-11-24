@@ -48,8 +48,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>1hdedldool</Fingerprint>
-      <Integrity>S1NjV6hIUpPPNUDG/7dO1Yy4PI2w2+NhLnwQ5dU3lec=</Integrity>
+      <Fingerprint>6ogf7e7552</Fingerprint>
+      <Integrity>2u4eCxpff2nM9ZrA12PTIK6bWfjr0COsGbncOipTRLY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</OriginalItemSpec>
@@ -7248,8 +7248,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>xbutaad26p</Fingerprint>
-      <Integrity>zUBqn4gHWm0txxzd17DErOTr/8YUuxVIQJUpjesFWq8=</Integrity>
+      <Fingerprint>0jo0eedd7m</Fingerprint>
+      <Integrity>1K331NRZsJz5QXZ9Ijm/eiFKeWw+AKzbkh4HyM7YGlI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\account.js'))</OriginalItemSpec>
@@ -7272,6 +7272,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\courses.js'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\quizCompile.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>TG-TOAT</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/TG-TOAT</BasePath>
+      <RelativePath>js/quizCompile.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>soy32wsigo</Fingerprint>
+      <Integrity>XNRgwGG595QZ/Vu4PdH6XXC0ojfQ3kn9Bu2nmsVv4bU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\quizCompile.js'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\quizzes.js'))">
       <SourceType>Package</SourceType>
       <SourceId>TG-TOAT</SourceId>
@@ -7284,8 +7302,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>lx73dtmwtl</Fingerprint>
-      <Integrity>6WtYLvM3D7kYmqKDvDcWG9B57r0b4vN4o09zMLUvVzA=</Integrity>
+      <Fingerprint>vgzglbqi0g</Fingerprint>
+      <Integrity>j3hzIjdNy6grdqcs/UImu4CpnRO1qinSJjSXCaFDisA=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\quizzes.js'))</OriginalItemSpec>

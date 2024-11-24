@@ -24,7 +24,7 @@ namespace TGTOAT
             _context.SaveChanges();
         }
 
-   
+
 
         // Retrieves notifications for a specific user
         public IEnumerable<Notifications> GetNotificationsForUser(int studentId)
@@ -34,5 +34,18 @@ namespace TGTOAT
                 .OrderByDescending(n => n.CreatedAt)
                 .ToList();
         }
+
+
+        public void ClearNotificationsOnLogout(int studentId)
+        {
+            var notifications = _context.Notifications
+                .Where(n => n.StudentId == studentId)
+                .ToList();
+
+            _context.Notifications.RemoveRange(notifications);
+            _context.SaveChanges();
+        }
+
     }
+
 }

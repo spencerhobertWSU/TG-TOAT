@@ -528,6 +528,8 @@ namespace TGTOAT.Controllers
             {
                 var viewModel = new CourseHome
                 {
+                    Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
+
                     CourseId = course.CourseId,
                     UserRole = _auth.getUser().Role,
                     Department = dept.DeptName,
@@ -699,6 +701,7 @@ namespace TGTOAT.Controllers
 
             var StudentQuiz = new StudentQuizzes
             {
+
                 QuizId = model.QuizId,
                 StudentId = user.UserId,
                 Points = gradePoints,
@@ -728,6 +731,7 @@ namespace TGTOAT.Controllers
 
                 var quiz = new TakeQuizModel
                 {
+                    Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
                     UserRole = user.Role,
                     CourseId = id,
                     QuizId = quizId,
@@ -1053,7 +1057,7 @@ namespace TGTOAT.Controllers
                     var submission = new StudentSubmission
                     {
                         StudentFullName = (sInfo.FirstName + " " + sInfo.LastName),
-
+                        Notifications = _notificationService.GetNotificationsForUser(currInstruct.UserId).ToList(),
                         SubmissionDate = s.Submitted,
                         MaxPoints = assigns.MaxPoints,
                         GivenPoints = s.Points.HasValue ? s.Points.Value.ToString() : "UG",
@@ -1066,6 +1070,7 @@ namespace TGTOAT.Controllers
 
                 var AllSubs = new AllSubmissions
                 {
+                    Notifications = _notificationService.GetNotificationsForUser(currInstruct.UserId).ToList(),
                     type = "assignment",
                     CourseId = id,
                     Submissions = Submissions
@@ -1091,6 +1096,7 @@ namespace TGTOAT.Controllers
                     var submission = new StudentSubmission
                     {
                         StudentFullName = (sInfo.FirstName + " " + sInfo.LastName),
+                        Notifications = _notificationService.GetNotificationsForUser(currInstruct.UserId).ToList(),
 
                         SubmissionDate = s.Submitted,
                         MaxPoints = quizzes.MaxPoints,
@@ -1104,6 +1110,7 @@ namespace TGTOAT.Controllers
 
                 var AllSubs = new AllSubmissions
                 {
+                    Notifications = _notificationService.GetNotificationsForUser(currInstruct.UserId).ToList(),
                     type = "quiz",
                     CourseId = id,
                     Submissions = Submissions
@@ -1454,15 +1461,28 @@ namespace TGTOAT.Controllers
                 .ToList();
 
             // If any of them are null, return with no changes
-            if (studentAssignments != null)
+            // If any of the collections are null or empty, return without making changes
+            if (studentAssignments != null && listOfAssignments != null && listOfAssignments.Any())
             {
-                // Divide the sum of the points rewarded by the sum of the total points for all assignments, and multiply by 100 to get the percentage
+                // Sum the rewarded points and total points for all assignments
                 decimal rewardedPoints = studentAssignments.Sum(a => a.Points ?? 0);
                 decimal totalPoints = listOfAssignments.Sum(a => a.MaxPoints);
 
-                studentCourseConnection.Grade = (rewardedPoints / totalPoints) * 100;
+                // Check if totalPoints is greater than zero to prevent division by zero
+                if (totalPoints > 0)
+                {
+                    studentCourseConnection.Grade = (rewardedPoints / totalPoints) * 100m;
+                }
+                else
+                {
+                    // Handle the case where totalPoints is zero (e.g., set the grade to 0 or another default)
+                    studentCourseConnection.Grade = 0;
+                }
+
+                // Save the changes to the database
                 _context.SaveChanges();
             }
+
 
             return;
         }
@@ -1619,6 +1639,7 @@ namespace TGTOAT.Controllers
 
             var newSubmission = new StudentAssignments
             {
+
                 Submission = newFile,
                 AssignId = assignmentId,
                 StudentId = user.UserId,

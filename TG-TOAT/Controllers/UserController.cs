@@ -896,8 +896,7 @@ namespace TGTOAT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UploadProfilePicture(IFormFile profileImage)
         {
-
-        }
+            var user = _auth.getUser();
 
             if (profileImage.ContentType != "image/jpeg" && profileImage.ContentType != "image/png")
             {

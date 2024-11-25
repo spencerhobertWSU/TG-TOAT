@@ -17,10 +17,10 @@
 
 <h2>Upload Image</h2>
 
-<div class="container justify-content-center col-md-5">
+<div class="container justify-content-center col-md-5 account-pfp">
     <h4>Current Profile Picture:</h4>
     <hr />
-    <img src="@Url.Action("GetProfileImage", "User")" alt="Profile Image" style="width: 100px; height: 100px; border-radius: 50%;" />
+    <img id="pfp" src="@Url.Action("GetProfileImage", "User")" alt="Profile Image"/>
 
     <form method="post" enctype="multipart/form-data">
         <br />
@@ -28,7 +28,7 @@
         <br />
         <input type="file" id="profileImage" name="profileImage" accept="image/png, image/jpeg, image/jpg" />
         <br />
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary submit-btn">Submit</button>
     </form>
 </div>
 

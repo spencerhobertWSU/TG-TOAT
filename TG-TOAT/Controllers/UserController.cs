@@ -227,7 +227,6 @@ namespace TGTOAT.Controllers
                     };
 
                     _auth.setUser(User);
-                    _auth.updateRegistration();
                     _auth.setIndex();
 
                     return Redirect("User/Index");
@@ -373,7 +372,6 @@ namespace TGTOAT.Controllers
 
                 int instructorId = _context.InstructorConnection.First(ic => ic.CourseId == c.CourseId).InstructorId;
 
-            
                 string instructorFName = _context.UserInfo.First(u => u.UserId == instructorId).FirstName;
                 string instructorLName = _context.UserInfo.First(u => u.UserId == instructorId).LastName;
 
@@ -381,7 +379,6 @@ namespace TGTOAT.Controllers
 
                 var CourseModel = new CourseInfo
                 {
-                    Notifications = _notificationService.GetNotificationsForUser(user.UserId).ToList(),
                     CourseId = c.CourseId,
                     DeptID = deptinfo.DeptId,
                     DeptName = deptinfo.DeptName,
@@ -404,12 +401,15 @@ namespace TGTOAT.Controllers
 
             };
 
+            /*
             var StudentCourses = (from connection in _context.StudentConnection
                                   join course in _context.Courses on connection.CourseId equals course.CourseId
                                   where connection.StudentId == user.UserId
                                   select connection).ToList();
-
-
+            */
+            var StudentCourses = (from c in _context.StudentConnection
+                                  where c.StudentId == user.UserId
+                                  select c).AsNoTracking().ToList();
 
             var RegisterCourses = new CourseRegisterViewModel
             {
@@ -419,7 +419,6 @@ namespace TGTOAT.Controllers
                 StudentConnection = StudentCourses,
                 Departments = _context.Departments.ToList(),
             };
-
 
             ViewBag.ErrorMessage = TempData["ErrorMessage"] as string;
             ViewBag.SuccessMessage = TempData["SuccessMessage"] as string;
@@ -573,6 +572,7 @@ namespace TGTOAT.Controllers
             _context.User.Update(user);
             _context.StudentConnection.Add(connection);
             _context.Tuition.Update(tuition);
+
             _context.SaveChanges();
             TempData["SuccessMessage"] = "Successfully registered for the course!";
             return RedirectToAction("CourseRegistration"); // Redirect back to the course registration page

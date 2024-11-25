@@ -1,7 +1,5 @@
 ﻿@model SubmitAssignmentViewModel
 
-<h1>Submit Assignment: @Model.AssignmentName</h1>
-
 @{
     ViewData["Title"] = "Submit Assignment";
 
@@ -16,27 +14,56 @@
 }
 }
 
-<p>@Model.Description</p>
-<p ><strong>Points:</strong> @Model.Points</p>
+<div class="row col-md-10 justify-content-between top-assign">
+    <div class="left-assign col-md-5">
+        <h1 class="h1-assign">@Model.AssignmentName</h1>
+        <h5>Due: @Model.DueDateAndTime</h5>
+    </div>
+    <div class="right-assign col-md-3">
+        <h3>@Model.Points Points</h3>
+    </div>
+</div>
 
-<form asp-action="SubmitAssignment" asp-controller="Course" method="post" enctype="multipart/form-data">
-    <input type="hidden" asp-for="AssignmentId" />
 
-    @if (Model.SubmissionType == "text")
-    {
-        <div class="form-group">
-            <label for="TextSubmission">Your Submission</label>
-            <textarea id="TextSubmission" name="TextSubmission" class="form-control" rows="10"></textarea>
-        </div>
+</hr>
+<div class="container col-md-10 justify-content-center">
+    <h5>@Model.Description</h5>
+
+
+    <form asp-action="SubmitAssignment" asp-controller="Course" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="AssignmentId" />
+
+        @if (Model.SubmissionType == "text")
+        {
+            <div class="form-group">
+                <label for="TextSubmission">Your Submission</label>
+                <textarea id="TextSubmission" name="TextSubmission" class="form-control" rows="10"></textarea>
+            </div>
+        }
+        else if (Model.SubmissionType == "file")
+        {
+            <div class="form-group">
+                <label for="FileSubmission" class="custombtn">Upload File (PDF or Word only)</label>
+                <input type="file" id="FileSubmission" name="FileSubmission" class="form-control-file" onchange="showFileName();" accept=".pdf,.doc,.docx" />
+                <div id="file-upload-filename"></div>
+            </div>
+        }
+        <br />
+        <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+    </form>
+</div>
+
+<script>
+    var input = document.getElementById('FileSubmission');
+    var infoArea = document.getElementById('file-upload-filename');
+
+
+    function showFileName() {
+        var fileLink = input.value
+
+        var fileName = fileLink.split("\\");
+
+        // use fileName however fits your app best, i.e. add it into a div
+        infoArea.textContent = fileName[(fileName.length)-1];
     }
-    else if (Model.SubmissionType == "file")
-    {
-        <div class="form-group">
-            <label for="FileSubmission">Upload File (PDF or Word only)</label>
-            <input type="file" id="FileSubmission" name="FileSubmission" class="form-control-file" accept=".pdf,.doc,.docx" />
-            <small class="form-text text-muted">Please upload only PDF or Word documents.</small>
-        </div>
-    }
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
+</script>

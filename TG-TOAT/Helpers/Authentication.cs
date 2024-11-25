@@ -44,6 +44,13 @@ public class Authentication : IAuthentication
         var user = getUser();
         var courses = new List<Courses>();
         var Currcourses = new List<CurrClasses>();
+        
+        var upAssigns = new List<Assignment>();
+        var upQuizzes = new List<Quizzes>();
+
+        var ToDo = new List<UpcomingAssign>();
+        
+
 
         if (user.Role == "Student")
         {
@@ -52,7 +59,50 @@ public class Authentication : IAuthentication
                        where connection.StudentId == user.UserId
                        select course).ToList();
 
-            
+            upAssigns = (from a in _context.Assignments
+                       join c in _context.Courses on a.CourseId equals c.CourseId
+                       join sc in _context.StudentConnection on c.CourseId equals sc.CourseId
+                       where sc.StudentId == user.UserId
+                       where a.DueDate >= DateTime.Now
+                       orderby a.DueDate 
+                       select a).ToList();
+
+            upQuizzes = (from q in _context.Quizzes
+                            join c in _context.Courses on q.CourseId equals c.CourseId
+                            join sc in _context.StudentConnection on c.CourseId equals sc.CourseId
+                            where sc.StudentId == user.UserId
+                            where q.DueDate >= DateTime.Now
+                            orderby q.DueDate
+                            select q).ToList();
+
+            var submittedA = (from sa in _context.StudentAssignment
+                            select sa).ToList();
+            var submittedQ = (from sq in _context.StudentQuizzes
+                             select sq).ToList();
+
+            for(int i=0; i<upAssigns.Count; i++)
+            {
+                foreach(var s in submittedA)
+                {
+                    if(upAssigns[i].AssignId == s.AssignId)
+                    {
+                        upAssigns.RemoveAt(i);
+                    }
+                }
+            }
+
+            for (int i = 0; i < upQuizzes.Count; i++)
+            {
+                foreach (var q in submittedQ)
+                {
+                    if (upQuizzes[i].QuizId == q.QuizId)
+                    {
+                        upAssigns.RemoveAt(i);
+                    }
+                }
+            }
+
+
         }
         else if (user.Role == "Instructor")
         {
@@ -60,31 +110,79 @@ public class Authentication : IAuthentication
                        join course in _context.Courses on connection.CourseId equals course.CourseId
                        where connection.InstructorId == user.UserId
                        select course).ToList();
+
+            upAssigns = (from a in _context.Assignments
+                         join c in _context.Courses on a.CourseId equals c.CourseId
+                         join ic in _context.InstructorConnection on c.CourseId equals ic.CourseId
+                         where ic.InstructorId == user.UserId
+                         where a.DueDate >= DateTime.Now
+                         orderby a.DueDate
+                         select a).Take(5).ToList();
+
+            upQuizzes = (from q in _context.Quizzes
+                         join c in _context.Courses on q.CourseId equals c.CourseId
+                         join ic in _context.InstructorConnection on c.CourseId equals ic.CourseId
+                         where ic.InstructorId == user.UserId
+                         where q.DueDate >= DateTime.Now
+                         orderby q.DueDate
+                         select q).Take(5).ToList();
+        }
+        //0=Assign, 1=Quiz
+        var type = 0;
+        int quizStart = 0;
+
+        
+        for(int i = 0; i < upAssigns.Count; i++)
+        {
+            for(int j = quizStart; j < upQuizzes.Count; j++)
+            {
+                if (upAssigns[i].DueDate > upQuizzes[j].DueDate)
+                {
+                    type = 1;
+                    i--;
+                    break;
+                }
+                
+            }
+
+            if(type == 0)
+            {
+                var newUp = new UpcomingAssign
+                {
+                    AssignId = upAssigns[i].AssignId,
+                    Type = type,
+                    CourseId = upAssigns[i].CourseId,
+                    AssignName = upAssigns[i].AssignName,
+                    DueDate = upAssigns[i].DueDate,
+
+                };
+                ToDo.Add(newUp);
+            }
+            else
+            {
+                var newUp = new UpcomingAssign
+                {
+                    AssignId = upQuizzes[quizStart].QuizId,
+                    Type = type,
+                    CourseId = upQuizzes[quizStart].CourseId,
+                    AssignName = upQuizzes[quizStart].QuizName,
+                    DueDate = upQuizzes[quizStart].DueDate,
+                };
+                ToDo.Add(newUp);
+                type = 0;
+                quizStart++;
+            }
+            if(ToDo.Count >= 5)
+            {
+                break;
+            }
         }
 
-        var upcoming = new List<UpcomingAssign>();
-
-        foreach (var c in courses)
+        foreach (var up in ToDo)
         {
-            string deptName = _context.Departments.First(d => d.DeptId == c.DeptId).DeptName;
+            var connect = _context.Courses.First(c => c.CourseId == up.CourseId);
 
-            var assigns = (from a in _context.Assignments
-                           join ci in _context.Courses on a.CourseId equals c.CourseId
-                           where ci.CourseId == c.CourseId
-                           select a).ToList();
-
-            foreach (var a in assigns)
-            {
-                var newAssign = new UpcomingAssign
-                {
-                    AssignId = a.AssignId,
-                    AssignName = a.AssignName,
-                    CourseNum = c.CourseNum,
-                    DeptName = deptName,
-                    DueDate = a.DueDate,
-                };
-
-            }
+            string deptName = _context.Departments.First(d => d.DeptId == connect.DeptId).DeptName;
 
             switch (deptName)
             {
@@ -104,6 +202,40 @@ public class Authentication : IAuthentication
                     deptName = "CHEM";
                     break;
             }
+            up.CourseNum = connect.CourseNum;
+            up.DeptName = deptName;
+        }
+
+
+        foreach (var c in courses)
+        {
+            string deptName = _context.Departments.First(d => d.DeptId == c.DeptId).DeptName;
+
+            var assigns = (from a in _context.Assignments
+                           join ci in _context.Courses on a.CourseId equals c.CourseId
+                           where ci.CourseId == c.CourseId
+                           select a).ToList();
+
+            switch (deptName)
+            {
+                case "Compuer Science":
+                    deptName = "CS";
+                    break;
+                case "Mathematics":
+                    deptName = "MATH";
+                    break;
+                case "Physics":
+                    deptName = "PHYS";
+                    break;
+                case "Biology":
+                    deptName = "BIOL";
+                    break;
+                case "Chemistry":
+                    deptName = "CHEM";
+                    break;
+            }
+
+
 
             var CourseModel = new CurrClasses
             {
@@ -137,6 +269,7 @@ public class Authentication : IAuthentication
             LastName = user.LastName,
             UserRole = user.Role,
             Courses = Currcourses,
+            UpcomingAssignments = ToDo
         };
 
         CurrIndex = viewModel;

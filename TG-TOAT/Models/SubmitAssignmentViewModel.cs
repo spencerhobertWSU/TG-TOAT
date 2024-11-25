@@ -10,6 +10,7 @@ namespace Models
         public string Description { get; set; }
         public int Points { get; set; }
         public string SubmissionType { get; set; }
+        public string Submission { get; set; }
 
         public int StudentId { get; set; }
         public StudentConnection? studentConnection { get; set; }

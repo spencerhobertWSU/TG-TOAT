@@ -787,8 +787,8 @@ namespace TGTOAT.Controllers
 
             userInfo.FirstName = model.FirstName;
             userInfo.LastName = model.LastName;
-
-            await _context.SaveChangesAsync();
+            //_context.Entry<StudentAssignments>(resubmit).State = EntityState.Detached;
+            
 
             CurrUser updatedUser = new CurrUser
             {
@@ -803,6 +803,7 @@ namespace TGTOAT.Controllers
             };
 
             _auth.setUser(updatedUser);
+            await _context.SaveChangesAsync();
 
             return RedirectToAction("Account");
         }
@@ -841,6 +842,8 @@ namespace TGTOAT.Controllers
 
                 _context.Address.Add(newAddress); // Add the new address if no existing one is found
                 await _context.SaveChangesAsync();
+
+
             }
             
 
@@ -888,82 +891,12 @@ namespace TGTOAT.Controllers
             return View(_auth.getIndex());
         }
 
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // POST: User/UploadProfilePicture
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UploadProfilePicture(IFormFile profileImage)
         {
-            var user = _auth.getUser();
 
-            if (user == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            if (profileImage == null || profileImage.Length == 0)
-            {
-                ModelState.AddModelError("", "No file selected.");
-                return RedirectToAction("Account"); 
-            }
-
-            if (profileImage.ContentType != "image/jpeg" && profileImage.ContentType != "image/png")
-            {
-                ModelState.AddModelError("", "Only JPEG and PNG files are allowed.");
-                return RedirectToAction("Account");  
-            }
-
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "resources", profileImage.FileName);
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await profileImage.CopyToAsync(stream);
-            }
-
-            var userInfo = await _context.UserInfo.FirstOrDefaultAsync(ui => ui.UserId == user.UserId);
-            if (userInfo == null)
-            {
-                return NotFound();
-            }
-
-            userInfo.PFP = filePath;
-
-            await _context.SaveChangesAsync();
-
-            CurrUser updatedUser = new CurrUser
-            {
-                UserId = user.UserId,
-                Email = user.Email,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Role = user.Role,
-                PFP = System.IO.File.ReadAllBytes(userInfo.PFP),
-                BirthDate = user.BirthDate,
-                Notifications = user.Notifications
-            };
-
-            _auth.setUser(updatedUser);
-
-            return RedirectToAction("Account");
         }
 
         #endregion
@@ -1017,12 +950,12 @@ namespace TGTOAT.Controllers
         {
             var user = _auth.getUser();
 
-            var amountDue = _context.Tuition.First(t => t.UserId == user.UserId).AmountDue;
-
             if (user == null)
             {
                 return RedirectToAction("Login");
             }
+
+            var amountDue = _context.Tuition.First(t => t.UserId == user.UserId).AmountDue;
 
             // Check if a receiptUrl was passed in
             if (receiptUrl != null)

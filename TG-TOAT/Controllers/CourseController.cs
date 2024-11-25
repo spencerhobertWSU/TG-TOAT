@@ -331,7 +331,7 @@ namespace TGTOAT.Controllers
             #endregion
 
             #region Delete Courses
-        [HttpGet]
+            [HttpGet]
             public IActionResult Delete(int id)
             {
                 var course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
@@ -343,9 +343,16 @@ namespace TGTOAT.Controllers
 
                 // Remove instructor-course connection
                 var instructorConnection = _context.InstructorConnection.FirstOrDefault(icc => icc.CourseId == id);
+                var instructorId = instructorConnection.InstructorId;
+                var courseId = instructorConnection.CourseId;
+            
                 if (instructorConnection != null)
                 {
-                    _context.InstructorConnection.Remove(instructorConnection);
+                    var studentClasses = _context.Database.ExecuteSqlRaw(
+                    "DELETE FROM InstructorConnection WHERE InstructorId = {0} AND CourseId = {1}",
+                    instructorId, courseId
+                    );
+                    _context.SaveChanges();
                 }
 
                 // Remove the course
@@ -1456,8 +1463,20 @@ namespace TGTOAT.Controllers
         public void UpdateGrade(int studentId, int courseId)
         {
             // Grab the student course connection
-            var studentCourseConnection = _context.StudentConnection
-                .FirstOrDefault(scc => scc.CourseId == courseId && scc.StudentId == studentId);
+            var StudentCourses = (from c in _context.StudentConnection
+                                  where c.StudentId == studentId
+                                  select c).AsNoTracking().ToList();
+
+            StudentConnection studentCourseConnection = null;
+
+            foreach (var sc in StudentCourses)
+            {
+                if(sc.CourseId == courseId)
+                {
+                    studentCourseConnection = sc;
+                    break;
+                }
+            }
 
             // Grab the assignments so we can use it in the student assignments (all foreign keys are null for some reason)
             var listOfAssignments = _context.Assignments
@@ -1466,33 +1485,62 @@ namespace TGTOAT.Controllers
 
             // Grab the student assignments with the list of assignments as a foreign key
             //   Grab the student assignments that have a grade, are in the list of assignments, and have the same student id as the student
-            var studentAssignments = _context.StudentAssignment
-                .Where(a => listOfAssignments.Select(a => a.AssignId).ToList().Contains(a.AssignId) && a.Points != null)
-                .Where(a => a.StudentId == studentId)
-                .ToList();
 
-            // If any of them are null, return with no changes
-            // If any of the collections are null or empty, return without making changes
-            if (studentAssignments != null && listOfAssignments != null && listOfAssignments.Any())
+            decimal maxPoints = 0;
+
+            var listAssignments = (from a in _context.Assignments
+                                   where a.CourseId == courseId
+                                   select a).ToList();
+
+            var listQuizzes = (from q in _context.Quizzes
+                                   where q.CourseId == courseId
+                                   select q).ToList();
+
+            foreach (var la in listAssignments)
             {
-                // Sum the rewarded points and total points for all assignments
-                decimal rewardedPoints = studentAssignments.Sum(a => a.Points ?? 0);
-                decimal totalPoints = listOfAssignments.Sum(a => a.MaxPoints);
-
-                // Check if totalPoints is greater than zero to prevent division by zero
-                if (totalPoints > 0)
-                {
-                    studentCourseConnection.Grade = (rewardedPoints / totalPoints) * 100m;
-                }
-                else
-                {
-                    // Handle the case where totalPoints is zero (e.g., set the grade to 0 or another default)
-                    studentCourseConnection.Grade = 0;
-                }
-
-                // Save the changes to the database
-                _context.SaveChanges();
+                maxPoints = maxPoints + la.MaxPoints;
             }
+
+            foreach (var lq in listQuizzes)
+            {
+                maxPoints = maxPoints + lq.MaxPoints;
+            }
+
+            decimal rewardedPoints = 0;
+
+            var assignments = (from sa in _context.StudentAssignment
+                               join a in _context.Assignments on sa.AssignId equals a.AssignId
+                               where a.CourseId == courseId
+                               where sa.StudentId == studentId
+                               where sa.Points != null
+                               select sa).ToList();
+
+            var quizzes = (from sq in _context.StudentQuizzes
+                           join q in _context.Quizzes on sq.QuizId equals q.QuizId
+                           where q.CourseId == courseId
+                           where sq.StudentId == studentId
+                            where sq.Points != null
+                            select sq).ToList();
+
+            foreach(var sa in assignments)
+            {
+                rewardedPoints = rewardedPoints + sa.Points.Value;
+            }
+
+            foreach(var sq in quizzes)
+            {
+                rewardedPoints = rewardedPoints + sq.Points.Value;
+            }
+
+
+            // Check if totalPoints is greater than zero to prevent division by zero
+            if(studentCourseConnection != null)
+            {
+                studentCourseConnection.Grade = (rewardedPoints / maxPoints) * 100m;
+            }
+
+            // Save the changes to the database
+            _context.SaveChanges();
 
 
             return;

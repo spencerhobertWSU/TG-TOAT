@@ -619,7 +619,7 @@ h1 {
     display: inline;
 }
 
-#score-distribution-chart {
+#score-distribution-chart{
     width: 80vw !important;
     height: 50vh !important;
     z-index: 1;

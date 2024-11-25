@@ -6,83 +6,84 @@
 }
 
 <h1 class="h1-course">@Model.Department @Model.CourseNum Grades</h1>
+<div class="h1-course">
+    @if (Model.UserRole == "Instructor")
+    {
+        <div>
+            <h3>Grade Distribution for Class</h3>
+            <div id="gradeChart" style="width: 100%; height: 400px;"></div>
+        </div>
+    }
+    else
+    {
+        <div>
+            <h3>Your Grade: @Model.Grade</h3>
+            <h3>Class Grade Distribution</h3>
+            
+        </div>
+    }
+</div>
 
 <div class="course-row">
         <div class="course-nav">
             <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Index" asp-route-id="@Model.CourseId">
                 Home
             </a>
-            <a class="nav-link course-curr" asp-area="" asp-controller="Course" asp-action="Assignments" asp-route-id="@Model.CourseId">
+            <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Assignments" asp-route-id="@Model.CourseId">
                 Assignments
             </a>
             <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Quizzes" asp-route-id="@Model.CourseId">
                 Quizzes
             </a>
-            <a class="nav-link" asp-area="" asp-controller="Course" asp-action="Grades" asp-route-id="@Model.CourseId">
+            <a class="nav-link course-curr" asp-area="" asp-controller="Course" asp-action="Grades" asp-route-id="@Model.CourseId">
                 Grades
             </a>
         </div>
+    <div class="row assignCont">
+        <div id="gradeChart" style="width: 100%; height: 400px;"></div>
+    @section Scripts {
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load("current", { packages: ["corechart"] });
+            google.charts.setOnLoadCallback(drawChart);
 
-    <div class="row">
-        @if (Model.UserRole == "Instructor")
-        {
-            <div>
-                <h3>Grade Distribution for Class</h3>
-                <div id="gradeChart" style="width: 100%; height: 400px;"></div>
-            </div>
-        }
-        else
-        {
-            <div>
-                <h3>Your Grade: @Model.Grade</h3>
-                <h3>Class Grade Distribution</h3>
-                <div id="gradeChart" style="width: 100%; height: 400px;"></div>
-            </div>
-        }
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Grade Range', 'Number of Students', { role: 'style' }],
+            @foreach (var gradeRange in Model.GradeDistribution)
+            {
+                <text>['@gradeRange.Key', @gradeRange.Value, 'color: #4CAF50'],</text>
+            }
+                        ]);
+
+                var options = {
+                    title: 'Class Grade Distribution',
+                    titleTextStyle: {
+                        color: 'orange'
+                    },
+                    backgroundColor: 'transparent',
+                    legend: 'none',
+                    chartArea: { width: '50%' },
+                    hAxis: {
+                        title: 'Number of Students',
+                        titleTextStyle: { color: 'orange' },
+                        textStyle: { color: 'orange' },
+                        minValue: 0
+                    },
+                    vAxis: {
+                        title: 'Grade Range',
+                        titleTextStyle: { color: 'orange' },
+                        textStyle: { color: 'orange' }
+                    }
+                };
+
+                var chart = new google.visualization.BarChart(document.getElementById('gradeChart'));
+                chart.draw(data, options);
+            }
+        </script>
+        
     </div>
 </div>
-
-@section Scripts {
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Grade Range', 'Number of Students', { role: 'style' }],
-        @foreach (var gradeRange in Model.GradeDistribution)
-        {
-            <text>['@gradeRange.Key', @gradeRange.Value, 'color: #4CAF50'],</text>
-        }
-                    ]);
-
-            var options = {
-                title: 'Class Grade Distribution',
-                titleTextStyle: {
-                    color: 'orange'
-                },
-                backgroundColor: 'transparent',
-                legend: 'none',
-                chartArea: { width: '50%' },
-                hAxis: {
-                    title: 'Number of Students',
-                    titleTextStyle: { color: 'orange' },
-                    textStyle: { color: 'orange' },
-                    minValue: 0
-                },
-                vAxis: {
-                    title: 'Grade Range',
-                    titleTextStyle: { color: 'orange' },
-                    textStyle: { color: 'orange' }
-                }
-            };
-
-            var chart = new google.visualization.BarChart(document.getElementById('gradeChart'));
-            chart.draw(data, options);
-        }
-    </script>
-
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }

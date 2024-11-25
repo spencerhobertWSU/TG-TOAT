@@ -939,15 +939,17 @@ namespace TGTOAT.Controllers
                 await profileImage.CopyToAsync(stream);
             }
 
-            var userInfo = await _context.UserInfo.FirstOrDefaultAsync(ui => ui.UserId == user.UserId);
+            var userInfo = _context.UserInfo.First(db => db.UserId == user.UserId);
             if (userInfo == null)
             {
                 return NotFound();
             }
 
-            userInfo.PFP = filePath;
+            userInfo.PFP = ConvertToBase64(filePath).ToString();
 
             await _context.SaveChangesAsync();
+
+            var newPFP = Convert.FromBase64String(userInfo.PFP);
 
             CurrUser updatedUser = new CurrUser
             {
@@ -956,7 +958,7 @@ namespace TGTOAT.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Role = user.Role,
-                PFP = System.IO.File.ReadAllBytes(userInfo.PFP),
+                PFP = newPFP,
                 BirthDate = user.BirthDate,
                 Notifications = user.Notifications
             };

@@ -899,6 +899,48 @@ namespace TGTOAT.Controllers
 
         }
 
+            if (profileImage.ContentType != "image/jpeg" && profileImage.ContentType != "image/png")
+            {
+                ModelState.AddModelError("", "Only JPEG and PNG files are allowed.");
+                return RedirectToAction("Account");  
+            }
+
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "resources", profileImage.FileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await profileImage.CopyToAsync(stream);
+            }
+
+            var userInfo = _context.UserInfo.First(db => db.UserId == user.UserId);
+            if (userInfo == null)
+            {
+                return NotFound();
+            }
+
+            userInfo.PFP = ConvertToBase64(filePath).ToString();
+
+            await _context.SaveChangesAsync();
+
+            var newPFP = Convert.FromBase64String(userInfo.PFP);
+
+            CurrUser updatedUser = new CurrUser
+            {
+                UserId = user.UserId,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Role = user.Role,
+                PFP = newPFP,
+                BirthDate = user.BirthDate,
+                Notifications = user.Notifications
+            };
+
+            _auth.setUser(updatedUser);
+
+            return RedirectToAction("Account");
+        }
+
         #endregion
 
         #region Cookies

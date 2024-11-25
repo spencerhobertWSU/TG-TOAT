@@ -22,7 +22,7 @@
             <div class="linkDiv">
                 <a class="nav-link" asp-area="" asp-controller="User" asp-action="ChangeProfilePicture">Change Profile Picture</a>
             </div>
-            
+
             <img src="@Url.Action("GetProfileImage", "User")" alt="Profile Image" />
         </div>
     </div>
@@ -54,7 +54,7 @@
         <br />
         <h4>User Address</h4>
         <button type="button" id="AddEdit" class="btn btn-danger" onclick="editAdd()">Edit</button>
-        <button type="button" id="AddSave" class="save-btn btn btn-success" onclick="saveAdd()">Save</button>
+        <button type="submit" id="AddSave" class="save-btn btn btn-success" onclick="saveAdd()">Save</button>
         <hr />
         <div class="container col-md-9 justify-content-center">
                 <div class="form-group col-md-6 addInput">
@@ -71,13 +71,13 @@
 
                 <div class="form-group col-md-6 addInput">
                     <label asp-for="Address.City">City</label>
-                    <input type="text" asp-for="Address.City" class="form-control userAdd" disabled id="zip">
+                    <input type="text" asp-for="Address.City" class="form-control userAdd" disabled id="city">
                     <span asp-validation-for="Address.City" class="text-danger"></span>
                 </div>
 
                 <div class="form-group col-md-6 addInput">
                         <label asp-for="Address.State"></label>
-                            <select asp-for="Address.State" class="form-select userAdd" id="stateSelect" disabled onchange="changeState()">
+                            <select asp-for="Address.State" class="form-select userAdd" id="stateSelect" disabled>
                                 <option value="">Select a State</option>
                             </select>
                         <span asp-validation-for="Address.State" class="text-danger"></span>

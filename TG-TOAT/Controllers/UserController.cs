@@ -664,6 +664,8 @@ namespace TGTOAT.Controllers
             }
             return View(user);
         }
+
+
         // POST: User/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -761,52 +763,90 @@ namespace TGTOAT.Controllers
 
             return View(UserInfo);
         }
-        
+
         // POST: User/UpdateUser
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateUserName(AccountViewModel model)
         {
             var user = _auth.getUser();
-            var userName = _context.UserInfo.First(un => un.UserId == user.UserId);
 
-            
 
-            UserInfo newName = new UserInfo
+
+            if (user == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
+            var userInfo = await _context.UserInfo.FirstOrDefaultAsync(ui => ui.UserId == user.UserId);
+            if (userInfo == null)
+            {
+                return NotFound();
+            }
+
+            userInfo.FirstName = model.FirstName;
+            userInfo.LastName = model.LastName;
+
+            await _context.SaveChangesAsync();
+
+            CurrUser updatedUser = new CurrUser
             {
                 UserId = user.UserId,
+                Email = user.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
+                Role = user.Role,
+                PFP = user.PFP,
+                BirthDate = user.BirthDate,
+                Notifications = user.Notifications
             };
-            _context.UserInfo.Update(newName);
-            await _context.SaveChangesAsync();
+
+            _auth.setUser(updatedUser);
 
             return RedirectToAction("Account");
         }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateAdd(AccountViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                var user = _auth.getUser();
-                var userAdd = _context.Address.First(a => a.UserId == model.Id);
 
-                Addresses newAddress = new Addresses{
+            var user = _auth.getUser();
+
+            var userAdd = await _context.Address.FirstOrDefaultAsync(a => a.UserId == user.UserId);
+
+            if (userAdd != null)
+            {
+                userAdd.AddOne = model.Address.AddOne;
+                userAdd.AddTwo = model.Address.AddTwo;
+                userAdd.City = model.Address.City;
+                userAdd.State = model.Address.State;
+                userAdd.Zip = model.Address.Zip;
+
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                Addresses newAddress = new Addresses
+                {
                     UserId = user.UserId,
                     AddOne = model.Address.AddOne,
                     AddTwo = model.Address.AddTwo,
                     City = model.Address.City,
                     State = model.Address.State,
-                    Zip =   model.Address.Zip,
+                    Zip = model.Address.Zip,
                 };
 
-                _context.Address.Update(newAddress);
+                _context.Address.Add(newAddress); // Add the new address if no existing one is found
                 await _context.SaveChangesAsync();
             }
+            
 
             return RedirectToAction("Account");
         }
+
 
         #endregion
 
@@ -849,34 +889,83 @@ namespace TGTOAT.Controllers
         }
 
 
+        
 
-        // POST: /User/UploadImage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // POST: User/UploadProfilePicture
         [HttpPost]
-        public async Task<IActionResult> ChangeProfilePicture(IFormFile profileImage)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UploadProfilePicture(IFormFile profileImage)
         {
-            var userLoginInfo = _auth.getUser();
-            var fullUser = await _context.User.FindAsync(userLoginInfo.UserId);
+            var user = _auth.getUser();
 
-            if (profileImage != null && fullUser != null)
+            if (user == null)
             {
-                using (var memoryStream = new MemoryStream())
-                {
-                    await profileImage.CopyToAsync(memoryStream);
-
-                    byte[] imageBytes = memoryStream.ToArray();
-
-                    string base64String = Convert.ToBase64String(imageBytes);
-
-                    //fullUser.ProfileImageBase64 = base64String;
-
-                    _context.Update(fullUser);
-                    await _context.SaveChangesAsync();
-                }
-
+                return RedirectToAction("Index", "Home");
             }
 
-            return View(fullUser);
+            if (profileImage == null || profileImage.Length == 0)
+            {
+                ModelState.AddModelError("", "No file selected.");
+                return RedirectToAction("Account"); 
+            }
+
+            if (profileImage.ContentType != "image/jpeg" && profileImage.ContentType != "image/png")
+            {
+                ModelState.AddModelError("", "Only JPEG and PNG files are allowed.");
+                return RedirectToAction("Account");  
+            }
+
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "resources", profileImage.FileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await profileImage.CopyToAsync(stream);
+            }
+
+            var userInfo = await _context.UserInfo.FirstOrDefaultAsync(ui => ui.UserId == user.UserId);
+            if (userInfo == null)
+            {
+                return NotFound();
+            }
+
+            userInfo.PFP = filePath;
+
+            await _context.SaveChangesAsync();
+
+            CurrUser updatedUser = new CurrUser
+            {
+                UserId = user.UserId,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Role = user.Role,
+                PFP = System.IO.File.ReadAllBytes(userInfo.PFP),
+                BirthDate = user.BirthDate,
+                Notifications = user.Notifications
+            };
+
+            _auth.setUser(updatedUser);
+
+            return RedirectToAction("Account");
         }
+
         #endregion
 
         #region Cookies

@@ -22,7 +22,7 @@ namespace Spencer_Unit_Tests
         private NotificationService _notificationService;
 
         [TestMethod]
-        public void StudentRegisterForCourse()
+        public void StudentRegisterForCourse_UI_Test()
         {
             // Figure out how many courses the student is registered for
             // Register the student for a course
@@ -42,9 +42,9 @@ namespace Spencer_Unit_Tests
             }
 
             // Login to the website (IDK WHY BUT YOU HAVE TO SEND THE ENTER KEY? YOU CAN'T CLICK IT?)
-            driver.FindElement(By.Id("Email")).SendKeys("bob@gmail.com");
-            driver.FindElement(By.Id("Password")).SendKeys("Pass123");
-            driver.FindElement(By.XPath("//input[@value='Log In']")).SendKeys(Keys.Enter);
+            driver.FindElement(By.XPath("//input[@placeholder='Email Address']")).SendKeys("bob@gmail.com");
+            driver.FindElement(By.XPath("//input[@placeholder='Password']")).SendKeys("Password");
+            driver.FindElement(By.XPath("//input[@value='Log In']")).Click();
 
             // Click on the registration tab
             driver.FindElement(By.XPath("//a[@href='/User/CourseRegistration']")).Click();
@@ -73,7 +73,7 @@ namespace Spencer_Unit_Tests
         }
 
         [TestMethod]
-        public void InstructorGradeQuiz()
+        public void InstructorGradeQuiz_Unit_Test()
         {
             // Setup Moq and InMemoryDatabase
             // Create an instructor and student
@@ -221,7 +221,7 @@ namespace Spencer_Unit_Tests
         }
 
         [TestMethod]
-        public void InstructorGradeAssignment()
+        public void InstructorGradeAssignment_Unit_Test()
         {
             _mockAuth = new Mock<IAuthentication>();
             var options = new DbContextOptionsBuilder<UserContext>()

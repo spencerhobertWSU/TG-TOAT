@@ -89,7 +89,7 @@ namespace Josh_Tests
             _context.SaveChanges();
 
             // Create controller
-            _controller = new CourseController(_context, _mockAuth.Object);
+            _controller = new CourseController(_context, _mockAuth.Object, _notificationService);
 
             // Act - Drop the course by removing the connection
             var connection = _context.StudentConnection
@@ -196,7 +196,7 @@ namespace Josh_Tests
                 Assert.IsTrue(_context.InstructorConnection.Any(), "No instructor connections in database");
 
                 // Create controller
-                _controller = new CourseController(_context, _mockAuth.Object);
+                _controller = new CourseController(_context, _mockAuth.Object, _notificationService);
                 Assert.IsNotNull(_controller, "Controller is null");
 
                 // Act - Update course properties

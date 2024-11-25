@@ -164,8 +164,14 @@ namespace TGTOAT.Controllers
         //Logout User and Go to Login page
         public ActionResult Logout()
         {
+
+            var user = _auth.getUser();
+            _notificationService.ClearNotificationsOnLogout(user.UserId);
             DeleteCookie();
             _auth.Logout();
+            // Call this method when the user logs out
+           
+
             return RedirectToAction("Login");
         }
 

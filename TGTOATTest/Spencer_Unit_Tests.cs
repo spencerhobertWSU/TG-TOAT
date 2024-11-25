@@ -202,7 +202,7 @@ namespace Spencer_Unit_Tests
             _context.SaveChanges();
 
             // Create the controller
-            _controller = new CourseController( _context, _mockAuth.Object);
+            _controller = new CourseController( _context, _mockAuth.Object, _notificationService);
 
             // Grade the quiz with a random number between 0 and the max score
             Random random = new Random();
@@ -341,7 +341,7 @@ namespace Spencer_Unit_Tests
             _context.SaveChanges();
 
             // Create the controller
-            _controller = new CourseController(_context, _mockAuth.Object);
+            _controller = new CourseController(_context, _mockAuth.Object, _notificationService);
 
             // Grade the quiz with a random number between 0 and the max score
             Random random = new Random();

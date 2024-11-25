@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TGTOATTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f7753aa006e2cea76c76d8f69d83f89beada37ed")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8892a2436c5088950a11910e4841179877da455f")]
 [assembly: System.Reflection.AssemblyProductAttribute("TGTOATTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TGTOATTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

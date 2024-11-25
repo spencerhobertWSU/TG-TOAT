@@ -22,7 +22,7 @@
     <hr />
     <img id="pfp" src="@Url.Action("GetProfileImage", "User")" alt="Profile Image"/>
 
-    <form method="post" enctype="multipart/form-data">
+    <form asp-action="UploadProfilePicture" method="post" enctype="multipart/form-data">
         <br />
         <label for="profileImage" class="custombtn">Choose New Image</label>
         <br />
@@ -30,5 +30,6 @@
         <br />
         <button type="submit" class="btn btn-primary submit-btn">Submit</button>
     </form>
+
 </div>
 

@@ -27,6 +27,7 @@ public class Authentication : IAuthentication
         User = UserData;
     }
 
+
     public CurrUser getUser()
     {
         return User;

@@ -81,27 +81,7 @@ public class Authentication : IAuthentication
             var submittedQ = (from sq in _context.StudentQuizzes
                              select sq).ToList();
 
-            for(int i=0; i<upAssigns.Count; i++)
-            {
-                foreach(var s in submittedA)
-                {
-                    if(upAssigns[i].AssignId == s.AssignId)
-                    {
-                        upAssigns.RemoveAt(i);
-                    }
-                }
-            }
-
-            for (int i = 0; i < upQuizzes.Count; i++)
-            {
-                foreach (var q in submittedQ)
-                {
-                    if (upQuizzes[i].QuizId == q.QuizId)
-                    {
-                        upAssigns.RemoveAt(i);
-                    }
-                }
-            }
+            
 
 
         }

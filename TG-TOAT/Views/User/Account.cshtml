@@ -99,3 +99,25 @@
 </div>
 
 <script src="~/js/account.js" asp-append-version="true"></script>
+
+<script>
+    var state = document.getElementById("stateSelect")
+    if(@Model.Address.State != null){
+        state.value = @Model.Address.State
+    }
+
+    function updateStates() {
+
+        var states = document.getElementById("stateSelect");
+
+        states.innerHTML = '';
+
+        for (i = 0; i < stateValues.length; i++) {
+            var option = document.createElement("option");
+            option.value = stateValues[i];
+            option.text = stateNames[i];
+            states.appendChild(option);
+        }
+    }
+
+</script>

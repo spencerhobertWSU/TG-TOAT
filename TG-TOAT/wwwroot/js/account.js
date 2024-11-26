@@ -111,18 +111,3 @@ function showToast() {
         toast.style.display = 'none';
     }, 1000);
 }
-
-
-function updateStates() {
-
-    var states = document.getElementById("stateSelect");
-
-    states.innerHTML = '';
-
-    for (i = 0; i < stateValues.length; i++) {
-        var option = document.createElement("option");
-        option.value = stateValues[i];
-        option.text = stateNames[i];
-        states.appendChild(option);
-    }
-}

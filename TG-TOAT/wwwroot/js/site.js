@@ -26,17 +26,19 @@ window.addEventListener('load', function () {
 function openNotif() {
     // Toggle Notifications
     var notifMenu = document.getElementById("notificationDropdown");
+    var accountMenu = document.getElementById("account")
 
     if (notifMenu.style.display === "none" || notifMenu.style.display === "") {
         // Show the notification dropdown
         notifMenu.style.display = "block";
+        accountMenu.style.display = "none";
     } else {
         // Hide the notification dropdown
         notifMenu.style.display = "none";
+
     }
     
 }
-
 
 function openAccount() {
     var accountMenu = document.getElementById("account")
@@ -45,7 +47,10 @@ function openAccount() {
     //Open Account
     if (accountMenu.style.display == "none") {
         accountMenu.style.display = "block";
-        notifMenu.style.display = "none";
+        if (notifMenu != null) {
+            notifMenu.style.display = "none";
+        }
+        
     }
     //Close Account
     else {

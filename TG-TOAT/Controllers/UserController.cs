@@ -523,7 +523,7 @@ namespace TGTOAT.Controllers
                 Courses = Courses,
                 CurrentStudent = _auth.getUser().UserId,
                 Departments = _context.Departments.ToList(),
-                DeptId = (int)departmentId
+                //DeptId = (int)departmentId
             };
 
             return View("CourseRegistration", RegisterCourses); // Return the view with the filtered courses

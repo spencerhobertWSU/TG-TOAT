@@ -609,6 +609,7 @@ namespace TGTOAT.Controllers
             var stuQuizes = (from sq in _context.StudentQuizzes
                              join q in _context.Quizzes on sq.QuizId equals q.QuizId
                              join c in _context.Courses on q.CourseId equals c.CourseId
+                             where sq.StudentId == user.UserId
                              where c.CourseId == id
                              select sq).ToList();
                             
@@ -643,7 +644,7 @@ namespace TGTOAT.Controllers
                 return RedirectToAction("Login", "User");
             }
 
-            var submitted = _context.StudentQuizzes.FirstOrDefault(sq => sq.QuizId == quizId);
+            var submitted = _context.StudentQuizzes.FirstOrDefault(sq => sq.QuizId == quizId && sq.StudentId == user.UserId);
 
             if (submitted != null)
             {
@@ -817,7 +818,6 @@ namespace TGTOAT.Controllers
 
         public ActionResult ViewQuiz(int id, int quizId)
         {
-            {
                 var user = _auth.getUser();
 
                 if (user == null)
@@ -825,7 +825,7 @@ namespace TGTOAT.Controllers
                     return RedirectToAction("Login", "User");
                 }
 
-                var quizInfo = _context.Quizzes.FirstOrDefault(q => q.QuizId == quizId);
+                var quizInfo = _context.Quizzes.First(q => q.QuizId == quizId);
                 var submittedQuiz = _context.StudentQuizzes.FirstOrDefault(q => q.QuizId == quizId && q.StudentId == user.UserId);
 
                 var quiz = new TakeQuizModel
@@ -845,8 +845,6 @@ namespace TGTOAT.Controllers
                 };
 
                 return View(quiz);
-
-            }
         }
 
         public ActionResult GradeQuiz(int id, int quizId, int stuId)
@@ -1439,7 +1437,7 @@ namespace TGTOAT.Controllers
 
             var gradeDistribution = new List<KeyValuePair<string, int>>()
             {
-                new KeyValuePair<string, int>("<60%", studentConnections.Count(g => g < 60)),
+                new KeyValuePair<string, int>("less than 60%", studentConnections.Count(g => g < 60)),
                 new KeyValuePair<string, int>("60-70%", studentConnections.Count(g => g >= 60 && g <= 70)),
                 new KeyValuePair<string, int>("71-80%", studentConnections.Count(g => g >= 71 && g <= 80)),
                 new KeyValuePair<string, int>("81-90%", studentConnections.Count(g => g >= 81 && g <= 90)),
@@ -1681,7 +1679,7 @@ namespace TGTOAT.Controllers
                     return View(model);
                 }
 
-                // Convert the file to a Base64 string
+                //Convert the file to a Base64 string
                 using (var memoryStream = new MemoryStream())
                 {
                     await FileSubmission.CopyToAsync(memoryStream);
@@ -1691,6 +1689,7 @@ namespace TGTOAT.Controllers
                     // Update the submission column with the base64-encoded file submission
                     newFile = base64String;
                 }
+                
             }
             else
             {
@@ -1701,7 +1700,12 @@ namespace TGTOAT.Controllers
 
 
             var resubmit = _context.StudentAssignment.FirstOrDefault(sa => sa.AssignId == assignmentId);
-            _context.Entry<StudentAssignments>(resubmit).State = EntityState.Detached;
+
+            if(resubmit != null)
+            {
+                _context.Entry<StudentAssignments>(resubmit).State = EntityState.Detached;
+            }
+            
 
             if(resubmit == null)
             {

@@ -88,13 +88,24 @@
                 <!-- Notification Dropdown -->
                 <div id="notificationDropdown" class="notification-dropdown" style="display: none;">
                     <ul>
-                                @foreach (var notification in Model.Notifications) // Use the Notifications property
-                                {
-                            <li>
-                                        @notification.Message
-                                <small>(@notification.CreatedAt.ToString("g"))</small>
+                                @{
+                                    if (Model.Notifications.Count == 0)
+                                    {
+                                <li>
+                                    <h5>No Notifications</h5>
+                                </li>
+                                    }
+                                    else
+                                    {
+                                        @foreach (var notification in Model.Notifications) // Use the Notifications property
+                                        {
+                                    <li>
+                                                @notification.Message
+                                        <small>(@notification.CreatedAt.ToString("g"))</small>
 
-                            </li>
+                                    </li>
+                                        }
+                                    }
                                 }
                     </ul>
                 </div>

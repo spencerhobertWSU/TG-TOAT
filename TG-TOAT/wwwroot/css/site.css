@@ -764,6 +764,18 @@ input[type="file"] {
         height: 33vh;
     }
 }
+
+@media only screen and (max-height: 1150px) {
+    .card-icons {
+        display:none;
+    }
+}
+
+@media only screen and (max-height: 900px) {
+    .class-time {
+        display: none;
+    }
+}
 /*#endregion*/
 
 /*#region Notifications*/

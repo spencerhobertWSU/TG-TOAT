@@ -42,10 +42,9 @@
                         </div>
                     </a>
                     <div class="card-icons">
-                        <a href="#" title="Announcements"><i class="fa-solid fa-bullhorn"></i></a>
-                        <a href="#" title="Assignments"><i class="fa-light fa-books"></i></a>
-                        <a href="#" title="Discussions"><i class="fa-light fa-comments"></i></a>
-                        <a href="#" title="Grades"><i class="fa-solid fa-award"></i></a>
+                        <a asp-controller="Course" asp-action="Assignments" asp-route-id="@course.CourseId" title="Assignments"><i class="fa-light fa-books"></i></a>
+                        <a asp-controller="Course" asp-action="Quizzes" asp-route-id="@course.CourseId" title="Quizzes"><i class="fa-duotone fa-solid fa-pen"></i></a>
+                        <a asp-controller="Course" asp-action="Grades" asp-route-id="@course.CourseId" title="Grades"><i class="fa-solid fa-award"></i></a>
                     </div>
                 </div>
             }
@@ -80,7 +79,7 @@
 
                     @if (Model.UserRole == "Student")
                     {             
-                        if (assignment.Type == 0)
+                        if (assignment.Type == 0) 
                         {
                             <a asp-controller="Course" asp-action="SubmitAssignment" asp-route-id="@assignment.CourseId" asp-route-assignmentId="@assignment.AssignId">
                                 <p class="todo-class">@assignment.DeptName @assignment.CourseNum</p>
@@ -102,7 +101,7 @@
                     {
                         if (assignment.Type == 0)
                         {
-                            <a asp-controller="Course" asp-action="SubmitAssignment" asp-route-id="@assignment.CourseId" asp-route-assignmentId="@assignment.AssignId">
+                            <a asp-controller="Course" asp-action="ViewSubmissions" asp-route-id="@assignment.CourseId" asp-route-assignmentId="@assignment.AssignId">
                                 <p class="todo-class">@assignment.DeptName @assignment.CourseNum</p>
                                 <p class="todo-name"><span class="due">Assignment:</span> @assignment.AssignName</p>
                                 <p class="todo-time"><span class="due">Due:</span> @assignment.DueDate.ToString("MMM dd 'at' h:mmtt")</p>
@@ -110,7 +109,7 @@
                         }
                         else
                         {
-                            <a asp-controller="Course" asp-action="SubmitAssignment" asp-route-id="@assignment.CourseId" asp-route-quizId="@assignment.AssignId">
+                            <a asp-controller="Course" asp-action="ViewSubmissions" asp-route-id="@assignment.CourseId" asp-route-quizId="@assignment.AssignId">
                                 <p class="todo-class">@assignment.DeptName @assignment.CourseNum</p>
                                 <p class="todo-name"><span class="due">Quiz:</span> @assignment.AssignName</p>
                                 <p class="todo-time"><span class="due">Due:</span> @assignment.DueDate.ToString("MMM dd 'at' h:mmtt")</p>

@@ -13,7 +13,7 @@ namespace Models
         public string GivenPoints { get; set; }
         public string TextSubmission { get; set; }
         public string FileSubmission { get; set; }
-        public bool HasFile { get; set; }
+        public string submissionType { get; set; }
         public int AssignmentId { get; set; } 
         public int StudentId { get; set; }
 

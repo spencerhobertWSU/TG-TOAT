@@ -1250,7 +1250,7 @@ namespace TGTOAT.Controllers
                 GivenPoints = submission.Points.HasValue ? submission.Points.Value.ToString() : "UG",
                 TextSubmission = submission.Submission,
                 FileSubmission = submission.Submission,
-                HasFile = !string.IsNullOrEmpty(submission.Submission),
+                submissionType = assignment.AssignType,
                 AssignmentId = assignment.AssignId, // Include the assignment ID
                 StudentId = submission.StudentId // Include the student ID
             };
@@ -1605,6 +1605,7 @@ namespace TGTOAT.Controllers
             var existingSubmission = _context.StudentAssignment
                 .Where(sa => sa.AssignId == assignmentId && sa.StudentId == studentId)
                 .FirstOrDefault();
+
             if (existingSubmission != null && isresubmitted == false)
             {
                 return RedirectToAction("SubmitPage", new { assignmentId = assignmentId });
@@ -1664,12 +1665,12 @@ namespace TGTOAT.Controllers
 
             string newFile = "";
 
-            if (assignment.AssignType == "text" && !string.IsNullOrEmpty(TextSubmission))
+            if (assignment.AssignType == "text")
             {
                 // Update the submission column with the text submission
                 newFile = TextSubmission;
             }
-            else if (assignment.AssignType == "file" && FileSubmission != null && FileSubmission.Length > 0)
+            else if (assignment.AssignType == "file")
             {
                 // Check the file type
                 var fileExtension = Path.GetExtension(FileSubmission.FileName).ToLower();

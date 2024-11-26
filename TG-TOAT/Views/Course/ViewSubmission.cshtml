@@ -47,14 +47,14 @@
     <!-- Submission Content -->
     <section class="mt-4">
         <h3 class="mb-3">Submission Content</h3>
-        @if (Model.HasFile)
+        @if (Model.submissionType == "file")
         {
             <div>
                 <h5>File Submission:</h5>
                 <a href="@Url.Content(Model.FileSubmission)" class="btn btn-primary" download>Download File</a>
             </div>
         }
-        else if (!string.IsNullOrEmpty(Model.TextSubmission))
+        else if (Model.submissionType == "text")
         {
             <div>
                 <h5>Text Submission:</h5>
